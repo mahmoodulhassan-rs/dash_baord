@@ -46,7 +46,8 @@ assets_path = os.getcwd() +'/src/new_assets'
 app = dash.Dash(__name__)
 # path= location
 
-
+server = app.server
+app.title = "Gemini Dashboard"
 
 
 
@@ -221,4 +222,4 @@ app.layout = html.Div(style = {
 # print ("**********************,",path)
 if __name__ == '__main__':
 
-  app.run_server(debug = True)
+  app.run_server(debug=False, port = 8080)

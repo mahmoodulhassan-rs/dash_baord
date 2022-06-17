@@ -100,7 +100,7 @@ app.layout = html.Div(style = {
         {
             'if': {
                 'filter_query': '{Numbers} > 0',
-                'column_id': 'Numbers'
+                'row_index': 2,
             },
             'backgroundColor': 'red',
             'color': 'black'

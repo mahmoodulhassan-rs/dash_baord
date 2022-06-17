@@ -2,6 +2,7 @@ import pandas as pd
 import dash
 import dash_table
 import os
+import plotly.express as px
 from dash.dependencies import Input, Output
 from dash import dcc
 from dash import html

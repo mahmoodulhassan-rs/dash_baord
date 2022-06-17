@@ -1,4 +1,4 @@
-
+import pandas as pd
 import dash
 import dash_table
 from dash.dependencies import Input, Output

@@ -1,6 +1,4 @@
 
-
-import matplotlib.pyplot as plt
 import dash
 import dash_table
 from dash.dependencies import Input, Output

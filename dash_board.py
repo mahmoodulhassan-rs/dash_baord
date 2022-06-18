@@ -1,0 +1,960 @@
+#!/bin/python3
+import codecs
+import re
+import csv
+import sys
+import glob
+import pandas as pd
+import numpy as np
+import os 
+import itertools
+import plotly.express as px
+import plotly.graph_objects as go
+from datetime import datetime
+import shutil
+import pathlib
+from bs4 import BeautifulSoup
+from itertools import islice
+from collections import Counter
+from dash import dcc
+from dash import html
+# from openpyl import *
+# from openpyxl.styles import *
+# from openpyxl.worksheet.dimensions import ColumnDimension, DimensionHolder
+import matplotlib.pyplot as plt
+from pathlib import Path
+import time
+import ntpath
+import dash, dash_table
+from dash.dependencies import Input, Output
+#############################################################################
+##############################################################################
+def get_test_name (log_file):
+    global row_no
+    global test_name
+    test_name= (log_file.split("/")[-1]).replace(".log","")
+    # test_name=ntpath.basename(path)
+    # print(test_name)
+    if test_name in test_collection.keys():
+        
+        row_no = test_collection [test_name]
+    else:
+        row_no = row_no + 1
+        test_collection[test_name] = row_no
+        # print("xxxxxxxxxxxxxxxxxxxxxx",test_collection)
+   # print("Test name is",test_name)
+    return [test_name,row_no]
+    
+###############################################################################
+def I2C (planned_tests,test_passed,test_failed):
+    global i2c_ip
+    temp='NaN'
+    log_no=0
+    log_count=0
+    log_files= ip_I2C +"/*.log"
+    # get_design_row = i2c_ip   
+    # print (get_design_row)
+    log_files_glb = glob.glob(log_files)
+    if log_files_glb:
+        #  print (log_files_glb)
+         pass
+    else:
+         print("Error: glob failed to locate I2C log files")
+    log_count=len(log_files_glb)
+    for log_file in log_files_glb:
+        # print(count)
+        log_no=log_no+1
+        pld_tests=log_no
+        print("[",log_no,"/",log_count,"] Currently processing \n",log_file)
+        test_name=get_test_name (log_file)
+        df.loc[test_name[1],"Test Name"]= test_name[0]
+        df.loc[test_name[1],["IP"]]="I2C"
+        with open (log_file,'r') as read:
+           lines = read.readlines()
+           for line in lines:
+                   if  re.search(r"TEST PASSED",line):
+                       df.loc[test_name[1],"Status"]="Passed"
+                       test_passed=test_passed+1
+                       break 
+                   elif re.search(r"TEST FAILED",line):
+                       df.loc[test_name[1],"Status"]="Failed"
+                       df.loc[test_name[1],"Remarks"]="Please consult the logs"
+                       test_failed=test_failed+1
+                       break
+    planned_tests=pld_tests+planned_tests
+    # print("Test_planned:",planned_tests)
+    return planned_tests,test_passed,test_failed
+    # df["IP"]="I2C"    
+    # test_collection
+def UART0 (planned_tests,test_passed,test_failed):
+    # global i2c_ip
+    temp='NaN'
+    log_no=0
+    log_count=0
+    log_files= ip_UART0+"/*.log"
+    # get_design_row = i2c_ip   
+    # print (get_design_row)
+    log_files_glb = glob.glob(log_files)
+    if log_files_glb:
+        #  print (log_files_glb)
+         pass
+    else:
+         print("Error: glob failed to locate UART0 log files")
+    log_count=len(log_files_glb)
+    for log_file in log_files_glb:
+        # print(count)
+        log_no=log_no+1
+        pld_tests=log_no
+        # planned_tests=pld_tests+planned_tests
+        print("[",log_no,"/",log_count,"] Currently processing \n",log_file)
+        test_name=get_test_name (log_file)
+        df.loc[test_name[1],"Test Name"]= test_name[0]
+        df.loc[test_name[1],["IP"]]="UART0"
+        with open (log_file,'r') as read:
+           lines = read.readlines()
+           for line in lines:
+                   if  (re.search (r"UVM_FATAL \[",line)) or (re.search(r"UVM_FATAL @ 0:",line)) or (re.search (r"UVM_ERROR \[",line))  :
+                       temp=line
+                   elif  re.search(r"TEST PASSED",line):
+                       df.loc[test_name[1],"Status"]="Passed"
+                       test_passed=test_passed+1
+                       break
+                   elif (re.search(r"TEST FAILED",line)) or (re.search(r"\b^UVM_ERROR :    [1-9]*$\b",line)) or (re.search(r"\b^UVM_FATAL :    1\b",line)) :
+                    #    print(line)
+                       df.loc[test_name[1],"Status"]="Failed"
+                       df.loc[test_name[1],"Remarks"]=temp
+                       test_failed=test_failed+1
+                       break
+    planned_tests=pld_tests+planned_tests
+    # print("Test_planned:",planned_tests)
+    return planned_tests,test_passed,test_failed
+
+def UART1 (planned_tests,test_passed,test_failed):
+    # global i2c_ip
+    temp='NaN'
+    log_no=0
+    log_count=0
+    log_files= ip_UART1+"/*.log"
+    # get_design_row = i2c_ip   
+    # print (get_design_row)
+    log_files_glb = glob.glob(log_files)
+    if log_files_glb:
+        #  print (log_files_glb)
+         pass
+    else:
+         print("Error: glob failed to locate UART1 log files")
+    log_count=len(log_files_glb)
+    for log_file in log_files_glb:
+        # print(count)
+        log_no=log_no+1
+        pld_tests=log_no
+        # planned_tests=pld_tests+planned_tests
+        print("[",log_no,"/",log_count,"] Currently processing \n",log_file)
+        test_name=get_test_name (log_file)
+        df.loc[test_name[1],"Test Name"]= test_name[0]
+        df.loc[test_name[1],["IP"]]="UART1"
+        with open (log_file,'r') as read:
+           lines = read.readlines()
+           for line in lines:
+                   if  (re.search (r"UVM_FATAL \[",line)) or (re.search(r"UVM_FATAL @ 0:",line)) or (re.search (r"UVM_ERROR \[",line))  :
+                       temp=line
+                   elif  re.search(r"TEST PASSED",line):
+                       df.loc[test_name[1],"Status"]="Passed"
+                       test_passed=test_passed+1
+                       break
+                   elif (re.search(r"TEST FAILED",line)) or (re.search(r"\b^UVM_ERROR :    [1-9]*$\b",line)) or (re.search(r"\b^UVM_FATAL :    1\b",line)) :
+                    #    print(line)
+                       df.loc[test_name[1],"Status"]="Failed"
+                       df.loc[test_name[1],"Remarks"]=temp
+                       test_failed=test_failed+1
+                       break
+    planned_tests=pld_tests+planned_tests
+    # print("Test_planned:",planned_tests)
+    return planned_tests,test_passed,test_failed
+
+def BOOT (planned_tests,test_passed,test_failed):
+    # global i2c_ip
+    temp='NaN'
+    log_no=0
+    log_count=0
+    log_files= ip_BOOT+"/*.log"
+    # get_design_row = i2c_ip   
+    # print (get_design_row)
+    log_files_glb = glob.glob(log_files)
+    if log_files_glb:
+        #  print (log_files_glb)
+         pass
+    else:
+         print("Error: glob failed to locate BOOT log files")
+    log_count=len(log_files_glb)
+    for log_file in log_files_glb:
+        # print(count)
+        log_no=log_no+1
+        pld_tests=log_no
+        # planned_tests=pld_tests+planned_tests
+        print("[",log_no,"/",log_count,"] Currently processing \n",log_file)
+        test_name=get_test_name (log_file)
+        df.loc[test_name[1],"Test Name"]= test_name[0]
+        df.loc[test_name[1],["IP"]]="BOOT"
+        with open (log_file,'r') as read:
+           lines = read.readlines()
+           for line in lines:
+                   if  (re.search (r"UVM_FATAL \[",line)) or (re.search(r"UVM_FATAL @ 0:",line)) or (re.search (r"UVM_ERROR \[",line))  :
+                       temp=line
+                   elif  re.search(r"TEST PASSED",line):
+                       df.loc[test_name[1],"Status"]="Passed"
+                       test_passed=test_passed+1
+                       break
+                   elif (re.search(r"TEST FAILED",line)) or (re.search(r"\b^UVM_ERROR :    [1-9]*$\b",line)) or (re.search(r"\b^UVM_FATAL :    1\b",line)) :
+                    #    print(line)
+                       df.loc[test_name[1],"Status"]="Failed"
+                       df.loc[test_name[1],"Remarks"]=temp
+                       test_failed=test_failed+1
+                       break
+    planned_tests=pld_tests+planned_tests
+    # print("Test_planned:",planned_tests)
+    return planned_tests,test_passed,test_failed
+
+def DMA (planned_tests,test_passed,test_failed):
+    # global i2c_ip
+    temp='NaN'
+    log_no=0
+    log_count=0
+    log_files= ip_DMA+"/*.log"
+    # get_design_row = i2c_ip   
+    # print (get_design_row)
+    log_files_glb = glob.glob(log_files)
+    if log_files_glb:
+        #  print (log_files_glb)
+         pass
+    else:
+         print("Error: glob failed to locate DMA log files")
+    log_count=len(log_files_glb)
+    for log_file in log_files_glb:
+        # print(count)
+        log_no=log_no+1
+        pld_tests=log_no
+        # planned_tests=pld_tests+planned_tests
+        print("[",log_no,"/",log_count,"] Currently processing \n",log_file)
+        test_name=get_test_name (log_file)
+        df.loc[test_name[1],"Test Name"]= test_name[0]
+        df.loc[test_name[1],["IP"]]="DMA"
+        with open (log_file,'r') as read:
+           lines = read.readlines()
+           for line in lines:
+                   if  (re.search (r"UVM_FATAL \[",line)) or (re.search(r"UVM_FATAL @ 0:",line)) or (re.search (r"UVM_ERROR \[",line))  :
+                       temp=line
+                   elif  re.search(r"TEST PASSED",line):
+                       df.loc[test_name[1],"Status"]="Passed"
+                       test_passed=test_passed+1
+                       break
+                   elif (re.search(r"TEST FAILED",line)) or (re.search(r"\b^UVM_ERROR :    [1-9]*$\b",line)) or (re.search(r"\b^UVM_FATAL :    1\b",line)) :
+                    #    print(line)
+                       df.loc[test_name[1],"Status"]="Failed"
+                       df.loc[test_name[1],"Remarks"]=temp
+                       test_failed=test_failed+1
+                       break
+    planned_tests=pld_tests+planned_tests
+    # print("Test_planned:",planned_tests)
+    return planned_tests,test_passed,test_failed
+def GPIO (planned_tests,test_passed,test_failed):
+    # global i2c_ip
+    temp='NaN'
+    log_no=0
+    log_count=0
+    log_files= ip_GPIO+"/*.log"
+    # get_design_row = i2c_ip   
+    # print (get_design_row)
+    log_files_glb = glob.glob(log_files)
+    if log_files_glb:
+        #  print (log_files_glb)
+         pass
+    else:
+         print("Error: glob failed to locate GPIO log files")
+    log_count=len(log_files_glb)
+    for log_file in log_files_glb:
+        # print(count)
+        log_no=log_no+1
+        pld_tests=log_no
+        # planned_tests=pld_tests+planned_tests
+        print("[",log_no,"/",log_count,"] Currently processing \n",log_file)
+        test_name=get_test_name (log_file)
+        df.loc[test_name[1],"Test Name"]= test_name[0]
+        df.loc[test_name[1],["IP"]]="GPIO"
+        with open (log_file,'r') as read:
+           lines = read.readlines()
+           for line in lines:
+                   if  (re.search (r"UVM_FATAL \[",line)) or (re.search(r"UVM_FATAL @ 0:",line)) or (re.search (r"UVM_ERROR \[",line))  :
+                       temp=line
+                   elif  re.search(r"TEST PASSED",line):
+                       df.loc[test_name[1],"Status"]="Passed"
+                       test_passed=test_passed+1
+                       break
+                   elif (re.search(r"TEST FAILED",line)) or (re.search(r"\b^UVM_ERROR :    [1-9]*$\b",line)) or (re.search(r"\b^UVM_FATAL :    1\b",line)) :
+                    #    print(line)
+                       df.loc[test_name[1],"Status"]="Failed"
+                       df.loc[test_name[1],"Remarks"]=temp
+                       test_failed=test_failed+1
+                       break
+    planned_tests=pld_tests+planned_tests
+    # print("Test_planned:",planned_tests)
+    return planned_tests,test_passed,test_failed
+def GPT (planned_tests,test_passed,test_failed):
+    # global i2c_ip
+    temp='NaN'
+    log_no=0
+    log_count=0
+    log_files= ip_GPT+"/*.log"
+    # get_design_row = i2c_ip   
+    # print (get_design_row)
+    log_files_glb = glob.glob(log_files)
+    if log_files_glb:
+        #  print (log_files_glb)
+         pass
+    else:
+         print("Error: glob failed to locate GPT log files")
+    log_count=len(log_files_glb)
+    for log_file in log_files_glb:
+        # print(count)
+        log_no=log_no+1
+        pld_tests=log_no
+        # planned_tests=pld_tests+planned_tests
+        print("[",log_no,"/",log_count,"] Currently processing \n",log_file)
+        test_name=get_test_name (log_file)
+        df.loc[test_name[1],"Test Name"]= test_name[0]
+        df.loc[test_name[1],["IP"]]="GPT"
+        with open (log_file,'r') as read:
+           lines = read.readlines()
+           for line in lines:
+                   if  (re.search (r"UVM_FATAL \[",line)) or (re.search(r"UVM_FATAL @ 0:",line)) or (re.search (r"UVM_ERROR \[",line))  :
+                       temp=line
+                   elif  re.search(r"TEST PASSED",line):
+                       df.loc[test_name[1],"Status"]="Passed"
+                       test_passed=test_passed+1
+                       break
+                   elif (re.search(r"TEST FAILED",line)) or (re.search(r"\b^UVM_ERROR :    [1-9]*$\b",line)) or (re.search(r"\b^UVM_FATAL :    1\b",line)) :
+                    #    print(line)
+                       df.loc[test_name[1],"Status"]="Failed"
+                       df.loc[test_name[1],"Remarks"]=temp
+                       test_failed=test_failed+1
+                       break
+    planned_tests=pld_tests+planned_tests
+    # print("Test_planned:",planned_tests)
+    return planned_tests,test_passed,test_failed
+def SPI (planned_tests,test_passed,test_failed):
+    # global i2c_ip
+    temp='NaN'
+    log_no=0
+    log_count=0
+    log_files= ip_SPI+"/*.log"
+    # get_design_row = i2c_ip   
+    # print (get_design_row)
+    log_files_glb = glob.glob(log_files)
+    if log_files_glb:
+        #  print (log_files_glb)
+         pass
+    else:
+         print("Error: glob failed to locate SPI log files")
+    log_count=len(log_files_glb)
+    for log_file in log_files_glb:
+        # print(count)
+        log_no=log_no+1
+        pld_tests=log_no
+        # planned_tests=pld_tests+planned_tests
+        print("[",log_no,"/",log_count,"] Currently processing \n",log_file)
+        test_name=get_test_name (log_file)
+        df.loc[test_name[1],"Test Name"]= test_name[0]
+        df.loc[test_name[1],["IP"]]="SPI"
+        with open (log_file,'r') as read:
+           lines = read.readlines()
+           for line in lines:
+                   if  (re.search (r"UVM_FATAL \[",line)) or (re.search(r"UVM_FATAL @ 0:",line)) or (re.search (r"UVM_ERROR \[",line))  :
+                       temp=line
+                   elif  re.search(r"TEST PASSED",line):
+                       df.loc[test_name[1],"Status"]="Passed"
+                       test_passed=test_passed+1
+                       break
+                   elif (re.search(r"TEST FAILED",line)) or (re.search(r"\b^UVM_ERROR :    [1-9]*$\b",line)) or (re.search(r"\b^UVM_FATAL :    1\b",line)) :
+                    #    print(line)
+                       df.loc[test_name[1],"Status"]="Failed"
+                       df.loc[test_name[1],"Remarks"]=temp
+                       test_failed=test_failed+1
+                       break
+    planned_tests=pld_tests+planned_tests
+    # print("Test_planned:",planned_tests)
+    return planned_tests,test_passed,test_failed
+
+def SRAM (planned_tests,test_passed,test_failed):
+    # global i2c_ip
+    temp='NaN'
+    log_no=0
+    log_count=0
+    log_files= ip_SRAM+"/*.log"
+    # get_design_row = i2c_ip   
+    # print (get_design_row)
+    log_files_glb = glob.glob(log_files)
+    if log_files_glb:
+        #  print (log_files_glb)
+         pass
+    else:
+         print("Error: glob failed to locate SRAM log files")
+    log_count=len(log_files_glb)
+    for log_file in log_files_glb:
+        # print(count)
+        log_no=log_no+1
+        pld_tests=log_no
+        
+        # print("*************dasd************",planned_tests)
+        print("[",log_no,"/",log_count,"] Currently processing \n",log_file)
+        test_name=get_test_name (log_file)
+        df.loc[test_name[1],"Test Name"]= test_name[0]
+        df.loc[test_name[1],["IP"]]="SRAM"
+        with open (log_file,'r') as read:
+           lines = read.readlines()
+           for line in lines:
+                   if  (re.search (r"UVM_FATAL \[",line)) or (re.search(r"UVM_FATAL @ 0:",line)) or (re.search (r"UVM_ERROR \[",line))  :
+                       temp=line
+                   elif  re.search(r"TEST PASSED",line):
+                       df.loc[test_name[1],"Status"]="Passed"
+                       test_passed=test_passed+1
+                       break
+                   elif (re.search(r"TEST FAILED",line)) or (re.search(r"\b^UVM_ERROR :    [1-9]*$\b",line)) or (re.search(r"\b^UVM_FATAL :    1\b",line)) :
+                    #    print(line)
+                       df.loc[test_name[1],"Status"]="Failed"
+                       df.loc[test_name[1],"Remarks"]=temp
+                       test_failed=test_failed+1
+                       break
+    planned_tests=pld_tests+planned_tests
+    print("Test_planned:",planned_tests)
+    return planned_tests,test_passed,test_failed
+def WDT (planned_tests,test_passed,test_failed):
+    # global i2c_ip
+    temp='NaN'
+    log_no=0
+    log_count=0
+    log_files= ip_WDT+"/*.log"
+    # get_design_row = i2c_ip   
+    # print (get_design_row)
+    log_files_glb = glob.glob(log_files)
+    if log_files_glb:
+        #  print (log_files_glb)
+         pass
+    else:
+         print("Error: glob failed to locate WDT log files")
+    log_count=len(log_files_glb)
+    for log_file in log_files_glb:
+        # print(count)
+        log_no=log_no+1
+        pld_tests=log_no
+        # planned_tests=pld_tests+planned_tests
+        print("[",log_no,"/",log_count,"] Currently processing \n",log_file)
+        test_name=get_test_name (log_file)
+        df.loc[test_name[1],"Test Name"]= test_name[0]
+        df.loc[test_name[1],["IP"]]="WDT"
+        with open (log_file,'r') as read:
+           lines = read.readlines()
+           for line in lines:
+                   if  (re.search (r"UVM_FATAL \[",line)) or (re.search(r"UVM_FATAL @ 0:",line)) or (re.search (r"UVM_ERROR \[",line))  :
+                       temp=line
+                   elif  re.search(r"TEST PASSED",line):
+                       df.loc[test_name[1],"Status"]="Passed"
+                       test_passed=test_passed+1
+                       break
+                   elif (re.search(r"TEST FAILED",line)) or (re.search(r"\b^UVM_ERROR :    [1-9]*$\b",line)) or (re.search(r"\b^UVM_FATAL :    1\b",line)) :
+                    #    print(line)
+                       df.loc[test_name[1],"Status"]="Failed"
+                       df.loc[test_name[1],"Remarks"]=temp
+                       test_failed=test_failed+1
+                       break
+    planned_tests=pld_tests+planned_tests
+    print("Test_planned:",planned_tests)
+    return planned_tests,test_passed,test_failed
+
+def CLK (planned_tests,test_passed,test_failed):
+    # global i2c_ip
+    temp='NaN'
+    log_no=0
+    log_count=0
+    log_files= ip_CLK+"/*.log"
+    # get_design_row = i2c_ip   
+    # print (get_design_row)
+    log_files_glb = glob.glob(log_files)
+    if log_files_glb:
+        #  print (log_files_glb)
+         pass
+    else:
+         print("Error: glob failed to locate CLK log files")
+    log_count=len(log_files_glb)
+    for log_file in log_files_glb:
+        # print(count)
+        log_no=log_no+1
+        pld_tests=log_no
+        # planned_tests=pld_tests+planned_tests
+        print("[",log_no,"/",log_count,"] Currently processing \n",log_file)
+        test_name=get_test_name (log_file)
+        df.loc[test_name[1],"Test Name"]= test_name[0]
+        df.loc[test_name[1],["IP"]]="CLK"
+        with open (log_file,'r') as read:
+           lines = read.readlines()
+           for line in lines:
+                   if  (re.search (r"UVM_FATAL \[",line)) or (re.search(r"UVM_FATAL @ 0:",line)) or (re.search (r"UVM_ERROR \[",line))  :
+                       temp=line
+                   elif  re.search(r"TEST PASSED",line):
+                       df.loc[test_name[1],"Status"]="Passed"
+                       test_passed=test_passed+1
+                       break
+                   elif (re.search(r"TEST FAILED",line)) or (re.search(r"\b^UVM_ERROR :    [1-9]*$\b",line)) or (re.search(r"\b^UVM_FATAL :    1\b",line)) :
+                    #    print(line)
+                       df.loc[test_name[1],"Status"]="Failed"
+                       df.loc[test_name[1],"Remarks"]=temp
+                       test_failed=test_failed+1
+                       break
+    planned_tests=pld_tests+planned_tests
+    print("Test_planned:",planned_tests)
+    return planned_tests,test_passed,test_failed
+
+def GATING (planned_tests,test_passed,test_failed):
+    # global i2c_ip
+    temp='NaN'
+    log_no=0
+    log_count=0
+    log_files= ip_GATING+"/*.log"
+    # get_design_row = i2c_ip   
+    # print (get_design_row)
+    log_files_glb = glob.glob(log_files)
+    if log_files_glb:
+        #  print (log_files_glb)
+         pass
+    else:
+         print("Error: glob failed to locate GATING log files")
+    log_count=len(log_files_glb)
+    for log_file in log_files_glb:
+        # print(count)
+        log_no=log_no+1
+        pld_tests=log_no
+        # planned_tests=pld_tests+planned_tests
+        print("[",log_no,"/",log_count,"] Currently processing \n",log_file)
+        test_name=get_test_name (log_file)
+        df.loc[test_name[1],"Test Name"]= test_name[0]
+        df.loc[test_name[1],["IP"]]="GATING"
+        with open (log_file,'r') as read:
+           lines = read.readlines()
+           for line in lines:
+                   if  (re.search (r"UVM_FATAL \[",line)) or (re.search(r"UVM_FATAL @ 0:",line)) or (re.search (r"UVM_ERROR \[",line))  :
+                       temp=line
+                   elif  re.search(r"TEST PASSED",line):
+                       df.loc[test_name[1],"Status"]="Passed"
+                       test_passed=test_passed+1
+                       break
+                   elif (re.search(r"TEST FAILED",line)) or (re.search(r"\b^UVM_ERROR :    [1-9]*$\b",line)) or (re.search(r"\b^UVM_FATAL :    1\b",line)) :
+                    #    print(line)
+                       df.loc[test_name[1],"Status"]="Failed"
+                       df.loc[test_name[1],"Remarks"]=temp
+                       test_failed=test_failed+1
+                       break
+    planned_tests=pld_tests+planned_tests
+    print("Test_planned:",planned_tests)
+    return planned_tests,test_passed,test_failed
+
+def SCU (planned_tests,test_passed,test_failed):
+    # global i2c_ip
+    temp='NaN'
+    log_no=0
+    log_count=0
+    log_files= ip_SCU+"/*.log"
+    # get_design_row = i2c_ip   
+    # print (get_design_row)
+    log_files_glb = glob.glob(log_files)
+    if log_files_glb:
+        #  print (log_files_glb)
+         pass
+    else:
+         print("Error: glob failed to locate SCU log files")
+    log_count=len(log_files_glb)
+    for log_file in log_files_glb:
+        # print(count)
+        log_no=log_no+1
+        pld_tests=log_no
+        # planned_tests=pld_tests+planned_tests
+        print("[",log_no,"/",log_count,"] Currently processing \n",log_file)
+        test_name=get_test_name (log_file)
+        df.loc[test_name[1],"Test Name"]= test_name[0]
+        df.loc[test_name[1],["IP"]]="SCU"
+        with open (log_file,'r') as read:
+           lines = read.readlines()
+           for line in lines:
+                   if  (re.search (r"UVM_FATAL \[",line)) or (re.search(r"UVM_FATAL @ 0:",line)) or (re.search (r"UVM_ERROR \[",line))  :
+                       temp=line
+                   elif  re.search(r"TEST PASSED",line):
+                       df.loc[test_name[1],"Status"]="Passed"
+                       test_passed=test_passed+1
+                       break
+                   elif (re.search(r"TEST FAILED",line)) or (re.search(r"\b^UVM_ERROR :    [1-9]*$\b",line)) or (re.search(r"\b^UVM_FATAL :    1\b",line)) :
+                    #    print(line)
+                       df.loc[test_name[1],"Status"]="Failed"
+                       df.loc[test_name[1],"Remarks"]=temp
+                       test_failed=test_failed+1
+                       break
+    planned_tests=pld_tests+planned_tests
+    print("Test_planned:",planned_tests)
+    return planned_tests,test_passed,test_failed
+
+def SW (planned_tests,test_passed,test_failed):
+    # global i2c_ip
+    temp='NaN'
+    log_no=0
+    log_count=0
+    log_files= ip_SW+"/*.log"
+    # get_design_row = i2c_ip   
+    # print (get_design_row)
+    log_files_glb = glob.glob(log_files)
+    if log_files_glb:
+        #  print (log_files_glb)
+         pass
+    else:
+         print("Error: glob failed to locate SW log files")
+    log_count=len(log_files_glb)
+    for log_file in log_files_glb:
+        # print(count)
+        log_no=log_no+1
+        pld_tests=log_no
+        # planned_tests=pld_tests+planned_tests
+        print("[",log_no,"/",log_count,"] Currently processing \n",log_file)
+        test_name=get_test_name (log_file)
+        df.loc[test_name[1],"Test Name"]= test_name[0]
+        df.loc[test_name[1],["IP"]]="SW"
+        with open (log_file,'r') as read:
+           lines = read.readlines()
+           for line in lines:
+                   if  (re.search (r"UVM_FATAL \[",line)) or (re.search(r"UVM_FATAL @ 0:",line)) or (re.search (r"UVM_ERROR \[",line))  :
+                       temp=line
+                   elif  re.search(r"TEST PASSED",line):
+                       df.loc[test_name[1],"Status"]="Passed"
+                       test_passed=test_passed+1
+                       break
+                   elif (re.search(r"TEST FAILED",line)) or (re.search(r"\b^UVM_ERROR :    [1-9]*$\b",line)) or (re.search(r"\b^UVM_FATAL :    1\b",line)) :
+                    #    print(line)
+                       df.loc[test_name[1],"Status"]="Failed"
+                       df.loc[test_name[1],"Remarks"]=temp
+                       test_failed=test_failed+1
+                       break
+    planned_tests=pld_tests+planned_tests
+    print("Test_planned:",planned_tests)
+    return planned_tests,test_passed,test_failed
+
+
+def df_to_csv (df,filename):
+     filename_path= csv_location+filename
+     df.to_csv(filename_path, encoding="utf-8-sig",index=False)
+                    
+    # df["IP"]="UART"  
+global no_of_col
+global design_collction
+global test_collection
+planned_tests = 0
+test_passed = 0
+test_failed = 0
+
+df = pd.DataFrame()
+# print(df)
+df_grp_dash=pd.DataFrame()
+
+row_no = len(df.index)
+# design_collction = {"IP":row_no}
+test_collection = {"Test":row_no}
+#print(design_collction)
+filename_css = 'css_states.csv'
+filename_dash = 'css_states_dash.csv'
+#print (filename)
+location = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+df_grp_dash=pd.DataFrame(df,columns=["Category","Numbers"])
+df_grp=pd.DataFrame(df,columns=["Category","Numbers"])
+df=pd.DataFrame(df,columns=["IP","Test Name","Status","Remarks"])
+# print (location)
+###Paths####
+logs_location = location+"/../results"
+csv_location = location+"/../results/"
+###IPs Log Files
+ip_BOOT= logs_location +"/BOOT"
+ip_DMA= logs_location +"/DMA"
+ip_GPIO= logs_location +"/GPIO"
+ip_GPT= logs_location +"/GPT"
+ip_I2C= logs_location +"/I2C"
+ip_SPI= logs_location +"/SPI"
+ip_SRAM= logs_location +"/SRAM"
+ip_UART0= logs_location +"/UART0"
+ip_UART1= logs_location +"/UART1"
+ip_WDT= logs_location +"/WDT"
+ip_CLK= logs_location +"/CLK"
+ip_SCU= logs_location +"/SCU"
+ip_GATING= logs_location +"/GATING"
+ip_SW= logs_location +"/SW"
+
+
+
+
+
+
+# print (ip_I2C)
+# get_ip_name(ip_I2C)
+tests_plnd,tests_p,tests_f=I2C(planned_tests,test_passed,test_failed)
+row_no = len(df.index)
+design_collction = {"Test":row_no}
+tests_plnd,tests_p,tests_f=UART0(tests_plnd,tests_p,tests_f)
+row_no = len(df.index)
+design_collction = {"Test":row_no}
+
+tests_plnd,tests_p,tests_f=UART1(tests_plnd,tests_p,tests_f)
+row_no = len(df.index)
+design_collction = {"Test":row_no}
+
+tests_plnd,tests_p,tests_f=BOOT(tests_plnd,tests_p,tests_f)
+row_no = len(df.index)
+design_collction = {"Test":row_no}
+
+tests_plnd,tests_p,tests_f=DMA(tests_plnd,tests_p,tests_f)
+row_no = len(df.index)
+design_collction = {"Test":row_no}
+
+tests_plnd,tests_p,tests_f=GPIO(tests_plnd,tests_p,tests_f)
+row_no = len(df.index)
+design_collction = {"Test":row_no}
+
+tests_plnd,tests_p,tests_f=GPT(tests_plnd,tests_p,tests_f)
+row_no = len(df.index)
+design_collction = {"Test":row_no}
+
+tests_plnd,tests_p,tests_f=SPI(tests_plnd,tests_p,tests_f)
+row_no = len(df.index)
+design_collction = {"Test":row_no}
+
+tests_plnd,tests_p,tests_f=SRAM(tests_plnd,tests_p,tests_f)
+row_no = len(df.index)
+design_collction = {"Test":row_no}
+
+tests_plnd,tests_p,tests_f=WDT(tests_plnd,tests_p,tests_f)
+row_no = len(df.index)
+design_collction = {"Test":row_no}
+
+tests_plnd,tests_p,tests_f=CLK(tests_plnd,tests_p,tests_f)
+row_no = len(df.index)
+
+tests_plnd,tests_p,tests_f=GATING(tests_plnd,tests_p,tests_f)
+row_no = len(df.index)
+design_collction = {"Test":row_no}
+
+tests_plnd,tests_p,tests_f=SCU(tests_plnd,tests_p,tests_f)
+row_no = len(df.index)
+design_collction = {"Test":row_no}
+
+tests_plnd,tests_p,tests_f=SW(tests_plnd,tests_p,tests_f)
+row_no = len(df.index)
+design_collction = {"Test":row_no}
+
+design_collction = {"Test":row_no}
+print("Total tests planned",tests_plnd)
+print("Total tests passed",tests_p)
+print("Total tests failed",tests_f)
+
+
+
+
+df_grp_dash.loc["1","Category"]="Tests Passed"
+df_grp_dash.loc["2","Category"]="Tests Failed"
+
+df_grp_dash.loc["1","Numbers"]= tests_p
+df_grp_dash.loc["2","Numbers"]= tests_f
+
+# df_grp.loc["0"]="Serial No"
+df_grp.loc["0","Category"]="Tests Planned"
+df_grp.loc["1","Category"]="Tests Passed"
+df_grp.loc["2","Category"]="Tests Failed"
+df_grp.loc["0","Numbers"]= tests_plnd
+df_grp.loc["1","Numbers"]= tests_p
+df_grp.loc["2","Numbers"]= tests_f
+# df_grp_dash = df_grp_dash.loc.astype(str).replace('\.\d+', '', regex=True).astype(int)
+
+# df_to_csv (df)
+# print(df_grp_dash)
+# print(df)
+df_to_csv (df,filename_css)
+df_to_csv (df_grp,filename_dash)
+print(df_grp)
+print(df)
+dash_csv=csv_location+filename_dash
+dash_st_csv =csv_location+filename_css
+assets_path = os.getcwd() +'/src/new_assets'
+# print("assets path",assets_path)
+app = dash.Dash(__name__)
+path= location
+df_table = pd.read_csv(dash_csv)
+df_states = pd.read_csv(dash_st_csv)
+fig = px.pie(df_grp_dash,"Category","Numbers", color = "Numbers")
+fig.update_layout(legend=dict(
+    yanchor="top",
+    y=0.99,
+    xanchor="left",
+    x=0.01,
+))
+arr =[tests_plnd,10,15]
+aarr= [20,3,15]
+arr_x=[1,2,3,4,5,6,7]
+f1 = go.Figure(
+    data = [
+        go.Scatter(x=arr_x,y=arr, name="Tests Planned"),
+        go.Scatter(x=arr_x,y=aarr, name="Tests Passed"),
+    ],
+    layout = {"xaxis": {"title": "Weeks"}, "yaxis": {"title": "Numbers(Tets Passed, Tests Failed, Tests Planned)"}, "title": "Weekly Statistics"}
+)
+
+app.layout = html.Div(style = {
+  'backgroundColor': '#111111'
+}, children = [
+    html.H1(
+    children = 'RapidSilicon',
+    style = {
+      'textAlign': 'center',
+      'color': 'Crimson'
+    }
+  ),
+    html.Div(children = 'Gemini Tests Statistics', style = {
+    'textAlign': 'center',
+    'color': '#7FDBFF',
+    'fontWeight': 'bold'
+  }),
+
+    dcc.Graph(
+    id = 'gemini-graph-1',
+    figure = fig
+  ),
+  dash_table.DataTable(    style_data={
+        'whiteSpace': 'normal',
+        'height': 'auto',
+        'textAlign': 'center',
+        'lineHeight': '10px'
+    },
+    data=df_table.to_dict('records'), 
+    columns=[{"name": i, "id": i} for i in df_table.columns],
+        css=[{"selector": "input", "rule": "color:gray"}],
+            # data=df.to_dict("records"),
+            style_cell={"color": "gray"},
+            # editable=True,
+            style_data_conditional=[
+                {"if": {"row_index": "odd"}, "backgroundColor": "green"},
+                {"if": {"row_index": "even"}, "backgroundColor": "green"},
+                {
+                    "if": {"state": "active"},
+                    "backgroundColor": "",
+                    "border": "1px solid red",
+                    # "color": "gray",
+                },
+                {
+                    "if": {"state": "selected"},
+                    "backgroundColor": "black",
+                    # "border": "1px solid blue",
+                },
+        {
+            'if': {
+                'filter_query': '{Numbers} > 0',
+                'column_id': 'Numbers'
+            },
+            'backgroundColor': 'red',
+            'color': 'black'
+         },
+            ],
+        style_cell_conditional=[
+        {'if': {'column_id': 'Category'},
+         'width': '10%',
+         'textAlign': 'center',
+         'fontWeight': 'bold',
+         'color': 'BLACK'},
+        {'if': {'column_id': 'Numbers'},
+         'width': '10%',
+         'textAlign': 'center',
+         'fontWeight': 'bold',
+         'color': 'BLACK'},
+    ]),
+
+    dcc.Graph(
+    id = 'gemini-graph-2',
+    figure = f1
+  ),
+  dash_table.DataTable(    style_data={
+        'whiteSpace': 'normal',
+        'height': 'auto',
+        'textAlign': 'center',
+        'lineHeight': '10px'
+    },
+    data=df_states.to_dict('records'), 
+    columns=[{"name": i, "id": i} for i in df_states.columns],
+    export_format="csv",
+         css=[{"selector": "input", "rule": "color:green"}],
+            # data=df.to_dict("records"),
+            style_cell={"color": "green"},
+            # editable=True,
+            style_data_conditional=[
+                {"if": {"row_index": "odd"}, "backgroundColor": "green"},
+                {"if": {"row_index": "even"}, "backgroundColor": "green"},
+                {
+                    "if": {"state": "active"},
+                    "backgroundColor": "",
+                    "border": "1px solid red",
+                    # "color": "gray",
+                },
+                {
+                    "if": {"state": "selected"},
+                    "backgroundColor": "black",
+                    # "border": "1px solid blue",
+                },
+
+            {
+            'if': {
+                'filter_query': '{Status} contains "Failed"',
+                'column_id': 'Status'
+            },
+            'backgroundColor': 'red',
+            'color': 'black'
+         },
+
+            ],
+        style_cell_conditional=[
+        {'if': {'column_id': 'IP'},
+         'width': '10%',
+         'textAlign': 'center',
+            'color': 'BLACK',
+            'fontWeight': 'bold'},
+        {'if': {'column_id': 'Test Name'},
+         'width': '10%',
+         'textAlign': 'center',
+         'color': 'BLACK',
+         'fontWeight': 'bold'},
+                {'if': {'column_id': 'Status'},
+         'width': '10%',
+         'textAlign': 'center',
+         'color': 'BLACK',
+         'fontWeight': 'bold'},
+                 {'if': {'column_id': 'Remarks'},
+         'width': '10%',
+         'textAlign': 'center',
+         'color': 'BLACK',
+         'fontWeight': 'bold'},
+         
+    ]),
+
+    html.Div(
+    children=[
+        html.Iframe(
+            src="assets/dashboard.html",
+            style={"height": "1067px", "width": "100%"},
+        )
+    ]
+),
+
+fig.write_html("path"),
+
+# dashboard.save_html("dashboard.html")
+])
+# print ("**********************,",path)
+if __name__ == '__main__':
+
+  app.run_server(debug = True)

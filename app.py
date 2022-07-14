@@ -9,7 +9,9 @@ from dash import dcc
 from dash import html
 df = pd.DataFrame()
 # print(df)
-df_grp_dash=pd.DataFrame()
+df_grp_dash=pd.read_csv('pie_states_dash.csv')
+df_table = pd.read_csv('css_states_dash.csv')
+df_states = pd.read_csv('css_states.csv')
 
 
 
@@ -28,11 +30,6 @@ app = dash.Dash(__name__)
 server = app.server
 app.title = "Gemini Dashboard"
 
-
-
-
-df_table = pd.read_csv('css_states_dash.csv')
-df_states = pd.read_csv('css_states.csv')
 fig = px.pie(df_grp_dash,"Category","Numbers", color = "Numbers")
 fig.update_layout(legend=dict(
     yanchor="top",

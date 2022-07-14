@@ -7,19 +7,19 @@ import plotly.graph_objects as go
 from dash.dependencies import Input, Output
 from dash import dcc
 from dash import html
-# df = pd.DataFrame()
+df = pd.DataFrame()
 # print(df)
-# df_grp_dash=pd.DataFrame()
+df_grp_dash=pd.DataFrame()
 
 
 
-# df_grp_dash=pd.DataFrame(df,columns=["Category","Numbers"])
+df_grp_dash=pd.DataFrame(df,columns=["Category","Numbers"])
 
-# df_grp_dash.loc["1","Category"]="Tests Passed"
-# df_grp_dash.loc["2","Category"]="Tests Failed"
+df_grp_dash.loc["1","Category"]="Tests Passed"
+df_grp_dash.loc["2","Category"]="Tests Failed"
 
-# df_grp_dash.loc["1","Numbers"]= "24"
-# df_grp_dash.loc["2","Numbers"]= "3"
+df_grp_dash.loc["1","Numbers"]= "24"
+df_grp_dash.loc["2","Numbers"]= "3"
 assets_path = os.getcwd() +'/src/new_assets'
 # print("assets path",assets_path)
 app = dash.Dash(__name__)

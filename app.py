@@ -15,13 +15,13 @@ df_states = pd.read_csv('css_states.csv')
 
 
 
-df_grp_dash=pd.DataFrame(df,columns=["Category","Numbers"])
+#df_grp_dash=pd.DataFrame(df,columns=["Category","Numbers"])
 
-df_grp_dash.loc["1","Category"]="Tests Passed"
-df_grp_dash.loc["2","Category"]="Tests Failed"
+#df_grp_dash.loc["1","Category"]="Tests Passed"
+#df_grp_dash.loc["2","Category"]="Tests Failed"
 
-df_grp_dash.loc["1","Numbers"]= "24"
-df_grp_dash.loc["2","Numbers"]= "3"
+#df_grp_dash.loc["1","Numbers"]= "24"
+#df_grp_dash.loc["2","Numbers"]= "3"
 assets_path = os.getcwd() +'/src/new_assets'
 # print("assets path",assets_path)
 app = dash.Dash(__name__)

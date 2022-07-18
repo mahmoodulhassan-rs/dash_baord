@@ -45,8 +45,8 @@ aarr= [21,29]
 arr_x=[1,2,3,4,5,6,7]
 f1 = go.Figure(
     data = [
-        go.Scatter(x=arr_x,y=arr, name="Tests Planned", color='#00BFFF'),
-        go.Scatter(x=arr_x,y=aarr, name="Tests Passed",color='#66CDAA'),
+        go.Scatter(x=arr_x,y=arr, name="Tests Planned"),
+        go.Scatter(x=arr_x,y=aarr, name="Tests Passed"),
     ],
     layout = {"xaxis": {"title": "Weeks"}, "yaxis": {"title": "Numbers(Tets Passed, Tests Failed, Tests Planned)"}, "title": "Weekly Statistics"}
 )

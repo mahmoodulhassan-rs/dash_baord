@@ -30,9 +30,9 @@ app = dash.Dash(__name__)
 server = app.server
 app.title = "Gemini Dashboard"
 
-fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category", color_discrete_map={'Tests Passed':'#008000',
-                                 'Tests Under Development':'#0000FF',                                                                           
-                                 'Tests Failed':'#FF0000'})
+fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category", color_discrete_map={'Tests Passed':'#66CDAA',
+                                 'Tests Under Development':'#00BFFF',                                                                           
+                                 'Tests Failed':'#CD5C5C'})
 fig.update_layout(legend=dict(
     yanchor="top",
     y=0.99,
@@ -83,9 +83,9 @@ app.layout = html.Div(style = {
             style_cell={"color": "gray"},
             # editable=True,
             style_data_conditional=[
-                {"if": {"row_index": 0}, "backgroundColor": "#0000FF"},
-                {"if": {"row_index": 1}, "backgroundColor": "#008000"},
-                {"if": {"row_index": 2}, "backgroundColor": "'#FF0000"},
+                {"if": {"row_index": 0}, "backgroundColor": "#00BFFF"},
+                {"if": {"row_index": 1}, "backgroundColor": "#66CDAA"},
+                {"if": {"row_index": 2}, "backgroundColor": "'CD5C5C"},
                 {
                     "if": {"state": "active"},
                     "backgroundColor": "",

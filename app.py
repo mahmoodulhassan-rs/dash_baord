@@ -87,6 +87,7 @@ html.Br([]),
         'textAlign': 'center',
         'lineHeight': '10px'
     },
+    fill_width=False
     data=df_table.to_dict('records'), 
     columns=[{"name": i, "id": i} for i in df_table.columns],
         css=[{"selector": "input", "rule": "color:gray"}],

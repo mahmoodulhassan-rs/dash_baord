@@ -189,12 +189,22 @@ app.layout = html.Div(style = {
     html.Div(
     children=[
         html.Iframe(
-            src="assets/dashboard.html",
+            src="assets/dma/dashboard.html",
             style={"height": "1067px", "width": "100%"},
         )
     ]
+    
 ),
 
+ html.Div(
+    children=[
+        html.Iframe(
+            src="assets/i2c/dashboard.html",
+            style={"height": "1067px", "width": "100%"},
+        )
+    ]
+    
+),
 # fig.write_html("path"),
 
 # dashboard.save_html("dashboard.html")

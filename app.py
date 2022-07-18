@@ -75,8 +75,6 @@ html.Div([
 {'opacity': '1','color': 'white', 'fontSize': 12}),
             ],
 
-        ], 
-
 html.Br([]),
 
     dcc.Graph(
@@ -115,7 +113,7 @@ html.Br([]),
                 'filter_query': '{Numbers} > 0',
                 'row_index': 2,
             },
-            'backgroundColor': 'red',
+            'backgroundColor': '#CD5C5C',
             'color': 'black'
          },
             ],
@@ -150,8 +148,8 @@ html.Br([]),
             style_cell={"color": "green"},
             # editable=True,
             style_data_conditional=[
-                {"if": {"row_index": "odd"}, "backgroundColor": "green"},
-                {"if": {"row_index": "even"}, "backgroundColor": "green"},
+                {"if": {"row_index": "odd"}, "backgroundColor": "#66CDAA"},
+                {"if": {"row_index": "even"}, "backgroundColor": "#66CDAA"},
                 {
                     "if": {"state": "active"},
                     "backgroundColor": "",
@@ -169,7 +167,7 @@ html.Br([]),
                 'filter_query': '{Status} contains "Failed"',
                 'column_id': 'Status'
             },
-            'backgroundColor': 'red',
+            'backgroundColor': '#CD5C5C',
             'color': 'black'
          },
 

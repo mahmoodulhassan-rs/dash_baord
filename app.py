@@ -83,9 +83,9 @@ app.layout = html.Div(style = {
             style_cell={"color": "gray"},
             # editable=True,
             style_data_conditional=[
-                {"if": {"row_index": "odd"}, "backgroundColor": "green"},
-                {"if": {"row_index": 3}, "backgroundColor": "red"},
-                {"if": {"row_index": "even"}, "backgroundColor": "green"},
+                {"if": {"row_index": 0}, "backgroundColor": "blue"},
+                {"if": {"row_index": 1}, "backgroundColor": "green"},
+                {"if": {"row_index": 2}, "backgroundColor": "red"},
                 {
                     "if": {"state": "active"},
                     "backgroundColor": "",

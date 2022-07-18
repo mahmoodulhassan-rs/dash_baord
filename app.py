@@ -67,16 +67,6 @@ app.layout = html.Div(style = {
     'fontWeight': 'bold'
   }),
 
-html.Div([
-                html.H1(
-                datetime.datetime.now().strftime('%Y-%m-%d'), style=
-{'opacity': '1','color': 'white', 'fontSize': 12}),
-                html.H1(datetime.datetime.now().strftime('%H:%M:%S'), style=
-{'opacity': '1','color': 'white', 'fontSize': 12}),
-            ],
-
-html.Br([]),
-
     dcc.Graph(
     id = 'gemini-graph-1',
     figure = fig

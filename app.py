@@ -85,7 +85,7 @@ app.layout = html.Div(style = {
             style_data_conditional=[
                 {"if": {"row_index": 0}, "backgroundColor": "#00BFFF"},
                 {"if": {"row_index": 1}, "backgroundColor": "#66CDAA"},
-                {"if": {"row_index": 2}, "backgroundColor": "'CD5C5C"},
+                {"if": {"row_index": 2}, "backgroundColor": "#CD5C5C"},
                 {
                     "if": {"state": "active"},
                     "backgroundColor": "",

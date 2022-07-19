@@ -293,7 +293,7 @@ function initPage() {
     var anchors = pageURL.split('#');
     if (anchors.length <= 1) {
         // no anchor, get the id from the first div[title]
-        var contentId = $("div[name]:first").attr("name");
+        var contentId = $("a[href='#']:first").html();
         if (contentId) {
             showContent(contentId);
         }

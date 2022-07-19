@@ -67,8 +67,12 @@ app.layout = html.Div(style = {
     'fontWeight': 'bold'
   }),
   
-   html.Div(id="table2", style=(backgroundColor="#dbe4f0 ", border="4px solid LightSteelBlue",hidden=false,width = "20%",display = "inline-block",autosize = true, margin = "1em"),
-           dash_table.DataTable(    style_data={
+    dcc.Graph(
+    id = 'gemini-graph-1',
+    figure = fig
+  ),
+  
+  dash_table.DataTable(    style_data={
         'whiteSpace': 'normal',
         'height': 'auto',
         'textAlign': 'center',
@@ -115,13 +119,7 @@ app.layout = html.Div(style = {
          'textAlign': 'center',
          'fontWeight': 'bold',
          'color': 'BLACK'},
-    ]
-           ),
-    dcc.Graph(
-    id = 'gemini-graph-1',
-    figure = fig
-  ),
-  
+    ]),
 
     dcc.Graph(
     id = 'gemini-graph-2',
@@ -135,7 +133,7 @@ app.layout = html.Div(style = {
     },
     data=df_states.to_dict('records'), 
     columns=[{"name": i, "id": i} for i in df_states.columns],
-#     export_format="csv",
+    export_format="csv",
          css=[{"selector": "input", "rule": "color:green"}],
             # data=df.to_dict("records"),
             style_cell={"color": "green"},

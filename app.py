@@ -16,7 +16,7 @@ df_table = pd.read_csv('css_states_dash.csv')
 df_states = pd.read_csv('css_states.csv')
 
 array=df_grp_dash.to_numpy()
-print("array is",array)
+print("array is ...",array)
 
 #df_grp_dash=pd.DataFrame(df,columns=["Category","Numbers"])
 

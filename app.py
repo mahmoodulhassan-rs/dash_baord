@@ -14,7 +14,8 @@ df_grp_dash=pd.read_csv('pie_states_dash.csv')
 df_table = pd.read_csv('css_states_dash.csv')
 df_states = pd.read_csv('css_states.csv')
 
-
+array=df_grp_dash.numpy()
+print("array is",array)
 
 #df_grp_dash=pd.DataFrame(df,columns=["Category","Numbers"])
 
@@ -126,10 +127,7 @@ app.layout = html.Div(style = {
     figure = f1
   ),
   
-  df_table.plot.scatter(x = 'Category', y = 'Numbers', s = 'Numbers', c = 'red'),
-  
-  
-  
+ 
   dash_table.DataTable(    style_data={
         'whiteSpace': 'normal',
         'height': 'auto',

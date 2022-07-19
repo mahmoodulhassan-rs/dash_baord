@@ -125,6 +125,11 @@ app.layout = html.Div(style = {
     id = 'gemini-graph-2',
     figure = f1
   ),
+  
+  df_table.plot.scatter(x = 'Category', y = 'Numbers', s = 'Numbers', c = 'red'),
+  
+  
+  
   dash_table.DataTable(    style_data={
         'whiteSpace': 'normal',
         'height': 'auto',

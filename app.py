@@ -34,7 +34,7 @@ app.title = "Gemini Dashboard"
 fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category", color_discrete_map={'Tests Passed':'#66CDAA',
                                  'Tests Under Development':'#00BFFF',                                                                           
                                  'Tests Failed':'#CD5C5C',
-                                  title='Iris Dataset'})
+                                  title=datetime.datetime.now().strftime('%Y-%m-%d')})
 fig.update_layout(legend=dict(
     yanchor="top",
     y=0.99,
@@ -53,7 +53,7 @@ f1 = go.Figure(
 )
 
 app.layout = html.Div(style = {
-  'backgroundColor': '#111111'
+  'backgroundColor': '#FFFFE0'
 }, children = [
     html.H1(
     children = 'RapidSilicon',
@@ -68,9 +68,6 @@ app.layout = html.Div(style = {
     'fontWeight': 'bold'
   }),
   
-  html.H1(
-                datetime.datetime.now().strftime('%Y-%m-%d'), style=
-{'opacity': '1','color': 'white', 'fontSize': 12}),
     dcc.Graph(
     id = 'gemini-graph-1',
     figure = fig

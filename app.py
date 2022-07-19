@@ -33,7 +33,8 @@ app.title = "Gemini Dashboard"
 
 fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category", color_discrete_map={'Tests Passed':'#66CDAA',
                                  'Tests Under Development':'#00BFFF',                                                                           
-                                 'Tests Failed':'#CD5C5C'})
+                                 'Tests Failed':'#CD5C5C',
+                                  title='Iris Dataset'})
 fig.update_layout(legend=dict(
     yanchor="top",
     y=0.99,

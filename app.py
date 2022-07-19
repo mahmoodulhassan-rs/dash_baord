@@ -52,7 +52,7 @@ f1 = go.Figure(
 )
 
 app.layout = html.Div(style = {
-  'backgroundColor': '#FFFFE0'
+  'backgroundColor': '#FFFFFF'
 }, children = [
     html.H1(
     children = 'RapidSilicon',

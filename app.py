@@ -43,12 +43,14 @@ fig.update_layout(legend=dict(
     x=0.01,
 ))
 arr =[158,158]
-aarr= [21,29]
+aarr= [21,35]
+arr_f= [0,0]
 arr_x=[1,2,3,4,5,6,7]
 f1 = go.Figure(
     data = [
         go.Scatter(x=arr_x,y=arr, name="Tests Planned"),
         go.Scatter(x=arr_x,y=aarr, name="Tests Passed"),
+        go.Scatter(x=arr_x,y=arr_f, name="Tests Failed"),
     ],
     layout = {"xaxis": {"title": "Weeks"}, "yaxis": {"title": "Numbers(Tets Passed, Tests Failed, Tests Planned)"}, "title": "Weekly Statistics"}
 )

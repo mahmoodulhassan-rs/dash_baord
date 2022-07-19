@@ -67,15 +67,14 @@ app.layout = html.Div(style = {
     'fontWeight': 'bold'
   }),
   
-    html.Div(children = '18-07-2022', style = {
-    'textAlign': 'left',
-    'color': '#7FDBFF',
-#     'fontWeight': 'bold'
-  }),
+  html.H1(
+                datetime.datetime.now().strftime('%Y-%m-%d'), style=
+{'opacity': '1','color': 'white', 'fontSize': 12}),
     dcc.Graph(
     id = 'gemini-graph-1',
     figure = fig
   ),
+  
   dash_table.DataTable(    style_data={
         'whiteSpace': 'normal',
         'height': 'auto',

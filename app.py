@@ -186,20 +186,20 @@ app.layout = html.Div(style = {
          
     ]),
 
-    html.Div(
-    children=[
-        html.Iframe(
-            src="assets/dma/dashboard.html",
-            style={"height": "1067px", "width": "100%"},
-        )
-    ]
+#     html.Div(
+#     children=[
+#         html.Iframe(
+#             src="assets/dma/dashboard.html",
+#             style={"height": "1067px", "width": "100%"},
+#         )
+#     ]
     
-),
+# ),
 
  html.Div(
     children=[
         html.Iframe(
-            src="assets/i2c/dashboard.html",
+            src="assets/dashboard.html",
             style={"height": "1067px", "width": "100%"},
         )
     ]

@@ -66,7 +66,12 @@ app.layout = html.Div(style = {
     'color': '#7FDBFF',
     'fontWeight': 'bold'
   }),
-
+  
+    html.Div(children = '18-07-2022', style = {
+    'textAlign': 'left',
+    'color': '#7FDBFF',
+#     'fontWeight': 'bold'
+  }),
     dcc.Graph(
     id = 'gemini-graph-1',
     figure = fig

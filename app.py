@@ -33,7 +33,7 @@ app = dash.Dash(__name__)
 server = app.server
 app.title = "Gemini Dashboard"
 
-fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category", title='Regression ran on '+datetime.datetime.now().strftime('%d-%m-%Y'), color_discrete_map={'Tests Passed':'#66CDAA',
+fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category", title='Regression ran on '+datetime.today().strftime('%d-%m-%Y'), color_discrete_map={'Tests Passed':'#66CDAA',
                                  'Tests Under Development':'#00BFFF',                                                                           
                                  'Tests Failed':'#CD5C5C'})
 fig.update_layout(legend=dict(

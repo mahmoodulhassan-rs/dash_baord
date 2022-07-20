@@ -10,7 +10,7 @@ from dash import dcc
 from dash import html
 import datetime
 df = pd.DataFrame()
-# print(df)
+# print(df.)
 df_grp_dash=pd.read_csv('pie_states_dash.csv')
 df_table = pd.read_csv('css_states_dash.csv')
 df_states = pd.read_csv('css_states.csv')

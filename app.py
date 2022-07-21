@@ -20,7 +20,7 @@ print("array is ...",array)
 
 #df_grp_dash=pd.DataFrame(df,columns=["Category","Numbers"])
 
-#df_grp_dash.loc["1","Category"]="Tests Passed"
+##df_grp_dash.loc["1","Category"]="Tests Passed"
 #df_grp_dash.loc["2","Category"]="Tests Failed"
 
 #df_grp_dash.loc["1","Numbers"]= "24"

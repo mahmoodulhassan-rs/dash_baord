@@ -44,7 +44,7 @@ fig.update_layout(legend=dict(
 ))
 arr =[158,158]
 aarr= [21,35]
-arr_f= [0,0]
+arr_f= [0,0,3]
 arr_x=[1,2,3,4,5,6,7]
 f1 = go.Figure(
     data = [

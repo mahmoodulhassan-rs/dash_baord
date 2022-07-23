@@ -1418,10 +1418,11 @@ Branch Coverage for Module : <a href="mod992.html" >soc_scu</a><br clear=all>
 <td class="rt">50.00 </td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-202          assign apb_rdata    = (apb_sel_pad)? apb_rdata_pad : apb_rdata_scu ;
-                                                <font color = "red">-1-</font>  
-                                                <font color = "red">==></font>  
-                                                <font color = "green">==></font>  
+202          assign apb_sel_pad  = apb_sel && (apb_addr >  'hB0);
+                                                                 
+           <font color = "red">Warning: the following expressions can not be annotated
+</font>           <font color = "red">-1- (apb_sel_pad) ? ...;  
+           </font>
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -1436,10 +1437,11 @@ Branch Coverage for Module : <a href="mod992.html" >soc_scu</a><br clear=all>
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-203          assign apb_ready    = (apb_sel_pad)? apb_ready_pad : apb_ready_scu ;       
-                                                <font color = "red">-1-</font>  
-                                                <font color = "red">==></font>  
-                                                <font color = "green">==></font>  
+203          assign apb_sel_scu  = apb_sel && (apb_addr <= 'hB0);
+                                                                 
+           <font color = "red">Warning: the following expressions can not be annotated
+</font>           <font color = "red">-1- (apb_sel_pad) ? ...;  
+           </font>
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -1454,10 +1456,11 @@ Branch Coverage for Module : <a href="mod992.html" >soc_scu</a><br clear=all>
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-204          assign apb_err      = (apb_sel_pad)? apb_err_pad   : apb_err_scu   ;
-                                                <font color = "red">-1-</font>  
-                                                <font color = "red">==></font>  
-                                                <font color = "green">==></font>  
+204          assign apb_addr_pad =            (apb_addr -  'hB0);
+                                                                 
+           <font color = "red">Warning: the following expressions can not be annotated
+</font>           <font color = "red">-1- (apb_sel_pad) ? ...;  
+           </font>
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>

@@ -115,12 +115,12 @@ $(document).ready(function () {
 <table align=left>
 <tr class="sortablehead">
 <td>SCORE</td><td>LINE</td><td>COND</td><td>TOGGLE</td><td>FSM</td><td>BRANCH</td><td>ASSERT</td></tr><tr>
-<td class="s3 cl rt"> 37.08</td>
-<td class="s6 cl rt"> 61.21</td>
-<td class="s5 cl rt"> 56.00</td>
-<td class="s2 cl rt"> 28.54</td>
-<td class="s1 cl rt"> 13.03</td>
-<td class="s5 cl rt"> 58.89</td>
+<td class="s3 cl rt"> 37.07</td>
+<td class="s6 cl rt"> 61.16</td>
+<td class="s5 cl rt"> 56.01</td>
+<td class="s2 cl rt"> 28.82</td>
+<td class="s1 cl rt"> 12.71</td>
+<td class="s5 cl rt"> 58.91</td>
 <td class="s0 cl rt">  4.81</td>
 </tr></table><br clear=all>
 <br clear=all>
@@ -135,12 +135,12 @@ $(document).ready(function () {
 <tr class="sortablehead">
 <td class="alfsrt">NAME</td><td>SCORE</td><td>LINE</td><td>COND</td><td>TOGGLE</td><td>FSM</td><td>BRANCH</td><td>ASSERT</td></tr><tr>
 <td class="wht cl wordwrap"><a href="mod1173.html#inst_tag_301718" id="tag_urg_inst_301718">DUT</a></td>
-<td class="s4 cl rt"> 43.45</td>
-<td class="s6 cl rt"> 62.06</td>
-<td class="s5 cl rt"> 56.17</td>
-<td class="s2 cl rt"> 28.52</td>
-<td class="s1 cl rt"> 11.31</td>
-<td class="s5 cl rt"> 59.20</td>
+<td class="s4 cl rt"> 43.40</td>
+<td class="s6 cl rt"> 62.01</td>
+<td class="s5 cl rt"> 56.18</td>
+<td class="s2 cl rt"> 28.80</td>
+<td class="s1 cl rt"> 10.77</td>
+<td class="s5 cl rt"> 59.22</td>
 <td class="wht cl rt"></td>
 </tr><tr>
 <td class="wht cl wordwrap"><a href="mod1068.html#inst_tag_273268" id="tag_urg_inst_273268">axi_if</a></td>
@@ -331,214 +331,214 @@ Line Coverage for Module : <a href="mod949.html" >config_ss_tb</a><br clear=all>
 <tr class="s10"><td class="lf">INITIAL</td><td>760</td><td>2</td><td>2</td><td>100.00</td></tr>
 </table>
 <pre class="code"><br clear=all>
-<span style="margin-left:8px;"></span>54                        initial begin
-<span style="margin-left:8px;"></span>55         1/1              force config_ss_tb.DUT.config_ss.bcpu_m0_haddr  = svt_ahb_vif_inst.master_if[0].haddr;
-<span style="margin-left:8px;"></span>56         1/1              force config_ss_tb.DUT.config_ss.bcpu_m0_hburst = svt_ahb_vif_inst.master_if[0].hburst;
-<span style="margin-left:8px;"></span>57         1/1              force config_ss_tb.DUT.config_ss.bcpu_m0_hprot  = svt_ahb_vif_inst.master_if[0].hprot;
-<span style="margin-left:8px;"></span>58         1/1              force config_ss_tb.DUT.config_ss.bcpu_m0_hsize  = svt_ahb_vif_inst.master_if[0].hsize;
-<span style="margin-left:8px;"></span>59         1/1              force config_ss_tb.DUT.config_ss.bcpu_m0_htrans = svt_ahb_vif_inst.master_if[0].htrans;
-<span style="margin-left:8px;"></span>60         1/1              force config_ss_tb.DUT.config_ss.bcpu_m0_hwdata = svt_ahb_vif_inst.master_if[0].hwdata;
-<span style="margin-left:8px;"></span>61         1/1              force config_ss_tb.DUT.config_ss.bcpu_m0_hwrite = svt_ahb_vif_inst.master_if[0].hwrite;
-<span style="margin-left:8px;"></span>62                        end
-<span style="margin-left:8px;"></span>63                      
-<span style="margin-left:8px;"></span>64                      `endif
-<span style="margin-left:8px;"></span>65                      bit comp_clk;
+<span style="margin-left:8px;"></span>54                      begin
+<span style="margin-left:8px;"></span>55         1/1            comp_clk &lt;= 1'b0;
+<span style="margin-left:8px;"></span>56         1/1            @(posedge config_ss_tb.DUT.memory_ss.ddr_sys_clk);
+<span style="margin-left:8px;"></span>57         1/1            comp_clk &lt;= 1'b1;
+<span style="margin-left:8px;"></span>58         1/1            forever begin
+<span style="margin-left:8px;"></span>59         1/1                #2500ps  comp_clk = ~comp_clk;
+<span style="margin-left:8px;"></span>60         1/1            end
+<span style="margin-left:8px;"></span>61         1/1          end
+<span style="margin-left:8px;"></span>62                      
+<span style="margin-left:8px;"></span>63                      `ifdef BYPASS_PLL
+<span style="margin-left:8px;"></span>64                      reg aresetn;
+<span style="margin-left:8px;"></span>65                      bit CLOCK;
 <span style="margin-left:8px;"></span>66                      
-<span style="margin-left:8px;"></span>67                      initial
-<span style="margin-left:8px;"></span>68                      begin
-<span style="margin-left:8px;"></span>69         1/1            comp_clk &lt;= 1'b0;
-<span style="margin-left:8px;"></span>70         2/2            @(posedge config_ss_tb.DUT.memory_ss.ddr_sys_clk);
-<span style="margin-left:8px;"></span>71         1/1            comp_clk &lt;= 1'b1;
-<span style="margin-left:8px;"></span>72         1/1            forever begin
-<span style="margin-left:8px;"></span>73         2/2                #2500ps  comp_clk = ~comp_clk;
-<span style="margin-left:8px;"></span>74                        end
-<span style="margin-left:8px;"></span>75                      end
-<span style="margin-left:8px;"></span>76                      
-<span style="margin-left:8px;"></span>77                      `ifdef BYPASS_PLL
-<span style="margin-left:8px;"></span>78                      	reg aresetn;
-<span style="margin-left:8px;"></span>79                      	bit CLOCK  ;
+<span style="margin-left:8px;"></span>67                      bit clk_0;
+<span style="margin-left:8px;"></span>68                      bit clk_1;
+<span style="margin-left:8px;"></span>69         1/1          //bit clk_133;
+<span style="margin-left:8px;"></span>70         2/2          
+<span style="margin-left:8px;"></span>71         1/1          	initial
+<span style="margin-left:8px;"></span>72         1/1          		begin
+<span style="margin-left:8px;"></span>73         2/2          			CLOCK   &lt;= 1'b0;
+<span style="margin-left:8px;"></span>74                      			aresetn &lt;=  1'b0;
+<span style="margin-left:8px;"></span>75                      			repeat(5) @(posedge CLOCK);
+<span style="margin-left:8px;"></span>76                      			aresetn &lt;= 1'b1;
+<span style="margin-left:8px;"></span>77                      		end
+<span style="margin-left:8px;"></span>78                      
+<span style="margin-left:8px;"></span>79                      	always #12.5 CLOCK = ~CLOCK;
 <span style="margin-left:8px;"></span>80                      
-<span style="margin-left:8px;"></span>81                      bit clk_0;
-<span style="margin-left:8px;"></span>82                      bit clk_1;
-<span style="margin-left:8px;"></span>83                      //bit clk_133;
-<span style="margin-left:8px;"></span>84                      
-<span style="margin-left:8px;"></span>85                      	initial
-<span style="margin-left:8px;"></span>86                      		begin
-<span style="margin-left:8px;"></span>87                      			CLOCK   &lt;= 1'b0;
-<span style="margin-left:8px;"></span>88                      			aresetn &lt;=  1'b0;
-<span style="margin-left:8px;"></span>89                      			repeat(5) @(posedge CLOCK);
-<span style="margin-left:8px;"></span>90                      			aresetn &lt;= 1'b1;
-<span style="margin-left:8px;"></span>91                      		end
-<span style="margin-left:8px;"></span>92                      
-<span style="margin-left:8px;"></span>93                      	always #12.5 CLOCK = ~CLOCK;
+<span style="margin-left:8px;"></span>81                      initial
+<span style="margin-left:8px;"></span>82                      begin
+<span style="margin-left:8px;"></span>83                        clk_0 &lt;= 1'b0;
+<span style="margin-left:8px;"></span>84                        clk_1 &lt;= 1'b0;
+<span style="margin-left:8px;"></span>85                      end
+<span style="margin-left:8px;"></span>86                      always #0.935  clk_0 = ~clk_0;   //533MHz
+<span style="margin-left:8px;"></span>87                      always #0.312  clk_1 = ~clk_1;   //1.6GHz
+<span style="margin-left:8px;"></span>88                      `endif
+<span style="margin-left:8px;"></span>89                      
+<span style="margin-left:8px;"></span>90                      bit clk_133;
+<span style="margin-left:8px;"></span>91                      initial
+<span style="margin-left:8px;"></span>92                      clk_133 &lt;= 1'b0;
+<span style="margin-left:8px;"></span>93                      always #3.75   clk_133 = ~clk_133; 
 <span style="margin-left:8px;"></span>94                      
-<span style="margin-left:8px;"></span>95                      initial
-<span style="margin-left:8px;"></span>96                      begin
-<span style="margin-left:8px;"></span>97                        clk_0 &lt;= 1'b0;
-<span style="margin-left:8px;"></span>98                        clk_1 &lt;= 1'b0;
-<span style="margin-left:8px;"></span>99                        //clk_133 &lt;= 1'b0;
-<span style="margin-left:8px;"></span>100                     end
-<span style="margin-left:8px;"></span>101                     always #0.935  clk_0 = ~clk_0;   //533MHz
-<span style="margin-left:8px;"></span>102                     always #0.312  clk_1 = ~clk_1;   //266M
-<span style="margin-left:8px;"></span>103                     //always #3.75   clk_133 = ~clk_133;   //133MHz
-<span style="margin-left:8px;"></span>104                     `endif
-<span style="margin-left:8px;"></span>105                     bit clk_133;
-<span style="margin-left:8px;"></span>106                     initial
-<span style="margin-left:8px;"></span>107        1/1          clk_133 &lt;= 1'b0;
-<span style="margin-left:8px;"></span>108        2/2          always #3.75   clk_133 = ~clk_133; 
-<span style="margin-left:8px;"></span>109                     
-<span style="margin-left:8px;"></span>110                     
-<span style="margin-left:8px;"></span>111                     // UART Interface 
-<span style="margin-left:8px;"></span>112                     svt_uart_if uart0_if(clk_133);
-<span style="margin-left:8px;"></span>113                     svt_uart_if uart1_if(clk_133);
-<span style="margin-left:8px;"></span>114                     // UART VIP WRAPPERS
-<span style="margin-left:8px;"></span>115                     svt_uart_bfm_wrapper  #(.UV_DEVICE_TYPE(`UV_DCE)) Bfm0 (uart0_if);
-<span style="margin-left:8px;"></span>116                     svt_uart_bfm_wrapper  #(.UV_DEVICE_TYPE(`UV_DCE)) Bfm1 (uart1_if);
+<span style="margin-left:8px;"></span>95                      
+<span style="margin-left:8px;"></span>96                      // UART Interface 
+<span style="margin-left:8px;"></span>97                      svt_uart_if uart0_if(clk_133);
+<span style="margin-left:8px;"></span>98                      svt_uart_if uart1_if(clk_133);
+<span style="margin-left:8px;"></span>99                      // UART VIP WRAPPERS
+<span style="margin-left:8px;"></span>100                     svt_uart_bfm_wrapper  #(.UV_DEVICE_TYPE(`UV_DCE)) Bfm0 (uart0_if);
+<span style="margin-left:8px;"></span>101                     svt_uart_bfm_wrapper  #(.UV_DEVICE_TYPE(`UV_DCE)) Bfm1 (uart1_if);
+<span style="margin-left:8px;"></span>102                     
+<span style="margin-left:8px;"></span>103                     
+<span style="margin-left:8px;"></span>104                     assign uart0_if.rst = ~config_ss_tb.DUT.config_ss.rst_n_133;
+<span style="margin-left:8px;"></span>105                     assign uart1_if.rst = ~config_ss_tb.DUT.config_ss.rst_n_133;
+<span style="margin-left:8px;"></span>106                     
+<span style="margin-left:8px;"></span>107        1/1          
+<span style="margin-left:8px;"></span>108        2/2          bit clk_1066;
+<span style="margin-left:8px;"></span>109                     initial clk_1066 &lt;= 1'b0;
+<span style="margin-left:8px;"></span>110                     always #469ps clk_1066 = ~clk_1066;
+<span style="margin-left:8px;"></span>111                     
+<span style="margin-left:8px;"></span>112                     `ifdef ACPU_BFM_INCLUDE
+<span style="margin-left:8px;"></span>113                     v_ip_axi_if #(.AXI_DATA_WIDTH(64)) axi_if(
+<span style="margin-left:8px;"></span>114                       .aclk     (DUT.config_ss_clk_acpu_sig),//(clk_0), //(config_ss_env_intf.rs_pll_intf.clk_fout[3]),
+<span style="margin-left:8px;"></span>115                       .aresetn  (DUT.config_ss_rst_n_acpu_sig)
+<span style="margin-left:8px;"></span>116                     );
 <span style="margin-left:8px;"></span>117                     
 <span style="margin-left:8px;"></span>118                     
-<span style="margin-left:8px;"></span>119                     assign uart0_if.rst = ~config_ss_tb.DUT.config_ss.rst_n_133;
-<span style="margin-left:8px;"></span>120                     assign uart1_if.rst = ~config_ss_tb.DUT.config_ss.rst_n_133;
-<span style="margin-left:8px;"></span>121                     
-<span style="margin-left:8px;"></span>122                     
-<span style="margin-left:8px;"></span>123                     bit clk_1066;
-<span style="margin-left:8px;"></span>124        1/1          initial clk_1066 &lt;= 1'b0;
-<span style="margin-left:8px;"></span>125        2/2          always #469ps clk_1066 = ~clk_1066;
-<span style="margin-left:8px;"></span>126                     
-<span style="margin-left:8px;"></span>127                     `ifdef ACPU_BFM_INCLUDE
-<span style="margin-left:8px;"></span>128                     v_ip_axi_if #(.AXI_DATA_WIDTH(64)) axi_if(
-<span style="margin-left:8px;"></span>129                       .aclk     (DUT.config_ss_clk_acpu_sig),//(clk_0), //(config_ss_env_intf.rs_pll_intf.clk_fout[3]),
-<span style="margin-left:8px;"></span>130                       .aresetn  (DUT.config_ss_rst_n_acpu_sig)
-<span style="margin-left:8px;"></span>131                     );
-<span style="margin-left:8px;"></span>132                     
-<span style="margin-left:8px;"></span>133                     
+<span style="margin-left:8px;"></span>119                     
+<span style="margin-left:8px;"></span>120                     initial begin
+<span style="margin-left:8px;"></span>121                       force DUT.acpu_awid_sig    = axi_if.awid;
+<span style="margin-left:8px;"></span>122                       force DUT.acpu_awaddr_sig  = axi_if.awaddr;
+<span style="margin-left:8px;"></span>123                       force DUT.acpu_awlen_sig   = axi_if.awlen;
+<span style="margin-left:8px;"></span>124        1/1            force DUT.acpu_awsize_sig  = axi_if.awsize;
+<span style="margin-left:8px;"></span>125        2/2            force DUT.acpu_awburst_sig = axi_if.awburst;
+<span style="margin-left:8px;"></span>126                       force DUT.acpu_awlock_sig  = axi_if.awlock;
+<span style="margin-left:8px;"></span>127                       force DUT.acpu_awcache_sig = axi_if.awcache;
+<span style="margin-left:8px;"></span>128                       force DUT.acpu_awprot_sig  = axi_if.awprot;
+<span style="margin-left:8px;"></span>129                     //force DUT.acpu_m0_awqos   = axi_if.awqos;
+<span style="margin-left:8px;"></span>130                     //force DUT.acpu_m0_awregion= axi_if.awregion;
+<span style="margin-left:8px;"></span>131                     //force DUT.acpu_m0_awuser  = axi_if.awuser;
+<span style="margin-left:8px;"></span>132                     		force DUT.acpu_awvalid_sig = axi_if.awvalid;
+<span style="margin-left:8px;"></span>133                     	end
 <span style="margin-left:8px;"></span>134                     
-<span style="margin-left:8px;"></span>135                     initial begin
-<span style="margin-left:8px;"></span>136        1/1            force DUT.acpu_awid_sig    = axi_if.awid;
-<span style="margin-left:8px;"></span>137        1/1            force DUT.acpu_awaddr_sig  = axi_if.awaddr;
-<span style="margin-left:8px;"></span>138        1/1            force DUT.acpu_awlen_sig   = axi_if.awlen;
-<span style="margin-left:8px;"></span>139        1/1            force DUT.acpu_awsize_sig  = axi_if.awsize;
-<span style="margin-left:8px;"></span>140        1/1            force DUT.acpu_awburst_sig = axi_if.awburst;
-<span style="margin-left:8px;"></span>141        1/1            force DUT.acpu_awlock_sig  = axi_if.awlock;
-<span style="margin-left:8px;"></span>142        1/1            force DUT.acpu_awcache_sig = axi_if.awcache;
-<span style="margin-left:8px;"></span>143        1/1            force DUT.acpu_awprot_sig  = axi_if.awprot;
-<span style="margin-left:8px;"></span>144                     //force DUT.acpu_m0_awqos   = axi_if.awqos;
-<span style="margin-left:8px;"></span>145                     //force DUT.acpu_m0_awregion= axi_if.awregion;
-<span style="margin-left:8px;"></span>146                     //force DUT.acpu_m0_awuser  = axi_if.awuser;
-<span style="margin-left:8px;"></span>147        1/1          		force DUT.acpu_awvalid_sig = axi_if.awvalid;
-<span style="margin-left:8px;"></span>148                     	end
-<span style="margin-left:8px;"></span>149                     
-<span style="margin-left:8px;"></span>150                     	assign axi_if.awready = DUT.flexnoc_acpu_axi_m0_aw_ready_sig;
-<span style="margin-left:8px;"></span>151                     
-<span style="margin-left:8px;"></span>152                     	initial begin
-<span style="margin-left:8px;"></span>153                     //force DUT.acpu_m0_wid     = axi_if.wid;
-<span style="margin-left:8px;"></span>154        1/1          		force DUT.acpu_wdata_sig   = axi_if.wdata;
-<span style="margin-left:8px;"></span>155                     //  force DUT.acpu_wstrb_sig   = 'hffff_ffff;
-<span style="margin-left:8px;"></span>156        1/1          		force DUT.acpu_wstrb_sig   = axi_if.wstrb[7:0];
-<span style="margin-left:8px;"></span>157                     
-<span style="margin-left:8px;"></span>158                     //force DUT.acpu_m0_wstrb   = axi_if.wstrb;
-<span style="margin-left:8px;"></span>159        1/1          		force DUT.acpu_wlast_sig   = axi_if.wlast;
-<span style="margin-left:8px;"></span>160                     //force DUT.acpu_wuser_sig   = axi_if.wuser;
-<span style="margin-left:8px;"></span>161        1/1          		force DUT.acpu_wvalid_sig  = axi_if.wvalid;
-<span style="margin-left:8px;"></span>162                     	end
-<span style="margin-left:8px;"></span>163                     
-<span style="margin-left:8px;"></span>164                     	assign axi_if.wready = DUT.flexnoc_acpu_axi_m0_w_ready_sig;
-<span style="margin-left:8px;"></span>165                     
-<span style="margin-left:8px;"></span>166                     	assign axi_if.bid   = DUT.flexnoc_acpu_axi_m0_b_id_sig;
-<span style="margin-left:8px;"></span>167                     	assign axi_if.bresp = DUT.flexnoc_acpu_axi_m0_b_resp_sig;
-<span style="margin-left:8px;"></span>168                     //assign axi_if.buser   = 64'b0;
-<span style="margin-left:8px;"></span>169                     	assign axi_if.bvalid = DUT.flexnoc_acpu_axi_m0_b_valid_sig;
-<span style="margin-left:8px;"></span>170                     
-<span style="margin-left:8px;"></span>171                     	initial begin
-<span style="margin-left:8px;"></span>172        1/1          		force DUT.acpu_bready_sig  = axi_if.bready;
-<span style="margin-left:8px;"></span>173        1/1          		force DUT.acpu_arid_sig    = axi_if.arid;
-<span style="margin-left:8px;"></span>174        1/1          		force DUT.acpu_araddr_sig  = axi_if.araddr;
-<span style="margin-left:8px;"></span>175        1/1          		force DUT.acpu_arlen_sig   = axi_if.arlen;
-<span style="margin-left:8px;"></span>176        1/1          		force DUT.acpu_arsize_sig  = axi_if.arsize;
-<span style="margin-left:8px;"></span>177        1/1          		force DUT.acpu_arburst_sig = axi_if.arburst;
-<span style="margin-left:8px;"></span>178        1/1          		force DUT.acpu_arlock_sig  = axi_if.arlock;
-<span style="margin-left:8px;"></span>179        1/1          		force DUT.acpu_arcache_sig = axi_if.arcache;
-<span style="margin-left:8px;"></span>180        1/1          		force DUT.acpu_arprot_sig  = axi_if.arprot;
-<span style="margin-left:8px;"></span>181                     		// assign DUT.acpu_m0_arqos   = axi_if.arqos;
-<span style="margin-left:8px;"></span>182                     		// assign DUT.acpu_m0_arregion= axi_if.arregion;
-<span style="margin-left:8px;"></span>183                     		//assign DUT.acpu_m0_aruser  = axi_if.aruser;
-<span style="margin-left:8px;"></span>184        1/1          		force DUT.acpu_arvalid_sig = axi_if.arvalid;
-<span style="margin-left:8px;"></span>185        1/1          		force DUT.acpu_rready_sig  = axi_if.rready;
-<span style="margin-left:8px;"></span>186                     	end
-<span style="margin-left:8px;"></span>187                     
-<span style="margin-left:8px;"></span>188                     	assign axi_if.arready = DUT.flexnoc_acpu_axi_m0_ar_ready_sig;
-<span style="margin-left:8px;"></span>189                     
-<span style="margin-left:8px;"></span>190                     	assign axi_if.rid    = DUT.flexnoc_acpu_axi_m0_r_id_sig;
-<span style="margin-left:8px;"></span>191                     	assign axi_if.rdata  = DUT.flexnoc_acpu_axi_m0_r_data_sig;
-<span style="margin-left:8px;"></span>192                     	assign axi_if.rresp  = DUT.flexnoc_acpu_axi_m0_r_resp_sig;
-<span style="margin-left:8px;"></span>193                     	assign axi_if.rlast  = DUT.flexnoc_acpu_axi_m0_r_last_sig;
-<span style="margin-left:8px;"></span>194                     	assign axi_if.ruser  = 0;
-<span style="margin-left:8px;"></span>195                     	assign axi_if.rvalid = DUT.flexnoc_acpu_axi_m0_r_valid_sig;
-<span style="margin-left:8px;"></span>196                     `endif
+<span style="margin-left:8px;"></span>135                     	assign axi_if.awready = DUT.flexnoc_acpu_axi_m0_aw_ready_sig;
+<span style="margin-left:8px;"></span>136        1/1          
+<span style="margin-left:8px;"></span>137        1/1          	initial begin
+<span style="margin-left:8px;"></span>138        1/1          //force DUT.acpu_m0_wid     = axi_if.wid;
+<span style="margin-left:8px;"></span>139        1/1          		force DUT.acpu_wdata_sig   = axi_if.wdata;
+<span style="margin-left:8px;"></span>140        1/1          //  force DUT.acpu_wstrb_sig   = 'hffff_ffff;
+<span style="margin-left:8px;"></span>141        1/1          		force DUT.acpu_wstrb_sig   = axi_if.wstrb[7:0];
+<span style="margin-left:8px;"></span>142        1/1          
+<span style="margin-left:8px;"></span>143        1/1          //force DUT.acpu_m0_wstrb   = axi_if.wstrb;
+<span style="margin-left:8px;"></span>144                     		force DUT.acpu_wlast_sig   = axi_if.wlast;
+<span style="margin-left:8px;"></span>145                     //force DUT.acpu_wuser_sig   = axi_if.wuser;
+<span style="margin-left:8px;"></span>146                     		force DUT.acpu_wvalid_sig  = axi_if.wvalid;
+<span style="margin-left:8px;"></span>147        1/1          	end
+<span style="margin-left:8px;"></span>148                     
+<span style="margin-left:8px;"></span>149                     	assign axi_if.wready = DUT.flexnoc_acpu_axi_m0_w_ready_sig;
+<span style="margin-left:8px;"></span>150                     
+<span style="margin-left:8px;"></span>151                     	assign axi_if.bid   = DUT.flexnoc_acpu_axi_m0_b_id_sig;
+<span style="margin-left:8px;"></span>152                     	assign axi_if.bresp = DUT.flexnoc_acpu_axi_m0_b_resp_sig;
+<span style="margin-left:8px;"></span>153                     //assign axi_if.buser   = 64'b0;
+<span style="margin-left:8px;"></span>154        1/1          	assign axi_if.bvalid = DUT.flexnoc_acpu_axi_m0_b_valid_sig;
+<span style="margin-left:8px;"></span>155                     
+<span style="margin-left:8px;"></span>156        1/1          	initial begin
+<span style="margin-left:8px;"></span>157                     		force DUT.acpu_bready_sig  = axi_if.bready;
+<span style="margin-left:8px;"></span>158                     		force DUT.acpu_arid_sig    = axi_if.arid;
+<span style="margin-left:8px;"></span>159        1/1          		force DUT.acpu_araddr_sig  = axi_if.araddr;
+<span style="margin-left:8px;"></span>160                     		force DUT.acpu_arlen_sig   = axi_if.arlen;
+<span style="margin-left:8px;"></span>161        1/1          		force DUT.acpu_arsize_sig  = axi_if.arsize;
+<span style="margin-left:8px;"></span>162                     		force DUT.acpu_arburst_sig = axi_if.arburst;
+<span style="margin-left:8px;"></span>163                     		force DUT.acpu_arlock_sig  = axi_if.arlock;
+<span style="margin-left:8px;"></span>164                     		force DUT.acpu_arcache_sig = axi_if.arcache;
+<span style="margin-left:8px;"></span>165                     		force DUT.acpu_arprot_sig  = axi_if.arprot;
+<span style="margin-left:8px;"></span>166                     		// assign DUT.acpu_m0_arqos   = axi_if.arqos;
+<span style="margin-left:8px;"></span>167                     		// assign DUT.acpu_m0_arregion= axi_if.arregion;
+<span style="margin-left:8px;"></span>168                     		//assign DUT.acpu_m0_aruser  = axi_if.aruser;
+<span style="margin-left:8px;"></span>169                     		force DUT.acpu_arvalid_sig = axi_if.arvalid;
+<span style="margin-left:8px;"></span>170                     		force DUT.acpu_rready_sig  = axi_if.rready;
+<span style="margin-left:8px;"></span>171                     	end
+<span style="margin-left:8px;"></span>172        1/1          
+<span style="margin-left:8px;"></span>173        1/1          	assign axi_if.arready = DUT.flexnoc_acpu_axi_m0_ar_ready_sig;
+<span style="margin-left:8px;"></span>174        1/1          
+<span style="margin-left:8px;"></span>175        1/1          	assign axi_if.rid    = DUT.flexnoc_acpu_axi_m0_r_id_sig;
+<span style="margin-left:8px;"></span>176        1/1          	assign axi_if.rdata  = DUT.flexnoc_acpu_axi_m0_r_data_sig;
+<span style="margin-left:8px;"></span>177        1/1          	assign axi_if.rresp  = DUT.flexnoc_acpu_axi_m0_r_resp_sig;
+<span style="margin-left:8px;"></span>178        1/1          	assign axi_if.rlast  = DUT.flexnoc_acpu_axi_m0_r_last_sig;
+<span style="margin-left:8px;"></span>179        1/1          	assign axi_if.ruser  = 0;
+<span style="margin-left:8px;"></span>180        1/1          	assign axi_if.rvalid = DUT.flexnoc_acpu_axi_m0_r_valid_sig;
+<span style="margin-left:8px;"></span>181                     
+<span style="margin-left:8px;"></span>182                     `endif
+<span style="margin-left:8px;"></span>183                     
+<span style="margin-left:8px;"></span>184        1/1          /** SPI data and control signals signals  */
+<span style="margin-left:8px;"></span>185        1/1            wire spi_clk_in;
+<span style="margin-left:8px;"></span>186                       wire spi_clk_oe;
+<span style="margin-left:8px;"></span>187                       wire spi_clk_out;
+<span style="margin-left:8px;"></span>188                     
+<span style="margin-left:8px;"></span>189                       wire spi_cs_n_in;
+<span style="margin-left:8px;"></span>190                       wire spi_cs_n_oe ;
+<span style="margin-left:8px;"></span>191                       wire spi_cs_n_out;
+<span style="margin-left:8px;"></span>192                     
+<span style="margin-left:8px;"></span>193                       wire spi_mosi_in;
+<span style="margin-left:8px;"></span>194                       wire spi_miso_in;
+<span style="margin-left:8px;"></span>195                       wire spi_hold_n_in;
+<span style="margin-left:8px;"></span>196                       wire spi_wp_n_in;
 <span style="margin-left:8px;"></span>197                     
-<span style="margin-left:8px;"></span>198                     `ifdef FPGA_BFMs_INCLUDE
-<span style="margin-left:8px;"></span>199                     bit fpga_clk0;
-<span style="margin-left:8px;"></span>200                     bit fpga_clk1;
-<span style="margin-left:8px;"></span>201                     
-<span style="margin-left:8px;"></span>202                     initial
-<span style="margin-left:8px;"></span>203                     begin
-<span style="margin-left:8px;"></span>204        1/1            fpga_clk0 &lt;= 1'b0;
-<span style="margin-left:8px;"></span>205        1/1            fpga_clk1 &lt;= 1'b0;
-<span style="margin-left:8px;"></span>206                     end
-<span style="margin-left:8px;"></span>207        2/2          always #1.25ns  fpga_clk0 = ~fpga_clk0;   //400MHz
-<span style="margin-left:8px;"></span>208        2/2          always #1.25ns  fpga_clk1 = ~fpga_clk1;   //400MHz
-<span style="margin-left:8px;"></span>209                     
-<span style="margin-left:8px;"></span>210                     v_ip_axi_if #(.AXI_DATA_WIDTH(64)) fpga_axi0_if(
-<span style="margin-left:8px;"></span>211                       .aclk     (fpga_clk0),
-<span style="margin-left:8px;"></span>212                       .aresetn  (DUT.rst_n_fpga0)
-<span style="margin-left:8px;"></span>213                     );
-<span style="margin-left:8px;"></span>214                     
-<span style="margin-left:8px;"></span>215                     v_ip_axi_if #(.AXI_DATA_WIDTH(64)) fpga_axi1_if(
-<span style="margin-left:8px;"></span>216                       .aclk     (fpga_clk1),
-<span style="margin-left:8px;"></span>217                       .aresetn  (DUT.rst_n_fpga1)
-<span style="margin-left:8px;"></span>218                     );
-<span style="margin-left:8px;"></span>219                     `endif
-<span style="margin-left:8px;"></span>220                     
-<span style="margin-left:8px;"></span>221                     	/** Instantiate SV Interface for Master and connect the system clock */
-<span style="margin-left:8px;"></span>222                     	uvc_i2c_if i2c_if ();
-<span style="margin-left:8px;"></span>223                     
-<span style="margin-left:8px;"></span>224                     /** I2C data and control signals signals  */
-<span style="margin-left:8px;"></span>225                     	logic scl_o        ;
-<span style="margin-left:8px;"></span>226                     	logic sda_o        ;
-<span style="margin-left:8px;"></span>227                     	logic scl_i        ;
-<span style="margin-left:8px;"></span>228                     	logic sda_i        ;
-<span style="margin-left:8px;"></span>229                     
-<span style="margin-left:8px;"></span>230                     	assign i2c_if.clk    = SystemClock;
-<span style="margin-left:8px;"></span>231                     	assign i2c_if.resetn = DUT.config_ss_rst_n_acpu_sig;
-<span style="margin-left:8px;"></span>232                     	assign i2c_if.scl    = (scl_o==0)? 1'b0 : 1'bz;
-<span style="margin-left:8px;"></span>233                     	assign scl_i         = i2c_if.scl;
-<span style="margin-left:8px;"></span>234                     	assign i2c_if.sda    = (sda_o==0)? 1'b0: 1'bz;
-<span style="margin-left:8px;"></span>235                     	assign sda_i         = i2c_if.sda;
-<span style="margin-left:8px;"></span>236                     
-<span style="margin-left:8px;"></span>237                       initial begin
-<span style="margin-left:8px;"></span>238        1/1          	force sda_o = DUT.config_ss.sda_o;
-<span style="margin-left:8px;"></span>239        1/1          	force DUT.config_ss.sda_i = sda_i;
-<span style="margin-left:8px;"></span>240                       end
-<span style="margin-left:8px;"></span>241                     
-<span style="margin-left:8px;"></span>242                     	pullup p1 (i2c_if.sda);
-<span style="margin-left:8px;"></span>243                     	pullup p2 (i2c_if.scl);
-<span style="margin-left:8px;"></span>244                       /*             ***************************                           */
-<span style="margin-left:8px;"></span>245                       // DMA
-<span style="margin-left:8px;"></span>246                       
-<span style="margin-left:8px;"></span>247                       `ifdef DMA_UART_TEST
-<span style="margin-left:8px;"></span>248                       initial begin
-<span style="margin-left:8px;"></span>249        1/1              force DUT.config_ss.uart1_sin = DUT.config_ss.uart0_sout;
-<span style="margin-left:8px;"></span>250                       end
-<span style="margin-left:8px;"></span>251                       `endif
-<span style="margin-left:8px;"></span>252                     
-<span style="margin-left:8px;"></span>253                       
-<span style="margin-left:8px;"></span>254                     
-<span style="margin-left:8px;"></span>255                     
-<span style="margin-left:8px;"></span>256                     
-<span style="margin-left:8px;"></span>257                     	bit [31:0] seed;
-<span style="margin-left:8px;"></span>258                     
-<span style="margin-left:8px;"></span>259                     	initial begin
-<span style="margin-left:8px;"></span>260        1/1          		seed = $get_initial_random_seed();
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAWklEQVQoU2P8DwQMeAATPkmQHOPdu3f/d3R0MEhJSaGoffHiBUNeXh4DA8iK5ORkkDUoODAwECT1H6wABIqLi+EKEhMTYcIIBSCRtLS0/0FBQXBJEIORYl8AAFaWVAK2EPn+AAAAAElFTkSuQmCC" onclick="var macroSpan=$(this).next().next('#macro_-1393352816_261');if (macroSpan.css('display')=='none') {macroSpan.css('display', 'block');this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAWklEQVQoU2P8DwQMeAATPkmQHOPdu3f/d3R0MEhJSaGoffHiBUNeXh4DA8iK5ORkkDUoODAwECT1H6wABIqLi+EKEhMTYcIIBSCRtLS0/0FBQXBJEIORYl8AAFaWVAK2EPn+AAAAAElFTkSuQmCC';} else {macroSpan.css('display', 'none');this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAV0lEQVQoU4VP2w3AIAi8dg3ngwVwDSZAR3MVak2KiamJ98Pd5Xjh+dBaC7rUayi8YGa4O0opQ07cwVJKqLUi57wPhKuqIKL/hKVttyI8EYGZzcjxSJze7GaHXHvKclWLAAAAAElFTkSuQmCC';}">261        <span onclick="var macroSpan=$(this).next('#macro_-1393352816_261');if (macroSpan.css('display')=='none') {macroSpan.css('display', 'block');} else {macroSpan.css('display', 'none');}">2/2          		`uvm_info(&quot;DBG&quot;, $sformatf(&quot;SEED = %0d&quot;, seed), UVM_NONE)<br/></span><span id="macro_-1393352816_261" style="background-color:#F0F0F0; display:block;"><span style="margin-left:8px;"></span><a href="/nfs_cadtools/synopsys/vcs_all/S-2021.09-SP2/etc/uvm-1.2/macros/uvm_message_defines.svh" target="_blank">uvm_info("DBG", $sformatf("SEED = %0d", seed), UVM_NONE):</a>
+<span style="margin-left:8px;"></span>198                       wire spi_mosi_oe;
+<span style="margin-left:8px;"></span>199                       wire spi_miso_oe;
+<span style="margin-left:8px;"></span>200                       wire spi_hold_n_oe;
+<span style="margin-left:8px;"></span>201                       wire spi_wp_n_oe;
+<span style="margin-left:8px;"></span>202                     
+<span style="margin-left:8px;"></span>203                       assign spi_cs_n_out   = DUT.config_ss.spi_cs_n_out;
+<span style="margin-left:8px;"></span>204        1/1            assign spi_mosi_out   = DUT.config_ss.spi_mosi_out;
+<span style="margin-left:8px;"></span>205        1/1            assign spi_miso_out   = DUT.config_ss.spi_miso_out;
+<span style="margin-left:8px;"></span>206                       assign spi_hold_n_out = DUT.config_ss.spi_hold_n_out;
+<span style="margin-left:8px;"></span>207        2/2            assign spi_wp_n_out   = DUT.config_ss.spi_wp_n_out;
+<span style="margin-left:8px;"></span>208        2/2            
+<span style="margin-left:8px;"></span>209                       assign spi_cs_n_oe    = DUT.config_ss.spi_cs_n_oe;
+<span style="margin-left:8px;"></span>210                       assign spi_mosi_oe    = DUT.config_ss.spi_mosi_oe;
+<span style="margin-left:8px;"></span>211                       assign spi_miso_oe    = DUT.config_ss.spi_miso_oe;
+<span style="margin-left:8px;"></span>212                       assign spi_hold_n_oe  = DUT.config_ss.spi_hold_n_oe;
+<span style="margin-left:8px;"></span>213                       assign spi_wp_n_oe    = DUT.config_ss.spi_wp_n_oe;
+<span style="margin-left:8px;"></span>214                       initial
+<span style="margin-left:8px;"></span>215                       begin
+<span style="margin-left:8px;"></span>216                         force DUT.config_ss.spi_cs_n_in   = spi_cs_n_in   ;
+<span style="margin-left:8px;"></span>217                         force DUT.config_ss.spi_mosi_in   = spi_mosi_in   ;
+<span style="margin-left:8px;"></span>218                         force DUT.config_ss.spi_miso_in   = spi_miso_in   ;
+<span style="margin-left:8px;"></span>219                         force DUT.config_ss.spi_hold_n_in = spi_hold_n_in ;
+<span style="margin-left:8px;"></span>220                         force DUT.config_ss.spi_wp_n_in   = spi_wp_n_in   ;
+<span style="margin-left:8px;"></span>221                       end
+<span style="margin-left:8px;"></span>222                     
+<span style="margin-left:8px;"></span>223                     `ifdef TB_SPI_VIP_AS_MASTER
+<span style="margin-left:8px;"></span>224                       wire  spi_clk;
+<span style="margin-left:8px;"></span>225                       wire  spi_cs_n;
+<span style="margin-left:8px;"></span>226                       wire  spi_mosi;
+<span style="margin-left:8px;"></span>227                       wire  spi_miso;
+<span style="margin-left:8px;"></span>228                       wire  spi_wp_n;
+<span style="margin-left:8px;"></span>229                       wire  spi_hold_n;
+<span style="margin-left:8px;"></span>230                     
+<span style="margin-left:8px;"></span>231                     
+<span style="margin-left:8px;"></span>232                       tb_inout_pad spi_clk_pad 	  (.O(spi_clk_in),    .I(spi_clk_out),    .IO(spi_clk),    .E(spi_clk_oe),    .PU(1'b0), .PD(1'b1));
+<span style="margin-left:8px;"></span>233                       //tb_inout_pad spi_csn_pad	  (.O(spi_cs_n_in),   .I(spi_cs_n_out),   .IO(spi_cs_n),   .E(spi_cs_n_oe),   .PU(1'b0), .PD(1'b0));
+<span style="margin-left:8px;"></span>234                       assign spi_cs_n_in =1'b1;
+<span style="margin-left:8px;"></span>235                       tb_inout_pad spi_miso_pad	  (.O(spi_miso_in),   .I(spi_miso_out),   .IO(spi_miso),   .E(spi_miso_oe),   .PU(1'b0), .PD(1'b0));
+<span style="margin-left:8px;"></span>236                       tb_inout_pad spi_mosi_pad	  (.O(spi_mosi_in),   .I(spi_mosi_out),   .IO(spi_mosi),   .E(spi_mosi_oe),   .PU(1'b0), .PD(1'b0));
+<span style="margin-left:8px;"></span>237                       tb_inout_pad spi_holdn_pad	(.O(spi_hold_n_in), .I(spi_hold_n_out), .IO(spi_hold_n), .E(spi_hold_n_oe), .PU(1'b1), .PD(1'b0));
+<span style="margin-left:8px;"></span>238        1/1            tb_inout_pad spi_wpn_pad  	(.O(spi_wp_n_in),   .I(spi_wp_n_out),   .IO(spi_wp_n),   .E(spi_wp_n_oe),   .PU(1'b1), .PD(1'b0));
+<span style="margin-left:8px;"></span>239        1/1            
+<span style="margin-left:8px;"></span>240                       spi_flash spi_flash_model_inst(
+<span style="margin-left:8px;"></span>241                         .SCLK   (spi_clk_out   ),
+<span style="margin-left:8px;"></span>242                         .CS     (spi_cs_n_out  ),
+<span style="margin-left:8px;"></span>243                         .SI     (spi_mosi      ),
+<span style="margin-left:8px;"></span>244                         .SO     (spi_miso      ),
+<span style="margin-left:8px;"></span>245                         .WP     (spi_wp_n      ),
+<span style="margin-left:8px;"></span>246                         .RESET  (config_ss_tb.DUT.config_ss.rst_n_per),
+<span style="margin-left:8px;"></span>247                         .SIO3   (spi_hold_n    )
+<span style="margin-left:8px;"></span>248                       );
+<span style="margin-left:8px;"></span>249        1/1            /*
+<span style="margin-left:8px;"></span>250                       initial
+<span style="margin-left:8px;"></span>251                       begin
+<span style="margin-left:8px;"></span>252                         #50ns;
+<span style="margin-left:8px;"></span>253                         $readmemh(&quot;tb_src/usr_envs/dummy_fabric_bitstream.bit&quot;,spi_flash_model_inst.Mem) ;
+<span style="margin-left:8px;"></span>254                         $writememh(&quot;memory_hex.txt&quot;, spi_flash_model_inst.Mem);
+<span style="margin-left:8px;"></span>255                       end
+<span style="margin-left:8px;"></span>256                     */
+<span style="margin-left:8px;"></span>257                     `else
+<span style="margin-left:8px;"></span>258                     assign spi_clk_in    = '0;
+<span style="margin-left:8px;"></span>259                     assign spi_cs_n_in   = '1;
+<span style="margin-left:8px;"></span>260        1/1          assign spi_mosi_in   = '0;
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAWklEQVQoU2P8DwQMeAATPkmQHOPdu3f/d3R0MEhJSaGoffHiBUNeXh4DA8iK5ORkkDUoODAwECT1H6wABIqLi+EKEhMTYcIIBSCRtLS0/0FBQXBJEIORYl8AAFaWVAK2EPn+AAAAAElFTkSuQmCC" onclick="var macroSpan=$(this).next().next('#macro_-1393352816_261');if (macroSpan.css('display')=='none') {macroSpan.css('display', 'block');this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAWklEQVQoU2P8DwQMeAATPkmQHOPdu3f/d3R0MEhJSaGoffHiBUNeXh4DA8iK5ORkkDUoODAwECT1H6wABIqLi+EKEhMTYcIIBSCRtLS0/0FBQXBJEIORYl8AAFaWVAK2EPn+AAAAAElFTkSuQmCC';} else {macroSpan.css('display', 'none');this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAV0lEQVQoU4VP2w3AIAi8dg3ngwVwDSZAR3MVak2KiamJ98Pd5Xjh+dBaC7rUayi8YGa4O0opQ07cwVJKqLUi57wPhKuqIKL/hKVttyI8EYGZzcjxSJze7GaHXHvKclWLAAAAAElFTkSuQmCC';}">261        <span onclick="var macroSpan=$(this).next('#macro_-1393352816_261');if (macroSpan.css('display')=='none') {macroSpan.css('display', 'block');} else {macroSpan.css('display', 'none');}">2/2          assign spi_miso_in   = '0;<br/></span><span id="macro_-1393352816_261" style="background-color:#F0F0F0; display:block;"><span style="margin-left:8px;"></span><a href="/nfs_cadtools/synopsys/vcs_all/S-2021.09-SP2/etc/uvm-1.2/macros/uvm_message_defines.svh" target="_blank">assign spi_miso_in   = '0;:</a>
 <span style="margin-left:8px;"></span>261.1                   `ifdef ZEMI4UVM 
 <span style="margin-left:8px;"></span>261.2                         (* zemi4_uvm_attribute=1 *) 
 <span style="margin-left:8px;"></span>261.3                      `endif 
@@ -546,507 +546,507 @@ Line Coverage for Module : <a href="mod949.html" >config_ss_tb</a><br clear=all>
 <span style="margin-left:8px;"></span>261.5                        if (uvm_report_enabled(UVM_NONE,UVM_INFO,&quot;DBG&quot;)) 
 <span style="margin-left:8px;"></span>261.6      1/1                 uvm_report_info (&quot;DBG&quot;, $sformatf(&quot;SEED = %0d&quot;, seed), UVM_NONE, &quot;/nfs_project/gemini/DV/mahmood/ddr_main_new/gemini/DV/subsystem_level/config_ss_verif_env/tb_src/config_ss_tb.sv&quot;, 261, &quot;&quot;, 1); 
 <span style="margin-left:8px;"></span>261.7                      end</span>                   <font color = "red">==>  MISSING_ELSE</font>
-<span style="margin-left:8px;"></span>262                     
-<span style="margin-left:8px;"></span>263        1/1          		config_ss_env_intf.wait_init();
-<span style="margin-left:8px;"></span>264                     
-<span style="margin-left:8px;"></span>265        1/1          		uvm_config_db#(virtual config_ss_env_if)::set(uvm_root::get(), &quot;uvm_test_top&quot;, &quot;config_ss_vif&quot;, config_ss_env_intf);
-<span style="margin-left:8px;"></span>266        1/1              uvm_config_db#(virtual svt_uart_if)::set(null,&quot;*.env.uart0_env&quot;,&quot;uart_vif&quot;, uart0_if);
-<span style="margin-left:8px;"></span>267        1/1              uvm_config_db#(virtual svt_uart_if)::set(null,&quot;*.env.uart1_env&quot;,&quot;uart_vif&quot;, uart1_if);
-<span style="margin-left:8px;"></span>268                       `ifdef ACPU_BFM_INCLUDE
-<span style="margin-left:8px;"></span>269                         // axi vif set
-<span style="margin-left:8px;"></span>270        1/1              uvm_config_db#(virtual v_ip_axi_if #(.AXI_DATA_WIDTH(64)))::set(uvm_root::get(), &quot;uvm_test_top.env&quot;, &quot;axi_if&quot;, axi_if);
-<span style="margin-left:8px;"></span>271                       `endif
-<span style="margin-left:8px;"></span>272                       
-<span style="margin-left:8px;"></span>273                       `ifdef FPGA_BFMs_INCLUDE
-<span style="margin-left:8px;"></span>274                         // FPGA vifs set
-<span style="margin-left:8px;"></span>275        1/1              uvm_config_db#(virtual v_ip_axi_if #(.AXI_DATA_WIDTH(64)))::set(uvm_root::get(), &quot;uvm_test_top.env&quot;, &quot;fpga_axi0_if&quot;, fpga_axi0_if);
-<span style="margin-left:8px;"></span>276        1/1              uvm_config_db#(virtual v_ip_axi_if #(.AXI_DATA_WIDTH(64)))::set(uvm_root::get(), &quot;uvm_test_top.env&quot;, &quot;fpga_axi1_if&quot;, fpga_axi1_if);
-<span style="margin-left:8px;"></span>277                       `endif
-<span style="margin-left:8px;"></span>278                         
-<span style="margin-left:8px;"></span>279                       `ifdef BCPU_BFM_INCLUDE
-<span style="margin-left:8px;"></span>280        1/1          		uvm_config_db#(virtual svt_ahb_if)::set(uvm_root::get(), &quot;uvm_test_top.env.ahb_system_env&quot;, &quot;vif&quot;, svt_ahb_vif_inst);
-<span style="margin-left:8px;"></span>281                       `endif
-<span style="margin-left:8px;"></span>282                     		/** Set the Master Interface to factory */
-<span style="margin-left:8px;"></span>283        1/1          		uvm_config_db#(virtual uvc_i2c_if)::set(uvm_root::get(), &quot;uvm_test_top.env.i2c_env&quot;, &quot;vif&quot;, i2c_if);
-<span style="margin-left:8px;"></span>284                     
-<span style="margin-left:8px;"></span>285        1/1          		uvm_config_db#(virtual svt_spi_if)::set(uvm_root::get(), &quot;uvm_test_top.env.spi_agnt&quot;, &quot;vif&quot;, svt_spi_vif_inst);
-<span style="margin-left:8px;"></span>286                     		/** Set the reset interface on the virtual sequencer */
-<span style="margin-left:8px;"></span>287        1/1          		uvm_config_db#(virtual spi_reset_if.spi_reset_modport)::set(uvm_root::get(), &quot;uvm_test_top.env.spi_virt_sqncr&quot;,
-<span style="margin-left:8px;"></span>288                     			&quot;reset_mp&quot;, spi_reset_if.spi_reset_modport);
-<span style="margin-left:8px;"></span>289                     		/** Set the object for the sub-components to set, control and fetch bus simulation cycle value  */
-<span style="margin-left:8px;"></span>290                     		//uvm_config_db#(spi_bus_clock_generator)::set(uvm_root::get(),&quot;uvm_test_top&quot;,&quot;spi_bus_clk_generator_obj&quot;,spi_bus_clk_generator_obj);
-<span style="margin-left:8px;"></span>291                     		//uvm_config_db#(spi_bus_clock_generator)::set(uvm_root::get(),&quot;uvm_test_top.*&quot;,&quot;spi_bus_clk_generator_obj&quot;,spi_bus_clk_generator_obj);
+<span style="margin-left:8px;"></span>262                     assign spi_hold_n_in = '1;
+<span style="margin-left:8px;"></span>263        1/1          assign spi_wp_n_in   = '1;
+<span style="margin-left:8px;"></span>264                     `endif
+<span style="margin-left:8px;"></span>265        1/1          
+<span style="margin-left:8px;"></span>266        1/1          `ifdef FPGA_BFMs_INCLUDE
+<span style="margin-left:8px;"></span>267        1/1          bit fpga_clk0;
+<span style="margin-left:8px;"></span>268                     bit fpga_clk1;
+<span style="margin-left:8px;"></span>269                     
+<span style="margin-left:8px;"></span>270        1/1          initial
+<span style="margin-left:8px;"></span>271                     begin
+<span style="margin-left:8px;"></span>272                       fpga_clk0 &lt;= 1'b0;
+<span style="margin-left:8px;"></span>273                       fpga_clk1 &lt;= 1'b0;
+<span style="margin-left:8px;"></span>274                     end
+<span style="margin-left:8px;"></span>275        1/1          always #1.25ns  fpga_clk0 = ~fpga_clk0;   //400MHz
+<span style="margin-left:8px;"></span>276        1/1          always #1.25ns  fpga_clk1 = ~fpga_clk1;   //400MHz
+<span style="margin-left:8px;"></span>277                     
+<span style="margin-left:8px;"></span>278                     v_ip_axi_if #(.AXI_DATA_WIDTH(64)) fpga_axi0_if(
+<span style="margin-left:8px;"></span>279                       .aclk     (fpga_clk0),
+<span style="margin-left:8px;"></span>280        1/1            .aresetn  (DUT.rst_n_fpga0)
+<span style="margin-left:8px;"></span>281                     );
+<span style="margin-left:8px;"></span>282                     
+<span style="margin-left:8px;"></span>283        1/1          v_ip_axi_if #(.AXI_DATA_WIDTH(64)) fpga_axi1_if(
+<span style="margin-left:8px;"></span>284                       .aclk     (fpga_clk1),
+<span style="margin-left:8px;"></span>285        1/1            .aresetn  (DUT.rst_n_fpga1)
+<span style="margin-left:8px;"></span>286                     );
+<span style="margin-left:8px;"></span>287        1/1          `endif
+<span style="margin-left:8px;"></span>288                     
+<span style="margin-left:8px;"></span>289                     	/** Instantiate SV Interface for Master and connect the system clock */
+<span style="margin-left:8px;"></span>290                     	uvc_i2c_if i2c_if ();
+<span style="margin-left:8px;"></span>291                     
 <span style="margin-left:8px;"></span>292                     
-<span style="margin-left:8px;"></span>293        1/1          		run_test();
-<span style="margin-left:8px;"></span>294                     	end
-<span style="margin-left:8px;"></span>295                     
-<span style="margin-left:8px;"></span>296        1/1          	initial $timeformat(-9, 1, &quot;ns&quot;, 4);
-<span style="margin-left:8px;"></span>297                     
-<span style="margin-left:8px;"></span>298                     `ifndef BCPU_BFM_INCLUDE  
-<span style="margin-left:8px;"></span>299                       bcpu_mem_init bcpu_mem_init ();
-<span style="margin-left:8px;"></span>300                       
-<span style="margin-left:8px;"></span>301                       defparam ahb_monitor_dmi.ADDR_WIDTH = 32;
-<span style="margin-left:8px;"></span>302                       defparam ahb_monitor_dmi.ID = 3;
-<span style="margin-left:8px;"></span>303                       defparam ahb_monitor_dmi.AHB_LITE = 1;
-<span style="margin-left:8px;"></span>304                       defparam ahb_monitor_dmi.FORBID_UNKNOWN_READ_DATA = 1;
+<span style="margin-left:8px;"></span>293        1/1          /** I2C data and control signals signals  */
+<span style="margin-left:8px;"></span>294                     	logic scl_o        ;
+<span style="margin-left:8px;"></span>295                     	logic sda_o        ;
+<span style="margin-left:8px;"></span>296        1/1          	logic scl_i        ;
+<span style="margin-left:8px;"></span>297                     	logic sda_i        ;
+<span style="margin-left:8px;"></span>298                     
+<span style="margin-left:8px;"></span>299                     	assign i2c_if.clk    = SystemClock;
+<span style="margin-left:8px;"></span>300                     	assign i2c_if.resetn = DUT.config_ss_rst_n_acpu_sig;
+<span style="margin-left:8px;"></span>301                     	assign i2c_if.scl    = (scl_o==0)? 1'b0 : 1'bz;
+<span style="margin-left:8px;"></span>302                     	assign scl_i         = i2c_if.scl;
+<span style="margin-left:8px;"></span>303                     	assign i2c_if.sda    = (sda_o==0)? 1'b0: 1'bz;
+<span style="margin-left:8px;"></span>304                     	assign sda_i         = i2c_if.sda;
 <span style="margin-left:8px;"></span>305                     
-<span style="margin-left:8px;"></span>306                       ahb_monitor ahb_monitor_dmi (
-<span style="margin-left:8px;"></span>307                         .hclk       (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.core_clk          ), 
-<span style="margin-left:8px;"></span>308                         .hresetn    (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.core_reset_n      ), 
-<span style="margin-left:8px;"></span>309                         .hmaster    (4'd0                                                           ),
-<span style="margin-left:8px;"></span>310                         .hmastlock  (1'b0                                                           ),
-<span style="margin-left:8px;"></span>311                         .hselx      (32'h1                                                          ),
-<span style="margin-left:8px;"></span>312                         .haddr      (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.haddr             ),
-<span style="margin-left:8px;"></span>313                         .htrans     (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.htrans            ),
-<span style="margin-left:8px;"></span>314                         .hwrite     (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hwrite            ),
-<span style="margin-left:8px;"></span>315                         .hsize      (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hsize             ),
-<span style="margin-left:8px;"></span>316                         .hburst     (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hburst            ),
-<span style="margin-left:8px;"></span>317                         .hprot      (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hprot             ),
-<span style="margin-left:8px;"></span>318                         .hwdata     (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hwdata            ), 
-<span style="margin-left:8px;"></span>319                         .hrdata     (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hrdata            ),
-<span style="margin-left:8px;"></span>320                         .hready     (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hready            ),
-<span style="margin-left:8px;"></span>321                         .hresp      (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hresp             ),
-<span style="margin-left:8px;"></span>322                         .hllsc_req  (1'b0                                                           ),
-<span style="margin-left:8px;"></span>323                         .hllsc_error(1'b0                                                           ),
-<span style="margin-left:8px;"></span>324                         .hm0_hbusreq(1'b0                                                           ),
-<span style="margin-left:8px;"></span>325                         .hm0_hlock  (1'b0                                                           ),
-<span style="margin-left:8px;"></span>326                         .hm1_hbusreq(1'b0                                                           ),
-<span style="margin-left:8px;"></span>327                         .hm1_hlock  (1'b0                                                           ),
-<span style="margin-left:8px;"></span>328                         .hm2_hbusreq(1'b0                                                           ),
-<span style="margin-left:8px;"></span>329                         .hm2_hlock  (1'b0                                                           ),
-<span style="margin-left:8px;"></span>330                         .hm3_hbusreq(1'b0                                                           ),
-<span style="margin-left:8px;"></span>331                         .hm3_hlock  (1'b0                                                           )
-<span style="margin-left:8px;"></span>332                       );
+<span style="margin-left:8px;"></span>306                       initial begin
+<span style="margin-left:8px;"></span>307                     	force sda_o = DUT.config_ss.sda_o;
+<span style="margin-left:8px;"></span>308                     	force DUT.config_ss.sda_i = sda_i;
+<span style="margin-left:8px;"></span>309                       end
+<span style="margin-left:8px;"></span>310                     
+<span style="margin-left:8px;"></span>311                     	pullup p1 (i2c_if.sda);
+<span style="margin-left:8px;"></span>312                     	pullup p2 (i2c_if.scl);
+<span style="margin-left:8px;"></span>313                       /*             ***************************                           */
+<span style="margin-left:8px;"></span>314                       // DMA
+<span style="margin-left:8px;"></span>315                       
+<span style="margin-left:8px;"></span>316                       `ifdef DMA_UART_TEST
+<span style="margin-left:8px;"></span>317                       initial begin
+<span style="margin-left:8px;"></span>318                         force DUT.config_ss.uart1_sin = DUT.config_ss.uart0_sout;
+<span style="margin-left:8px;"></span>319                       end
+<span style="margin-left:8px;"></span>320                       `endif
+<span style="margin-left:8px;"></span>321                     
+<span style="margin-left:8px;"></span>322                       
+<span style="margin-left:8px;"></span>323                     
+<span style="margin-left:8px;"></span>324                     
+<span style="margin-left:8px;"></span>325                     
+<span style="margin-left:8px;"></span>326                     	bit [31:0] seed;
+<span style="margin-left:8px;"></span>327                     
+<span style="margin-left:8px;"></span>328                     	initial begin
+<span style="margin-left:8px;"></span>329                     		seed = $get_initial_random_seed();
+<span style="margin-left:8px;"></span>330                     		`uvm_info(&quot;DBG&quot;, $sformatf(&quot;SEED = %0d&quot;, seed), UVM_NONE)
+<span style="margin-left:8px;"></span>331                     
+<span style="margin-left:8px;"></span>332                     		config_ss_env_intf.wait_init();
 <span style="margin-left:8px;"></span>333                     
-<span style="margin-left:8px;"></span>334                       defparam sim_control.BASE = 32'h80000;
-<span style="margin-left:8px;"></span>335                       defparam sim_control.HMASTER_START = 4'd0;
-<span style="margin-left:8px;"></span>336                       ahb_sim_control sim_control (
-<span style="margin-left:8px;"></span>337                         .hclk   (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.core_clk              ),
-<span style="margin-left:8px;"></span>338                         .hresetn(config_ss_tb.DUT.config_ss.bcpu.n22_core_top.core_reset_n          ),
-<span style="margin-left:8px;"></span>339                         .haddr  (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.haddr                 ),
-<span style="margin-left:8px;"></span>340                         .htrans (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.htrans                ),
-<span style="margin-left:8px;"></span>341                         .hwrite (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hwrite                ),
-<span style="margin-left:8px;"></span>342                         .hsize  (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hsize                 ),
-<span style="margin-left:8px;"></span>343                         .hburst (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hburst                ),
-<span style="margin-left:8px;"></span>344                         .hprot  (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hprot                 ),
-<span style="margin-left:8px;"></span>345                         .hwdata (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hwdata                ),
-<span style="margin-left:8px;"></span>346                         .hreadyi(config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hready                ),
-<span style="margin-left:8px;"></span>347                         .hsel   (1'b1                                                               ),
-<span style="margin-left:8px;"></span>348                         .hmaster(4'h0                                                               ),
-<span style="margin-left:8px;"></span>349                         .hrdata (                                                                   ),
-<span style="margin-left:8px;"></span>350                         .hresp  (                                                                   ),
-<span style="margin-left:8px;"></span>351                         .hready (                                                                   ),
-<span style="margin-left:8px;"></span>352                         .hsplit (                                                                   ),
-<span style="margin-left:8px;"></span>353                         .test_finished(config_ss_env_intf.test_finished                             )
-<span style="margin-left:8px;"></span>354                       );
+<span style="margin-left:8px;"></span>334                     		uvm_config_db#(virtual config_ss_env_if)::set(uvm_root::get(), &quot;uvm_test_top&quot;, &quot;config_ss_vif&quot;, config_ss_env_intf);
+<span style="margin-left:8px;"></span>335                         uvm_config_db#(virtual svt_uart_if)::set(null,&quot;*.env.uart0_env&quot;,&quot;uart_vif&quot;, uart0_if);
+<span style="margin-left:8px;"></span>336                         uvm_config_db#(virtual svt_uart_if)::set(null,&quot;*.env.uart1_env&quot;,&quot;uart_vif&quot;, uart1_if);
+<span style="margin-left:8px;"></span>337                       `ifdef ACPU_BFM_INCLUDE
+<span style="margin-left:8px;"></span>338                         // axi vif set
+<span style="margin-left:8px;"></span>339                         uvm_config_db#(virtual v_ip_axi_if #(.AXI_DATA_WIDTH(64)))::set(uvm_root::get(), &quot;uvm_test_top.env&quot;, &quot;axi_if&quot;, axi_if);
+<span style="margin-left:8px;"></span>340                       `endif
+<span style="margin-left:8px;"></span>341                       
+<span style="margin-left:8px;"></span>342                       `ifdef FPGA_BFMs_INCLUDE
+<span style="margin-left:8px;"></span>343                         // FPGA vifs set
+<span style="margin-left:8px;"></span>344                         uvm_config_db#(virtual v_ip_axi_if #(.AXI_DATA_WIDTH(64)))::set(uvm_root::get(), &quot;uvm_test_top.env&quot;, &quot;fpga_axi0_if&quot;, fpga_axi0_if);
+<span style="margin-left:8px;"></span>345                         uvm_config_db#(virtual v_ip_axi_if #(.AXI_DATA_WIDTH(64)))::set(uvm_root::get(), &quot;uvm_test_top.env&quot;, &quot;fpga_axi1_if&quot;, fpga_axi1_if);
+<span style="margin-left:8px;"></span>346                       `endif
+<span style="margin-left:8px;"></span>347                         
+<span style="margin-left:8px;"></span>348                       `ifdef BCPU_BFM_INCLUDE
+<span style="margin-left:8px;"></span>349                     		uvm_config_db#(virtual svt_ahb_if)::set(uvm_root::get(), &quot;uvm_test_top.env.ahb_system_env&quot;, &quot;vif&quot;, svt_ahb_vif_inst);
+<span style="margin-left:8px;"></span>350                       `endif
+<span style="margin-left:8px;"></span>351                     		/** Set the Master Interface to factory */
+<span style="margin-left:8px;"></span>352                     		uvm_config_db#(virtual uvc_i2c_if)::set(uvm_root::get(), &quot;uvm_test_top.env.i2c_env&quot;, &quot;vif&quot;, i2c_if);
+<span style="margin-left:8px;"></span>353                     
+<span style="margin-left:8px;"></span>354                     		uvm_config_db#(virtual svt_spi_if)::set(uvm_root::get(), &quot;uvm_test_top.env.spi_agnt&quot;, &quot;vif&quot;, svt_spi_vif_inst);
 <span style="margin-left:8px;"></span>355                     
-<span style="margin-left:8px;"></span>356                     `endif
-<span style="margin-left:8px;"></span>357                     
-<span style="margin-left:8px;"></span>358                     	`include &quot;config_ss_sys_intf_inc.sv&quot;
-<span style="margin-left:8px;"></span>359                     
-<span style="margin-left:8px;"></span>360                     	//`include &quot;config_ss_periph_intf_inc.sv&quot;
-<span style="margin-left:8px;"></span>361                     
-<span style="margin-left:8px;"></span>362                       pll pll_model (
-<span style="margin-left:8px;"></span>363                         .fref       (config_ss_env_intf.rs_pll_intf.fref          ),
-<span style="margin-left:8px;"></span>364                         .rst_por    (config_ss_env_intf.rs_pll_intf.rst_por       ),
-<span style="margin-left:8px;"></span>365                         //input logic [5:0] refdiv ( ), // 4’b0011=divide-by-4
-<span style="margin-left:8px;"></span>366                         .postdiv0   (config_ss_env_intf.rs_pll_intf.ctl_postdiv0  ), // 4’b0011=divide-by-4
-<span style="margin-left:8px;"></span>367                         .postdiv1   (config_ss_env_intf.rs_pll_intf.ctl_postdiv1  ),
-<span style="margin-left:8px;"></span>368                         .postdiv2   ('0 ),
-<span style="margin-left:8px;"></span>369                         .postdiv3   ('0 ),
-<span style="margin-left:8px;"></span>370                         .fbdiv      (config_ss_env_intf.rs_pll_intf.ctl_fbdiv     ), // 2’b11=divide-by-12 2’b10=divide-by-8 2’b01=divide-by-6 2’b00=divide-by-4
-<span style="margin-left:8px;"></span>371                     
-<span style="margin-left:8px;"></span>372                         .fouten     (config_ss_env_intf.rs_pll_intf.ctl_fouten    ),
-<span style="margin-left:8px;"></span>373                         .fout       (config_ss_env_intf.rs_pll_intf.clk_fout      ),
-<span style="margin-left:8px;"></span>374                     
-<span style="margin-left:8px;"></span>375                         //.foutvco    (config_ss_env_intf.rs_pll_intf.ctl_foutvcobyp), // AI: ND: ask design team about this signal ??
-<span style="margin-left:8px;"></span>376                         .foutvcoen  (config_ss_env_intf.rs_pll_intf.ctl_foutvcoen ),
-<span style="margin-left:8px;"></span>377                         .lock       (config_ss_env_intf.rs_pll_intf.status_lock   ),
-<span style="margin-left:8px;"></span>378                         .pllen      (config_ss_env_intf.rs_pll_intf.ctl_pllen     ) // 0 - FREF bypassed to all Outputs                                         ( except FOUTVCO) ( ) 1 -&gt;Entire PLL is enabled
-<span style="margin-left:8px;"></span>379                       );
-<span style="margin-left:8px;"></span>380                     
-<span style="margin-left:8px;"></span>381                     
-<span style="margin-left:8px;"></span>382                     initial begin
-<span style="margin-left:8px;"></span>383                     
-<span style="margin-left:8px;"></span>384                     `ifdef UART0_UART1
-<span style="margin-left:8px;"></span>385                           force lb0_sout = DUT.config_ss.uart0.uart_sout; 
-<span style="margin-left:8px;"></span>386                           force DUT.config_ss.uart0.uart_sin = lb1_sout;
-<span style="margin-left:8px;"></span>387                           force DUT.config_ss.uart0.uart_ctsn= lb1_rts ;
-<span style="margin-left:8px;"></span>388                           force lb0_rts = DUT.config_ss.uart0.uart_rtsn;
-<span style="margin-left:8px;"></span>389                     `else
-<span style="margin-left:8px;"></span>390                           
-<span style="margin-left:8px;"></span>391        1/1                force DUT.config_ss.uart0.uart_sin  = uart0_if.sin;
-<span style="margin-left:8px;"></span>392        1/1                force uart0_if.sout  = DUT.config_ss.uart0.uart_sout; 
-<span style="margin-left:8px;"></span>393        1/1                force DUT.config_ss.uart0.uart_ctsn = uart0_if.rts;
-<span style="margin-left:8px;"></span>394        1/1                force uart0_if.cts = ~DUT.config_ss.uart0.uart_rtsn;
-<span style="margin-left:8px;"></span>395                           
-<span style="margin-left:8px;"></span>396                     `endif                 
-<span style="margin-left:8px;"></span>397                     
-<span style="margin-left:8px;"></span>398                     //     UART1 interface signals
-<span style="margin-left:8px;"></span>399                     `ifdef UART0_UART1
-<span style="margin-left:8px;"></span>400                           force lb1_sout = DUT.config_ss.uart1.uart_sout;
-<span style="margin-left:8px;"></span>401                           force DUT.config_ss.uart1.uart_sin  = lb0_sout;
-<span style="margin-left:8px;"></span>402                           force DUT.config_ss.uart1.uart_ctsn = lb0_rts;
-<span style="margin-left:8px;"></span>403                           force lb1_rts = DUT.config_ss.uart1.uart_rtsn;
-<span style="margin-left:8px;"></span>404                     `else      
-<span style="margin-left:8px;"></span>405                           
-<span style="margin-left:8px;"></span>406        1/1                force DUT.config_ss.uart1.uart_sin  = uart1_if.sin;
-<span style="margin-left:8px;"></span>407        1/1                force uart1_if.sout = DUT.config_ss.uart1.uart_sout;
-<span style="margin-left:8px;"></span>408        1/1                force DUT.config_ss.uart1.uart_ctsn = uart1_if.rts;
-<span style="margin-left:8px;"></span>409        1/1                force uart1_if.cts = ~DUT.config_ss.uart1.uart_rtsn;
-<span style="margin-left:8px;"></span>410                           
-<span style="margin-left:8px;"></span>411                     `endif 
-<span style="margin-left:8px;"></span>412                     
-<span style="margin-left:8px;"></span>413                     end
-<span style="margin-left:8px;"></span>414                     
-<span style="margin-left:8px;"></span>415                     `ifdef DDR_PHY_CLK
-<span style="margin-left:8px;"></span>416                     always@(config_ss_env_intf.rs_pll_intf.rst_por)
-<span style="margin-left:8px;"></span>417                     begin
-<span style="margin-left:8px;"></span>418        1/1            if(config_ss_env_intf.rs_pll_intf.rst_por)
-<span style="margin-left:8px;"></span>419        1/1           	 $assertkill;
+<span style="margin-left:8px;"></span>356                     		run_test();
+<span style="margin-left:8px;"></span>357                     	end
+<span style="margin-left:8px;"></span>358                     
+<span style="margin-left:8px;"></span>359                     	initial $timeformat(-9, 1, &quot;ns&quot;, 4);
+<span style="margin-left:8px;"></span>360                     
+<span style="margin-left:8px;"></span>361                     `ifndef BCPU_BFM_INCLUDE  
+<span style="margin-left:8px;"></span>362                       bcpu_mem_init bcpu_mem_init ();
+<span style="margin-left:8px;"></span>363                       
+<span style="margin-left:8px;"></span>364                       defparam ahb_monitor_dmi.ADDR_WIDTH = 32;
+<span style="margin-left:8px;"></span>365                       defparam ahb_monitor_dmi.ID = 3;
+<span style="margin-left:8px;"></span>366                       defparam ahb_monitor_dmi.AHB_LITE = 1;
+<span style="margin-left:8px;"></span>367                       defparam ahb_monitor_dmi.FORBID_UNKNOWN_READ_DATA = 1;
+<span style="margin-left:8px;"></span>368                     
+<span style="margin-left:8px;"></span>369                       ahb_monitor ahb_monitor_dmi (
+<span style="margin-left:8px;"></span>370                         .hclk       (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.core_clk          ), 
+<span style="margin-left:8px;"></span>371                         .hresetn    (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.core_reset_n      ), 
+<span style="margin-left:8px;"></span>372                         .hmaster    (4'd0                                                           ),
+<span style="margin-left:8px;"></span>373                         .hmastlock  (1'b0                                                           ),
+<span style="margin-left:8px;"></span>374                         .hselx      (32'h1                                                          ),
+<span style="margin-left:8px;"></span>375                         .haddr      (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.haddr             ),
+<span style="margin-left:8px;"></span>376                         .htrans     (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.htrans            ),
+<span style="margin-left:8px;"></span>377                         .hwrite     (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hwrite            ),
+<span style="margin-left:8px;"></span>378                         .hsize      (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hsize             ),
+<span style="margin-left:8px;"></span>379                         .hburst     (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hburst            ),
+<span style="margin-left:8px;"></span>380                         .hprot      (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hprot             ),
+<span style="margin-left:8px;"></span>381                         .hwdata     (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hwdata            ), 
+<span style="margin-left:8px;"></span>382                         .hrdata     (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hrdata            ),
+<span style="margin-left:8px;"></span>383                         .hready     (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hready            ),
+<span style="margin-left:8px;"></span>384                         .hresp      (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hresp             ),
+<span style="margin-left:8px;"></span>385                         .hllsc_req  (1'b0                                                           ),
+<span style="margin-left:8px;"></span>386                         .hllsc_error(1'b0                                                           ),
+<span style="margin-left:8px;"></span>387                         .hm0_hbusreq(1'b0                                                           ),
+<span style="margin-left:8px;"></span>388                         .hm0_hlock  (1'b0                                                           ),
+<span style="margin-left:8px;"></span>389                         .hm1_hbusreq(1'b0                                                           ),
+<span style="margin-left:8px;"></span>390                         .hm1_hlock  (1'b0                                                           ),
+<span style="margin-left:8px;"></span>391        1/1              .hm2_hbusreq(1'b0                                                           ),
+<span style="margin-left:8px;"></span>392        1/1              .hm2_hlock  (1'b0                                                           ),
+<span style="margin-left:8px;"></span>393        1/1              .hm3_hbusreq(1'b0                                                           ),
+<span style="margin-left:8px;"></span>394        1/1              .hm3_hlock  (1'b0                                                           )
+<span style="margin-left:8px;"></span>395                       );
+<span style="margin-left:8px;"></span>396                     
+<span style="margin-left:8px;"></span>397                       defparam sim_control.BASE = 32'h80000;
+<span style="margin-left:8px;"></span>398                       defparam sim_control.HMASTER_START = 4'd0;
+<span style="margin-left:8px;"></span>399                       ahb_sim_control sim_control (
+<span style="margin-left:8px;"></span>400                         .hclk   (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.core_clk              ),
+<span style="margin-left:8px;"></span>401                         .hresetn(config_ss_tb.DUT.config_ss.bcpu.n22_core_top.core_reset_n          ),
+<span style="margin-left:8px;"></span>402                         .haddr  (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.haddr                 ),
+<span style="margin-left:8px;"></span>403                         .htrans (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.htrans                ),
+<span style="margin-left:8px;"></span>404                         .hwrite (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hwrite                ),
+<span style="margin-left:8px;"></span>405                         .hsize  (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hsize                 ),
+<span style="margin-left:8px;"></span>406        1/1              .hburst (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hburst                ),
+<span style="margin-left:8px;"></span>407        1/1              .hprot  (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hprot                 ),
+<span style="margin-left:8px;"></span>408        1/1              .hwdata (config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hwdata                ),
+<span style="margin-left:8px;"></span>409        1/1              .hreadyi(config_ss_tb.DUT.config_ss.bcpu.n22_core_top.hready                ),
+<span style="margin-left:8px;"></span>410                         .hsel   (1'b1                                                               ),
+<span style="margin-left:8px;"></span>411                         .hmaster(4'h0                                                               ),
+<span style="margin-left:8px;"></span>412                         .hrdata (                                                                   ),
+<span style="margin-left:8px;"></span>413                         .hresp  (                                                                   ),
+<span style="margin-left:8px;"></span>414                         .hready (                                                                   ),
+<span style="margin-left:8px;"></span>415                         .hsplit (                                                                   ),
+<span style="margin-left:8px;"></span>416                         .test_finished(config_ss_env_intf.test_finished                             )
+<span style="margin-left:8px;"></span>417                       );
+<span style="margin-left:8px;"></span>418        1/1          
+<span style="margin-left:8px;"></span>419        1/1          `endif
                         MISSING_ELSE
-<span style="margin-left:8px;"></span>420                     end
-<span style="margin-left:8px;"></span>421                       `endif
-<span style="margin-left:8px;"></span>422                       soc_ss DUT (
-<span style="margin-left:8px;"></span>423                         .clk_sel0                   (bit'(config_ss_env_intf.clk_sel[0])),
-<span style="margin-left:8px;"></span>424                         .clk_sel1                   (bit'(config_ss_env_intf.clk_sel[1])),
-<span style="margin-left:8px;"></span>425                         .clk_osc                    (config_ss_env_intf.clk_osc_intf.clock),
-<span style="margin-left:8px;"></span>426                         .clk_xtal_ref               (config_ss_env_intf.rs_pll_intf.fref),
-<span style="margin-left:8px;"></span>427                         .rst_n_poweron              (config_ss_env_intf.rs_pll_intf.rst_por),
-<span style="margin-left:8px;"></span>428                       `ifdef BYPASS_PLL
-<span style="margin-left:8px;"></span>429                           .clk_soc_pll0           (clk_0), //(config_ss_env_intf.rs_pll_intf.clk_fout[3]),
-<span style="margin-left:8px;"></span>430                           .clk_soc_pll1           (clk_1), //(config_ss_env_intf.rs_pll_intf.clk_fout[1]),
-<span style="margin-left:8px;"></span>431                       `else
-<span style="margin-left:8px;"></span>432                           .clk_soc_pll0           (config_ss_env_intf.rs_pll_intf.clk_fout[0]),
-<span style="margin-left:8px;"></span>433                     `ifdef DDR_PHY_CLK
-<span style="margin-left:8px;"></span>434                           .clk_soc_pll1           (clk_1066),//config_ss_env_intf.rs_pll_intf.clk_fout[1]),
-<span style="margin-left:8px;"></span>435                     `else
-<span style="margin-left:8px;"></span>436                           .clk_soc_pll1           (config_ss_env_intf.rs_pll_intf.clk_fout[1]),
-<span style="margin-left:8px;"></span>437                     `endif
-<span style="margin-left:8px;"></span>438                       `endif
-<span style="margin-left:8px;"></span>439                     `ifdef FPGA_BFMs_INCLUDE      
-<span style="margin-left:8px;"></span>440                           // input FPGA clocks
-<span style="margin-left:8px;"></span>441                           .clk_fpga0              (fpga_clk0),
-<span style="margin-left:8px;"></span>442                           .clk_fpga1              (fpga_clk1),
-<span style="margin-left:8px;"></span>443                     `else     
-<span style="margin-left:8px;"></span>444                           // input FPGA clocks
-<span style="margin-left:8px;"></span>445                           .clk_fpga0              (config_ss_env_intf.clk_fpga0_intf.clock),
-<span style="margin-left:8px;"></span>446                           .clk_fpga1              (config_ss_env_intf.clk_fpga1_intf.clock),
-<span style="margin-left:8px;"></span>447                     `endif       
-<span style="margin-left:8px;"></span>448                           .clk_fpga_s             (config_ss_env_intf.clk_fpga_s_intf.clock),
-<span style="margin-left:8px;"></span>449                           //
-<span style="margin-left:8px;"></span>450                           .test_mode              (config_ss_env_intf.test_mode),
-<span style="margin-left:8px;"></span>451                           // pll control signals
-<span style="margin-left:8px;"></span>452                           .soc_pll_ctl_dacen         (config_ss_env_intf.rs_pll_intf.ctl_dacen),
-<span style="margin-left:8px;"></span>453                           .soc_pll_ctl_dskewcalbyp   (config_ss_env_intf.rs_pll_intf.ctl_dskewcalbyp ),
-<span style="margin-left:8px;"></span>454                           .soc_pll_ctl_dskewcalcnt   (config_ss_env_intf.rs_pll_intf.ctl_dskewcalcnt ),
-<span style="margin-left:8px;"></span>455                           .soc_pll_ctl_dskewcalen    (config_ss_env_intf.rs_pll_intf.ctl_dskewcalen  ),
-<span style="margin-left:8px;"></span>456                           .soc_pll_ctl_dskewcalin    (config_ss_env_intf.rs_pll_intf.ctl_dskewcalin  ),
-<span style="margin-left:8px;"></span>457                           .soc_pll_ctl_dskewfastcal  (config_ss_env_intf.rs_pll_intf.ctl_dskewfastcal),
-<span style="margin-left:8px;"></span>458                           .soc_pll_ctl_dsmen         (config_ss_env_intf.rs_pll_intf.ctl_dsmen       ),
-<span style="margin-left:8px;"></span>459                           .soc_pll_ctl_pllen         (config_ss_env_intf.rs_pll_intf.ctl_pllen       ),
-<span style="margin-left:8px;"></span>460                           .soc_pll_ctl_fouten        (config_ss_env_intf.rs_pll_intf.ctl_fouten      ),
-<span style="margin-left:8px;"></span>461                           .soc_pll_ctl_foutvcobyp    (config_ss_env_intf.rs_pll_intf.ctl_foutvcobyp  ),
-<span style="margin-left:8px;"></span>462                           .soc_pll_ctl_foutvcoen     (config_ss_env_intf.rs_pll_intf.ctl_foutvcoen   ),
-<span style="margin-left:8px;"></span>463                           .soc_pll_ctl_refdiv        (config_ss_env_intf.rs_pll_intf.ctl_refdiv      ),
-<span style="margin-left:8px;"></span>464                           .soc_pll_ctl_frac          (config_ss_env_intf.rs_pll_intf.ctl_frac        ),
-<span style="margin-left:8px;"></span>465                           .soc_pll_ctl_postdiv0      (config_ss_env_intf.rs_pll_intf.ctl_postdiv0    ),
-<span style="margin-left:8px;"></span>466                           .soc_pll_ctl_postdiv1      (config_ss_env_intf.rs_pll_intf.ctl_postdiv1    ),
-<span style="margin-left:8px;"></span>467                           .soc_pll_ctl_fbdiv         (config_ss_env_intf.rs_pll_intf.ctl_fbdiv       ),
-<span style="margin-left:8px;"></span>468                           // pll status signals
-<span style="margin-left:8px;"></span>469                           .soc_pll_status_dskewcalout (config_ss_env_intf.rs_pll_intf.status_dskewcalout ),
-<span style="margin-left:8px;"></span>470                           .soc_pll_status_dskewcallock(config_ss_env_intf.rs_pll_intf.status_dskewcallock),
-<span style="margin-left:8px;"></span>471                     `ifdef BYPASS_PLL
-<span style="margin-left:8px;"></span>472                           .soc_pll_status_lock        (aresetn),
-<span style="margin-left:8px;"></span>473                     `else
-<span style="margin-left:8px;"></span>474                           .soc_pll_status_lock        (config_ss_env_intf.rs_pll_intf.status_lock        ),
-<span style="margin-left:8px;"></span>475                     `endif
-<span style="margin-left:8px;"></span>476                     
-<span style="margin-left:8px;"></span>477                           // I2C interface signals
-<span style="margin-left:8px;"></span>478                           .scl_o                      (scl_o),
-<span style="margin-left:8px;"></span>479                           .scl_i                      (scl_i),
-<span style="margin-left:8px;"></span>480                           // QSPI interface signals
-<span style="margin-left:8px;"></span>481                           .spi_clk_in                 ( '0 ),
-<span style="margin-left:8px;"></span>482                           .spi_clk_oe                 ( ),
-<span style="margin-left:8px;"></span>483                           .spi_clk_out                (svt_spi_vif_inst.sclk),//spi_clk_out_soc_ss),
-<span style="margin-left:8px;"></span>484                           //.spi_cs_n_out               (svt_spi_vif_inst.ss_n[0]),
-<span style="margin-left:8px;"></span>485                           //.spi_mosi_out               (svt_spi_vif_inst.mosi[0]),
-<span style="margin-left:8px;"></span>486                           // GPIO interface signals
-<span style="margin-left:8px;"></span>487                           .gpio_pulldown              ( ),
-<span style="margin-left:8px;"></span>488                           .gpio_pullup                ( ),
-<span style="margin-left:8px;"></span>489                           .pit_pause                  ( '0 ),
-<span style="margin-left:8px;"></span>490                           // GbE interface signals
-<span style="margin-left:8px;"></span>491                           .rgmii_txd                  ( ),
-<span style="margin-left:8px;"></span>492                           .rgmii_tx_ctl               ( ),
-<span style="margin-left:8px;"></span>493                           .rgmii_rxd                  ( '0 ),
-<span style="margin-left:8px;"></span>494                           .rgmii_rx_ctl               ( '0 ),
-<span style="margin-left:8px;"></span>495                           .rgmii_rxc                  ( '0 ),
-<span style="margin-left:8px;"></span>496                           .mdio_mdc                   ( ),
-<span style="margin-left:8px;"></span>497                           .mdio_in                    (),
-<span style="margin-left:8px;"></span>498                           .mdio_out                   (),            
-<span style="margin-left:8px;"></span>499                           .mdio_en                    (),
-<span style="margin-left:8px;"></span>500                           // USB interface signals
-<span style="margin-left:8px;"></span>501                           .usb_dp                     (),
-<span style="margin-left:8px;"></span>502                           .usb_dn                     (),
-<span style="margin-left:8px;"></span>503                           .usb_xtal_in                ( '0 ),
-<span style="margin-left:8px;"></span>504                           .usb_xtal_out               ( ),
-<span style="margin-left:8px;"></span>505                           // FCB interface signals
-<span style="margin-left:8px;"></span>506                           .pl_data_o                  ( ),
-<span style="margin-left:8px;"></span>507                           .pl_addr_o                  ( ),
-<span style="margin-left:8px;"></span>508                           .pl_ena_o                   ( ),
-<span style="margin-left:8px;"></span>509                           .pl_clk_o                   ( ),
-<span style="margin-left:8px;"></span>510                           .pl_ren_o                   ( ),
-<span style="margin-left:8px;"></span>511                           .pl_init_o                  ( ),
-<span style="margin-left:8px;"></span>512                           .pl_wen_o                   ( ),
-<span style="margin-left:8px;"></span>513                           .pl_data_i                  ( ),
-<span style="margin-left:8px;"></span>514                           .cfg_blsr_region_0_o        ( ),
-<span style="margin-left:8px;"></span>515                           .cfg_wlsr_region_0_o        ( ),
-<span style="margin-left:8px;"></span>516                           .cfg_done_o                 ( ),
-<span style="margin-left:8px;"></span>517                           .cfg_rst_no                 ( ),
-<span style="margin-left:8px;"></span>518                           .cfg_blsr_region_0_clk_o    ( ),
-<span style="margin-left:8px;"></span>519                           .cfg_wlsr_region_0_clk_o    ( ),
-<span style="margin-left:8px;"></span>520                           .cfg_blsr_region_0_wen_o    ( ),
-<span style="margin-left:8px;"></span>521                           .cfg_blsr_region_0_ren_o    ( ),
-<span style="margin-left:8px;"></span>522                           .cfg_wlsr_region_0_wen_o    ( ),
-<span style="margin-left:8px;"></span>523                           .cfg_wlsr_region_0_ren_o    ( ),
-<span style="margin-left:8px;"></span>524                           .cfg_blsr_region_0_i        ( ),
-<span style="margin-left:8px;"></span>525                           .cfg_wlsr_region_0_i        ( ),   
-<span style="margin-left:8px;"></span>526                           // JTAG intf
-<span style="margin-left:8px;"></span>527                           .jtag_control (),
-<span style="margin-left:8px;"></span>528                           .acpu_jtag_tck (0),
-<span style="margin-left:8px;"></span>529                           .acpu_jtag_tdi (0),
-<span style="margin-left:8px;"></span>530                           .acpu_jtag_tdo (),
-<span style="margin-left:8px;"></span>531                           .acpu_jtag_tms (),
-<span style="margin-left:8px;"></span>532                           .bcpu_jtag_tck (0),
-<span style="margin-left:8px;"></span>533                           .bcpu_jtag_tdi (0),
-<span style="margin-left:8px;"></span>534                           .bcpu_jtag_tdo (),
-<span style="margin-left:8px;"></span>535                           .bcpu_jtag_tms (),
-<span style="margin-left:8px;"></span>536                         // ATB interface
-<span style="margin-left:8px;"></span>537                         .atclk                      ( '0 ),
-<span style="margin-left:8px;"></span>538                         .atclken                    ( '0 ),
-<span style="margin-left:8px;"></span>539                         .atresetn                   ( '0 ),
-<span style="margin-left:8px;"></span>540                         .atbytes                    ( ),
-<span style="margin-left:8px;"></span>541                         .atdata                     ( ),
-<span style="margin-left:8px;"></span>542                         .atid                       ( ),
-<span style="margin-left:8px;"></span>543                         .atready                    ( '0 ),
-<span style="margin-left:8px;"></span>544                         .atvalid                    ( ),
-<span style="margin-left:8px;"></span>545                         .afvalid                    ( '0 ),
-<span style="margin-left:8px;"></span>546                         .afready                    ( ),
-<span style="margin-left:8px;"></span>547                         // DDR interface
-<span style="margin-left:8px;"></span>548                         .mem_a                      (ddr_model.mem_A      ),
-<span style="margin-left:8px;"></span>549                         .mem_act_n                  (ddr_model.mem_ACT_N  ),
-<span style="margin-left:8px;"></span>550                         .mem_ba                     (ddr_model.mem_BA     ),
-<span style="margin-left:8px;"></span>551                         .mem_bg                     (ddr_model.mem_BG     ),
-<span style="margin-left:8px;"></span>552                         .mem_cke                    (ddr_model.mem_CKE    ),
-<span style="margin-left:8px;"></span>553                         .mem_clk                    (ddr_model.mem_CLK    ),
-<span style="margin-left:8px;"></span>554                         .mem_clk_n                  (ddr_model.mem_CLK_N  ),
-<span style="margin-left:8px;"></span>555                         .mem_cs                     (ddr_model.mem_CS     ),
-<span style="margin-left:8px;"></span>556                         .mem_odt                    (ddr_model.mem_ODT    ),
-<span style="margin-left:8px;"></span>557                         .mem_reset_n                (ddr_model.mem_RESET_N ),
-<span style="margin-left:8px;"></span>558                         .dm                   (  ddr_model.mem_DM     )     ,
-<span style="margin-left:8px;"></span>559                         .dq                   (  ddr_model.mem_DQ     )     ,
-<span style="margin-left:8px;"></span>560                         .dqs                  (  ddr_model.mem_DQS    )     ,
-<span style="margin-left:8px;"></span>561                         .dqs_n                (  ddr_model.mem_DQS_N  )     ,
-<span style="margin-left:8px;"></span>562                         // FPGA signals
-<span style="margin-left:8px;"></span>563                         //interrupts
-<span style="margin-left:8px;"></span>564                         .fpga_irq_src               ( '0 ),
-<span style="margin-left:8px;"></span>565                         .fpga_irq_set               ( ),
-<span style="margin-left:8px;"></span>566                         // DMA request/acknowledge pairs for FPGA hardware handshake
-<span style="margin-left:8px;"></span>567                         .dma_req_fpga               ( '0 ),
-<span style="margin-left:8px;"></span>568                         .dma_ack_fpga               ( ),
-<span style="margin-left:8px;"></span>569                         // FPGA AHB Slave
-<span style="margin-left:8px;"></span>570                         .fpga_ahb_s0_haddr          ( ),
-<span style="margin-left:8px;"></span>571                         .fpga_ahb_s0_hburst         ( ),
-<span style="margin-left:8px;"></span>572                         .fpga_ahb_s0_hmastlock      ( ),
-<span style="margin-left:8px;"></span>573                         .fpga_ahb_s0_hprot          ( ),
-<span style="margin-left:8px;"></span>574                         .fpga_ahb_s0_hrdata         ( '0 ),
-<span style="margin-left:8px;"></span>575                         .fpga_ahb_s0_hready         ( '0 ),
-<span style="margin-left:8px;"></span>576                         .fpga_ahb_s0_hresp          ( '0 ),
-<span style="margin-left:8px;"></span>577                         .fpga_ahb_s0_hsel           ( ),
-<span style="margin-left:8px;"></span>578                         .fpga_ahb_s0_hsize          ( ),
-<span style="margin-left:8px;"></span>579                         .fpga_ahb_s0_htrans         ( ),
-<span style="margin-left:8px;"></span>580                         .fpga_ahb_s0_hwbe           ( ),
-<span style="margin-left:8px;"></span>581                         .fpga_ahb_s0_hwdata         ( ),
-<span style="margin-left:8px;"></span>582                         .fpga_ahb_s0_hwrite         ( ),
-<span style="margin-left:8px;"></span>583                     `ifdef FPGA_BFMs_INCLUDE
-<span style="margin-left:8px;"></span>584                         // FPGA AXI Master 0
-<span style="margin-left:8px;"></span>585                         .fpga_axi_m0_ar_addr        ( fpga_axi0_if.araddr ),
-<span style="margin-left:8px;"></span>586                         .fpga_axi_m0_ar_burst       ( fpga_axi0_if.arburst ),
-<span style="margin-left:8px;"></span>587                         .fpga_axi_m0_ar_cache       ( fpga_axi0_if.arcache ),
-<span style="margin-left:8px;"></span>588                         .fpga_axi_m0_ar_id          ( fpga_axi0_if.arid   ),
-<span style="margin-left:8px;"></span>589                         .fpga_axi_m0_ar_len         ( fpga_axi0_if.arlen  ),
-<span style="margin-left:8px;"></span>590                         .fpga_axi_m0_ar_lock        ( fpga_axi0_if.arlock ),
-<span style="margin-left:8px;"></span>591                         .fpga_axi_m0_ar_prot        ( fpga_axi0_if.arprot ),
-<span style="margin-left:8px;"></span>592                         .fpga_axi_m0_ar_ready       (fpga_axi0_if.arready ),
-<span style="margin-left:8px;"></span>593                         .fpga_axi_m0_ar_size        ( fpga_axi0_if.arsize ),
-<span style="margin-left:8px;"></span>594                         .fpga_axi_m0_ar_valid       ( fpga_axi0_if.arvalid ),
-<span style="margin-left:8px;"></span>595                         .fpga_axi_m0_aw_addr        ( fpga_axi0_if.awaddr  ),
-<span style="margin-left:8px;"></span>596                         .fpga_axi_m0_aw_burst       ( fpga_axi0_if.awburst ),
-<span style="margin-left:8px;"></span>597                         .fpga_axi_m0_aw_cache       ( fpga_axi0_if.awcache ),
-<span style="margin-left:8px;"></span>598                         .fpga_axi_m0_aw_id          ( fpga_axi0_if.awid    ),
-<span style="margin-left:8px;"></span>599                         .fpga_axi_m0_aw_len         ( fpga_axi0_if.awlen   ),
-<span style="margin-left:8px;"></span>600                         .fpga_axi_m0_aw_lock        ( fpga_axi0_if.awlock  ),
-<span style="margin-left:8px;"></span>601                         .fpga_axi_m0_aw_prot        ( fpga_axi0_if.awprot  ),
-<span style="margin-left:8px;"></span>602                         .fpga_axi_m0_aw_ready       ( fpga_axi0_if.awready ),
-<span style="margin-left:8px;"></span>603                         .fpga_axi_m0_aw_size        ( fpga_axi0_if.awsize  ),
-<span style="margin-left:8px;"></span>604                         .fpga_axi_m0_aw_valid       ( fpga_axi0_if.awvalid ),
-<span style="margin-left:8px;"></span>605                         .fpga_axi_m0_b_id           ( fpga_axi0_if.bid     ),
-<span style="margin-left:8px;"></span>606                         .fpga_axi_m0_b_ready        ( fpga_axi0_if.bready  ),
-<span style="margin-left:8px;"></span>607                         .fpga_axi_m0_b_resp         ( fpga_axi0_if.bresp   ),
-<span style="margin-left:8px;"></span>608                         .fpga_axi_m0_b_valid        ( fpga_axi0_if.bvalid  ),
-<span style="margin-left:8px;"></span>609                         .fpga_axi_m0_r_data         ( fpga_axi0_if.rdata   ),
-<span style="margin-left:8px;"></span>610                         .fpga_axi_m0_r_id           ( fpga_axi0_if.rid     ),
-<span style="margin-left:8px;"></span>611                         .fpga_axi_m0_r_last         ( fpga_axi0_if.rlast   ),
-<span style="margin-left:8px;"></span>612                         .fpga_axi_m0_r_ready        ( fpga_axi0_if.rready  ),
-<span style="margin-left:8px;"></span>613                         .fpga_axi_m0_r_resp         ( fpga_axi0_if.rresp   ),
-<span style="margin-left:8px;"></span>614                         .fpga_axi_m0_r_valid        ( fpga_axi0_if.rvalid  ),
-<span style="margin-left:8px;"></span>615                         .fpga_axi_m0_w_data         ( fpga_axi0_if.wdata   ),
-<span style="margin-left:8px;"></span>616                         .fpga_axi_m0_w_last         ( fpga_axi0_if.wlast   ),
-<span style="margin-left:8px;"></span>617                         .fpga_axi_m0_w_ready        ( fpga_axi0_if.wready  ),
-<span style="margin-left:8px;"></span>618                         .fpga_axi_m0_w_strb         ( fpga_axi0_if.wstrb   ),
-<span style="margin-left:8px;"></span>619                         .fpga_axi_m0_w_valid        ( fpga_axi0_if.wvalid  ),
-<span style="margin-left:8px;"></span>620                         // FPGA AXI Master 0
-<span style="margin-left:8px;"></span>621                         .fpga_axi_m1_ar_addr        (  fpga_axi1_if.araddr  ),
-<span style="margin-left:8px;"></span>622                         .fpga_axi_m1_ar_burst       (  fpga_axi1_if.arburst ),
-<span style="margin-left:8px;"></span>623                         .fpga_axi_m1_ar_cache       (  fpga_axi1_if.arcache ),
-<span style="margin-left:8px;"></span>624                         .fpga_axi_m1_ar_id          (  fpga_axi1_if.arid    ),
-<span style="margin-left:8px;"></span>625                         .fpga_axi_m1_ar_len         (  fpga_axi1_if.arlen   ),
-<span style="margin-left:8px;"></span>626                         .fpga_axi_m1_ar_lock        (  fpga_axi1_if.arlock  ),
-<span style="margin-left:8px;"></span>627                         .fpga_axi_m1_ar_prot        (  fpga_axi1_if.arprot  ),
-<span style="margin-left:8px;"></span>628                         .fpga_axi_m1_ar_ready       (  fpga_axi1_if.arready  ),
-<span style="margin-left:8px;"></span>629                         .fpga_axi_m1_ar_size        (  fpga_axi1_if.arsize  ),
-<span style="margin-left:8px;"></span>630                         .fpga_axi_m1_ar_valid       (  fpga_axi1_if.arvalid ),
-<span style="margin-left:8px;"></span>631                         .fpga_axi_m1_aw_addr        (  fpga_axi1_if.awaddr  ),
-<span style="margin-left:8px;"></span>632                         .fpga_axi_m1_aw_burst       (  fpga_axi1_if.awburst ),
-<span style="margin-left:8px;"></span>633                         .fpga_axi_m1_aw_cache       (  fpga_axi1_if.awcache ),
-<span style="margin-left:8px;"></span>634                         .fpga_axi_m1_aw_id          (  fpga_axi1_if.awid    ),
-<span style="margin-left:8px;"></span>635                         .fpga_axi_m1_aw_len         (  fpga_axi1_if.awlen   ),
-<span style="margin-left:8px;"></span>636                         .fpga_axi_m1_aw_lock        (  fpga_axi1_if.awlock  ),
-<span style="margin-left:8px;"></span>637                         .fpga_axi_m1_aw_prot        (  fpga_axi1_if.awprot  ),
-<span style="margin-left:8px;"></span>638                         .fpga_axi_m1_aw_ready       (  fpga_axi1_if.awready ),
-<span style="margin-left:8px;"></span>639                         .fpga_axi_m1_aw_size        (  fpga_axi1_if.awsize  ),
-<span style="margin-left:8px;"></span>640                         .fpga_axi_m1_aw_valid       (  fpga_axi1_if.awvalid ),
-<span style="margin-left:8px;"></span>641                         .fpga_axi_m1_b_id           (  fpga_axi1_if.bid     ),
-<span style="margin-left:8px;"></span>642                         .fpga_axi_m1_b_ready        (  fpga_axi1_if.bready  ),
-<span style="margin-left:8px;"></span>643                         .fpga_axi_m1_b_resp         (  fpga_axi1_if.bresp   ),
-<span style="margin-left:8px;"></span>644                         .fpga_axi_m1_b_valid        (  fpga_axi1_if.bvalid  ),
-<span style="margin-left:8px;"></span>645                         .fpga_axi_m1_r_data         (  fpga_axi1_if.rdata   ),
-<span style="margin-left:8px;"></span>646                         .fpga_axi_m1_r_id           (  fpga_axi1_if.rid     ),
-<span style="margin-left:8px;"></span>647                         .fpga_axi_m1_r_last         (  fpga_axi1_if.rlast   ),
-<span style="margin-left:8px;"></span>648                         .fpga_axi_m1_r_ready        (  fpga_axi1_if.rready  ),
-<span style="margin-left:8px;"></span>649                         .fpga_axi_m1_r_resp         (  fpga_axi1_if.rresp   ),
-<span style="margin-left:8px;"></span>650                         .fpga_axi_m1_r_valid        (  fpga_axi1_if.rvalid  ),
-<span style="margin-left:8px;"></span>651                         .fpga_axi_m1_w_data         (  fpga_axi1_if.wdata   ),
-<span style="margin-left:8px;"></span>652                         .fpga_axi_m1_w_last         (  fpga_axi1_if.wlast   ),
-<span style="margin-left:8px;"></span>653                         .fpga_axi_m1_w_ready        (  fpga_axi1_if.wready  ),
-<span style="margin-left:8px;"></span>654                         .fpga_axi_m1_w_strb         (  fpga_axi1_if.wstrb   ),
-<span style="margin-left:8px;"></span>655                         .fpga_axi_m1_w_valid        (  fpga_axi1_if.wvalid  ),
-<span style="margin-left:8px;"></span>656                     `else        
-<span style="margin-left:8px;"></span>657                         // FPGA AXI Master 0
-<span style="margin-left:8px;"></span>658                         .fpga_axi_m0_ar_addr        ( '0 ),
-<span style="margin-left:8px;"></span>659                         .fpga_axi_m0_ar_burst       ( '0 ),
-<span style="margin-left:8px;"></span>660                         .fpga_axi_m0_ar_cache       ( '0 ),
-<span style="margin-left:8px;"></span>661                         .fpga_axi_m0_ar_id          ( '0 ),
-<span style="margin-left:8px;"></span>662                         .fpga_axi_m0_ar_len         ( '0 ),
-<span style="margin-left:8px;"></span>663                         .fpga_axi_m0_ar_lock        ( '0 ),
-<span style="margin-left:8px;"></span>664                         .fpga_axi_m0_ar_prot        ( '0 ),
-<span style="margin-left:8px;"></span>665                         .fpga_axi_m0_ar_ready       ( ),
-<span style="margin-left:8px;"></span>666                         .fpga_axi_m0_ar_size        ( '0 ),
-<span style="margin-left:8px;"></span>667                         .fpga_axi_m0_ar_valid       ( '0 ),
-<span style="margin-left:8px;"></span>668                         .fpga_axi_m0_aw_addr        ( '0 ),
-<span style="margin-left:8px;"></span>669                         .fpga_axi_m0_aw_burst       ( '0 ),
-<span style="margin-left:8px;"></span>670                         .fpga_axi_m0_aw_cache       ( '0 ),
-<span style="margin-left:8px;"></span>671                         .fpga_axi_m0_aw_id          ( '0 ),
-<span style="margin-left:8px;"></span>672                         .fpga_axi_m0_aw_len         ( '0 ),
-<span style="margin-left:8px;"></span>673                         .fpga_axi_m0_aw_lock        ( '0 ),
-<span style="margin-left:8px;"></span>674                         .fpga_axi_m0_aw_prot        ( '0 ),
-<span style="margin-left:8px;"></span>675                         .fpga_axi_m0_aw_ready       ( ),
-<span style="margin-left:8px;"></span>676                         .fpga_axi_m0_aw_size        ( '0 ),
-<span style="margin-left:8px;"></span>677                         .fpga_axi_m0_aw_valid       ( '0 ),
-<span style="margin-left:8px;"></span>678                         .fpga_axi_m0_b_id           ( ),
-<span style="margin-left:8px;"></span>679                         .fpga_axi_m0_b_ready        ( '0 ),
-<span style="margin-left:8px;"></span>680                         .fpga_axi_m0_b_resp         ( ),
-<span style="margin-left:8px;"></span>681                         .fpga_axi_m0_b_valid        ( ),
-<span style="margin-left:8px;"></span>682                         .fpga_axi_m0_r_data         ( ),
-<span style="margin-left:8px;"></span>683                         .fpga_axi_m0_r_id           ( ),
-<span style="margin-left:8px;"></span>684                         .fpga_axi_m0_r_last         ( ),
-<span style="margin-left:8px;"></span>685                         .fpga_axi_m0_r_ready        ( '0 ),
-<span style="margin-left:8px;"></span>686                         .fpga_axi_m0_r_resp         ( ),
-<span style="margin-left:8px;"></span>687                         .fpga_axi_m0_r_valid        ( ),
-<span style="margin-left:8px;"></span>688                         .fpga_axi_m0_w_data         ( '0 ),
-<span style="margin-left:8px;"></span>689                         .fpga_axi_m0_w_last         ( '0 ),
-<span style="margin-left:8px;"></span>690                         .fpga_axi_m0_w_ready        ( ),
-<span style="margin-left:8px;"></span>691                         .fpga_axi_m0_w_strb         ( '0 ),
-<span style="margin-left:8px;"></span>692                         .fpga_axi_m0_w_valid        ( '0 ),
-<span style="margin-left:8px;"></span>693                         // FPGA AXI Master 0
-<span style="margin-left:8px;"></span>694                         .fpga_axi_m1_ar_addr        ( '0 ),
-<span style="margin-left:8px;"></span>695                         .fpga_axi_m1_ar_burst       ( '0 ),
-<span style="margin-left:8px;"></span>696                         .fpga_axi_m1_ar_cache       ( '0 ),
-<span style="margin-left:8px;"></span>697                         .fpga_axi_m1_ar_id          ( '0 ),
-<span style="margin-left:8px;"></span>698                         .fpga_axi_m1_ar_len         ( '0 ),
-<span style="margin-left:8px;"></span>699                         .fpga_axi_m1_ar_lock        ( '0 ),
-<span style="margin-left:8px;"></span>700                         .fpga_axi_m1_ar_prot        ( '0 ),
-<span style="margin-left:8px;"></span>701                         .fpga_axi_m1_ar_ready       ( ),
-<span style="margin-left:8px;"></span>702                         .fpga_axi_m1_ar_size        ( '0 ),
-<span style="margin-left:8px;"></span>703                         .fpga_axi_m1_ar_valid       ( '0 ),
-<span style="margin-left:8px;"></span>704                         .fpga_axi_m1_aw_addr        ( '0 ),
-<span style="margin-left:8px;"></span>705                         .fpga_axi_m1_aw_burst       ( '0 ),
-<span style="margin-left:8px;"></span>706                         .fpga_axi_m1_aw_cache       ( '0 ),
-<span style="margin-left:8px;"></span>707                         .fpga_axi_m1_aw_id          ( '0 ),
-<span style="margin-left:8px;"></span>708                         .fpga_axi_m1_aw_len         ( '0 ),
-<span style="margin-left:8px;"></span>709                         .fpga_axi_m1_aw_lock        ( '0 ),
-<span style="margin-left:8px;"></span>710                         .fpga_axi_m1_aw_prot        ( '0 ),
-<span style="margin-left:8px;"></span>711                         .fpga_axi_m1_aw_ready       ( ),
-<span style="margin-left:8px;"></span>712                         .fpga_axi_m1_aw_size        ( '0 ),
-<span style="margin-left:8px;"></span>713                         .fpga_axi_m1_aw_valid       ( '0 ),
-<span style="margin-left:8px;"></span>714                         .fpga_axi_m1_b_id           ( ),
-<span style="margin-left:8px;"></span>715                         .fpga_axi_m1_b_ready        ( '0 ),
-<span style="margin-left:8px;"></span>716                         .fpga_axi_m1_b_resp         ( ),
-<span style="margin-left:8px;"></span>717                         .fpga_axi_m1_b_valid        ( ),
-<span style="margin-left:8px;"></span>718                         .fpga_axi_m1_r_data         ( ),
-<span style="margin-left:8px;"></span>719                         .fpga_axi_m1_r_id           ( ),
-<span style="margin-left:8px;"></span>720                         .fpga_axi_m1_r_last         ( ),
-<span style="margin-left:8px;"></span>721                         .fpga_axi_m1_r_ready        ( '0 ),
-<span style="margin-left:8px;"></span>722                         .fpga_axi_m1_r_resp         ( ),
-<span style="margin-left:8px;"></span>723                         .fpga_axi_m1_r_valid        ( ),
-<span style="margin-left:8px;"></span>724                         .fpga_axi_m1_w_data         ( '0 ),
-<span style="margin-left:8px;"></span>725                         .fpga_axi_m1_w_last         ( '0 ),
-<span style="margin-left:8px;"></span>726                         .fpga_axi_m1_w_ready        ( ),
-<span style="margin-left:8px;"></span>727                         .fpga_axi_m1_w_strb         ( '0 ),
-<span style="margin-left:8px;"></span>728                         .fpga_axi_m1_w_valid        ( '0 ),
-<span style="margin-left:8px;"></span>729                     `endif    
-<span style="margin-left:8px;"></span>730                         .pad_c                      ( '0 ),
-<span style="margin-left:8px;"></span>731                         .pad_pu                     (    ),
-<span style="margin-left:8px;"></span>732                         .pad_pd                     (    ),
-<span style="margin-left:8px;"></span>733                         .pad_i                      (    ),
-<span style="margin-left:8px;"></span>734                         .pad_oen                    (    ),
-<span style="margin-left:8px;"></span>735                         .pad_ds0                    (    ),
-<span style="margin-left:8px;"></span>736                         .pad_ds1                    (    ),
-<span style="margin-left:8px;"></span>737                         //FPGA configuration interface
-<span style="margin-left:8px;"></span>738                         .clb_sel                    ( ),
-<span style="margin-left:8px;"></span>739                         .pwdata                     ( ),
-<span style="margin-left:8px;"></span>740                         .pready ( 0 )
-<span style="margin-left:8px;"></span>741                       );
-<span style="margin-left:8px;"></span>742                     
-<span style="margin-left:8px;"></span>743                     /*
-<span style="margin-left:8px;"></span>744                     initial
-<span style="margin-left:8px;"></span>745                     begin
-<span style="margin-left:8px;"></span>746                     $dumpfile(&quot;gemini.vcd&quot;);
-<span style="margin-left:8px;"></span>747                     $dumpvars();
-<span style="margin-left:8px;"></span>748                     end
-<span style="margin-left:8px;"></span>749                      
-<span style="margin-left:8px;"></span>750                     
-<span style="margin-left:8px;"></span>751                     initial begin
-<span style="margin-left:8px;"></span>752                       $fsdbDumpfile(&quot;waves.fsdb&quot;);
-<span style="margin-left:8px;"></span>753                       $fsdbDumpvars(0,&quot;+struct&quot;,&quot;+mda&quot;,&quot;+all&quot;);
-<span style="margin-left:8px;"></span>754                     end
-<span style="margin-left:8px;"></span>755                     */
-<span style="margin-left:8px;"></span>756                     
-<span style="margin-left:8px;"></span>757                     integer i;
-<span style="margin-left:8px;"></span>758                     initial begin
-<span style="margin-left:8px;"></span>759                       //force config_ss_tb.DUT.memory_ss.sramb0_awlen[7:4] = 4'h0;
-<span style="margin-left:8px;"></span>760        1/1            for (i = 0; i &lt; 128 ; i++)
-<span style="margin-left:8px;"></span>761        1/1              config_ss_tb.DUT.memory_ss.sram4b.bank0_cntl.w_data_fifo.mem[i] = 'b0;
+<span style="margin-left:8px;"></span>420                     
+<span style="margin-left:8px;"></span>421                     	`include &quot;config_ss_sys_intf_inc.sv&quot;
+<span style="margin-left:8px;"></span>422                     
+<span style="margin-left:8px;"></span>423                     	//`include &quot;config_ss_periph_intf_inc.sv&quot;
+<span style="margin-left:8px;"></span>424                     
+<span style="margin-left:8px;"></span>425                       pll pll_model (
+<span style="margin-left:8px;"></span>426                         .fref       (config_ss_env_intf.rs_pll_intf.fref          ),
+<span style="margin-left:8px;"></span>427                         .rst_por    (config_ss_env_intf.rs_pll_intf.rst_por       ),
+<span style="margin-left:8px;"></span>428                         //input logic [5:0] refdiv ( ), // 4’b0011=divide-by-4
+<span style="margin-left:8px;"></span>429                         .postdiv0   (config_ss_env_intf.rs_pll_intf.ctl_postdiv0  ), // 4’b0011=divide-by-4
+<span style="margin-left:8px;"></span>430                         .postdiv1   (config_ss_env_intf.rs_pll_intf.ctl_postdiv1  ),
+<span style="margin-left:8px;"></span>431                         .postdiv2   ('0 ),
+<span style="margin-left:8px;"></span>432                         .postdiv3   ('0 ),
+<span style="margin-left:8px;"></span>433                         .fbdiv      (config_ss_env_intf.rs_pll_intf.ctl_fbdiv     ), // 2’b11=divide-by-12 2’b10=divide-by-8 2’b01=divide-by-6 2’b00=divide-by-4
+<span style="margin-left:8px;"></span>434                     
+<span style="margin-left:8px;"></span>435                         .fouten     (config_ss_env_intf.rs_pll_intf.ctl_fouten    ),
+<span style="margin-left:8px;"></span>436                         .fout       (config_ss_env_intf.rs_pll_intf.clk_fout      ),
+<span style="margin-left:8px;"></span>437                     
+<span style="margin-left:8px;"></span>438                         //.foutvco    (config_ss_env_intf.rs_pll_intf.ctl_foutvcobyp), // AI: ND: ask design team about this signal ??
+<span style="margin-left:8px;"></span>439                         .foutvcoen  (config_ss_env_intf.rs_pll_intf.ctl_foutvcoen ),
+<span style="margin-left:8px;"></span>440                         .lock       (config_ss_env_intf.rs_pll_intf.status_lock   ),
+<span style="margin-left:8px;"></span>441                         .pllen      (config_ss_env_intf.rs_pll_intf.ctl_pllen     ) // 0 - FREF bypassed to all Outputs                                         ( except FOUTVCO) ( ) 1 -&gt;Entire PLL is enabled
+<span style="margin-left:8px;"></span>442                       );
+<span style="margin-left:8px;"></span>443                     
+<span style="margin-left:8px;"></span>444                     
+<span style="margin-left:8px;"></span>445                     initial begin
+<span style="margin-left:8px;"></span>446                     
+<span style="margin-left:8px;"></span>447                     `ifdef UART0_UART1
+<span style="margin-left:8px;"></span>448                           force lb0_sout = DUT.config_ss.uart0.uart_sout; 
+<span style="margin-left:8px;"></span>449                           force DUT.config_ss.uart0.uart_sin = lb1_sout;
+<span style="margin-left:8px;"></span>450                           force DUT.config_ss.uart0.uart_ctsn= lb1_rts ;
+<span style="margin-left:8px;"></span>451                           force lb0_rts = DUT.config_ss.uart0.uart_rtsn;
+<span style="margin-left:8px;"></span>452                     `else
+<span style="margin-left:8px;"></span>453                           
+<span style="margin-left:8px;"></span>454                           force DUT.config_ss.uart0.uart_sin  = uart0_if.sin;
+<span style="margin-left:8px;"></span>455                           force uart0_if.sout  = DUT.config_ss.uart0.uart_sout; 
+<span style="margin-left:8px;"></span>456                           force DUT.config_ss.uart0.uart_ctsn = uart0_if.rts;
+<span style="margin-left:8px;"></span>457                           force uart0_if.cts = ~DUT.config_ss.uart0.uart_rtsn;
+<span style="margin-left:8px;"></span>458                           
+<span style="margin-left:8px;"></span>459                     `endif                 
+<span style="margin-left:8px;"></span>460                     
+<span style="margin-left:8px;"></span>461                     //     UART1 interface signals
+<span style="margin-left:8px;"></span>462                     `ifdef UART0_UART1
+<span style="margin-left:8px;"></span>463                           force lb1_sout = DUT.config_ss.uart1.uart_sout;
+<span style="margin-left:8px;"></span>464                           force DUT.config_ss.uart1.uart_sin  = lb0_sout;
+<span style="margin-left:8px;"></span>465                           force DUT.config_ss.uart1.uart_ctsn = lb0_rts;
+<span style="margin-left:8px;"></span>466                           force lb1_rts = DUT.config_ss.uart1.uart_rtsn;
+<span style="margin-left:8px;"></span>467                     `else      
+<span style="margin-left:8px;"></span>468                           
+<span style="margin-left:8px;"></span>469                           force DUT.config_ss.uart1.uart_sin  = uart1_if.sin;
+<span style="margin-left:8px;"></span>470                           force uart1_if.sout = DUT.config_ss.uart1.uart_sout;
+<span style="margin-left:8px;"></span>471                           force DUT.config_ss.uart1.uart_ctsn = uart1_if.rts;
+<span style="margin-left:8px;"></span>472                           force uart1_if.cts = ~DUT.config_ss.uart1.uart_rtsn;
+<span style="margin-left:8px;"></span>473                           
+<span style="margin-left:8px;"></span>474                     `endif 
+<span style="margin-left:8px;"></span>475                     
+<span style="margin-left:8px;"></span>476                     end
+<span style="margin-left:8px;"></span>477                     
+<span style="margin-left:8px;"></span>478                     `ifdef DDR_PHY_CLK
+<span style="margin-left:8px;"></span>479                     always@(config_ss_env_intf.rs_pll_intf.rst_por)
+<span style="margin-left:8px;"></span>480                     begin
+<span style="margin-left:8px;"></span>481                       if(config_ss_env_intf.rs_pll_intf.rst_por)
+<span style="margin-left:8px;"></span>482                      	 $assertkill;
+<span style="margin-left:8px;"></span>483                     end
+<span style="margin-left:8px;"></span>484                       `endif
+<span style="margin-left:8px;"></span>485                       soc_ss DUT (
+<span style="margin-left:8px;"></span>486                         .clk_sel0                   (bit'(config_ss_env_intf.clk_sel[0])),
+<span style="margin-left:8px;"></span>487                         .clk_sel1                   (bit'(config_ss_env_intf.clk_sel[1])),
+<span style="margin-left:8px;"></span>488                         .clk_osc                    (config_ss_env_intf.clk_osc_intf.clock),
+<span style="margin-left:8px;"></span>489                         .clk_xtal_ref               (config_ss_env_intf.rs_pll_intf.fref),
+<span style="margin-left:8px;"></span>490                         .rst_n_poweron              (config_ss_env_intf.rs_pll_intf.rst_por),
+<span style="margin-left:8px;"></span>491                       `ifdef BYPASS_PLL
+<span style="margin-left:8px;"></span>492                           .clk_soc_pll0           (clk_0), //(config_ss_env_intf.rs_pll_intf.clk_fout[3]),
+<span style="margin-left:8px;"></span>493                           .clk_soc_pll1           (clk_1), //(config_ss_env_intf.rs_pll_intf.clk_fout[1]),
+<span style="margin-left:8px;"></span>494                       `else
+<span style="margin-left:8px;"></span>495                           .clk_soc_pll0           (config_ss_env_intf.rs_pll_intf.clk_fout[0]),
+<span style="margin-left:8px;"></span>496                     `ifdef DDR_PHY_CLK
+<span style="margin-left:8px;"></span>497                           .clk_soc_pll1           (clk_1066),//config_ss_env_intf.rs_pll_intf.clk_fout[1]),
+<span style="margin-left:8px;"></span>498                     `else
+<span style="margin-left:8px;"></span>499                           .clk_soc_pll1           (config_ss_env_intf.rs_pll_intf.clk_fout[1]),
+<span style="margin-left:8px;"></span>500                     `endif
+<span style="margin-left:8px;"></span>501                       `endif
+<span style="margin-left:8px;"></span>502                     `ifdef FPGA_BFMs_INCLUDE      
+<span style="margin-left:8px;"></span>503                           // input FPGA clocks
+<span style="margin-left:8px;"></span>504                           .clk_fpga0              (fpga_clk0),
+<span style="margin-left:8px;"></span>505                           .clk_fpga1              (fpga_clk1),
+<span style="margin-left:8px;"></span>506                     `else     
+<span style="margin-left:8px;"></span>507                           // input FPGA clocks
+<span style="margin-left:8px;"></span>508                           .clk_fpga0              (config_ss_env_intf.clk_fpga0_intf.clock),
+<span style="margin-left:8px;"></span>509                           .clk_fpga1              (config_ss_env_intf.clk_fpga1_intf.clock),
+<span style="margin-left:8px;"></span>510                     `endif       
+<span style="margin-left:8px;"></span>511                           .clk_fpga_s             (config_ss_env_intf.clk_fpga_s_intf.clock),
+<span style="margin-left:8px;"></span>512                           //
+<span style="margin-left:8px;"></span>513                           .test_mode              (config_ss_env_intf.test_mode),
+<span style="margin-left:8px;"></span>514                           // pll control signals
+<span style="margin-left:8px;"></span>515                           .soc_pll_ctl_dacen         (config_ss_env_intf.rs_pll_intf.ctl_dacen),
+<span style="margin-left:8px;"></span>516                           .soc_pll_ctl_dskewcalbyp   (config_ss_env_intf.rs_pll_intf.ctl_dskewcalbyp ),
+<span style="margin-left:8px;"></span>517                           .soc_pll_ctl_dskewcalcnt   (config_ss_env_intf.rs_pll_intf.ctl_dskewcalcnt ),
+<span style="margin-left:8px;"></span>518                           .soc_pll_ctl_dskewcalen    (config_ss_env_intf.rs_pll_intf.ctl_dskewcalen  ),
+<span style="margin-left:8px;"></span>519                           .soc_pll_ctl_dskewcalin    (config_ss_env_intf.rs_pll_intf.ctl_dskewcalin  ),
+<span style="margin-left:8px;"></span>520                           .soc_pll_ctl_dskewfastcal  (config_ss_env_intf.rs_pll_intf.ctl_dskewfastcal),
+<span style="margin-left:8px;"></span>521                           .soc_pll_ctl_dsmen         (config_ss_env_intf.rs_pll_intf.ctl_dsmen       ),
+<span style="margin-left:8px;"></span>522                           .soc_pll_ctl_pllen         (config_ss_env_intf.rs_pll_intf.ctl_pllen       ),
+<span style="margin-left:8px;"></span>523                           .soc_pll_ctl_fouten        (config_ss_env_intf.rs_pll_intf.ctl_fouten      ),
+<span style="margin-left:8px;"></span>524                           .soc_pll_ctl_foutvcobyp    (config_ss_env_intf.rs_pll_intf.ctl_foutvcobyp  ),
+<span style="margin-left:8px;"></span>525                           .soc_pll_ctl_foutvcoen     (config_ss_env_intf.rs_pll_intf.ctl_foutvcoen   ),
+<span style="margin-left:8px;"></span>526                           .soc_pll_ctl_refdiv        (config_ss_env_intf.rs_pll_intf.ctl_refdiv      ),
+<span style="margin-left:8px;"></span>527                           .soc_pll_ctl_frac          (config_ss_env_intf.rs_pll_intf.ctl_frac        ),
+<span style="margin-left:8px;"></span>528                           .soc_pll_ctl_postdiv0      (config_ss_env_intf.rs_pll_intf.ctl_postdiv0    ),
+<span style="margin-left:8px;"></span>529                           .soc_pll_ctl_postdiv1      (config_ss_env_intf.rs_pll_intf.ctl_postdiv1    ),
+<span style="margin-left:8px;"></span>530                           .soc_pll_ctl_fbdiv         (config_ss_env_intf.rs_pll_intf.ctl_fbdiv       ),
+<span style="margin-left:8px;"></span>531                           // pll status signals
+<span style="margin-left:8px;"></span>532                           .soc_pll_status_dskewcalout (config_ss_env_intf.rs_pll_intf.status_dskewcalout ),
+<span style="margin-left:8px;"></span>533                           .soc_pll_status_dskewcallock(config_ss_env_intf.rs_pll_intf.status_dskewcallock),
+<span style="margin-left:8px;"></span>534                     `ifdef BYPASS_PLL
+<span style="margin-left:8px;"></span>535                           .soc_pll_status_lock        (aresetn),
+<span style="margin-left:8px;"></span>536                     `else
+<span style="margin-left:8px;"></span>537                           .soc_pll_status_lock        (config_ss_env_intf.rs_pll_intf.status_lock        ),
+<span style="margin-left:8px;"></span>538                     `endif
+<span style="margin-left:8px;"></span>539                     
+<span style="margin-left:8px;"></span>540                           // I2C interface signals
+<span style="margin-left:8px;"></span>541                           .scl_o                      (scl_o),
+<span style="margin-left:8px;"></span>542                           .scl_i                      (scl_i),
+<span style="margin-left:8px;"></span>543                           // QSPI interface signals
+<span style="margin-left:8px;"></span>544                           .spi_clk_in                 (spi_clk_in  ),
+<span style="margin-left:8px;"></span>545                           .spi_clk_oe                 (spi_clk_oe  ),
+<span style="margin-left:8px;"></span>546                           .spi_clk_out                (spi_clk_out ),
+<span style="margin-left:8px;"></span>547                           // GPIO interface signals
+<span style="margin-left:8px;"></span>548                           .gpio_pulldown              ( ),
+<span style="margin-left:8px;"></span>549                           .gpio_pullup                ( ),
+<span style="margin-left:8px;"></span>550                           .pit_pause                  ( '0 ),
+<span style="margin-left:8px;"></span>551                           // GbE interface signals
+<span style="margin-left:8px;"></span>552                           .rgmii_txd                  ( ),
+<span style="margin-left:8px;"></span>553                           .rgmii_tx_ctl               ( ),
+<span style="margin-left:8px;"></span>554                           .rgmii_rxd                  ( '0 ),
+<span style="margin-left:8px;"></span>555                           .rgmii_rx_ctl               ( '0 ),
+<span style="margin-left:8px;"></span>556                           .rgmii_rxc                  ( '0 ),
+<span style="margin-left:8px;"></span>557                           .mdio_mdc                   ( ),
+<span style="margin-left:8px;"></span>558                           .mdio_in                    (),
+<span style="margin-left:8px;"></span>559                           .mdio_out                   (),            
+<span style="margin-left:8px;"></span>560                           .mdio_en                    (),
+<span style="margin-left:8px;"></span>561                           // USB interface signals
+<span style="margin-left:8px;"></span>562                           .usb_dp                     (),
+<span style="margin-left:8px;"></span>563                           .usb_dn                     (),
+<span style="margin-left:8px;"></span>564                           .usb_xtal_in                ( '0 ),
+<span style="margin-left:8px;"></span>565                           .usb_xtal_out               ( ),
+<span style="margin-left:8px;"></span>566                           // FCB interface signals
+<span style="margin-left:8px;"></span>567                           .pl_data_o                  ( ),
+<span style="margin-left:8px;"></span>568                           .pl_addr_o                  ( ),
+<span style="margin-left:8px;"></span>569                           .pl_ena_o                   ( ),
+<span style="margin-left:8px;"></span>570                           .pl_clk_o                   ( ),
+<span style="margin-left:8px;"></span>571                           .pl_ren_o                   ( ),
+<span style="margin-left:8px;"></span>572                           .pl_init_o                  ( ),
+<span style="margin-left:8px;"></span>573                           .pl_wen_o                   ( ),
+<span style="margin-left:8px;"></span>574                           .pl_data_i                  ( ),
+<span style="margin-left:8px;"></span>575                           .cfg_blsr_region_0_o        ( ),
+<span style="margin-left:8px;"></span>576                           .cfg_wlsr_region_0_o        ( ),
+<span style="margin-left:8px;"></span>577                           .cfg_done_o                 ( ),
+<span style="margin-left:8px;"></span>578                           .cfg_rst_no                 ( ),
+<span style="margin-left:8px;"></span>579                           .cfg_blsr_region_0_clk_o    ( ),
+<span style="margin-left:8px;"></span>580                           .cfg_wlsr_region_0_clk_o    ( ),
+<span style="margin-left:8px;"></span>581                           .cfg_blsr_region_0_wen_o    ( ),
+<span style="margin-left:8px;"></span>582                           .cfg_blsr_region_0_ren_o    ( ),
+<span style="margin-left:8px;"></span>583                           .cfg_wlsr_region_0_wen_o    ( ),
+<span style="margin-left:8px;"></span>584                           .cfg_wlsr_region_0_ren_o    ( ),
+<span style="margin-left:8px;"></span>585                           .cfg_blsr_region_0_i        ( ),
+<span style="margin-left:8px;"></span>586                           .cfg_wlsr_region_0_i        ( ),   
+<span style="margin-left:8px;"></span>587                           // JTAG intf
+<span style="margin-left:8px;"></span>588                           .jtag_control (),
+<span style="margin-left:8px;"></span>589                           .acpu_jtag_tck (0),
+<span style="margin-left:8px;"></span>590                           .acpu_jtag_tdi (0),
+<span style="margin-left:8px;"></span>591                           .acpu_jtag_tdo (),
+<span style="margin-left:8px;"></span>592                           .acpu_jtag_tms (),
+<span style="margin-left:8px;"></span>593                           .bcpu_jtag_tck (0),
+<span style="margin-left:8px;"></span>594                           .bcpu_jtag_tdi (0),
+<span style="margin-left:8px;"></span>595                           .bcpu_jtag_tdo (),
+<span style="margin-left:8px;"></span>596                           .bcpu_jtag_tms (),
+<span style="margin-left:8px;"></span>597                         // ATB interface
+<span style="margin-left:8px;"></span>598                         .atclk                      ( '0 ),
+<span style="margin-left:8px;"></span>599                         .atclken                    ( '0 ),
+<span style="margin-left:8px;"></span>600                         .atresetn                   ( '0 ),
+<span style="margin-left:8px;"></span>601                         .atbytes                    ( ),
+<span style="margin-left:8px;"></span>602                         .atdata                     ( ),
+<span style="margin-left:8px;"></span>603                         .atid                       ( ),
+<span style="margin-left:8px;"></span>604                         .atready                    ( '0 ),
+<span style="margin-left:8px;"></span>605                         .atvalid                    ( ),
+<span style="margin-left:8px;"></span>606                         .afvalid                    ( '0 ),
+<span style="margin-left:8px;"></span>607                         .afready                    ( ),
+<span style="margin-left:8px;"></span>608                         // DDR interface
+<span style="margin-left:8px;"></span>609                         .mem_a                      (ddr_model.mem_A      ),
+<span style="margin-left:8px;"></span>610                         .mem_act_n                  (ddr_model.mem_ACT_N  ),
+<span style="margin-left:8px;"></span>611                         .mem_ba                     (ddr_model.mem_BA     ),
+<span style="margin-left:8px;"></span>612                         .mem_bg                     (ddr_model.mem_BG     ),
+<span style="margin-left:8px;"></span>613                         .mem_cke                    (ddr_model.mem_CKE    ),
+<span style="margin-left:8px;"></span>614                         .mem_clk                    (ddr_model.mem_CLK    ),
+<span style="margin-left:8px;"></span>615                         .mem_clk_n                  (ddr_model.mem_CLK_N  ),
+<span style="margin-left:8px;"></span>616                         .mem_cs                     (ddr_model.mem_CS     ),
+<span style="margin-left:8px;"></span>617                         .mem_odt                    (ddr_model.mem_ODT    ),
+<span style="margin-left:8px;"></span>618                         .mem_reset_n                (ddr_model.mem_RESET_N ),
+<span style="margin-left:8px;"></span>619                         .dm                   (  ddr_model.mem_DM     )     ,
+<span style="margin-left:8px;"></span>620                         .dq                   (  ddr_model.mem_DQ     )     ,
+<span style="margin-left:8px;"></span>621                         .dqs                  (  ddr_model.mem_DQS    )     ,
+<span style="margin-left:8px;"></span>622                         .dqs_n                (  ddr_model.mem_DQS_N  )     ,
+<span style="margin-left:8px;"></span>623                         // FPGA signals
+<span style="margin-left:8px;"></span>624                         //interrupts
+<span style="margin-left:8px;"></span>625                         .fpga_irq_src               ( '0 ),
+<span style="margin-left:8px;"></span>626                         .fpga_irq_set               ( ),
+<span style="margin-left:8px;"></span>627                         // DMA request/acknowledge pairs for FPGA hardware handshake
+<span style="margin-left:8px;"></span>628                         .dma_req_fpga               ( '0 ),
+<span style="margin-left:8px;"></span>629                         .dma_ack_fpga               ( ),
+<span style="margin-left:8px;"></span>630                         // FPGA AHB Slave
+<span style="margin-left:8px;"></span>631                         .fpga_ahb_s0_haddr          ( ),
+<span style="margin-left:8px;"></span>632                         .fpga_ahb_s0_hburst         ( ),
+<span style="margin-left:8px;"></span>633                         .fpga_ahb_s0_hmastlock      ( ),
+<span style="margin-left:8px;"></span>634                         .fpga_ahb_s0_hprot          ( ),
+<span style="margin-left:8px;"></span>635                         .fpga_ahb_s0_hrdata         ( '0 ),
+<span style="margin-left:8px;"></span>636                         .fpga_ahb_s0_hready         ( '0 ),
+<span style="margin-left:8px;"></span>637                         .fpga_ahb_s0_hresp          ( '0 ),
+<span style="margin-left:8px;"></span>638                         .fpga_ahb_s0_hsel           ( ),
+<span style="margin-left:8px;"></span>639                         .fpga_ahb_s0_hsize          ( ),
+<span style="margin-left:8px;"></span>640                         .fpga_ahb_s0_htrans         ( ),
+<span style="margin-left:8px;"></span>641                         .fpga_ahb_s0_hwbe           ( ),
+<span style="margin-left:8px;"></span>642                         .fpga_ahb_s0_hwdata         ( ),
+<span style="margin-left:8px;"></span>643                         .fpga_ahb_s0_hwrite         ( ),
+<span style="margin-left:8px;"></span>644                     `ifdef FPGA_BFMs_INCLUDE
+<span style="margin-left:8px;"></span>645                         // FPGA AXI Master 0
+<span style="margin-left:8px;"></span>646                         .fpga_axi_m0_ar_addr        ( fpga_axi0_if.araddr ),
+<span style="margin-left:8px;"></span>647                         .fpga_axi_m0_ar_burst       ( fpga_axi0_if.arburst ),
+<span style="margin-left:8px;"></span>648                         .fpga_axi_m0_ar_cache       ( fpga_axi0_if.arcache ),
+<span style="margin-left:8px;"></span>649                         .fpga_axi_m0_ar_id          ( fpga_axi0_if.arid   ),
+<span style="margin-left:8px;"></span>650                         .fpga_axi_m0_ar_len         ( fpga_axi0_if.arlen  ),
+<span style="margin-left:8px;"></span>651                         .fpga_axi_m0_ar_lock        ( fpga_axi0_if.arlock ),
+<span style="margin-left:8px;"></span>652                         .fpga_axi_m0_ar_prot        ( fpga_axi0_if.arprot ),
+<span style="margin-left:8px;"></span>653                         .fpga_axi_m0_ar_ready       (fpga_axi0_if.arready ),
+<span style="margin-left:8px;"></span>654                         .fpga_axi_m0_ar_size        ( fpga_axi0_if.arsize ),
+<span style="margin-left:8px;"></span>655                         .fpga_axi_m0_ar_valid       ( fpga_axi0_if.arvalid ),
+<span style="margin-left:8px;"></span>656                         .fpga_axi_m0_aw_addr        ( fpga_axi0_if.awaddr  ),
+<span style="margin-left:8px;"></span>657                         .fpga_axi_m0_aw_burst       ( fpga_axi0_if.awburst ),
+<span style="margin-left:8px;"></span>658                         .fpga_axi_m0_aw_cache       ( fpga_axi0_if.awcache ),
+<span style="margin-left:8px;"></span>659                         .fpga_axi_m0_aw_id          ( fpga_axi0_if.awid    ),
+<span style="margin-left:8px;"></span>660                         .fpga_axi_m0_aw_len         ( fpga_axi0_if.awlen   ),
+<span style="margin-left:8px;"></span>661                         .fpga_axi_m0_aw_lock        ( fpga_axi0_if.awlock  ),
+<span style="margin-left:8px;"></span>662                         .fpga_axi_m0_aw_prot        ( fpga_axi0_if.awprot  ),
+<span style="margin-left:8px;"></span>663                         .fpga_axi_m0_aw_ready       ( fpga_axi0_if.awready ),
+<span style="margin-left:8px;"></span>664                         .fpga_axi_m0_aw_size        ( fpga_axi0_if.awsize  ),
+<span style="margin-left:8px;"></span>665                         .fpga_axi_m0_aw_valid       ( fpga_axi0_if.awvalid ),
+<span style="margin-left:8px;"></span>666                         .fpga_axi_m0_b_id           ( fpga_axi0_if.bid     ),
+<span style="margin-left:8px;"></span>667                         .fpga_axi_m0_b_ready        ( fpga_axi0_if.bready  ),
+<span style="margin-left:8px;"></span>668                         .fpga_axi_m0_b_resp         ( fpga_axi0_if.bresp   ),
+<span style="margin-left:8px;"></span>669                         .fpga_axi_m0_b_valid        ( fpga_axi0_if.bvalid  ),
+<span style="margin-left:8px;"></span>670                         .fpga_axi_m0_r_data         ( fpga_axi0_if.rdata   ),
+<span style="margin-left:8px;"></span>671                         .fpga_axi_m0_r_id           ( fpga_axi0_if.rid     ),
+<span style="margin-left:8px;"></span>672                         .fpga_axi_m0_r_last         ( fpga_axi0_if.rlast   ),
+<span style="margin-left:8px;"></span>673                         .fpga_axi_m0_r_ready        ( fpga_axi0_if.rready  ),
+<span style="margin-left:8px;"></span>674                         .fpga_axi_m0_r_resp         ( fpga_axi0_if.rresp   ),
+<span style="margin-left:8px;"></span>675                         .fpga_axi_m0_r_valid        ( fpga_axi0_if.rvalid  ),
+<span style="margin-left:8px;"></span>676                         .fpga_axi_m0_w_data         ( fpga_axi0_if.wdata   ),
+<span style="margin-left:8px;"></span>677                         .fpga_axi_m0_w_last         ( fpga_axi0_if.wlast   ),
+<span style="margin-left:8px;"></span>678                         .fpga_axi_m0_w_ready        ( fpga_axi0_if.wready  ),
+<span style="margin-left:8px;"></span>679                         .fpga_axi_m0_w_strb         ( fpga_axi0_if.wstrb   ),
+<span style="margin-left:8px;"></span>680                         .fpga_axi_m0_w_valid        ( fpga_axi0_if.wvalid  ),
+<span style="margin-left:8px;"></span>681                         // FPGA AXI Master 0
+<span style="margin-left:8px;"></span>682                         .fpga_axi_m1_ar_addr        (  fpga_axi1_if.araddr  ),
+<span style="margin-left:8px;"></span>683                         .fpga_axi_m1_ar_burst       (  fpga_axi1_if.arburst ),
+<span style="margin-left:8px;"></span>684                         .fpga_axi_m1_ar_cache       (  fpga_axi1_if.arcache ),
+<span style="margin-left:8px;"></span>685                         .fpga_axi_m1_ar_id          (  fpga_axi1_if.arid    ),
+<span style="margin-left:8px;"></span>686                         .fpga_axi_m1_ar_len         (  fpga_axi1_if.arlen   ),
+<span style="margin-left:8px;"></span>687                         .fpga_axi_m1_ar_lock        (  fpga_axi1_if.arlock  ),
+<span style="margin-left:8px;"></span>688                         .fpga_axi_m1_ar_prot        (  fpga_axi1_if.arprot  ),
+<span style="margin-left:8px;"></span>689                         .fpga_axi_m1_ar_ready       (  fpga_axi1_if.arready  ),
+<span style="margin-left:8px;"></span>690                         .fpga_axi_m1_ar_size        (  fpga_axi1_if.arsize  ),
+<span style="margin-left:8px;"></span>691                         .fpga_axi_m1_ar_valid       (  fpga_axi1_if.arvalid ),
+<span style="margin-left:8px;"></span>692                         .fpga_axi_m1_aw_addr        (  fpga_axi1_if.awaddr  ),
+<span style="margin-left:8px;"></span>693                         .fpga_axi_m1_aw_burst       (  fpga_axi1_if.awburst ),
+<span style="margin-left:8px;"></span>694                         .fpga_axi_m1_aw_cache       (  fpga_axi1_if.awcache ),
+<span style="margin-left:8px;"></span>695                         .fpga_axi_m1_aw_id          (  fpga_axi1_if.awid    ),
+<span style="margin-left:8px;"></span>696                         .fpga_axi_m1_aw_len         (  fpga_axi1_if.awlen   ),
+<span style="margin-left:8px;"></span>697                         .fpga_axi_m1_aw_lock        (  fpga_axi1_if.awlock  ),
+<span style="margin-left:8px;"></span>698                         .fpga_axi_m1_aw_prot        (  fpga_axi1_if.awprot  ),
+<span style="margin-left:8px;"></span>699                         .fpga_axi_m1_aw_ready       (  fpga_axi1_if.awready ),
+<span style="margin-left:8px;"></span>700                         .fpga_axi_m1_aw_size        (  fpga_axi1_if.awsize  ),
+<span style="margin-left:8px;"></span>701                         .fpga_axi_m1_aw_valid       (  fpga_axi1_if.awvalid ),
+<span style="margin-left:8px;"></span>702                         .fpga_axi_m1_b_id           (  fpga_axi1_if.bid     ),
+<span style="margin-left:8px;"></span>703                         .fpga_axi_m1_b_ready        (  fpga_axi1_if.bready  ),
+<span style="margin-left:8px;"></span>704                         .fpga_axi_m1_b_resp         (  fpga_axi1_if.bresp   ),
+<span style="margin-left:8px;"></span>705                         .fpga_axi_m1_b_valid        (  fpga_axi1_if.bvalid  ),
+<span style="margin-left:8px;"></span>706                         .fpga_axi_m1_r_data         (  fpga_axi1_if.rdata   ),
+<span style="margin-left:8px;"></span>707                         .fpga_axi_m1_r_id           (  fpga_axi1_if.rid     ),
+<span style="margin-left:8px;"></span>708                         .fpga_axi_m1_r_last         (  fpga_axi1_if.rlast   ),
+<span style="margin-left:8px;"></span>709                         .fpga_axi_m1_r_ready        (  fpga_axi1_if.rready  ),
+<span style="margin-left:8px;"></span>710                         .fpga_axi_m1_r_resp         (  fpga_axi1_if.rresp   ),
+<span style="margin-left:8px;"></span>711                         .fpga_axi_m1_r_valid        (  fpga_axi1_if.rvalid  ),
+<span style="margin-left:8px;"></span>712                         .fpga_axi_m1_w_data         (  fpga_axi1_if.wdata   ),
+<span style="margin-left:8px;"></span>713                         .fpga_axi_m1_w_last         (  fpga_axi1_if.wlast   ),
+<span style="margin-left:8px;"></span>714                         .fpga_axi_m1_w_ready        (  fpga_axi1_if.wready  ),
+<span style="margin-left:8px;"></span>715                         .fpga_axi_m1_w_strb         (  fpga_axi1_if.wstrb   ),
+<span style="margin-left:8px;"></span>716                         .fpga_axi_m1_w_valid        (  fpga_axi1_if.wvalid  ),
+<span style="margin-left:8px;"></span>717                     `else        
+<span style="margin-left:8px;"></span>718                         // FPGA AXI Master 0
+<span style="margin-left:8px;"></span>719                         .fpga_axi_m0_ar_addr        ( '0 ),
+<span style="margin-left:8px;"></span>720                         .fpga_axi_m0_ar_burst       ( '0 ),
+<span style="margin-left:8px;"></span>721                         .fpga_axi_m0_ar_cache       ( '0 ),
+<span style="margin-left:8px;"></span>722                         .fpga_axi_m0_ar_id          ( '0 ),
+<span style="margin-left:8px;"></span>723                         .fpga_axi_m0_ar_len         ( '0 ),
+<span style="margin-left:8px;"></span>724                         .fpga_axi_m0_ar_lock        ( '0 ),
+<span style="margin-left:8px;"></span>725                         .fpga_axi_m0_ar_prot        ( '0 ),
+<span style="margin-left:8px;"></span>726                         .fpga_axi_m0_ar_ready       ( ),
+<span style="margin-left:8px;"></span>727                         .fpga_axi_m0_ar_size        ( '0 ),
+<span style="margin-left:8px;"></span>728                         .fpga_axi_m0_ar_valid       ( '0 ),
+<span style="margin-left:8px;"></span>729                         .fpga_axi_m0_aw_addr        ( '0 ),
+<span style="margin-left:8px;"></span>730                         .fpga_axi_m0_aw_burst       ( '0 ),
+<span style="margin-left:8px;"></span>731                         .fpga_axi_m0_aw_cache       ( '0 ),
+<span style="margin-left:8px;"></span>732                         .fpga_axi_m0_aw_id          ( '0 ),
+<span style="margin-left:8px;"></span>733                         .fpga_axi_m0_aw_len         ( '0 ),
+<span style="margin-left:8px;"></span>734                         .fpga_axi_m0_aw_lock        ( '0 ),
+<span style="margin-left:8px;"></span>735                         .fpga_axi_m0_aw_prot        ( '0 ),
+<span style="margin-left:8px;"></span>736                         .fpga_axi_m0_aw_ready       ( ),
+<span style="margin-left:8px;"></span>737                         .fpga_axi_m0_aw_size        ( '0 ),
+<span style="margin-left:8px;"></span>738                         .fpga_axi_m0_aw_valid       ( '0 ),
+<span style="margin-left:8px;"></span>739                         .fpga_axi_m0_b_id           ( ),
+<span style="margin-left:8px;"></span>740                         .fpga_axi_m0_b_ready        ( '0 ),
+<span style="margin-left:8px;"></span>741                         .fpga_axi_m0_b_resp         ( ),
+<span style="margin-left:8px;"></span>742                         .fpga_axi_m0_b_valid        ( ),
+<span style="margin-left:8px;"></span>743                         .fpga_axi_m0_r_data         ( ),
+<span style="margin-left:8px;"></span>744                         .fpga_axi_m0_r_id           ( ),
+<span style="margin-left:8px;"></span>745                         .fpga_axi_m0_r_last         ( ),
+<span style="margin-left:8px;"></span>746                         .fpga_axi_m0_r_ready        ( '0 ),
+<span style="margin-left:8px;"></span>747                         .fpga_axi_m0_r_resp         ( ),
+<span style="margin-left:8px;"></span>748                         .fpga_axi_m0_r_valid        ( ),
+<span style="margin-left:8px;"></span>749                         .fpga_axi_m0_w_data         ( '0 ),
+<span style="margin-left:8px;"></span>750                         .fpga_axi_m0_w_last         ( '0 ),
+<span style="margin-left:8px;"></span>751                         .fpga_axi_m0_w_ready        ( ),
+<span style="margin-left:8px;"></span>752                         .fpga_axi_m0_w_strb         ( '0 ),
+<span style="margin-left:8px;"></span>753                         .fpga_axi_m0_w_valid        ( '0 ),
+<span style="margin-left:8px;"></span>754                         // FPGA AXI Master 0
+<span style="margin-left:8px;"></span>755                         .fpga_axi_m1_ar_addr        ( '0 ),
+<span style="margin-left:8px;"></span>756                         .fpga_axi_m1_ar_burst       ( '0 ),
+<span style="margin-left:8px;"></span>757                         .fpga_axi_m1_ar_cache       ( '0 ),
+<span style="margin-left:8px;"></span>758                         .fpga_axi_m1_ar_id          ( '0 ),
+<span style="margin-left:8px;"></span>759                         .fpga_axi_m1_ar_len         ( '0 ),
+<span style="margin-left:8px;"></span>760        1/1              .fpga_axi_m1_ar_lock        ( '0 ),
+<span style="margin-left:8px;"></span>761        1/1              .fpga_axi_m1_ar_prot        ( '0 ),
 </pre>
 <hr>
 <a name="Cond"></a>
@@ -1252,10 +1252,11 @@ Branch Coverage for Module : <a href="mod949.html" >config_ss_tb</a><br clear=al
 <td class="rt">100.00</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-232        	assign i2c_if.scl    = (scl_o==0)? 1'b0 : 1'bz;
-           	                                 <font color = "green">-1-</font>  
-           	                                 <font color = "green">==></font>  
-           	                                 <font color = "green">==></font>  
+232          tb_inout_pad spi_clk_pad 	  (.O(spi_clk_in),    .I(spi_clk_out),    .IO(spi_clk),    .E(spi_clk_oe),    .PU(1'b0), .PD(1'b1));
+                                      	                                                                                                    
+           <font color = "red">Warning: the following expressions can not be annotated
+</font>           <font color = "red">-1- ((scl_o == 1'b0)) ? ...;  
+           </font>
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -1270,10 +1271,11 @@ Branch Coverage for Module : <a href="mod949.html" >config_ss_tb</a><br clear=al
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-234        	assign i2c_if.sda    = (sda_o==0)? 1'b0: 1'bz;
-           	                                 <font color = "green">-1-</font>  
-           	                                 <font color = "green">==></font>  
-           	                                 <font color = "green">==></font>  
+234          assign spi_cs_n_in =1'b1;
+                                      
+           <font color = "red">Warning: the following expressions can not be annotated
+</font>           <font color = "red">-1- ((sda_o == 1'b0)) ? ...;  
+           </font>
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -1288,11 +1290,11 @@ Branch Coverage for Module : <a href="mod949.html" >config_ss_tb</a><br clear=al
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-261        		`uvm_info("DBG", $sformatf("SEED = %0d", seed), UVM_NONE)
-           		<font color = "red">-1-</font>                                                         
-           <font color = "green">		==></font>
-           		MISSING_ELSE
-           <font color = "red">		==></font>
+261        assign spi_miso_in   = '0;
+           <font color = "red">-1-</font>                          
+           <font color = "green">==></font>
+           MISSING_ELSE
+           <font color = "red">==></font>
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -1307,12 +1309,12 @@ Branch Coverage for Module : <a href="mod949.html" >config_ss_tb</a><br clear=al
 <td>Not Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-418          if(config_ss_env_intf.rs_pll_intf.rst_por)
-             <font color = "green">-1-</font>  
-419         	 $assertkill;
-           <font color = "green"> 	 ==></font>
-            	 MISSING_ELSE
-           <font color = "green"> 	 ==></font>
+418        
+           <font color = "green">-1-</font>
+419        `endif
+           <font color = "green">==></font>
+           MISSING_ELSE
+           <font color = "green">==></font>
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>

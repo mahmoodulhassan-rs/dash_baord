@@ -56,8 +56,7 @@ f1 = go.Figure(
     layout = {"xaxis": {"title": "Weeks"}, "yaxis": {"title": "Numbers(Tets Passed, Tests Failed, Tests Planned)"}, "title": "Weekly Statistics"}
 )
 
-app.layout = html.H1('The time is: ' + str(datetime.datetime.now())),
-html.Div(style = {
+app.layout = html.Div(style = {
   'backgroundColor': '#FFFFFF'
 }, children = [
     html.H1(

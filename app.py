@@ -14,6 +14,7 @@ df_f = pd.read_csv('css_states.csv')
 df_f = df_f[['IP', 'Test_Name', 'Status', 'Remarks']]
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
 fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category", title='Regression ran on '+datetime.today().strftime('%d-%m-%Y'),color_discrete_map={'Tests Passed':'#66CDAA',
                                  'Tests Under Development':'#00BFFF',                                                                           
                                  'Tests Failed':'#CD5C5C'})
@@ -224,4 +225,4 @@ def update_dropdown_options(IP_v,row_v):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True, port=8001)
+    app.run_server(debug=False, port = 8080)

@@ -1,46 +1,27 @@
+from dash import Dash, dash_table, dcc, html, Input, Output, callback
 import pandas as pd
-import dash
-import dash_table
-import os
-import numpy as np
+import dash_bootstrap_components as dbc
 import plotly.express as px
-import plotly.graph_objects as go
-from dash.dependencies import Input, Output
-from dash import dcc
-from dash import html
 from datetime import datetime
-df = pd.DataFrame()
-# print(df.)
+import plotly.graph_objects as go
 df_grp_dash=pd.read_csv('pie_states_dash.csv')
 df_table = pd.read_csv('css_states_dash.csv')
 df_states = pd.read_csv('css_states.csv')
 
-array=df_grp_dash.to_numpy()
-print("array is ...",array)
 
-#df_grp_dash=pd.DataFrame(df,columns=["Category","Numbers"])
 
-##df_grp_dash.loc["1","Category"]="Tests Passed"
-#df_grp_dash.loc["2","Category"]="Tests Failed"
+df_f = pd.read_csv('css_states.csv')
+df_f = df_f[['IP', 'Test_Name', 'Status', 'Remarks']]
 
-#df_grp_dash.loc["1","Numbers"]= "24"
-#df_grp_dash.loc["2","Numbers"]= "3"
-assets_path = os.getcwd() +'/src/new_assets'
-# print("assets path",assets_path)
-app = dash.Dash(__name__)
-# path= location
-
-server = app.server
-app.title = "Gemini Dashboard"
-
-fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category", title='Regression ran on '+datetime.today().strftime('%d-%m-%Y'), color_discrete_map={'Tests Passed':'#66CDAA',
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category", title='Regression ran on '+datetime.today().strftime('%d-%m-%Y'),color_discrete_map={'Tests Passed':'#66CDAA',
                                  'Tests Under Development':'#00BFFF',                                                                           
                                  'Tests Failed':'#CD5C5C'})
 fig.update_layout(legend=dict(
     yanchor="top",
     y=0.99,
     xanchor="left",
-    x=0.01,
+    x=0.00,
 ))
 arr =[158,158,158]
 aarr= [21,35,39]
@@ -70,13 +51,16 @@ app.layout = html.Div(style = {
     'color': '#7FDBFF',
     'fontWeight': 'bold'
   }),
-  
-    dcc.Graph(
+#  dcc.Graph(
+#     id = 'gemini-graph-1',
+#     figure = fig
+#   ),
+dbc.Container([
+ dcc.Graph(
     id = 'gemini-graph-1',
     figure = fig
   ),
-  
-  dash_table.DataTable(    style_data={
+dash_table.DataTable(    style_data={
         'whiteSpace': 'normal',
         'height': 'auto',
         'textAlign': 'center',
@@ -94,13 +78,13 @@ app.layout = html.Div(style = {
                 {"if": {"row_index": 2}, "backgroundColor": "#CD5C5C"},
                 {
                     "if": {"state": "active"},
-                    "backgroundColor": "",
-                    "border": "1px solid red",
+                    "backgroundColor": "inherit !important",
+                    "border": "1px solid black",
                     # "color": "gray",
                 },
                 {
                     "if": {"state": "selected"},
-                    "backgroundColor": "black",
+                    "backgroundColor": "inherit !important",
                     # "border": "1px solid blue",
                 },
         {
@@ -129,36 +113,53 @@ app.layout = html.Div(style = {
     id = 'gemini-graph-2',
     figure = f1
   ),
-  
- 
-  dash_table.DataTable(    style_data={
+    # dcc.Markdown('# DataTable Tips and Tricks', style={'textAlign':'center'}),
+
+    dbc.Label("Show number of rows"),
+    row_drop := dcc.Dropdown(value=10, clearable=False, style={'width':'35%'},
+                             options=[10, 25, 50, 100]),
+        dbc.Row([
+        dbc.Col([
+            IP_drop := dcc.Dropdown([x for x in sorted(df_f.IP.unique())])
+        ], width=3),
+
+    ], justify="between", className='mt-3 mb-4'),
+
+    my_table := dash_table.DataTable(
+        columns=[
+            {'name': 'IP', 'id': 'IP', 'type': 'text'},
+            {'name': 'Test_Name', 'id': 'Test_Name', 'type': 'text'},
+            {'name': 'Status', 'id': 'Status', 'type': 'text'},
+            {'name': 'Remarks', 'id': 'Remarks', 'type': 'text'}
+        ],
+        style_table={'overflowX': 'auto'},
+        data=df_f.to_dict('records'),
+        filter_action='native',
+        page_size=10,
+           style_data={
         'whiteSpace': 'normal',
         'height': 'auto',
         'textAlign': 'center',
-        'lineHeight': '10px'
+        # 'lineHeight': '10px'
     },
-    data=df_states.to_dict('records'), 
-    columns=[{"name": i, "id": i} for i in df_states.columns],
-    export_format="csv",
-         css=[{"selector": "input", "rule": "color:green"}],
-            # data=df.to_dict("records"),
-            style_cell={"color": "green"},
             # editable=True,
             style_data_conditional=[
                 {"if": {"row_index": "odd"}, "backgroundColor": "#66CDAA"},
                 {"if": {"row_index": "even"}, "backgroundColor": "#66CDAA"},
                 {
                     "if": {"state": "active"},
-                    "backgroundColor": "",
-                    "border": "1px solid red",
+                    "backgroundColor": "inherit !important",
+                    "border": "1px solid black",
                     # "color": "gray",
                 },
-                {
-                    "if": {"state": "selected"},
-                    "backgroundColor": "black",
-                    # "border": "1px solid blue",
-                },
-
+                # {
+                #     "if": {"state": "selected"},
+                #     "backgroundColor": "black",
+                #     # "border": "1px solid blue",
+                # },
+                   {"if": {"state": "selected"},
+                         "backgroundColor": "inherit !important",
+                          "border": "inherit !important",},
             {
             'if': {
                 'filter_query': '{Status} contains "Failed"',
@@ -175,7 +176,7 @@ app.layout = html.Div(style = {
          'textAlign': 'center',
             'color': 'BLACK',
             'fontWeight': 'bold'},
-        {'if': {'column_id': 'Test Name'},
+        {'if': {'column_id': 'Test_Name'},
          'width': '10%',
          'textAlign': 'center',
          'color': 'BLACK',
@@ -186,24 +187,19 @@ app.layout = html.Div(style = {
          'color': 'BLACK',
          'fontWeight': 'bold'},
                  {'if': {'column_id': 'Remarks'},
-         'width': '10%',
+         'width': '50%',
          'textAlign': 'center',
          'color': 'BLACK',
-         'fontWeight': 'bold'},
+         'fontWeight': 'bold'
+         },
          
     ]),
-
-#     html.Div(
-#     children=[
-#         html.Iframe(
-#             src="assets/dma/dashboard.html",
-#             style={"height": "1067px", "width": "100%"},
-#         )
-#     ]
-    
-# ),
+ dcc.Markdown('''
+    [Combine Coverage Report:](/)
+'''),
 
  html.Div(
+    
     children=[
         html.Iframe(
             src="assets/dashboard.html",
@@ -212,11 +208,20 @@ app.layout = html.Div(style = {
     ]
     
 ),
-# fig.write_html("path"),
-
-# dashboard.save_html("dashboard.html")
 ])
-# print ("**********************,",path)
-if __name__ == '__main__':
+])
+@callback(
+    Output(my_table, 'data'),
+    Output(my_table, 'page_size'),
+    Input(IP_drop, 'value'),
+    Input(row_drop, 'value'),)
+def update_dropdown_options(IP_v,row_v):
+    dff = df_f.copy()
 
-  app.run_server(debug=False, port = 8080)
+    if IP_v:
+        dff = dff[dff.IP==IP_v]
+    return dff.to_dict('records'), row_v
+
+
+if __name__ == '__main__':
+    app.run_server(debug=True, port=8001)

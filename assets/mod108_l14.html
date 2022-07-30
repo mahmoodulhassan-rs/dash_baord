@@ -811,7 +811,7 @@ Go <a href="mod108.html#l14">back</a>
 874                               {1'bx, DIFF_BANK , PRECHARGE, LOAD_MODE} ,
 875                               {1'bx, DIFF_BANK , PRECHARGE, REFRESH  } ,
 876                               {1'bx, DIFF_BANK , PRECHARGE, ZQ       } ,
-877        2/2                    {1'bx, DIFF_BANK , PRECHARGE, SELF_REF } : begin if ($time - tm_precharge &lt; TRP)                                                                                   $fdisplay(HANDLE, &quot;%s: at time %t ERROR:   tRP violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);                         end
+877        <font color = "red">1/2     ==>            {1'bx, DIFF_BANK , PRECHARGE, SELF_REF } : begin if ($time - tm_precharge &lt; TRP)                                                                                   $fdisplay(HANDLE, &quot;%s: at time %t ERROR:   tRP violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);                         end</font>
                         MISSING_ELSE
 878        <font color = "red">0/1     ==>            {1'bx, DIFF_BANK , PRECHARGE, PWR_DOWN } : ; //tPREPDEN = 1 tCK, can be concurrent with auto precharge</font>
 879                     
@@ -1384,7 +1384,7 @@ Go <a href="mod108.html#l14">back</a>
 1329       1/1                                tfaw_cntr = 0;
 1330       1/1                                for (i=0; i&lt;`BANKS; i=i+1) begin
 1331       1/1                                    if ($time - tm_bank_activate[i] &lt; TFAW) begin
-1332       <font color = "red">0/1     ==>                                tfaw_cntr = tfaw_cntr + 1;</font>
+1332       1/1                                        tfaw_cntr = tfaw_cntr + 1;
 1333                                              end
                         MISSING_ELSE
 1334                                          end
@@ -1464,8 +1464,8 @@ Go <a href="mod108.html#l14">back</a>
                    <font color = "red">==>  MISSING_ELSE</font>
 1393                                          end else begin
 1394       1/1                                    if (addr[AP]) begin
-1395       1/1                                        auto_precharge_bank[bank] = 1'b1;
-1396       1/1                                        write_precharge_bank[bank] = 1'b1;
+1395       <font color = "red">0/1     ==>                                auto_precharge_bank[bank] = 1'b1;</font>
+1396       <font color = "red">0/1     ==>                                write_precharge_bank[bank] = 1'b1;</font>
 1397                                              end
                         MISSING_ELSE
 1398       1/1                                    col = {addr[BC-1:AP+1], addr[AP-1:0]}; // assume BC &gt; AP
@@ -1493,9 +1493,9 @@ Go <a href="mod108.html#l14">back</a>
 1417                                              end else begin // BL=8
 1418       1/1                                        bl_pipeline[2*write_latency + 1] = 8;
 1419       1/1                                        if (odt_in) begin
-1420       1/1                                            ck_odth8 &lt;= ck_cntr;
+1420       <font color = "red">0/1     ==>                                    ck_odth8 &lt;= ck_cntr;</font>
 1421                                                  end
-                   <font color = "red">==>  MISSING_ELSE</font>
+                        MISSING_ELSE
 1422                                              end
 1423       1/1                                    for (j=0; j&lt;(burst_length + 4); j=j+1) begin
 1424       1/1                                        dyn_odt_pipeline[2*(write_latency - 2) + j] = 1'b1; // ODTLcnw = WL - 2, ODTLcwn = BL/2 + 2
@@ -2186,32 +2186,32 @@ Go <a href="mod108.html#l14">back</a>
                    <font color = "red">==>  MISSING_ELSE</font>
 1986                    
 1987       1/1                          if (|auto_precharge_bank) begin
-1988       1/1                              for (i=0; i&lt;`BANKS; i=i+1) begin
+1988       <font color = "red">0/1     ==>                      for (i=0; i&lt;`BANKS; i=i+1) begin</font>
 1989                                            // Write with Auto Precharge Calculation
 1990                                            // 1.  Meet minimum tRAS requirement
 1991                                            // 2.  Write Latency PLUS BL/2 cycles PLUS WR after Write command
-1992       1/1                                  if (write_precharge_bank[i]) begin
-1993       1/1                                      if ($time - tm_bank_activate[i] &gt;= TRAS_MIN) begin
-1994       1/1                                          if (ck_cntr - ck_bank_write[i] &gt;= write_latency + burst_length/2 + write_recovery) begin
-1995       2/2                                              if (DEBUG) $fdisplay(HANDLE, &quot;%s: at time %t INFO: Auto Precharge bank %d&quot;, _ModuleName, $time, i);
+1992       <font color = "red">0/1     ==>                          if (write_precharge_bank[i]) begin</font>
+1993       <font color = "red">0/1     ==>                              if ($time - tm_bank_activate[i] &gt;= TRAS_MIN) begin</font>
+1994       <font color = "red">0/1     ==>                                  if (ck_cntr - ck_bank_write[i] &gt;= write_latency + burst_length/2 + write_recovery) begin</font>
+1995       <font color = "red">0/2     ==>                                      if (DEBUG) $fdisplay(HANDLE, &quot;%s: at time %t INFO: Auto Precharge bank %d&quot;, _ModuleName, $time, i);</font>
                    <font color = "red">==>  MISSING_ELSE</font>
-1996       1/1                                              write_precharge_bank[i] = 0;
-1997       1/1                                              active_bank[i] = 0;
-1998       1/1                                              auto_precharge_bank[i] = 0;
-1999       1/1                                              tm_bank_precharge[i] = $time;
-2000       1/1                                              tm_precharge = $time;
-2001       1/1                                              ck_precharge = ck_cntr;
+1996       <font color = "red">0/1     ==>                                      write_precharge_bank[i] = 0;</font>
+1997       <font color = "red">0/1     ==>                                      active_bank[i] = 0;</font>
+1998       <font color = "red">0/1     ==>                                      auto_precharge_bank[i] = 0;</font>
+1999       <font color = "red">0/1     ==>                                      tm_bank_precharge[i] = $time;</font>
+2000       <font color = "red">0/1     ==>                                      tm_precharge = $time;</font>
+2001       <font color = "red">0/1     ==>                                      ck_precharge = ck_cntr;</font>
 2002                                                    end
-                        MISSING_ELSE
+                   <font color = "red">==>  MISSING_ELSE</font>
 2003                                                end
                    <font color = "red">==>  MISSING_ELSE</font>
 2004                                            end
-                        MISSING_ELSE
+                   <font color = "red">==>  MISSING_ELSE</font>
 2005                                            // Read with Auto Precharge Calculation
 2006                                            // 1.  Meet minimum tRAS requirement
 2007                                            // 2.  Additive Latency plus 4 cycles after Read command
 2008                                            // 3.  tRTP after the last 8-bit prefetch
-2009       1/1                                  if (read_precharge_bank[i]) begin
+2009       <font color = "red">0/1     ==>                          if (read_precharge_bank[i]) begin</font>
 2010       <font color = "red">0/1     ==>                              if (($time - tm_bank_activate[i] &gt;= TRAS_MIN) &amp;&amp; (ck_cntr - ck_bank_read[i] &gt;= additive_latency + TRTP_TCK)) begin</font>
 2011       <font color = "red">0/1     ==>                                  read_precharge_bank[i] = 0;</font>
 2012                                                    // In case the internal precharge is pushed out by tRTP, tRP starts at the point where
@@ -2236,7 +2236,7 @@ Go <a href="mod108.html#l14">back</a>
 2029                                                end
                    <font color = "red">==>  MISSING_ELSE</font>
 2030                                            end
-                        MISSING_ELSE
+                   <font color = "red">==>  MISSING_ELSE</font>
 2031                                        end
 2032                                    end
                         MISSING_ELSE
@@ -2418,44 +2418,44 @@ Go <a href="mod108.html#l14">back</a>
 2170       <font color = "red">0/1     ==>                          $fdisplay(HANDLE, &quot;%s: at time %t ERROR: tIS violation on ODT by %t&quot;, _ModuleName, $time, tm_odt + TIS - $time);</font>
                         MISSING_ELSE
 2171       1/1                              if (prev_odt ^ odt_in) begin
-2172       1/1                                  if (!dll_locked)
+2172       <font color = "red">0/1     ==>                          if (!dll_locked)</font>
 2173       <font color = "red">0/1     ==>                              $fdisplay(HANDLE, &quot;%s: at time %t WARNING: tDLLK violation during ODT transition.&quot;, _ModuleName, $time);</font>
-                        MISSING_ELSE
-2174       1/1                                  if (($time - tm_load_mode &lt; TMOD) || (ck_cntr - ck_load_mode &lt; TMOD_TCK))
+                   <font color = "red">==>  MISSING_ELSE</font>
+2174       <font color = "red">0/1     ==>                          if (($time - tm_load_mode &lt; TMOD) || (ck_cntr - ck_load_mode &lt; TMOD_TCK))</font>
 2175       <font color = "red">0/1     ==>                              $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tMOD violation during ODT transition&quot;, _ModuleName, $time);</font>
-                        MISSING_ELSE
-2176       1/1                                  if (ck_cntr - ck_zqinit &lt; TZQINIT)
+                   <font color = "red">==>  MISSING_ELSE</font>
+2176       <font color = "red">0/1     ==>                          if (ck_cntr - ck_zqinit &lt; TZQINIT)</font>
 2177       <font color = "red">0/1     ==>                              $fdisplay(HANDLE, &quot;%s: at time %t ERROR: TZQinit violation during ODT transition&quot;, _ModuleName, $time);</font>
-                        MISSING_ELSE
-2178       1/1                                  if (ck_cntr - ck_zqoper &lt; TZQOPER)
+                   <font color = "red">==>  MISSING_ELSE</font>
+2178       <font color = "red">0/1     ==>                          if (ck_cntr - ck_zqoper &lt; TZQOPER)</font>
 2179       <font color = "red">0/1     ==>                              $fdisplay(HANDLE, &quot;%s: at time %t ERROR: TZQoper violation during ODT transition&quot;, _ModuleName, $time);</font>
-                        MISSING_ELSE
-2180       1/1                                  if (ck_cntr - ck_zqcs &lt; TZQCS)
+                   <font color = "red">==>  MISSING_ELSE</font>
+2180       <font color = "red">0/1     ==>                          if (ck_cntr - ck_zqcs &lt; TZQCS)</font>
 2181       <font color = "red">0/1     ==>                              $fdisplay(HANDLE, &quot;%s: at time %t ERROR: tZQcs violation during ODT transition&quot;, _ModuleName, $time);</font>
-                        MISSING_ELSE
+                   <font color = "red">==>  MISSING_ELSE</font>
 2182                                            // if (($time - tm_slow_exit_pd &lt; TXPDLL) || (ck_cntr - ck_slow_exit_pd &lt; TXPDLL_TCK))
 2183                                            //    $fdisplay(HANDLE, &quot;%m: at time %t ERROR: tXPDLL violation during ODT transition&quot;, $time);
-2184       1/1                                  if (ck_cntr - ck_self_refresh &lt; TXSDLL)
+2184       <font color = "red">0/1     ==>                          if (ck_cntr - ck_self_refresh &lt; TXSDLL)</font>
 2185       <font color = "red">0/1     ==>                              $fdisplay(HANDLE, &quot;%s: at time %t ERROR: tXSDLL violation during ODT transition&quot;, _ModuleName, $time);</font>
-                        MISSING_ELSE
-2186       1/1                                  if (in_self_refresh)
+                   <font color = "red">==>  MISSING_ELSE</font>
+2186       <font color = "red">0/1     ==>                          if (in_self_refresh)</font>
 2187       <font color = "red">0/1     ==>                              $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  Illegal ODT transition during Self Refresh.&quot;, _ModuleName, $time);</font>
-                        MISSING_ELSE
-2188       1/1                                  if (!odt_in &amp;&amp; (ck_cntr - ck_odt &lt; ODTH4))
+                   <font color = "red">==>  MISSING_ELSE</font>
+2188       <font color = "red">0/1     ==>                          if (!odt_in &amp;&amp; (ck_cntr - ck_odt &lt; ODTH4))</font>
 2189       <font color = "red">0/1     ==>                              $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  ODTH4 violation during ODT transition&quot;, _ModuleName, $time);</font>
-                        MISSING_ELSE
-2190       1/1                                  if (!odt_in &amp;&amp; (ck_cntr - ck_odth8 &lt; ODTH8))
+                   <font color = "red">==>  MISSING_ELSE</font>
+2190       <font color = "red">0/1     ==>                          if (!odt_in &amp;&amp; (ck_cntr - ck_odth8 &lt; ODTH8))</font>
 2191       <font color = "red">0/1     ==>                              $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  ODTH8 violation during ODT transition&quot;, _ModuleName, $time);</font>
-                        MISSING_ELSE
-2192       1/1                                  if (($time - tm_slow_exit_pd &lt; TXPDLL) || (ck_cntr - ck_slow_exit_pd &lt; TXPDLL_TCK))
+                   <font color = "red">==>  MISSING_ELSE</font>
+2192       <font color = "red">0/1     ==>                          if (($time - tm_slow_exit_pd &lt; TXPDLL) || (ck_cntr - ck_slow_exit_pd &lt; TXPDLL_TCK))</font>
 2193       <font color = "red">0/1     ==>                              $fdisplay(HANDLE, &quot;%s: at time %t WARNING: tXPDLL during ODT transition.  Synchronous or asynchronous change in termination resistance is possible.&quot;, _ModuleName, $time);</font>
-                        MISSING_ELSE
+                   <font color = "red">==>  MISSING_ELSE</font>
 2194                    
 2195                                            // async ODT mode applies:
 2196                                            // 1.) during precharge power down with DLL off
 2197                                            // 2.) if tANPD has not been satisfied
 2198                                            // 3.) until tXPDLL has been satisfied
-2199       1/1                                  if ((in_power_down &amp;&amp; low_power &amp;&amp; (active_bank == 0)) || ($time - tm_slow_exit_pd &lt; TXPDLL) || (ck_cntr - ck_slow_exit_pd &lt; TXPDLL_TCK)) begin
+2199       <font color = "red">0/1     ==>                          if ((in_power_down &amp;&amp; low_power &amp;&amp; (active_bank == 0)) || ($time - tm_slow_exit_pd &lt; TXPDLL) || (ck_cntr - ck_slow_exit_pd &lt; TXPDLL_TCK)) begin</font>
 2200       <font color = "red">0/1     ==>                              odt_state = odt_in;</font>
 2201       <font color = "red">0/2     ==>                              if (DEBUG &amp;&amp; odt_en) $fdisplay(HANDLE, &quot;%s: at time %t INFO: Async On Die Termination Rtt_NOM = %d Ohm&quot;, _ModuleName, $time, {32{odt_state}} &amp; get_rtt_nom(odt_rtt_nom));</font>
                    <font color = "red">==>  MISSING_ELSE</font>
@@ -2469,21 +2469,21 @@ Go <a href="mod108.html#l14">back</a>
 2209                                            // 2.) during active power down
 2210                                            // 3.) during precharge power down with DLL on
 2211                                            end else begin
-2212       1/1                                      odt_pipeline[2*(write_latency - 2)] = 1'b1; // ODTLon, ODTLoff
+2212       <font color = "red">0/1     ==>                              odt_pipeline[2*(write_latency - 2)] = 1'b1; // ODTLon, ODTLoff</font>
 2213                                            end
-2214       1/1                                  ck_odt &lt;= ck_cntr;
+2214       <font color = "red">0/1     ==>                          ck_odt &lt;= ck_cntr;</font>
 2215                                        end
                         MISSING_ELSE
 2216                                    end
                         MISSING_ELSE
 2217       1/1                          if (odt_pipeline[0]) begin
-2218       1/1                              odt_state = ~odt_state;
-2219       <font color = "red">1/2     ==>                      if (DEBUG &amp;&amp; odt_en) $fdisplay(HANDLE, &quot;%s: at time %t INFO: Sync On Die Termination Rtt_NOM = %d Ohm&quot;, _ModuleName, $time, {32{odt_state}} &amp; get_rtt_nom(odt_rtt_nom));</font>
-                        MISSING_ELSE
-2220       1/1                              if (odt_state) begin
-2221       1/1                                  odt_state_dly &lt;= #(TAON) odt_state;
+2218       <font color = "red">0/1     ==>                      odt_state = ~odt_state;</font>
+2219       <font color = "red">0/2     ==>                      if (DEBUG &amp;&amp; odt_en) $fdisplay(HANDLE, &quot;%s: at time %t INFO: Sync On Die Termination Rtt_NOM = %d Ohm&quot;, _ModuleName, $time, {32{odt_state}} &amp; get_rtt_nom(odt_rtt_nom));</font>
+                   <font color = "red">==>  MISSING_ELSE</font>
+2220       <font color = "red">0/1     ==>                      if (odt_state) begin</font>
+2221       <font color = "red">0/1     ==>                          odt_state_dly &lt;= #(TAON) odt_state;</font>
 2222                                        end else begin
-2223       1/1                                  odt_state_dly &lt;= #(TAOF*tck_avg) odt_state;
+2223       <font color = "red">0/1     ==>                          odt_state_dly &lt;= #(TAOF*tck_avg) odt_state;</font>
 2224                                        end
 2225                                    end
                         MISSING_ELSE
@@ -2500,10 +2500,10 @@ Go <a href="mod108.html#l14">back</a>
 2234                                    end
                         MISSING_ELSE
 2235       1/1                          if (dyn_odt_en &amp;&amp; odt_state) begin
-2236       1/1                              if (DEBUG &amp;&amp; (dyn_odt_state ^ dyn_odt_pipeline[0]))
-2237       1/1                                  $fdisplay(HANDLE, &quot;%s: at time %t INFO: Sync On Die Termination Rtt_WR = %d Ohm&quot;, _ModuleName, $time, {32{dyn_odt_pipeline[0]}} &amp; get_rtt_wr(odt_rtt_wr));
-                        MISSING_ELSE
-2238       1/1                              dyn_odt_state = dyn_odt_pipeline[0];
+2236       <font color = "red">0/1     ==>                      if (DEBUG &amp;&amp; (dyn_odt_state ^ dyn_odt_pipeline[0]))</font>
+2237       <font color = "red">0/1     ==>                          $fdisplay(HANDLE, &quot;%s: at time %t INFO: Sync On Die Termination Rtt_WR = %d Ohm&quot;, _ModuleName, $time, {32{dyn_odt_pipeline[0]}} &amp; get_rtt_wr(odt_rtt_wr));</font>
+                   <font color = "red">==>  MISSING_ELSE</font>
+2238       <font color = "red">0/1     ==>                      dyn_odt_state = dyn_odt_pipeline[0];</font>
 2239                                    end
                         MISSING_ELSE
 2240       1/1                          dyn_odt_state_dly &lt;= #(TADC*tck_avg) dyn_odt_state;
@@ -2635,7 +2635,7 @@ Go <a href="mod108.html#l14">back</a>
 2353       1/1                  tm_cke = $time;
 2354                        end
 2355                        always @(odt_in) begin
-2356       1/1                  if (rst_n_in &amp;&amp; odt_en &amp;&amp; !in_self_refresh) begin
+2356       <font color = "red">0/1     ==>          if (rst_n_in &amp;&amp; odt_en &amp;&amp; !in_self_refresh) begin</font>
 2357       <font color = "red">0/1     ==>              if ($time - tm_ck_pos &lt; TIH)</font>
 2358       <font color = "red">0/1     ==>                  $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tIH violation on ODT by %t&quot;, _ModuleName, $time, tm_ck_pos + TIH - $time);</font>
                    <font color = "red">==>  MISSING_ELSE</font>
@@ -2643,8 +2643,8 @@ Go <a href="mod108.html#l14">back</a>
 2360       <font color = "red">0/1     ==>                  $fdisplay(HANDLE, &quot;%s: at time %t ERROR: tIPW violation on ODT by %t&quot;, _ModuleName, $time, tm_odt + TIPW - $time);</font>
                    <font color = "red">==>  MISSING_ELSE</font>
 2361                            end
-                        MISSING_ELSE
-2362       1/1                  tm_odt = $time;
+                   <font color = "red">==>  MISSING_ELSE</font>
+2362       <font color = "red">0/1     ==>          tm_odt = $time;</font>
 2363                        end
 2364                    
 2365                        task cmd_addr_timing_check;
@@ -2705,7 +2705,7 @@ Go <a href="mod108.html#l14">back</a>
 2415       <font color = "red">0/1     ==>                      $fdisplay(HANDLE, &quot;%s: at time %t ERROR: tDIPW violation on DM bit %d by %t&quot;, _ModuleName, $time, i, tm_dm[i] + TDIPW - $time);</font>
                         MISSING_ELSE
 2416                                end
-                        MISSING_ELSE
+                   <font color = "red">==>  MISSING_ELSE</font>
 2417                            end
                         MISSING_ELSE
 2418       1/1                  check_dm_tdipw[i] &lt;= 1'b0;

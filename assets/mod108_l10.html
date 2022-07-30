@@ -811,7 +811,7 @@ Go <a href="mod108.html#l10">back</a>
 874                               {1'bx, DIFF_BANK , PRECHARGE, LOAD_MODE} ,
 875                               {1'bx, DIFF_BANK , PRECHARGE, REFRESH  } ,
 876                               {1'bx, DIFF_BANK , PRECHARGE, ZQ       } ,
-877        2/2                    {1'bx, DIFF_BANK , PRECHARGE, SELF_REF } : begin if ($time - tm_precharge &lt; TRP)                                                                                   $fdisplay(HANDLE, &quot;%s: at time %t ERROR:   tRP violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);                         end
+877        <font color = "red">1/2     ==>            {1'bx, DIFF_BANK , PRECHARGE, SELF_REF } : begin if ($time - tm_precharge &lt; TRP)                                                                                   $fdisplay(HANDLE, &quot;%s: at time %t ERROR:   tRP violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);                         end</font>
                         MISSING_ELSE
 878        <font color = "red">0/1     ==>            {1'bx, DIFF_BANK , PRECHARGE, PWR_DOWN } : ; //tPREPDEN = 1 tCK, can be concurrent with auto precharge</font>
 879                     
@@ -1464,8 +1464,8 @@ Go <a href="mod108.html#l10">back</a>
                    <font color = "red">==>  MISSING_ELSE</font>
 1393                                          end else begin
 1394       1/1                                    if (addr[AP]) begin
-1395       1/1                                        auto_precharge_bank[bank] = 1'b1;
-1396       1/1                                        write_precharge_bank[bank] = 1'b1;
+1395       <font color = "red">0/1     ==>                                auto_precharge_bank[bank] = 1'b1;</font>
+1396       <font color = "red">0/1     ==>                                write_precharge_bank[bank] = 1'b1;</font>
 1397                                              end
                         MISSING_ELSE
 1398       1/1                                    col = {addr[BC-1:AP+1], addr[AP-1:0]}; // assume BC &gt; AP
@@ -2186,32 +2186,32 @@ Go <a href="mod108.html#l10">back</a>
                    <font color = "red">==>  MISSING_ELSE</font>
 1986                    
 1987       1/1                          if (|auto_precharge_bank) begin
-1988       1/1                              for (i=0; i&lt;`BANKS; i=i+1) begin
+1988       <font color = "red">0/1     ==>                      for (i=0; i&lt;`BANKS; i=i+1) begin</font>
 1989                                            // Write with Auto Precharge Calculation
 1990                                            // 1.  Meet minimum tRAS requirement
 1991                                            // 2.  Write Latency PLUS BL/2 cycles PLUS WR after Write command
-1992       1/1                                  if (write_precharge_bank[i]) begin
-1993       1/1                                      if ($time - tm_bank_activate[i] &gt;= TRAS_MIN) begin
-1994       1/1                                          if (ck_cntr - ck_bank_write[i] &gt;= write_latency + burst_length/2 + write_recovery) begin
-1995       2/2                                              if (DEBUG) $fdisplay(HANDLE, &quot;%s: at time %t INFO: Auto Precharge bank %d&quot;, _ModuleName, $time, i);
+1992       <font color = "red">0/1     ==>                          if (write_precharge_bank[i]) begin</font>
+1993       <font color = "red">0/1     ==>                              if ($time - tm_bank_activate[i] &gt;= TRAS_MIN) begin</font>
+1994       <font color = "red">0/1     ==>                                  if (ck_cntr - ck_bank_write[i] &gt;= write_latency + burst_length/2 + write_recovery) begin</font>
+1995       <font color = "red">0/2     ==>                                      if (DEBUG) $fdisplay(HANDLE, &quot;%s: at time %t INFO: Auto Precharge bank %d&quot;, _ModuleName, $time, i);</font>
                    <font color = "red">==>  MISSING_ELSE</font>
-1996       1/1                                              write_precharge_bank[i] = 0;
-1997       1/1                                              active_bank[i] = 0;
-1998       1/1                                              auto_precharge_bank[i] = 0;
-1999       1/1                                              tm_bank_precharge[i] = $time;
-2000       1/1                                              tm_precharge = $time;
-2001       1/1                                              ck_precharge = ck_cntr;
+1996       <font color = "red">0/1     ==>                                      write_precharge_bank[i] = 0;</font>
+1997       <font color = "red">0/1     ==>                                      active_bank[i] = 0;</font>
+1998       <font color = "red">0/1     ==>                                      auto_precharge_bank[i] = 0;</font>
+1999       <font color = "red">0/1     ==>                                      tm_bank_precharge[i] = $time;</font>
+2000       <font color = "red">0/1     ==>                                      tm_precharge = $time;</font>
+2001       <font color = "red">0/1     ==>                                      ck_precharge = ck_cntr;</font>
 2002                                                    end
-                        MISSING_ELSE
+                   <font color = "red">==>  MISSING_ELSE</font>
 2003                                                end
                    <font color = "red">==>  MISSING_ELSE</font>
 2004                                            end
-                        MISSING_ELSE
+                   <font color = "red">==>  MISSING_ELSE</font>
 2005                                            // Read with Auto Precharge Calculation
 2006                                            // 1.  Meet minimum tRAS requirement
 2007                                            // 2.  Additive Latency plus 4 cycles after Read command
 2008                                            // 3.  tRTP after the last 8-bit prefetch
-2009       1/1                                  if (read_precharge_bank[i]) begin
+2009       <font color = "red">0/1     ==>                          if (read_precharge_bank[i]) begin</font>
 2010       <font color = "red">0/1     ==>                              if (($time - tm_bank_activate[i] &gt;= TRAS_MIN) &amp;&amp; (ck_cntr - ck_bank_read[i] &gt;= additive_latency + TRTP_TCK)) begin</font>
 2011       <font color = "red">0/1     ==>                                  read_precharge_bank[i] = 0;</font>
 2012                                                    // In case the internal precharge is pushed out by tRTP, tRP starts at the point where
@@ -2236,7 +2236,7 @@ Go <a href="mod108.html#l10">back</a>
 2029                                                end
                    <font color = "red">==>  MISSING_ELSE</font>
 2030                                            end
-                        MISSING_ELSE
+                   <font color = "red">==>  MISSING_ELSE</font>
 2031                                        end
 2032                                    end
                         MISSING_ELSE

@@ -8,7 +8,8 @@ df_grp_dash=pd.read_csv('pie_states_dash.csv')
 df_table = pd.read_csv('css_states_dash.csv')
 df_states = pd.read_csv('css_states.csv')
 
-
+time_var= df_states["Test_Name"]
+print(time_var)
 
 df_f = pd.read_csv('css_states.csv')
 df_f = df_f[['IP', 'Test_Name', 'Status', 'Remarks']]

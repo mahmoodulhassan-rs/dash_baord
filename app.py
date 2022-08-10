@@ -63,7 +63,7 @@ app.layout = html.Div(style = {
 #     figure = fig
 #   ),
 dbc.Container([
-  html.Div(children = "Regression ran on"+df_time_lg["Regression_Run_Time"], style = {
+  html.Div(children = "Regression ran on "+df_time_lg["Regression_Run_Time"], style = {
      'textAlign': 'left',
      'color': 'Black',
      'fontWeight': 'bold'

@@ -15,7 +15,7 @@ df_f = df_f[['IP', 'Test_Name', 'Status', 'Remarks']]
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
-fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category", title='Regression ran on '+datetime.today().strftime('%d-%m-%Y'),color_discrete_map={'Tests Passed':'#66CDAA',
+fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category", title='Regression ran on '+df_f["IP"],color_discrete_map={'Tests Passed':'#66CDAA',
                                  'Tests Under Development':'#00BFFF',                                                                           
                                  'Tests Failed':'#CD5C5C'})
 fig.update_layout(legend=dict(

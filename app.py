@@ -53,14 +53,16 @@ app.layout = html.Div(style = {
     'color': '#7FDBFF',
     'fontWeight': 'bold'
   }),
+  html.Div(children = df_time_lg["Regression_Run_Time"], style = {
+    'textAlign': 'left',
+    'color': '#7FDBFF',
+    'fontWeight': 'bold'
+  }),
 #  dcc.Graph(
 #     id = 'gemini-graph-1',
 #     figure = fig
 #   ),
 dbc.Container([
-  dcc.Markdown('''
-    [Regression ran on = ] time_var(/)
-'''),
  dcc.Graph(
     id = 'gemini-graph-1',
     figure = fig

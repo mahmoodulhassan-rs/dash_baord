@@ -7,8 +7,8 @@ import plotly.graph_objects as go
 df_grp_dash=pd.read_csv('pie_states_dash.csv')
 df_table = pd.read_csv('css_states_dash.csv')
 df_states = pd.read_csv('css_states.csv')
-
-time_var= df_states["Test_Name"]
+df_time_lg = pd.read_csv('time.csv')
+time_var= df_time_lg["Regression_Run_Time"]
 print(time_var)
 
 df_f = pd.read_csv('css_states.csv')

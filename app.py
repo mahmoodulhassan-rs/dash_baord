@@ -58,6 +58,9 @@ app.layout = html.Div(style = {
 #     figure = fig
 #   ),
 dbc.Container([
+  dcc.Markdown('''
+    [Regression ran on = ] time_var(/)
+'''),
  dcc.Graph(
     id = 'gemini-graph-1',
     figure = fig

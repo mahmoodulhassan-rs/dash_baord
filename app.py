@@ -233,6 +233,11 @@ dash_table.DataTable(    style_data={
     ]
     
 ),
+    html.Div(children = 'SRAM Unit Level Statistics', style = {
+    'textAlign': 'center',
+    'color': '#7FDBFF',
+    'fontWeight': 'bold'
+  }),
 ])
 ])
 @callback(

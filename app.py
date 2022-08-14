@@ -311,7 +311,7 @@ dbc.Label("Show number of rows"),
         # ], width=3),
 # 
     # ], 
-    justify="between", className='mt-3 mb-4'),
+    # justify="between", className='mt-3 mb-4'),
 
     my_table_sram := dash_table.DataTable(
         columns=[

@@ -380,6 +380,11 @@ dbc.Label("Show number of rows for sram tests"),
          },
          
     ]),
+html.Div(children = 'Coverage Report Tests Statistics', style = {
+    'textAlign': 'center',
+    'color': '#7FDBFF',
+    'fontWeight': 'bold'
+  }),
 
 ])
 ])

@@ -320,7 +320,7 @@ dbc.Label("Show number of rows"),
             {'name': 'Remarks', 'id': 'Remarks', 'type': 'text'}
         ],
         style_table={'overflowX': 'auto'},
-        sram_data=sram_df_f.to_dict('records'),
+        data=sram_df_f.to_dict('records'),
         filter_action='native',
         page_size=10,
            style_data={
@@ -381,7 +381,8 @@ dbc.Label("Show number of rows"),
 @callback(
     Output(my_table, 'data'),
     Output(my_table, 'page_size'),
-    Output(my_table_sram, 'sram_data'),
+    Output(my_table_sram, 'data'),
+    Output(my_table_sram, 'page_size'),
     Input(IP_drop, 'value'),
     Input(sram_row_drop, 'value'),
     Input(row_drop, 'value'),)

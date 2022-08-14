@@ -376,6 +376,16 @@ dbc.Label("Show number of rows for sram tests"),
          },
          
     ]),
+ html.Div(
+    
+    children=[
+        html.Iframe(
+            src="sram_assets/dashboard.html",
+            style={"height": "1067px", "width": "100%"},
+        )
+    ]
+    
+),
 ])
 ])
 @callback(

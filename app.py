@@ -381,7 +381,7 @@ dbc.Label("Show number of rows"),
 @callback(
     Output(my_table, 'data'),
     Output(my_table, 'page_size'),
-    Output(my_table_sram, 'data'),
+    # Output(my_table_sram, 'data'),
     Output(my_table_sram, 'page_size'),
     Input(IP_drop, 'value'),
     Input(sram_row_drop, 'value'),

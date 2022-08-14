@@ -305,12 +305,13 @@ dash_table.DataTable(    style_data={
 dbc.Label("Show number of rows"),
     sram_row_drop := dcc.Dropdown(value=10, clearable=False, style={'width':'35%'},
                              options=[10, 25, 50, 100]),
-    #     dbc.Row([
-    #     # dbc.Col([
-    #     #     sram_IP_drop := dcc.Dropdown([x for x in sorted(sram_df_f.Test_Name.unique())])
-    #     # ], width=3),
-
-    # ], justify="between", className='mt-3 mb-4'),
+        # dbc.Row([
+        # dbc.Col([
+            # sram_IP_drop := dcc.Dropdown([x for x in sorted(sram_df_f.Test_Name.unique())])
+        # ], width=3),
+# 
+    # ], 
+    justify="between", className='mt-3 mb-4'),
 
     my_table_sram := dash_table.DataTable(
         columns=[
@@ -411,8 +412,8 @@ def update_dropdown_options(IP_v,row_v):
 
 def update_dropdown_options_sram(sram_Test_Name_v,sram_row_v):
     sram_dff = sram_df_f.copy()
-    if sram_Test_Name_v:
-        sram_dff = sram_dff[sram_dff.Test_Name==sram_Test_Name_v]
+    # if sram_Test_Name_v:
+    #     sram_dff = sram_dff[sram_dff.Test_Name==sram_Test_Name_v]
     return sram_dff.to_dict('records'), sram_row_v
 
 if __name__ == '__main__':

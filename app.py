@@ -30,6 +30,9 @@ df_f = df_f[['IP', 'Test_Name', 'Status', 'Remarks']]
 sram_df_f = pd.read_csv('sram_css_states.csv')
 sram_df_f = sram_df_f[['Test_Name', 'Status', 'Remarks']]
 
+fcb_df_f = pd.read_csv('fcb_css_states.csv')
+fcb_df_f = fcb_df_f[['Test_Name', 'Status', 'Remarks']]
+
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
 fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category", title="Pie Chart",color_discrete_map={'Tests Passed':'#66CDAA',
@@ -52,6 +55,15 @@ fig_sram.update_layout(legend=dict(
     x=0.00,
 ))
 
+fig_fcb = px.pie(fcb_df_grp_dash, values='Numbers', names='Category',color = "Category", title="Pie Chart FCB Unit Level",color_discrete_map={'Tests Passed':'#66CDAA',
+                                 'Tests Under Development':'#00BFFF',                                                                           
+                                 'Tests Failed':'#CD5C5C'})
+fig_fcb.update_layout(legend=dict(
+    yanchor="top",
+    y=0.99,
+    xanchor="left",
+    x=0.00,
+))
 
 arr =[158,158,158,158,158]
 aarr= [21,35,39,56,65]
@@ -390,6 +402,149 @@ html.Div(children = html.Iframe(
             style={"height": "1067px", "width": "100%"},
         )
   ),
+html.Div(children = 'FCB Unit Level Tests Statistics', style = {
+    'textAlign': 'center',
+    'color': '#7FDBFF',
+    'fontWeight': 'bold'
+  }),
+ dcc.Graph(
+    id = 'gemini-graph-fcb',
+    figure = fig_fcb
+  ),
+dash_table.DataTable(    style_data={
+        'whiteSpace': 'normal',
+        'height': 'auto',
+        'textAlign': 'center',
+        'lineHeight': '10px'
+    },
+    data=fcb_df_table.to_dict('records'), 
+    columns=[{"name": i, "id": i} for i in fcb_df_table.columns],
+        css=[{"selector": "input", "rule": "color:gray"}],
+            # data=df.to_dict("records"),
+            style_cell={"color": "gray"},
+            # editable=True,
+            style_data_conditional=[
+                {"if": {"row_index": 0}, "backgroundColor": "#00BFFF"},
+                {"if": {"row_index": 1}, "backgroundColor": "#66CDAA"},
+                {"if": {"row_index": 2}, "backgroundColor": "#CD5C5C"},
+                {
+                    "if": {"state": "active"},
+                    "backgroundColor": "inherit !important",
+                    "border": "1px solid black",
+                    # "color": "gray",
+                },
+                {
+                    "if": {"state": "selected"},
+                    "backgroundColor": "inherit !important",
+                    # "border": "1px solid blue",
+                },
+        {
+            'if': {
+                'filter_query': '{Numbers} > 0',
+                'row_index': 2,
+            },
+            'backgroundColor': '#CD5C5C',
+            'color': 'black'
+         },
+            ],
+        style_cell_conditional=[
+        {'if': {'column_id': 'Category'},
+         'width': '10%',
+         'textAlign': 'center',
+         'fontWeight': 'bold',
+         'color': 'BLACK'},
+        {'if': {'column_id': 'Numbers'},
+         'width': '10%',
+         'textAlign': 'center',
+         'fontWeight': 'bold',
+         'color': 'BLACK'},
+    ]),
+
+dbc.Label("Show number of rows for sram tests"),
+    fcb_row_drop := dcc.Dropdown(value=10, clearable=False, style={'width':'35%'},
+                             options=[10, 25, 50, 100]),
+        dbc.Row([
+        dbc.Col([
+            fcb_test_name_drop := dcc.Dropdown([x for x in sorted(fcb_df_f.Test_Name.unique())])
+        ], width=3),
+
+    ], 
+    justify="between", className='mt-3 mb-4'),
+
+    my_table_fcb := dash_table.DataTable(
+        columns=[
+            {'name': 'Test_Name', 'id': 'Test_Name', 'type': 'text'},
+            {'name': 'Status', 'id': 'Status', 'type': 'text'},
+            {'name': 'Remarks', 'id': 'Remarks', 'type': 'text'}
+        ],
+        style_table={'overflowX': 'auto'},
+        data=fcb_df_f.to_dict('records'),
+        filter_action='native',
+        page_size=10,
+           style_data={
+        'whiteSpace': 'normal',
+        'height': 'auto',
+        'textAlign': 'center',
+        # 'lineHeight': '10px'
+    },
+            # editable=True,
+            style_data_conditional=[
+                {"if": {"row_index": "odd"}, "backgroundColor": "#66CDAA"},
+                {"if": {"row_index": "even"}, "backgroundColor": "#66CDAA"},
+                {
+                    "if": {"state": "active"},
+                    "backgroundColor": "inherit !important",
+                    "border": "1px solid black",
+                    # "color": "gray",
+                },
+                # {
+                #     "if": {"state": "selected"},
+                #     "backgroundColor": "black",
+                #     # "border": "1px solid blue",
+                # },
+                   {"if": {"state": "selected"},
+                         "backgroundColor": "inherit !important",
+                          "border": "inherit !important",},
+            {
+            'if': {
+                'filter_query': '{Status} contains "Failed"',
+                'column_id': 'Status'
+            },
+            'backgroundColor': '#CD5C5C',
+            'color': 'black'
+         },
+
+            ],
+        style_cell_conditional=[
+        {'if': {'column_id': 'Test_Name'},
+         'width': '10%',
+         'textAlign': 'center',
+         'color': 'BLACK',
+         'fontWeight': 'bold'},
+                {'if': {'column_id': 'Status'},
+         'width': '10%',
+         'textAlign': 'center',
+         'color': 'BLACK',
+         'fontWeight': 'bold'},
+                 {'if': {'column_id': 'Remarks'},
+         'width': '50%',
+         'textAlign': 'center',
+         'color': 'BLACK',
+         'fontWeight': 'bold'
+         },
+         
+    ]),
+html.Div(children = 'Coverage Report Tests Statistics', style = {
+    'textAlign': 'center',
+    'color': '#7FDBFF',
+    'fontWeight': 'bold'
+  }),
+html.Div(children = html.Iframe(
+            src="assets/fcb/dashboard.html",
+            style={"height": "1067px", "width": "100%"},
+        )
+  ),
+
 ])
 ])
 @callback(
@@ -404,16 +559,15 @@ def update_dropdown_options(IP_v,row_v):
     return dff.to_dict('records'), row_v
 
 @callback(
-    Output(my_table_sram, 'data'),
-    Output(my_table_sram, 'page_size'),
-    Input(sram_test_name_drop, 'value'),
-    Input(sram_row_drop, 'value'),)
-def update_dropdown_options_sram(tname_v,sram_row_v):
-    dff_S = sram_df_f.copy()
+    Output(my_table_fcb, 'data'),
+    Output(my_table_fcb, 'page_size'),
+    Input(fcb_test_name_drop, 'value'),
+    Input(fcb_row_drop, 'value'),)
+def update_dropdown_options_sram(tname_v,fcb_row_v):
+    dff_F = fcb_df_f.copy()
     if tname_v:
-        dff_S =dff_S[dff_S.Test_Name==tname_v]
-    return dff_S.to_dict('records'),sram_row_v
-
+        dff_F =dff_F[dff_F.Test_Name==tname_v]
+    return dff_F.to_dict('records'),fcb_row_v
 
 
 

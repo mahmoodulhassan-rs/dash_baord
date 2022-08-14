@@ -375,7 +375,20 @@ dbc.Label("Show number of rows"),
          },
          
     ]),
+ dcc.Markdown('''
+    [SRAM Coverage Report:](/)
+'''),
 
+ html.Div(
+    
+    children=[
+        html.Iframe(
+            src="sram_assets/dashboard.html",
+            style={"height": "1067px", "width": "100%"},
+        )
+    ]
+    
+),
 
 ])
 ])

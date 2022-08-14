@@ -410,7 +410,7 @@ def update_dropdown_options(IP_v,row_v):
         dff = dff[dff.IP==IP_v]
     return dff.to_dict('records'), row_v
 
-def update_dropdown_options_sram(sram_Test_Name_v,sram_row_v):
+def update_dropdown_options_sram(sram_row_v):
     sram_dff = sram_df_f.copy()
     # if sram_Test_Name_v:
     #     sram_dff = sram_dff[sram_dff.Test_Name==sram_Test_Name_v]

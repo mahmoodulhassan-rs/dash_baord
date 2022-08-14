@@ -380,13 +380,13 @@ dbc.Label("Show number of rows for sram tests"),
          },
          
     ]),
-html.Div(children = 'Coverage Report Tests Statistics', style = {
+html.Div(children = 'Coverage Report SRAM', style = {
     'textAlign': 'center',
     'color': '#7FDBFF',
     'fontWeight': 'bold'
   }),
 html.Div(children = html.Iframe(
-            src="assets/dashboard.html",
+            src="sram_assets/dashboard.html",
             style={"height": "1067px", "width": "100%"},
         )
   ),

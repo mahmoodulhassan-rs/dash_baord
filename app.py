@@ -320,7 +320,7 @@ dbc.Label("Show number of rows"),
             {'name': 'Remarks', 'id': 'Remarks', 'type': 'text'}
         ],
         style_table={'overflowX': 'auto'},
-        data=sram_df_f.to_dict('records'),
+        sram_data=sram_df_f.to_dict('records'),
         filter_action='native',
         page_size=10,
            style_data={
@@ -381,25 +381,28 @@ dbc.Label("Show number of rows"),
 @callback(
     Output(my_table, 'data'),
     Output(my_table, 'page_size'),
+    Output(my_table_sram, 'sram_data'),
     Input(IP_drop, 'value'),
+    Input(sram_row_drop, 'value'),
     Input(row_drop, 'value'),)
-@callback(
-    Output(my_table_sram, 'data'),
-    Output(my_table_sram, 'page_size'),
-    # Input(sram_IP_drop, 'value'),
-    Input(sram_row_drop, 'value'),)
+# @callback(
+#     Output(my_table_sram, 'data'),
+#     Output(my_table_sram, 'page_size'),
+#     # Input(sram_IP_drop, 'value'),
+#     Input(sram_row_drop, 'value'),)
     
-def update_dropdown_options(IP_v,row_v):
+def update_dropdown_options(IP_v,row_v,sram_row_v):
     dff = df_f.copy()
+    sram_dff = sram_df_f.copy()
     if IP_v:
         dff = dff[dff.IP==IP_v]
-    return dff.to_dict('records'), row_v
+    return dff.to_dict('records'), row_v,sram_row_v
 
-def update_dropdown_options_sram(sram_row_v):
-    sram_dff = sram_df_f.copy()
-    # if sram_Test_Name_v:
-    #     sram_dff = sram_dff[sram_dff.Test_Name==sram_Test_Name_v]
-    return sram_dff.to_dict('records'), sram_row_v
+# def update_dropdown_options_sram(sram_row_v):
+#     sram_dff = sram_df_f.copy()
+#     # if sram_Test_Name_v:
+#     #     sram_dff = sram_dff[sram_dff.Test_Name==sram_Test_Name_v]
+#     return sram_dff.to_dict('records'), sram_row_v
 
 if __name__ == '__main__':
     app.run_server(debug=False, port = 8080)

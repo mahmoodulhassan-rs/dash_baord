@@ -309,13 +309,13 @@ dash_table.DataTable(    style_data={
 dbc.Label("Show number of rows for sram tests"),
     sram_row_drop := dcc.Dropdown(value=10, clearable=False, style={'width':'35%'},
                              options=[10, 25, 50, 100]),
-        # dbc.Row([
-        # dbc.Col([
-            # sram_IP_drop := dcc.Dropdown([x for x in sorted(sram_df_f.Test_Name.unique())])
-        # ], width=3),
-# 
-    # ], 
-    # justify="between", className='mt-3 mb-4'),
+        dbc.Row([
+        dbc.Col([
+            sram_test_name_drop := dcc.Dropdown([x for x in sorted(sram_df_f.Test_Name.unique())])
+        ], width=3),
+
+    ], 
+    justify="between", className='mt-3 mb-4'),
 
     my_table_sram := dash_table.DataTable(
         columns=[
@@ -399,9 +399,23 @@ html.Div(children = html.Iframe(
     Input(row_drop, 'value'),)
 def update_dropdown_options(IP_v,row_v):
     dff = df_f.copy()
-
     if IP_v:
         dff = dff[dff.IP==IP_v]
     return dff.to_dict('records'), row_v
+
+@callback(
+    Output(my_table_sram, 'data'),
+    Output(my_table_sram, 'page_size'),
+    Input(sram_test_name_drop, 'value'),
+    Input(sram_row_drop, 'value'),)
+def update_dropdown_options_sram(tname_v,sram_row_v):
+    dff_S = sram_df_f.copy()
+    if tname_v:
+        dff_S =dff_S[dff_S.Test_Name==tname_v]
+    return dff_S.to_dict('records'),sram_row_v
+
+
+
+
 if __name__ == '__main__':
     app.run_server(debug=False, port = 8080)

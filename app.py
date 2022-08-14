@@ -248,7 +248,11 @@ dash_table.DataTable(    style_data={
     ]
     
 ),
-
+html.Div(children = 'SRAM Unit Level Tests Statistics', style = {
+    'textAlign': 'center',
+    'color': '#7FDBFF',
+    'fontWeight': 'bold'
+  }),
  dcc.Graph(
     id = 'gemini-graph-sram',
     figure = fig_sram

@@ -8,6 +8,19 @@ df_grp_dash=pd.read_csv('pie_states_dash.csv')
 df_table = pd.read_csv('css_states_dash.csv')
 df_states = pd.read_csv('css_states.csv')
 df_time_lg = pd.read_csv('time.csv')
+
+sram_df_grp_dash=pd.read_csv('sram_pie_states_dash.csv')
+sram_df_table = pd.read_csv('sram_css_states_dash.csv')
+sram_df_states = pd.read_csv('sram_css_states.csv')
+sram_df_time_lg = pd.read_csv('sram_time.csv')
+
+fcb_df_grp_dash=pd.read_csv('fcb_pie_states_dash.csv')
+fcb_df_table = pd.read_csv('fcb_css_states_dash.csv')
+fcb_df_states = pd.read_csv('fcb_css_states.csv')
+fcb_df_time_lg = pd.read_csv('fcb_time.csv')
+
+
+
 time_var= df_time_lg["Regression_Run_Time"]
 print(time_var)
 

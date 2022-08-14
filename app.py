@@ -39,7 +39,7 @@ fig.update_layout(legend=dict(
     x=0.00,
 ))
 
-fig_sram = px.pie(sram_df_grp_dash, values='Numbers', names='Category',color = "Category", title="Pie Chart Sram",color_discrete_map={'Tests Passed':'#66CDAA',
+fig_sram = px.pie(sram_df_grp_dash, values='Numbers', names='Category',color = "Category", title="Pie Chart SRAM Unit Level",color_discrete_map={'Tests Passed':'#66CDAA',
                                  'Tests Under Development':'#00BFFF',                                                                           
                                  'Tests Failed':'#CD5C5C'})
 fig_sram.update_layout(legend=dict(
@@ -250,7 +250,54 @@ dash_table.DataTable(    style_data={
     id = 'gemini-graph-sram',
     figure = fig_sram
   ),
-
+dash_table.DataTable(    style_data={
+        'whiteSpace': 'normal',
+        'height': 'auto',
+        'textAlign': 'center',
+        'lineHeight': '10px'
+    },
+    data=sram_df_table.to_dict('records'), 
+    columns=[{"name": i, "id": i} for i in sram_df_table.columns],
+        css=[{"selector": "input", "rule": "color:gray"}],
+            # data=df.to_dict("records"),
+            style_cell={"color": "gray"},
+            # editable=True,
+            style_data_conditional=[
+                {"if": {"row_index": 0}, "backgroundColor": "#00BFFF"},
+                {"if": {"row_index": 1}, "backgroundColor": "#66CDAA"},
+                {"if": {"row_index": 2}, "backgroundColor": "#CD5C5C"},
+                {
+                    "if": {"state": "active"},
+                    "backgroundColor": "inherit !important",
+                    "border": "1px solid black",
+                    # "color": "gray",
+                },
+                {
+                    "if": {"state": "selected"},
+                    "backgroundColor": "inherit !important",
+                    # "border": "1px solid blue",
+                },
+        {
+            'if': {
+                'filter_query': '{Numbers} > 0',
+                'row_index': 2,
+            },
+            'backgroundColor': '#CD5C5C',
+            'color': 'black'
+         },
+            ],
+        style_cell_conditional=[
+        {'if': {'column_id': 'Category'},
+         'width': '10%',
+         'textAlign': 'center',
+         'fontWeight': 'bold',
+         'color': 'BLACK'},
+        {'if': {'column_id': 'Numbers'},
+         'width': '10%',
+         'textAlign': 'center',
+         'fontWeight': 'bold',
+         'color': 'BLACK'},
+    ]),
 ])
 ])
 @callback(

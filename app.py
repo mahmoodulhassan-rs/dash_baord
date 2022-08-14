@@ -302,7 +302,7 @@ dash_table.DataTable(    style_data={
          'color': 'BLACK'},
     ]),
 
-dbc.Label("Show number of rows"),
+dbc.Label("Show number of rows for sram tests"),
     sram_row_drop := dcc.Dropdown(value=10, clearable=False, style={'width':'35%'},
                              options=[10, 25, 50, 100]),
         # dbc.Row([

@@ -38,6 +38,18 @@ fig.update_layout(legend=dict(
     xanchor="left",
     x=0.00,
 ))
+
+fig_sram = px.pie(sram_df_grp_dash, values='Numbers', names='Category',color = "Category", title="Pie Chart Sram",color_discrete_map={'Tests Passed':'#66CDAA',
+                                 'Tests Under Development':'#00BFFF',                                                                           
+                                 'Tests Failed':'#CD5C5C'})
+fig_sram.update_layout(legend=dict(
+    yanchor="top",
+    y=0.99,
+    xanchor="left",
+    x=0.00,
+))
+
+
 arr =[158,158,158,158,158]
 aarr= [21,35,39,56,65]
 arr_f= [0,3,3,0,4]
@@ -233,11 +245,12 @@ dash_table.DataTable(    style_data={
     ]
     
 ),
-    html.Div(children = 'SRAM Unit Level Statistics', style = {
-    'textAlign': 'center',
-    'color': '#7FDBFF',
-    'fontWeight': 'bold'
-  }),
+
+ dcc.Graph(
+    id = 'gemini-graph-sram',
+    figure = fig_sram
+  ),
+
 ])
 ])
 @callback(

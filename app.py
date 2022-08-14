@@ -242,7 +242,7 @@ dash_table.DataTable(    style_data={
     
     children=[
         html.Iframe(
-            src="assets/dashboard.html",
+            src="assets/soc/dashboard.html",
             style={"height": "1067px", "width": "100%"},
         )
     ]
@@ -386,7 +386,7 @@ html.Div(children = 'Coverage Report Tests Statistics', style = {
     'fontWeight': 'bold'
   }),
 html.Div(children = html.Iframe(
-            src="assets/dashboard.html",
+            src="assets/sram/dashboard.html",
             style={"height": "1067px", "width": "100%"},
         )
   ),

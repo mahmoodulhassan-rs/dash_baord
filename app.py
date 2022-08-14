@@ -322,7 +322,7 @@ dbc.Label("Show number of rows for sram tests"),
         style_table={'overflowX': 'auto'},
         data=sram_df_f.to_dict('records'),
         filter_action='native',
-        page_size_sram=10,
+        page_size=10,
            style_data={
         'whiteSpace': 'normal',
         'height': 'auto',

@@ -385,7 +385,11 @@ html.Div(children = 'Coverage Report Tests Statistics', style = {
     'color': '#7FDBFF',
     'fontWeight': 'bold'
   }),
-
+html.Div(children = html.Iframe(
+            src="assets/dashboard.html",
+            style={"height": "1067px", "width": "100%"},
+        )
+  ),
 ])
 ])
 @callback(

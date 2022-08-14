@@ -27,6 +27,9 @@ print(time_var)
 df_f = pd.read_csv('css_states.csv')
 df_f = df_f[['IP', 'Test_Name', 'Status', 'Remarks']]
 
+sram_df_f = pd.read_csv('sram_css_states.csv')
+sram_df_f = sram_df_f[[''Test_Name', 'Status', 'Remarks']]
+
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
 fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category", title="Pie Chart",color_discrete_map={'Tests Passed':'#66CDAA',
@@ -298,6 +301,87 @@ dash_table.DataTable(    style_data={
          'fontWeight': 'bold',
          'color': 'BLACK'},
     ]),
+
+dbc.Label("Show number of rows"),
+    row_drop := dcc.Dropdown(value=10, clearable=False, style={'width':'35%'},
+                             options=[10, 25, 50, 100]),
+        dbc.Row([
+        dbc.Col([
+            IP_drop := dcc.Dropdown([x for x in sorted(sram_df_f.Test_Name.unique())])
+        ], width=3),
+
+    ], justify="between", className='mt-3 mb-4'),
+
+    my_table_sram := dash_table.DataTable(
+        columns=[
+            {'name': 'Test_Name', 'id': 'Test_Name', 'type': 'text'},
+            {'name': 'Status', 'id': 'Status', 'type': 'text'},
+            {'name': 'Remarks', 'id': 'Remarks', 'type': 'text'}
+        ],
+        style_table={'overflowX': 'auto'},
+        data=sram_df_f.to_dict('records'),
+        filter_action='native',
+        page_size=10,
+           style_data={
+        'whiteSpace': 'normal',
+        'height': 'auto',
+        'textAlign': 'center',
+        # 'lineHeight': '10px'
+    },
+            # editable=True,
+            style_data_conditional=[
+                {"if": {"row_index": "odd"}, "backgroundColor": "#66CDAA"},
+                {"if": {"row_index": "even"}, "backgroundColor": "#66CDAA"},
+                {
+                    "if": {"state": "active"},
+                    "backgroundColor": "inherit !important",
+                    "border": "1px solid black",
+                    # "color": "gray",
+                },
+                # {
+                #     "if": {"state": "selected"},
+                #     "backgroundColor": "black",
+                #     # "border": "1px solid blue",
+                # },
+                   {"if": {"state": "selected"},
+                         "backgroundColor": "inherit !important",
+                          "border": "inherit !important",},
+            {
+            'if': {
+                'filter_query': '{Status} contains "Failed"',
+                'column_id': 'Status'
+            },
+            'backgroundColor': '#CD5C5C',
+            'color': 'black'
+         },
+
+            ],
+        style_cell_conditional=[
+        {'if': {'column_id': 'IP'},
+         'width': '10%',
+         'textAlign': 'center',
+            'color': 'BLACK',
+            'fontWeight': 'bold'},
+        {'if': {'column_id': 'Test_Name'},
+         'width': '10%',
+         'textAlign': 'center',
+         'color': 'BLACK',
+         'fontWeight': 'bold'},
+                {'if': {'column_id': 'Status'},
+         'width': '10%',
+         'textAlign': 'center',
+         'color': 'BLACK',
+         'fontWeight': 'bold'},
+                 {'if': {'column_id': 'Remarks'},
+         'width': '50%',
+         'textAlign': 'center',
+         'color': 'BLACK',
+         'fontWeight': 'bold'
+         },
+         
+    ]),
+
+
 ])
 ])
 @callback(
@@ -305,13 +389,23 @@ dash_table.DataTable(    style_data={
     Output(my_table, 'page_size'),
     Input(IP_drop, 'value'),
     Input(row_drop, 'value'),)
+@callback(
+    Output(my_table_sram, 'data'),
+    Output(my_table_sram, 'page_size'),
+    Input(IP_drop, 'value'),
+    Input(row_drop, 'value'),)
+    
 def update_dropdown_options(IP_v,row_v):
     dff = df_f.copy()
-
     if IP_v:
         dff = dff[dff.IP==IP_v]
     return dff.to_dict('records'), row_v
 
+def update_dropdown_options(IP_v,row_v):
+    sram_dff = sram_df_f.copy()
+    if IP_v:
+        sram_dff = sram_dff[dff.IP==IP_v]
+    return sram_dff.to_dict('records'), row_v
 
 if __name__ == '__main__':
     app.run_server(debug=False, port = 8080)

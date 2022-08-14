@@ -28,7 +28,7 @@ df_f = pd.read_csv('css_states.csv')
 df_f = df_f[['IP', 'Test_Name', 'Status', 'Remarks']]
 
 sram_df_f = pd.read_csv('sram_css_states.csv')
-sram_df_f = sram_df_f[[''Test_Name', 'Status', 'Remarks']]
+sram_df_f = sram_df_f[['Test_Name', 'Status', 'Remarks']]
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server

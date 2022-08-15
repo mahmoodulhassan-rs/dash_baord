@@ -122,7 +122,7 @@ app.layout = html.Div(style = {
       'textAlign': 'center',
       'color': 'Crimson',
       'fontWeight': 'bold',
-      'font-size':'xxx-large',
+      'font-size':'xx-large',
       'text-decoration-line': 'underline',
     }
     

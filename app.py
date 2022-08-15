@@ -35,30 +35,48 @@ fcb_df_f = fcb_df_f[['Test_Name', 'Status', 'Remarks']]
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
-fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category", title="Pie Chart",color_discrete_map={'Tests Passed':'#66CDAA',
+fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category",hole=.2,color_discrete_map={'Tests Passed':'#66CDAA',
                                  'Tests Under Development':'#00BFFF',                                                                           
                                  'Tests Failed':'#CD5C5C'})
-fig.update_layout(legend=dict(
+fig.update_layout(title={'text': '<b>Pie Chart SoC</b>','y':1,
+        'x':0.5,
+        'xanchor': 'center',
+        'yanchor': 'top'},
+font={'size': 15},
+title_font_color='black',
+legend=dict(
     yanchor="top",
     y=0.99,
     xanchor="left",
     x=0.00,
 ))
 
-fig_sram = px.pie(sram_df_grp_dash, values='Numbers', names='Category',color = "Category", title="Pie Chart SRAM Unit Level",color_discrete_map={'Tests Passed':'#66CDAA',
+fig_sram = px.pie(sram_df_grp_dash, values='Numbers', names='Category',color = "Category",hole=.2,color_discrete_map={'Tests Passed':'#66CDAA',
                                  'Tests Under Development':'#00BFFF',                                                                           
                                  'Tests Failed':'#CD5C5C'})
-fig_sram.update_layout(legend=dict(
+fig_sram.update_layout(title={'text': '<b>Pie Chart SRAM  (Unit Level)</b>','y':1,
+        'x':0.5,
+        'xanchor': 'center',
+        'yanchor': 'top'},
+font={'size': 15},
+title_font_color='black',
+legend=dict(
     yanchor="top",
     y=0.99,
     xanchor="left",
     x=0.00,
 ))
 
-fig_fcb = px.pie(fcb_df_grp_dash, values='Numbers', names='Category',color = "Category", title="Pie Chart FCB Unit Level",color_discrete_map={'Tests Passed':'#66CDAA',
+fig_fcb = px.pie(fcb_df_grp_dash, values='Numbers', names='Category',color = "Category",hole=.2,color_discrete_map={'Tests Passed':'#66CDAA',
                                  'Tests Under Development':'#00BFFF',                                                                           
                                  'Tests Failed':'#CD5C5C'})
-fig_fcb.update_layout(legend=dict(
+fig_fcb.update_layout(title={'text': '<b>Pie Chart FCB  (Unit Level)</b>','y':1,
+        'x':0.5,
+        'xanchor': 'center',
+        'yanchor': 'top'},
+font={'size': 15},
+title_font_color='black',
+legend=dict(
     yanchor="top",
     y=0.99,
     xanchor="left",
@@ -75,24 +93,72 @@ f1 = go.Figure(
         go.Scatter(x=arr_x,y=aarr, name="Tests Passed",line=dict(color="#66CDAA")),
         go.Scatter(x=arr_x,y=arr_f, name="Tests Failed",line=dict(color="#CD5C5C")),
     ],
-    layout = {"xaxis": {"title": "Weeks"}, "yaxis": {"title": "Numbers(Tets Passed, Tests Failed, Tests Planned)"}, "title": "Weekly Statistics"}
+    layout = {"xaxis": {"title": "Weeks"}, "yaxis": {"title": "Tets Passed,Tests Failed,Tests Planned"}, "title": "Weekly Statistics"}
 )
+f1.update_layout(title={'text': '<b>Weekly Statistics SoC</b>','y':0.9,
+        'x':0.5,
+        'xanchor': 'center',
+        'yanchor': 'top'},
+font={'size': 15},
+title_font_color='black',
+# legend=dict(
+#     yanchor="top",
+#     y=0.99,
+#     xanchor="left",
+#     x=0.00,
+# ))
+width=1300,
+height=600
+)
+# f1.update_layout(width=int(width))
 
 app.layout = html.Div(style = {
-  'backgroundColor': '#FFFFFF'
+  'backgroundColor': '#FFFFFF',
+  'fontSize' : '100'
 }, children = [
     html.H1(
     children = 'RapidSilicon',
     style = {
       'textAlign': 'center',
-      'color': 'Crimson'
+      'color': 'Crimson',
+      'fontWeight': 'bold',
+      'font-size':'xxx-large',
+      'text-decoration-line': 'underline',
     }
+    
   ),
-    html.Div(children = 'Gemini Tests Statistics', style = {
+    html.Div(children = 'Gemini SoC Tests Statistics', style = {
     'textAlign': 'center',
-    'color': '#7FDBFF',
-    'fontWeight': 'bold'
+    # 'color': '#7FDBFF',
+    'color': 'blue',
+    'fontWeight': 'bold',
+    'font-size':'x-large',
   }),
+
+dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
 #   html.Div(children = df_time_lg["Regression_Run_Time"], style = {
 #     'textAlign': 'left',
 #     'color': '#7FDBFF',
@@ -103,20 +169,52 @@ app.layout = html.Div(style = {
 #     figure = fig
 #   ),
 dbc.Container([
-  html.Div(children = "Regression ran on "+df_time_lg["Regression_Run_Time"], style = {
+  html.Div(children = "Regression Date:   "+df_time_lg["Regression_Run_Time"], style = {
      'textAlign': 'left',
      'color': 'Black',
      'fontWeight': 'bold'
    }),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
  dcc.Graph(
     id = 'gemini-graph-1',
     figure = fig
   ),
+
+html.Div(children = 'General Statistics', style = {
+    'textAlign': 'center',
+    # 'color': '#7FDBFF',
+    'color': 'black',
+    'fontWeight': 'bold',
+    'font-size':'large',
+  }),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
 dash_table.DataTable(    style_data={
         'whiteSpace': 'normal',
         'height': 'auto',
         'textAlign': 'center',
-        'lineHeight': '10px'
+        'lineHeight': '10px',
     },
     data=df_table.to_dict('records'), 
     columns=[{"name": i, "id": i} for i in df_table.columns],
@@ -160,14 +258,85 @@ dash_table.DataTable(    style_data={
          'fontWeight': 'bold',
          'color': 'BLACK'},
     ]),
-
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+# html.Div(children = 'Weekly Scatter Plot', style = {
+#     'textAlign': 'left',
+#     'color': 'black',
+#     'fontWeight': 'bold'
+#   }),
     dcc.Graph(
     id = 'gemini-graph-2',
     figure = f1
   ),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+html.Div(children = 'IP-wise Statistics', style = {
+    'textAlign': 'center',
+    # 'color': '#7FDBFF',
+    'color': 'black',
+    'fontWeight': 'bold',
+    'font-size':'large',
+  }),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
     # dcc.Markdown('# DataTable Tips and Tricks', style={'textAlign':'center'}),
 
-    dbc.Label("Show number of rows"),
+    dbc.Label("Show number of rows:"),
+     dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
     row_drop := dcc.Dropdown(value=10, clearable=False, style={'width':'35%'},
                              options=[10, 25, 50, 100]),
         dbc.Row([
@@ -246,8 +415,22 @@ dash_table.DataTable(    style_data={
          },
          
     ]),
+html.Div(children = 'Combined Coverage Report:', style = {
+    'textAlign': 'left',
+    'color': 'BLACK',
+    'fontWeight': 'bold'
+  }),
  dcc.Markdown('''
-    [Combine Coverage Report:](/)
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
 '''),
 
  html.Div(
@@ -260,15 +443,73 @@ dash_table.DataTable(    style_data={
     ]
     
 ),
-html.Div(children = 'SRAM Unit Level Tests Statistics', style = {
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+
+    html.Div(children = 'SRAM  (Unit Level) Tests Statistics', style = {
     'textAlign': 'center',
-    'color': '#7FDBFF',
-    'fontWeight': 'bold'
+    # 'color': '#7FDBFF',
+    'color': 'blue',
+    'fontWeight': 'bold',
+    'font-size':'x-large',
   }),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
  dcc.Graph(
     id = 'gemini-graph-sram',
     figure = fig_sram
   ),
+html.Div(children = 'General Statistics SRAM  (Unit Level)', style = {
+    'textAlign': 'center',
+    # 'color': '#7FDBFF',
+    'color': 'black',
+    'fontWeight': 'bold',
+    'font-size':'large',
+  }),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
 dash_table.DataTable(    style_data={
         'whiteSpace': 'normal',
         'height': 'auto',
@@ -317,8 +558,38 @@ dash_table.DataTable(    style_data={
          'fontWeight': 'bold',
          'color': 'BLACK'},
     ]),
-
-dbc.Label("Show number of rows for sram tests"),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+html.Div(children = 'Test-wise Statistics', style = {
+    'textAlign': 'center',
+    # 'color': '#7FDBFF',
+    'color': 'black',
+    'fontWeight': 'bold',
+    'font-size':'large',
+  }),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+dbc.Label("Show number of rows for sram tests:"),
     sram_row_drop := dcc.Dropdown(value=10, clearable=False, style={'width':'35%'},
                              options=[10, 25, 50, 100]),
         dbc.Row([
@@ -392,25 +663,71 @@ dbc.Label("Show number of rows for sram tests"),
          },
          
     ]),
-html.Div(children = 'Coverage Report Tests Statistics', style = {
-    'textAlign': 'center',
-    'color': '#7FDBFF',
+html.Div(children = 'Coverage Report SRAM:', style = {
+    'textAlign': 'left',
+    'color': 'BLACK',
     'fontWeight': 'bold'
   }),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
 html.Div(children = html.Iframe(
             src="assets/sram/dashboard.html",
             style={"height": "1067px", "width": "100%"},
         )
   ),
-html.Div(children = 'FCB Unit Level Tests Statistics', style = {
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+
+    html.Div(children = 'FCB  (Unit Level) Tests Statistics', style = {
     'textAlign': 'center',
-    'color': '#7FDBFF',
-    'fontWeight': 'bold'
+    # 'color': '#7FDBFF',
+    'color': 'blue',
+    'fontWeight': 'bold',
+    'font-size':'x-large',
   }),
+dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
  dcc.Graph(
     id = 'gemini-graph-fcb',
     figure = fig_fcb
   ),
+html.Div(children = 'General Statistics FCB  (Unit Level)', style = {
+    'textAlign': 'center',
+    # 'color': '#7FDBFF',
+    'color': 'black',
+    'fontWeight': 'bold',
+    'font-size':'large',
+  }),
 dash_table.DataTable(    style_data={
         'whiteSpace': 'normal',
         'height': 'auto',
@@ -459,8 +776,38 @@ dash_table.DataTable(    style_data={
          'fontWeight': 'bold',
          'color': 'BLACK'},
     ]),
-
-dbc.Label("Show number of rows for sram tests"),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+html.Div(children = 'Test-wise Statistics', style = {
+    'textAlign': 'center',
+    # 'color': '#7FDBFF',
+    'color': 'black',
+    'fontWeight': 'bold',
+    'font-size':'large',
+  }),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+dbc.Label("Show number of rows for fcb tests:"),
     fcb_row_drop := dcc.Dropdown(value=10, clearable=False, style={'width':'35%'},
                              options=[10, 25, 50, 100]),
         dbc.Row([
@@ -534,11 +881,23 @@ dbc.Label("Show number of rows for sram tests"),
          },
          
     ]),
-html.Div(children = 'Coverage Report Tests Statistics', style = {
-    'textAlign': 'center',
-    'color': '#7FDBFF',
+html.Div(children = 'Coverage Report FCB:', style = {
+    'textAlign': 'left',
+    'color': 'Black',
     'fontWeight': 'bold'
   }),
+dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
 html.Div(children = html.Iframe(
             src="assets/fcb/dashboard.html",
             style={"height": "1067px", "width": "100%"},

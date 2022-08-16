@@ -93,7 +93,7 @@ f1 = go.Figure(
         go.Scatter(x=arr_x,y=aarr, name="Tests Passed",line=dict(color="#66CDAA")),
         go.Scatter(x=arr_x,y=arr_f, name="Tests Failed",line=dict(color="#CD5C5C")),
     ],
-    layout = {"xaxis": {"title": "Weeks"}, "yaxis": {"title": "Tets Passed,Tests Failed,Tests Planned"}, "title": "Weekly Statistics"}
+    layout = {"xaxis": {"title": "Weeks"}, "yaxis": {"title": "No. of Tests"}, "title": "Weekly Statistics"}
 )
 f1.update_layout(title={'text': '<b>Weekly Statistics SoC</b>','y':0.9,
         'x':0.5,
@@ -107,8 +107,8 @@ title_font_color='black',
 #     xanchor="left",
 #     x=0.00,
 # ))
-width=1300,
-height=600
+# width=1300,
+# height=600
 )
 # f1.update_layout(width=int(width))
 

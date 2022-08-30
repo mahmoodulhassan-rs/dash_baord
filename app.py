@@ -642,7 +642,14 @@ dbc.Label("Show number of rows for sram tests:"),
             'backgroundColor': '#CD5C5C',
             'color': 'black'
          },
-
+            {
+            'if': {
+                'filter_query': '{Status} contains "timeout"',
+                'column_id': 'Status'
+            },
+            'backgroundColor': '#CD5C5C',
+            'color': 'black'
+         },
             ],
         style_cell_conditional=[
         {'if': {'column_id': 'Test_Name'},

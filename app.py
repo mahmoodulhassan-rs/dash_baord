@@ -389,13 +389,7 @@ html.Div(children = 'IP-wise Statistics', style = {
             'backgroundColor': '#CD5C5C',
             'color': 'black'
          },
-'if': {
-                'filter_query': '{Status} contains "timeout"',
-                'column_id': 'Status'
-            },
-            'backgroundColor': '#CD5C5C',
-            'color': 'black'
-         },
+
             ],
         style_cell_conditional=[
         {'if': {'column_id': 'IP'},

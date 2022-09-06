@@ -33,7 +33,7 @@ sram_df_f = sram_df_f[['Test_Name', 'Status', 'Remarks']]
 fcb_df_f = pd.read_csv('fcb_css_states.csv')
 fcb_df_f = fcb_df_f[['Test_Name', 'Status', 'Remarks']]
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.Cyborg])
 server = app.server
 fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category",hole=.2,color_discrete_map={'Tests Passed':'#66CDAA',
                                  'Tests Under Development':'#00BFFF',                                                                           

@@ -35,6 +35,12 @@ fcb_df_f = fcb_df_f[['Test_Name', 'Status', 'Remarks']]
 
 #app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app = Dash(__name__,external_stylesheets=[dbc.themes.CYBORG])
+theme = {
+    'dark': True,
+    'detail': '#007439',
+    'primary': '#00EA64',
+    'secondary': '#6E6E6E',
+}
 server = app.server
 fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category",hole=.2,color_discrete_map={'Tests Passed':'#66CDAA',
                                  'Tests Under Development':'#00BFFF',                                                                           

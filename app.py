@@ -45,7 +45,7 @@ server = app.server
 fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category",hole=.2,color_discrete_map={'Tests Passed':'#66CDAA',
                                  'Tests Under Development':'#00BFFF',                                                                           
                                  'Tests Failed':'#CD5C5C'})
-fig.update_layout(title={'text': '<b>Pie Chart SoC</b>','y':1,
+fig.update_layout(title={'text': '<b>Pie Chart SoC</b>','y':0.95,
         'x':0.5,
         'xanchor': 'center',
         'yanchor': 'top'},
@@ -61,7 +61,7 @@ legend=dict(
 fig_sram = px.pie(sram_df_grp_dash, values='Numbers', names='Category',color = "Category",hole=.2,color_discrete_map={'Tests Passed':'#66CDAA',
                                  'Tests Under Development':'#00BFFF',                                                                           
                                  'Tests Failed':'#CD5C5C'})
-fig_sram.update_layout(title={'text': '<b>Pie Chart SRAM  (Unit Level)</b>','y':1,
+fig_sram.update_layout(title={'text': '<b>Pie Chart SRAM  (Unit Level)</b>','y':0.95,
         'x':0.5,
         'xanchor': 'center',
         'yanchor': 'top'},
@@ -90,7 +90,7 @@ legend=dict(
     x=0.00,
 ))
 
-arr =[158,158,158,158,158,158,250,250]
+arr =[158,158,158,158,158,158,250,250,250]
 aarr= [21,35,39,56,65,96,139,167,171]
 arr_f= [0,3,3,0,4,15,39,37,30]
 arr_x=[1,2,3,4,5,6,7,8,9,10,11,12]

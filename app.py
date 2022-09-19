@@ -233,7 +233,7 @@ dash_table.DataTable(    style_data={
                 {"if": {"row_index": 0}, "backgroundColor": "#00BFFF"},
                 {"if": {"row_index": 1}, "backgroundColor": "#66CDAA"},
                 {"if": {"row_index": 2}, "backgroundColor": "#CD5C5C"},
-                {"if": {"row_index": 3}, "backgroundColor": "#8a00c2"},
+                {"if": {"row_index": 3}, "backgroundColor": "#7E57C2"},
                 {
                     "if": {"state": "active"},
                     "backgroundColor": "inherit !important",

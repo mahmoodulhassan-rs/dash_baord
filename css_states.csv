@@ -1,5 +1,5 @@
 IP,Test_Name,Status,Remarks
-I2C,bcpu_bfm_i2c_master_multitx_without_dma_test,Failed,NaN
+I2C,bcpu_bfm_i2c_master_multitx_without_dma_test,Failed,UVM_FATAL @ 0.000 ns: reporter [INVTST] Requested test from command line +UVM_TESTNAME=bcpu_bfm_i2c_master_multitx_without_dma_test not found
 I2C,bcpu_bfm_i2c_slv_multi_rx_10bit_without_dma_test,Passed,
 I2C,acpu_bfm_i2c_test,Passed,
 I2C,bcpu_bfm_i2c_master_tx_10bit_without_dma_test,Passed,
@@ -7,7 +7,7 @@ I2C,bcpu_bfm_i2c_master_rx_10bit_without_dma_test,Passed,
 I2C,bcpu_bfm_i2c_test,Passed,
 I2C,bcpu_bfm_i2c_slv_tx_without_dma_test,Failed,"UVM_ERROR [   i2c_scoreboard.sv(103) ] { 299280.0ns } [env.i2c_env.scoreboard        ] [I2C Master] Data MisMatch :: ------
 "
-I2C,bcpu_bfm_i2c_master_multi_rx_without_dma_test,,
+I2C,bcpu_bfm_i2c_master_multi_rx_without_dma_test,timeout,
 I2C,bcpu_bfm_i2c_slv_rx_without_dma_test,Passed,
 I2C,bcpu_bfm_i2c_addr_phase_test,Failed,"UVM_ERROR [   i2c_scoreboard.sv(103) ] { 165474.0ns } [env.i2c_env.scoreboard        ] [I2C Master] Data MisMatch :: ------
 "
@@ -21,7 +21,7 @@ I2C,bcpu_bfm_i2c_master_multi_tx_10bit_without_dma_test,Passed,
 I2C,bcpu_bfm_i2c_walking0_rw_test,Failed,"UVM_ERROR [   i2c_scoreboard.sv(103) ] { 165474.0ns } [env.i2c_env.scoreboard        ] [I2C Master] Data MisMatch :: ------
 "
 I2C,acpu_bfm_i2c_slv_push_hwhs_test,Passed,
-I2C,bcpu_bfm_i2c_master_multi_rx_10bit_without_dma_test,,
+I2C,bcpu_bfm_i2c_master_multi_rx_10bit_without_dma_test,timeout,
 I2C,bcpu_bfm_i2c_rw_inverting_bits_test,Passed,
 I2C,bcpu_bfm_i2c_reset_state_test,Passed,
 I2C,bcpu_bfm_i2c_clk_gating_test,Failed,"UVM_ERROR [c_clk_gating_test.sv(95) ] { 267991.0ns } [uvm_test_top                  ] [uvm_test_top] Timout occur before completeion interrupt
@@ -83,7 +83,7 @@ DMA,acpu_bfm_dma_I2C_push_hwhs_test,Failed,"UVM_ERROR [tOfReach_IF1_test.sv(107)
 "
 DMA,bcpu_bfm_dma_default_value_test,Failed,"UVM_ERROR [fm_wr_rd_sequence.sv(46) ] { 44369.0ns } [a_registers_default_values_seq] [Task >> verify_reset_state:FAILURE] ChCtrlAddr :: Address=f1080040  RData=0  Reset_state=480000 Mask=effffffe
 "
-DMA,acpu_bfm_dma_FlashToDDR1_test,,
+DMA,acpu_bfm_dma_FlashToDDR1_test,timeout,
 DMA,acpu_bfm_dma_I2C_pop_hwhs_test,Failed,"UVM_ERROR [fm_wr_rd_sequence.sv(46) ] { 44369.0ns } [a_registers_default_values_seq] [Task >> verify_reset_state:FAILURE] ChCtrlAddr :: Address=f1080040  RData=0  Reset_state=480000 Mask=effffffe
 "
 DMA,acpu_bfm_dma_Uart1_TX_hwhs_test,Passed,
@@ -126,7 +126,7 @@ GPIO,bcpu_bfm_gpio_config_pe_test,Passed,
 GPIO,bcpu_bfm_gpio_pad_input_config_test,Passed,
 GPIO,bcpu_bfm_gpio_config_interrupt_high_level_test,Passed,
 GPIO,bcpu_bfm_gpio_config_interrupt_pos_edge_test,Passed,
-GPIO,bcpu_bfm_gpio_config_debounce_test,,
+GPIO,bcpu_bfm_gpio_config_debounce_test,timeout,
 GPIO,bcpu_bfm_gpio_config_outputs_test,Passed,
 GPIO,bcpu_bfm_gpio_config_loopback_test,Passed,
 GPIO,bcpu_bfm_gpio_config_interrupt_dual_edge_test,Passed,
@@ -138,7 +138,7 @@ GPIO,bcpu_bfm_gpio_pad_output_config_test,Passed,
 GPIO,bcpu_bfm_gpio_config_interrupt_neg_edge_test,Passed,
 GPIO,bcpu_bfm_gpio_config_interrupt_low_level_test,Passed,
 GPIO,bcpu_bfm_gpio_config_verify_reg_reset_test,Passed,
-GPIO,bcpu_bfm_gpio_config_clock_gating_test,,
+GPIO,bcpu_bfm_gpio_config_clock_gating_test,Failed,"SimulError: at 44991.4ns : The input divided clock In_root_Clk does not have a 4 ratio with the In_Clk, or the In_RstN is not synchronous with the In_root_Clk."
 GPIO,bcpu_bfm_gpio_config_pullup_test,Passed,
 GPIO,bcpu_bfm_gpio_config_pad_input_test,Passed,
 GPIO,bcpu_bfm_gpio_test,Passed,
@@ -200,13 +200,11 @@ SCU,bcpu_bfm_scu_clksel_pllref_test,Passed,
 SCU,bcpu_bfm_scu_clksel_rc_osc_test,Passed,
 SCU,acpu_bfm_scu_test,Passed,
 SCU,bcpu_bfm_scu_bootsel_test,Passed,
-SCU,bcpu_real_read_idrev_test,Passed,
-SCU,bcpu_real_scu_read_swrst_test,Passed,
 FCB,bcpu_bfm_fcb_postchksum_test,Failed,"UVM_ERROR [fm_wr_rd_sequence.sv(58) ] { 43680.0ns } [.sequencer@@fcb_postchksum_seq] [Task >> write_data_verify:FAILURE] FCB_BL_MAX_LENGTH :: Address=f10a0020  WData=b  RData=0  Mask=ffffffff
 "
 FCB,bcpu_bfm_fcb_prechksum_test,Failed,"UVM_ERROR [fm_wr_rd_sequence.sv(58) ] { 44126.0ns } [].sequencer@@fcb_prechksum_seq] [Task >> write_data_verify:FAILURE] FCB_BL_MAX_LENGTH :: Address=f10a0020  WData=b  RData=0  Mask=ffffffff
 "
-FCB,bcpu_bfm_fcb_plc_test,,
+FCB,bcpu_bfm_fcb_plc_test,timeout,
 FCB,bcpu_bfm_fcb_nochksum_test,Failed,"UVM_ERROR [fm_wr_rd_sequence.sv(58) ] { 38191.0ns } [0].sequencer@@fcb_nochksum_seq] [Task >> write_data_verify:FAILURE] FCB_BL_MAX_LENGTH :: Address=f10a0020  WData=b  RData=0  Mask=ffffffff
 "
 PCB,bcpu_bfm_pcb_parity_test,Passed,
@@ -229,9 +227,9 @@ GBE,bcpu_gbe_txrx_test,Passed,
 GBE,bcpu_bfm_gbe_int_lpbk_directed_test,Passed,
 GBE,bcpu_bfm_gbe_basic_chain_test,Passed,
 GBE,bcpu_bfm_gbe_ext_lpbk_dma_burst_incr16_test,Passed,
-GBE,bcpu_bfm_gbe_tx_mult_pkts_test,,
+GBE,bcpu_bfm_gbe_tx_mult_pkts_test,timeout,
 GBE,bcpu_bfm_gbe_ext_lpbk_directed_test,Passed,
 GBE,bcpu_bfm_gbe_rst_state_test,Passed,
 GBE,bcpu_bfm_gbe_ext_lpbk_dma_burst_incr8_test,Passed,
-GBE,bcpu_bfm_gbe_ext_lpbk_half_duplex_buffered_test,,
+GBE,bcpu_bfm_gbe_ext_lpbk_half_duplex_buffered_test,timeout,
 GBE,bcpu_bfm_gbe_ext_lpbk_dma_burst_single_test,Passed,

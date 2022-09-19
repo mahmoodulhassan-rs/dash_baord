@@ -238,7 +238,7 @@ dash_table.DataTable(    style_data={
                     "if": {"state": "active"},
                     "backgroundColor": "inherit !important",
                     "border": "1px solid black",
-                    # "color": "gray",
+                    ## "color": "gray",
                 },
                 {
                     "if": {"state": "selected"},

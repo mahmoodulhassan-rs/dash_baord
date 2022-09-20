@@ -43,7 +43,7 @@ theme = {
 }
 server = app.server
 fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category",hole=.2,color_discrete_map={'Tests Passed':'#66CDAA',
-                                 'Tests Under Regression':'purple',                                                                           
+                                 'Tests Under Regression':'#66CDAA',                                                                           
                                  'Tests Failed':'#CD5C5C'})
 fig.update_layout(title={'text': '<b>Pie Chart SoC</b>','y':0.95,
         'x':0.5,

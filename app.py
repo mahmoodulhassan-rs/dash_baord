@@ -120,7 +120,7 @@ title_font_color='black',
 # f1.update_layout(width=int(width))
 
 app.layout = html.Div(style = {
-  'backgroundColor': '#FFFFFF',
+#   'backgroundColor': '#FFFFFF',
   'fontSize' : '100'
 }, children = [
     html.H1(

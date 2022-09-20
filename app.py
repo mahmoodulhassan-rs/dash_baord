@@ -43,7 +43,7 @@ theme = {
 }
 server = app.server
 fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category",hole=.2,color_discrete_map={'Tests Passed':'#66CDAA',
-                                 'Tests Under Regression':'#BA68C8',                                                                           
+                                 'Tests Under Regression':'#FFA500',                                                                           
                                  'Tests Failed':'#CD5C5C'})
 fig.update_layout(title={'text': '<b>Pie Chart SoC</b>','y':0.95,
         'x':0.5,
@@ -233,7 +233,7 @@ dash_table.DataTable(    style_data={
                 {"if": {"row_index": 0}, "backgroundColor": "#00BFFF"},
                 {"if": {"row_index": 1}, "backgroundColor": "#66CDAA"},
                 {"if": {"row_index": 2}, "backgroundColor": "#CD5C5C"},
-                {"if": {"row_index": 3}, "backgroundColor": "#BA68C8"},
+                {"if": {"row_index": 3}, "backgroundColor": "#FFA500"},
                 {
                     "if": {"state": "active"},
                     "backgroundColor": "inherit !important",

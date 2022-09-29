@@ -25,7 +25,7 @@ time_var= df_time_lg["Regression_Run_Time"]
 print(time_var)
 
 df_f = pd.read_csv('css_states.csv')
-df_f = df_f[['IP', 'Test_Name', 'Status', 'Remarks']]
+df_f = df_f[['Sr#','IP', 'Test_Name', 'Status', 'Remarks']]
 
 sram_df_f = pd.read_csv('sram_css_states.csv')
 sram_df_f = sram_df_f[['Test_Name', 'Status', 'Remarks']]
@@ -356,6 +356,7 @@ html.Div(children = 'IP-wise Statistics', style = {
 
     my_table := dash_table.DataTable(
         columns=[
+            {'name': 'Sr#', 'id': 'IP', 'type': 'text'},
             {'name': 'IP', 'id': 'IP', 'type': 'text'},
             {'name': 'Test_Name', 'id': 'Test_Name', 'type': 'text'},
             {'name': 'Status', 'id': 'Status', 'type': 'text'},
@@ -408,6 +409,11 @@ html.Div(children = 'IP-wise Statistics', style = {
 
             ],
         style_cell_conditional=[
+        {'if': {'column_id': 'Sr#'},
+         'width': '10%',
+         'textAlign': 'center',
+            'color': 'BLACK',
+            'fontWeight': 'bold'},
         {'if': {'column_id': 'IP'},
          'width': '10%',
          'textAlign': 'center',

@@ -356,7 +356,7 @@ html.Div(children = 'IP-wise Statistics', style = {
 
     my_table := dash_table.DataTable(
         columns=[
-            {'name': 'Sr#', 'id': 'IP', 'type': 'text'},
+            {'name': 'Sr#', 'id': 'Sr#', 'type': 'text'},
             {'name': 'IP', 'id': 'IP', 'type': 'text'},
             {'name': 'Test_Name', 'id': 'Test_Name', 'type': 'text'},
             {'name': 'Status', 'id': 'Status', 'type': 'text'},

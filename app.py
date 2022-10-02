@@ -586,7 +586,7 @@ dash_table.DataTable(    style_data={
             },
             'backgroundColor': '#0074D9',
             'color': 'white'
-        }
+        },
                 {
                     "if": {"state": "active"},
                     "backgroundColor": "inherit !important",

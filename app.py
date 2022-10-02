@@ -607,12 +607,14 @@ dash_table.DataTable(    style_data={
          'width': '10%',
          'textAlign': 'center',
          'fontWeight': 'bold',
-         'color': '#66CDAA'},
+         'color': 'BLACK'},
         {'if': {'column_id': 'Tests_Failed'},
          'width': '10%',
          'textAlign': 'center',
          'fontWeight': 'bold',
-         'color': 'BLACK'},
+         'color': 'BLACK',
+        'backgroundColor': '#CD5C5C',
+        },
        {'if': {'column_id': 'Timeout'},
          'width': '10%',
          'textAlign': 'center',
@@ -623,6 +625,15 @@ dash_table.DataTable(    style_data={
          'textAlign': 'center',
          'fontWeight': 'bold',
          'color': 'BLACK'},
+#       {
+#             'if': {
+#                 'filter_query': '{Status} contains "Failed"',
+#                 'column_id': 'Status'
+#             },
+#             'backgroundColor': '#CD5C5C',
+#             'color': 'black'
+#          },
+      
     ]),
  dcc.Markdown('''
     [](/)

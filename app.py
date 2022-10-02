@@ -580,10 +580,8 @@ dash_table.DataTable(    style_data={
             style_cell={"color": "gray"},
             # editable=True,
             style_data_conditional=[
-                {"if": {"column_index": 0}, "backgroundColor": "#00BFFF"},
-                {"if": {"column_index": 1}, "backgroundColor": "#66CDAA"},
-                {"if": {"column_index": 2}, "backgroundColor": "#CD5C5C"},
-                {"if": {"column_index": 3}, "backgroundColor": "#FFA500"},
+                {"if": {"row_index": "odd"}, "backgroundColor": "#66CDAA"},
+                {"if": {"row_index": "even"}, "backgroundColor": "#66CDAA"},
                 {
                     "if": {"state": "active"},
                     "backgroundColor": "inherit !important",

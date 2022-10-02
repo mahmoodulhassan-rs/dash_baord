@@ -290,7 +290,7 @@ font={'size': 15},
 title_font_color='black',
 legend=dict(
     yanchor="top",
-    y=0.99,
+    y=1,
     xanchor="left",
     x=0.01,
 ))

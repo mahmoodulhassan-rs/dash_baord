@@ -577,11 +577,9 @@ dash_table.DataTable(    style_data={
     columns=[{"name": i, "id": i} for i in df_pcnt.columns],
         css=[{"selector": "input", "rule": "color:gray"}],
             # data=df.to_dict("records"),
-            style_cell={"color": "gray"},
+            style_cell={"color": "black"},
             # editable=True,
             style_data_conditional=[
-                {"if": {"row_index": "odd"}, "backgroundColor": "#66CDAA"},
-                {"if": {"row_index": "even"}, "backgroundColor": "#66CDAA"},
                 {
                     "if": {"state": "active"},
                     "backgroundColor": "inherit !important",
@@ -593,22 +591,14 @@ dash_table.DataTable(    style_data={
                     "backgroundColor": "inherit !important",
                     # "border": "1px solid blue",
                 },
-        {
-            'if': {
-                'filter_query': '{Numbers} > 0',
-                'row_index': 2,
-            },
-            'backgroundColor': '#CD5C5C',
-            'color': 'black'
-         },
             ],
         style_cell_conditional=[
-        {'if': {'column_id': 'Category'},
+        {'if': {'column_id': 'IP'},
          'width': '10%',
          'textAlign': 'center',
          'fontWeight': 'bold',
          'color': 'BLACK'},
-        {'if': {'column_id': 'Numbers'},
+        {'if': {'column_id': 'Total_Tests'},
          'width': '10%',
          'textAlign': 'center',
          'fontWeight': 'bold',

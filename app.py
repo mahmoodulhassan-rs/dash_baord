@@ -32,7 +32,244 @@ sram_df_f = sram_df_f[['Test_Name', 'Status', 'Remarks']]
 
 fcb_df_f = pd.read_csv('fcb_css_states.csv')
 fcb_df_f = fcb_df_f[['Test_Name', 'Status', 'Remarks']]
+####Percentage Section##
+df_pcnt = pd.DataFrame(columns = ["IP","Total_Tests","Tests_Passed","Tests_Failed","Timeout","Percentage"])
 
+
+passed_uart0=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('UART0') ])
+failed_uart0=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('UART0') ])
+timeout_uart0=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('UART0')])
+
+grand_total_passed=passed_uart0
+#print("UART0 Total Passed",passed_uart0)
+grand_total_failed=failed_uart0
+#print("UART0 Total Failed",failed_uart0)
+grand_total_timeout=timeout_uart0
+#print("UART0 Total Timeout",timeout_uart0)
+sub_total=int(passed_uart0+failed_uart0+timeout_uart0)
+print(sub_total)
+percentage_uart0=(passed_uart0/sub_total)*100
+
+#print("UART0 Pass Percentage",int(percentage_uart0))
+df_pcnt= df_pcnt.append({'IP' : 'UART0', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_uart0) , 'Tests_Failed': int(failed_uart0), 'Timeout' : int(timeout_uart0), 'Percentage' : int(percentage_uart0)},
+        ignore_index = True)
+
+#print(df_pcnt)
+
+passed_uart1=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('UART1') ])
+failed_uart1=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('UART1') ])
+timeout_uart1=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('UART1')])
+
+grand_total_passed=passed_uart1+grand_total_passed
+#print("UART1 Total Passed",passed_uart1)
+grand_total_failed=failed_uart1+grand_total_failed
+#print("UART1 Total Failed",failed_uart1)
+grand_total_timeout=timeout_uart1+grand_total_timeout
+#print("UART1 Total Timeout",timeout_uart1)
+sub_total=passed_uart1+failed_uart1+timeout_uart1
+percentage_uart1=(passed_uart1/sub_total)*100
+
+
+df_pcnt= df_pcnt.append({'IP' : 'UART1', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_uart1) , 'Tests_Failed': int(failed_uart1), 'Timeout' : int(timeout_uart1), 'Percentage' : int(percentage_uart1)},
+        ignore_index = True)
+
+#print(df_pcnt)
+#print("UART1 Pass Percentage",int(percentage_uart1))
+
+passed_i2c=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('I2C') ])
+failed_i2c=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('I2C') ])
+timeout_i2c=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('I2C')])
+
+grand_total_passed=passed_i2c+grand_total_passed
+#print("I2C Total Passed",passed_i2c)
+grand_total_failed=failed_i2c+grand_total_failed
+#print("I2C Total Failed",failed_i2c)
+grand_total_timeout=timeout_i2c+grand_total_timeout
+#print("I2C Total Timeout",timeout_i2c)
+sub_total=passed_i2c+failed_i2c+timeout_i2c
+percentage_i2c=(passed_i2c/sub_total)*100
+
+df_pcnt= df_pcnt.append({'IP' : 'I2C', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_i2c) , 'Tests_Failed': int(failed_i2c), 'Timeout' : int(timeout_i2c), 'Percentage' : int(percentage_i2c)},
+        ignore_index = True)
+
+# print(df_pcnt)
+#print("I2C Pass Percentage",int(percentage_i2c))
+
+passed_spi=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('SPI') ])
+failed_spi=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('SPI') ])
+timeout_spi=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('SPI')])
+
+grand_total_passed=passed_spi+grand_total_passed
+#print("SPI Total Passed",passed_spi)
+grand_total_failed=failed_spi+grand_total_failed
+#print("SPI Total Failed",failed_spi)
+grand_total_timeout=timeout_spi+grand_total_timeout
+#print("SPI Total Timeout",timeout_spi)
+sub_total=passed_spi+failed_spi+timeout_spi
+percentage_spi=(passed_spi/sub_total)*100
+
+df_pcnt= df_pcnt.append({'IP' : 'SPI', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_spi) , 'Tests_Failed': int(failed_spi), 'Timeout' : int(timeout_spi), 'Percentage' : int(percentage_spi)},
+        ignore_index = True)
+
+# print(df_pcnt)
+#print("SPI Pass Percentage",int(percentage_spi))
+
+passed_dma=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('DMA') ])
+failed_dma=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('DMA') ])
+timeout_dma=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('DMA')])
+
+grand_total_passed=passed_dma+grand_total_passed
+#print("DMA Total Passed",passed_dma)
+grand_total_failed=failed_dma+grand_total_failed
+#print("DMA Total Failed",failed_dma)
+grand_total_timeout=timeout_dma+grand_total_timeout
+#print("DMA Total Timeout",timeout_dma)
+sub_total=passed_dma+failed_dma+timeout_dma
+percentage_dma=(passed_dma/sub_total)*100
+
+#print("DMA Pass Percentage",int(percentage_dma))
+df_pcnt= df_pcnt.append({'IP' : 'DMA', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_dma) , 'Tests_Failed': int(failed_dma), 'Timeout' : int(timeout_dma), 'Percentage' : int(percentage_dma)},
+        ignore_index = True)
+passed_gbe=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('GBE') ])
+failed_gbe=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('GBE') ])
+timeout_gbe=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('GBE')])
+
+grand_total_passed=passed_gbe+grand_total_passed
+#print("GBE Total Passed",passed_gbe)
+grand_total_failed=failed_gbe+grand_total_failed
+#print("GBE Total Failed",failed_gbe)
+grand_total_timeout=timeout_gbe+grand_total_timeout
+#print("GBE Total Timeout",timeout_gbe)
+sub_total=passed_gbe+failed_gbe+timeout_gbe
+percentage_gbe=(passed_gbe/sub_total)*100
+
+#print("GBE Pass Percentage",int(percentage_gbe))
+df_pcnt= df_pcnt.append({'IP' : 'GBE', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_gbe) , 'Tests_Failed': int(failed_gbe), 'Timeout' : int(timeout_gbe), 'Percentage' : int(percentage_gbe)},
+        ignore_index = True)
+passed_fcb=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('FCB') ])
+failed_fcb=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('FCB') ])
+timeout_fcb=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('FCB')])
+
+grand_total_passed=passed_fcb+grand_total_passed
+#print("FCB Total Passed",passed_fcb)
+grand_total_failed=failed_fcb+grand_total_failed
+#print("FCB Total Failed",failed_fcb)
+grand_total_timeout=timeout_fcb+grand_total_timeout
+#print("FCB Total Timeout",timeout_fcb)
+sub_total=passed_fcb+failed_fcb+timeout_fcb
+percentage_fcb=(passed_fcb/sub_total)*100
+
+#print("FCB Pass Percentage",int(percentage_fcb))
+df_pcnt= df_pcnt.append({'IP' : 'FCB', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_fcb) , 'Tests_Failed': int(failed_fcb), 'Timeout' : int(timeout_fcb), 'Percentage' : int(percentage_fcb)},
+        ignore_index = True)
+passed_pcb=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('PCB') ])
+failed_pcb=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('PCB') ])
+timeout_pcb=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('PCB')])
+
+grand_total_passed=passed_pcb+grand_total_passed
+#print("PCB Total Passed",passed_pcb)
+grand_total_failed=failed_pcb+grand_total_failed
+#print("PCB Total Failed",failed_pcb)
+grand_total_timeout=timeout_pcb+grand_total_timeout
+#print("PCB Total Timeout",timeout_pcb)
+sub_total=passed_pcb+failed_pcb+timeout_pcb
+percentage_pcb=(passed_pcb/sub_total)*100
+
+#print("PCB Pass Percentage",int(percentage_pcb))
+df_pcnt= df_pcnt.append({'IP' : 'PCB', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_pcb) , 'Tests_Failed': int(failed_pcb), 'Timeout' : int(timeout_pcb), 'Percentage' : int(percentage_pcb)},
+        ignore_index = True)
+passed_gpt=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('GPT') ])
+failed_gpt=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('GPT') ])
+timeout_gpt=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('GPT')])
+
+grand_total_passed=passed_gpt+grand_total_passed
+#print("GPT Total Passed",passed_gpt)
+grand_total_failed=failed_gpt+grand_total_failed
+#print("GPT Total Failed",failed_gpt)
+grand_total_timeout=timeout_gpt+grand_total_timeout
+#print("GPT Total Timeout",timeout_gpt)
+sub_total=passed_gpt+failed_gpt+timeout_gpt
+percentage_gpt=(passed_gpt/sub_total)*100
+
+#print("GPT Pass Percentage",int(percentage_gpt))
+df_pcnt= df_pcnt.append({'IP' : 'GPT', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_gpt) , 'Tests_Failed': int(failed_gpt), 'Timeout' : int(timeout_gpt), 'Percentage' : int(percentage_gpt)},
+        ignore_index = True)
+passed_gpio=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('GPIO') ])
+failed_gpio=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('GPIO') ])
+timeout_gpio=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('GPIO')])
+
+grand_total_passed=passed_gpio+grand_total_passed
+#print("GPIO Total Passed",passed_gpio)
+grand_total_failed=failed_gpio+grand_total_failed
+#print("GPIO Total Failed",failed_gpio)
+grand_total_timeout=timeout_gpio+grand_total_timeout
+#print("GPIO Total Timeout",timeout_gpio)
+sub_total=passed_gpio+failed_gpio+timeout_gpio
+percentage_gpio=(passed_gpio/sub_total)*100
+
+#print("GPIO Pass Percentage",int(percentage_gpio))
+df_pcnt= df_pcnt.append({'IP' : 'GPIO', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_gpio) , 'Tests_Failed': int(failed_gpio), 'Timeout' : int(timeout_gpio), 'Percentage' : int(percentage_gpio)},
+        ignore_index = True)
+passed_wdt=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('WDT') ])
+failed_wdt=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('WDT') ])
+timeout_wdt=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('WDT')])
+
+grand_total_passed=passed_wdt+grand_total_passed
+#print("WDT Total Passed",passed_wdt)
+grand_total_failed=failed_wdt+grand_total_failed
+#print("WDT Total Failed",failed_wdt)
+grand_total_timeout=timeout_wdt+grand_total_timeout
+#print("WDT Total Timeout",timeout_wdt)
+sub_total=passed_wdt+failed_wdt+timeout_wdt
+percentage_wdt=(passed_wdt/sub_total)*100
+
+#print("WDT Pass Percentage",int(percentage_wdt))
+df_pcnt= df_pcnt.append({'IP' : 'WDT', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_wdt) , 'Tests_Failed': int(failed_wdt), 'Timeout' : int(timeout_wdt), 'Percentage' : int(percentage_wdt)},
+        ignore_index = True)
+passed_scu=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('SCU') ])
+failed_scu=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('SCU') ])
+timeout_scu=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('SCU')])
+
+grand_total_passed=passed_scu+grand_total_passed
+#print("SCU Total Passed",passed_scu)
+grand_total_failed=failed_scu+grand_total_failed
+#print("SCU Total Failed",failed_scu)
+grand_total_timeout=timeout_scu+grand_total_timeout
+#print("SCU Total Timeout",timeout_scu)
+sub_total=passed_scu+failed_scu+timeout_scu
+percentage_scu=(passed_scu/sub_total)*100
+
+#print("SCU Pass Percentage",int(percentage_scu))
+df_pcnt= df_pcnt.append({'IP' : 'SCU', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_scu) , 'Tests_Failed': int(failed_scu), 'Timeout' : int(timeout_scu), 'Percentage' : int(percentage_scu)},
+        ignore_index = True)
+passed_sram=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('SRAM') ])
+failed_sram=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('SRAM') ])
+timeout_sram=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('SRAM')])
+
+grand_total_passed=passed_sram+grand_total_passed
+#print("SRAM Total Passed",passed_sram)
+grand_total_failed=failed_sram+grand_total_failed
+#print("SRAM Total Failed",failed_sram)
+grand_total_timeout=timeout_sram+grand_total_timeout
+#print("SRAM Total Timeout",timeout_sram)
+sub_total=passed_sram+failed_sram+timeout_sram
+percentage_sram=(passed_sram/sub_total)*100
+
+#print("SRAM Pass Percentage",int(percentage_sram))
+df_pcnt= df_pcnt.append({'IP' : 'SRAM', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_sram) , 'Tests_Failed': int(failed_sram), 'Timeout' : int(timeout_sram), 'Percentage' : int(percentage_sram)},
+        ignore_index = True)
+# print(df_pcnt)
+grand_total=grand_total_passed+grand_total_failed+grand_total_timeout
+total_percentage=int((grand_total_passed/grand_total)*100)
+#print("Overall Percentage",total_percentage)
+#print("Total Tests Executed",grand_total)
+df_pcnt= df_pcnt.append({'IP' : 'Aggregate', 'Total_Tests' : grand_total , 'Tests_Passed' : int(grand_total_passed) , 'Tests_Failed': int(grand_total_failed), 'Timeout' : int(grand_total_timeout), 'Percentage' : int(total_percentage)},
+        ignore_index = True)
+
+print(df_pcnt)
+
+
+########
 #app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app = Dash(__name__,external_stylesheets=[dbc.themes.CYBORG])
 theme = {
@@ -311,6 +548,99 @@ dash_table.DataTable(    style_data={
  dcc.Markdown('''
     [](/)
 '''),
+html.Div(children = 'IP-wise Summary', style = {
+    'textAlign': 'center',
+    # 'color': '#7FDBFF',
+    'color': 'black',
+    'fontWeight': 'bold',
+    'font-size':'large',
+  }),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+dash_table.DataTable(    style_data={
+        'whiteSpace': 'normal',
+        'height': 'auto',
+        'textAlign': 'center',
+        'lineHeight': '10px',
+    },
+    data=df_pcnt.to_dict('records'), 
+    columns=[{"name": i, "id": i} for i in df_pcnt.columns],
+        css=[{"selector": "input", "rule": "color:gray"}],
+            # data=df.to_dict("records"),
+            style_cell={"color": "gray"},
+            # editable=True,
+            style_data_conditional=[
+                {"if": {"row_index": 0}, "backgroundColor": "#00BFFF"},
+                {"if": {"row_index": 1}, "backgroundColor": "#66CDAA"},
+                {"if": {"row_index": 2}, "backgroundColor": "#CD5C5C"},
+                {"if": {"row_index": 3}, "backgroundColor": "#FFA500"},
+                {
+                    "if": {"state": "active"},
+                    "backgroundColor": "inherit !important",
+                    "border": "1px solid black",
+                    ## "color": "gray",
+                },
+                {
+                    "if": {"state": "selected"},
+                    "backgroundColor": "inherit !important",
+                    # "border": "1px solid blue",
+                },
+        {
+            'if': {
+                'filter_query': '{Numbers} > 0',
+                'row_index': 2,
+            },
+            'backgroundColor': '#CD5C5C',
+            'color': 'black'
+         },
+            ],
+        style_cell_conditional=[
+        {'if': {'column_id': 'Category'},
+         'width': '10%',
+         'textAlign': 'center',
+         'fontWeight': 'bold',
+         'color': 'BLACK'},
+        {'if': {'column_id': 'Numbers'},
+         'width': '10%',
+         'textAlign': 'center',
+         'fontWeight': 'bold',
+         'color': 'BLACK'},
+    ]),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+
 html.Div(children = 'IP-wise Statistics', style = {
     'textAlign': 'center',
     # 'color': '#7FDBFF',

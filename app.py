@@ -607,7 +607,7 @@ dash_table.DataTable(    style_data={
          'width': '10%',
          'textAlign': 'center',
          'fontWeight': 'bold',
-         'color': 'BLACK'},
+         'color': '#66CDAA'},
         {'if': {'column_id': 'Tests_Failed'},
          'width': '10%',
          'textAlign': 'center',

@@ -292,7 +292,7 @@ legend=dict(
     yanchor="top",
     y=1,
     xanchor="left",
-    x=0.01,
+    x=1,
 ))
 
 fig_sram = px.pie(sram_df_grp_dash, values='Numbers', names='Category',color = "Category",hole=.2,color_discrete_map={'Tests Passed':'#66CDAA',
@@ -580,7 +580,13 @@ dash_table.DataTable(    style_data={
             style_cell={"color": "black"},
             # editable=True,
             style_data_conditional=[
-                {"if": {"row_index": 14}, "backgroundColor": "#A52A2A"},
+                {
+            'if': {
+                'filter_query': '{IP} contains "Aggregate"'
+            },
+            'backgroundColor': '#0074D9',
+            'color': 'white'
+        }
                 {
                     "if": {"state": "active"},
                     "backgroundColor": "inherit !important",

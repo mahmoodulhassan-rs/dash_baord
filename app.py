@@ -620,23 +620,23 @@ dash_table.DataTable(    style_data={
             'color': 'black'
          },
                
-          {
-            'if': {
-                'filter_query': '{Percentage} > 80 && {Percentage} < 91 ',
-                 'column_id': 'Percentage'
-            },
-            'backgroundColor': '#f0e68c',
-            'color': 'black'
-         },         
+#           {
+#             'if': {
+#                 'filter_query': '{Percentage} > 80 && {Percentage} < 91 ',
+#                  'column_id': 'Percentage'
+#             },
+#             'backgroundColor': '#f0e68c',
+#             'color': 'black'
+#          },         
           
-          {
-              'if': {
-                'filter_query': '{Percentage} < 80 ',
-                'column_id': 'Percentage'
-            },
-            'backgroundColor': '#CD5C5C',
-            'color': 'black'
-         }, 
+#           {
+#               'if': {
+#                 'filter_query': '{Percentage} < 80 ',
+#                 'column_id': 'Percentage'
+#             },
+#             'backgroundColor': '#CD5C5C',
+#             'color': 'black'
+#          }, 
                      ],
         style_cell_conditional=[
         {'if': {'column_id': 'IP'},

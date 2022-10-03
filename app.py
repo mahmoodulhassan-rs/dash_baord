@@ -580,6 +580,7 @@ dash_table.DataTable(    style_data={
             style_cell={"color": "black"},
             # editable=True,
             style_data_conditional=[
+            {"if": {"row_index": 0}, "backgroundColor": "#F08080"},
                 {
             'if': {
                 'filter_query': '{IP} contains "Aggregate"'
@@ -587,13 +588,13 @@ dash_table.DataTable(    style_data={
             'backgroundColor': '#0074D9',
             'color': 'white'
         },
-                       {
-            'if': {
-                'filter_query': '{IP}'
-            },
-            'backgroundColor': '#F08080',
-            'color': 'white'
-        },
+#                        {
+#             'if': {
+#                 'filter_query': '{IP}'
+#             },
+#             'backgroundColor': '#F08080',
+#             'color': 'white'
+#         },
                 {
                     "if": {"state": "active"},
                     "backgroundColor": "inherit !important",

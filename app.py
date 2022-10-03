@@ -640,7 +640,7 @@ dash_table.DataTable(    style_data={
          'textAlign': 'center',
          'fontWeight': 'bold',
          'color': 'BLACK',
-       'backgroundColor': '#008000 ',
+       'backgroundColor': '#00FF00 ',
       },
       
     ]),

@@ -575,7 +575,7 @@ dash_table.DataTable(    style_data={
     },
     data=df_pcnt.to_dict('records'), 
     columns=[{"name": i, "id": i} for i in df_pcnt.columns],
-            style_cell={'padding': '5px'},
+    style_as_list_view=True,
     style_header={
         'backgroundColor': 'white',
         'fontWeight': 'bold'
@@ -585,7 +585,7 @@ dash_table.DataTable(    style_data={
             style_cell={"color": "black"},
             # editable=True,
             style_data_conditional=[
-            {"if": {"row_index": 0}, "backgroundColor": "#F08080"},
+#             {"if": {"row_index": 0}, "backgroundColor": "#F08080"},
                 {
             'if': {
                 'filter_query': '{IP} contains "Aggregate"'

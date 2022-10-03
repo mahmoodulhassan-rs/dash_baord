@@ -589,7 +589,7 @@ dash_table.DataTable(    style_data={
         },
                        {
             'if': {
-                'filter_query': '{IP} contains "IP"'
+                'filter_query': '{IP}'
             },
             'backgroundColor': '#F08080',
             'color': 'white'

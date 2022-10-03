@@ -587,6 +587,13 @@ dash_table.DataTable(    style_data={
             'backgroundColor': '#0074D9',
             'color': 'white'
         },
+                       {
+            'if': {
+                'filter_query': '{IP}
+            },
+            'backgroundColor': '#F08080',
+            'color': 'white'
+        },
                 {
                     "if": {"state": "active"},
                     "backgroundColor": "inherit !important",

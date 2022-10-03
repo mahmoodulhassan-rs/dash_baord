@@ -611,6 +611,30 @@ dash_table.DataTable(    style_data={
                     "backgroundColor": "inherit !important",
                     # "border": "1px solid blue",
                 },
+                    {
+                           'if': {
+                'filter_query': '{Percentage} > 90',
+            },
+            'backgroundColor': '#66CDAA',
+            'color': 'black'
+         },
+               
+          {
+                           'if': {
+                'filter_query': '{Percentage} > 80 && {Percentage} < 91 ',
+            },
+            'backgroundColor': '#f0e68c',
+            'color': 'black'
+         },         
+          
+          {
+                           'if': {
+                'filter_query': {Percentage} < 80 ',
+            },
+            'backgroundColor': '#CD5C5C',
+            'color': 'black'
+         }, 
+                    
             ],
         style_cell_conditional=[
         {'if': {'column_id': 'IP'},

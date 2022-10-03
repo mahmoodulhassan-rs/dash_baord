@@ -575,6 +575,11 @@ dash_table.DataTable(    style_data={
     },
     data=df_pcnt.to_dict('records'), 
     columns=[{"name": i, "id": i} for i in df_pcnt.columns],
+            style_cell={'padding': '5px'},
+    style_header={
+        'backgroundColor': 'white',
+        'fontWeight': 'bold'
+    },
         css=[{"selector": "input", "rule": "color:gray"}],
             # data=df.to_dict("records"),
             style_cell={"color": "black"},

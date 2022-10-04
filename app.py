@@ -613,7 +613,7 @@ dash_table.DataTable(    style_data={
                 },
                 {
                  'if': {
-                'filter_query': '{Percentage} > 90',
+                'filter_query': '{Percentage} > 89',
                 'column_id': 'Percentage'
             },
             'backgroundColor': '#66CDAA',
@@ -622,7 +622,7 @@ dash_table.DataTable(    style_data={
                
           {
             'if': {
-                'filter_query': '{Percentage} > 79 && {Percentage} < 91',
+                'filter_query': '{Percentage} > 79 && {Percentage} < 90',
                  'column_id': 'Percentage'
             },
             'backgroundColor': '#ffff66',

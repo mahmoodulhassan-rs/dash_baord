@@ -259,6 +259,28 @@ percentage_sram=(passed_sram/sub_total)*100
 df_pcnt= df_pcnt.append({'IP' : 'SRAM', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_sram) , 'Tests_Failed': int(failed_sram), 'Timeout' : int(timeout_sram), 'Percentage' : int(percentage_sram)},
         ignore_index = True)
 # print(df_pcnt)
+
+
+passed_pufcc=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('PUFCC') ])
+failed_pufcc=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('PUFCC') ])
+timeout_pufcc=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('PUFCC')])
+
+grand_total_passed=passed_pufcc+grand_total_passed
+#print("SRAM Total Passed",passed_sram)
+grand_total_failed=failed_pufcc+grand_total_failed
+#print("SRAM Total Failed",failed_sram)
+grand_total_timeout=timeout_pufcc+grand_total_timeout
+#print("SRAM Total Timeout",timeout_sram)
+sub_total=passed_pufcc+failed_pufcc+timeout_pufcc
+percentage_pufcc=(passed_pufcc/sub_total)*100
+
+#print("SRAM Pass Percentage",int(percentage_sram))
+df_pcnt= df_pcnt.append({'IP' : 'SRAM', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_sram) , 'Tests_Failed': int(failed_sram), 'Timeout' : int(timeout_sram), 'Percentage' : int(percentage_sram)},
+        ignore_index = True)
+# print(df_pcnt)
+
+
+
 grand_total=grand_total_passed+grand_total_failed+grand_total_timeout
 total_percentage=int((grand_total_passed/grand_total)*100)
 #print("Overall Percentage",total_percentage)
@@ -327,10 +349,10 @@ legend=dict(
     x=0.00,
 ))
 
-arr =[158,158,158,158,158,158,250,250,250,250,420,439]
-aarr= [21,35,39,56,65,96,139,167,171,195,360,379]
-arr_f= [0,3,3,0,4,15,39,37,30,50,50,37]
-arr_x=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+arr =[158,158,158,158,158,158,250,250,250,250,420,439,462]
+aarr= [21,35,39,56,65,96,139,167,171,195,360,379,409]
+arr_f= [0,3,3,0,4,15,39,37,30,50,50,37,53]
+arr_x=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
 f1 = go.Figure(
     data = [
         go.Scatter(x=arr_x,y=arr, name="Tests Planned",line=dict(color="#00BFFF")),

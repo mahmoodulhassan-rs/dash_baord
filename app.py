@@ -275,7 +275,7 @@ sub_total=passed_pufcc+failed_pufcc+timeout_pufcc
 percentage_pufcc=(passed_pufcc/sub_total)*100
 
 #print("SRAM Pass Percentage",int(percentage_sram))
-df_pcnt= df_pcnt.append({'IP' : 'PUFCC', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_sram) , 'Tests_Failed': int(failed_sram), 'Timeout' : int(timeout_sram), 'Percentage' : int(percentage_sram)},
+df_pcnt= df_pcnt.append({'IP' : 'PUFCC', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_pufcc) , 'Tests_Failed': int(failed_pufcc), 'Timeout' : int(timeout_pufcc), 'Percentage' : int(percentage_pufcc)},
         ignore_index = True)
 # print(df_pcnt)
 

@@ -279,6 +279,64 @@ df_pcnt= df_pcnt.append({'IP' : 'PUFCC', 'Total_Tests' : sub_total , 'Tests_Pass
         ignore_index = True)
 # print(df_pcnt)
 
+### Temporary Insertions ###
+passed_acpu=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('ACPU') ])
+failed_acpu=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('ACPU') ])
+timeout_acpu=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('ACPU')])
+
+grand_total_passed=passed_acpu+grand_total_passed
+
+grand_total_failed=failed_acpu+grand_total_failed
+
+grand_total_timeout=timeout_acpu+grand_total_timeout
+
+sub_total=passed_acpu+failed_acpu+timeout_acpu
+percentage_acpu=(passed_acpu/sub_total)*100
+
+
+df_pcnt= df_pcnt.append({'IP' : 'ACPU', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_acpu) , 'Tests_Failed': int(failed_acpu), 'Timeout' : int(timeout_acpu), 'Percentage' : int(percentage_acpu)},
+        ignore_index = True)
+# print(df_pcnt)
+passed_bcpu=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('BCPU') ])
+failed_bcpu=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('BCPU') ])
+timeout_bcpu=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('BCPU')])
+
+grand_total_passed=passed_bcpu+grand_total_passed
+
+grand_total_failed=failed_bcpu+grand_total_failed
+
+grand_total_timeout=timeout_bcpu+grand_total_timeout
+
+sub_total=passed_bcpu+failed_bcpu+timeout_bcpu
+percentage_bcpu=(passed_bcpu/sub_total)*100
+
+
+df_pcnt= df_pcnt.append({'IP' : 'BCPU', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_bcpu) , 'Tests_Failed': int(failed_bcpu), 'Timeout' : int(timeout_bcpu), 'Percentage' : int(percentage_bcpu)},
+        ignore_index = True)
+
+
+# passed_abcpu=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('ABCPU') ])
+# failed_abcpu=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('ABCPU') ])
+# timeout_abcpu=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('ABCPU')])
+
+# grand_total_passed=passed_abcpu+grand_total_passed
+
+# grand_total_failed=failed_abcpu+grand_total_failed
+
+# grand_total_timeout=timeout_abcpu+grand_total_timeout
+
+# sub_total=passed_abcpu+failed_abcpu+timeout_abcpu
+# percentage_abcpu=(passed_abcpu/sub_total)*100
+
+
+# df_pcnt= df_pcnt.append({'IP' : 'ABCPU', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_abcpu) , 'Tests_Failed': int(failed_abcpu), 'Timeout' : int(timeout_abcpu), 'Percentage' : int(percentage_abcpu)},
+#         ignore_index = True)
+
+
+
+
+
+
 
 
 # passed_ddr3=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('DDR3') ])

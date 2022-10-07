@@ -300,9 +300,42 @@ df_pcnt= df_pcnt.append({'IP' : 'PUFCC', 'Total_Tests' : sub_total , 'Tests_Pass
 # # print(df_pcnt)
 
 
+# passed_ddr4=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('DDR4') ])
+# failed_ddr4=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('DDR4') ])
+# timeout_ddr4=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('DDR4')])
+# grand_total_passed=passed_ddr4+grand_total_passed
+# grand_total_failed=failed_ddr4+grand_total_failed
+# grand_total_timeout=timeout_ddr4+grand_total_timeout
+# sub_total=passed_ddr4+failed_ddr4+timeout_ddr4
+# percentage_ddr4=(passed_ddr4/sub_total)*100
+# df_pcnt= df_pcnt.append({'IP' : 'DDR4', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_ddr4) , 'Tests_Failed': int(failed_ddr4), 'Timeout' : int(timeout_ddr4), 'Percentage' : int(percentage_ddr4)},
+#         ignore_index = True)
+# # print(df_pcnt)
 
 
+# passed_lpddr3=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('LPDDR3') ])
+# failed_lpddr3=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('LPDDR3') ])
+# timeout_lpddr3=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('LPDDR3')])
+# grand_total_passed=passed_lpddr3+grand_total_passed
+# grand_total_failed=failed_lpddr3+grand_total_failed
+# grand_total_timeout=timeout_lpddr3+grand_total_timeout
+# sub_total=passed_lpddr3+failed_lpddr3+timeout_lpddr3
+# percentage_lpddr3=(passed_lpddr3/sub_total)*100
+# df_pcnt= df_pcnt.append({'IP' : 'LPDDR3', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_lpddr3) , 'Tests_Failed': int(failed_lpddr3), 'Timeout' : int(timeout_lpddr3), 'Percentage' : int(percentage_lpddr3)},
+#         ignore_index = True)
+# # print(df_pcnt)
 
+# passed_lpddr4=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('LPDDR4') ])
+# failed_lpddr4=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('LPDDR4') ])
+# timeout_lpddr4=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('LPDDR4')])
+# grand_total_passed=passed_lpddr4+grand_total_passed
+# grand_total_failed=failed_lpddr4+grand_total_failed
+# grand_total_timeout=timeout_lpddr4+grand_total_timeout
+# sub_total=passed_lpddr4+failed_lpddr4+timeout_lpddr4
+# percentage_lpddr4=(passed_lpddr4/sub_total)*100
+# df_pcnt= df_pcnt.append({'IP' : 'LPDDR4', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_lpddr4) , 'Tests_Failed': int(failed_lpddr4), 'Timeout' : int(timeout_lpddr4), 'Percentage' : int(percentage_lpddr4)},
+#         ignore_index = True)
+# # print(df_pcnt)
 
 
 

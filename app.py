@@ -514,8 +514,13 @@ app.layout = html.Div(style = {
     
 #   ),
  html.Div([
-    html.Img(src=b64_image(image_path),alt="RapidSilicon",class="center")                        # passing the direct file path
-]),
+         html.Img(
+            src=b64_image(image_path),
+            style={
+                'height': '50%',
+                'width': '50%'
+            })
+], style={'textAlign': 'center'}),
     html.Div(children = 'Gemini SoC Tests Statistics', style = {
     'textAlign': 'center',
     # 'color': '#7FDBFF',

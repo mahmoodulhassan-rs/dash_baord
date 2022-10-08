@@ -514,7 +514,7 @@ app.layout = html.Div(style = {
     
 #   ),
  html.Div([
-         html.Img(src=image_path',
+         html.Img(src='image_path',
             style={
                 'height': '50%',
                 'width': '50%'

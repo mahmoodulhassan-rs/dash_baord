@@ -516,7 +516,7 @@ app.layout = html.Div(style = {
  html.Div([
          html.Img(src='assets/huge.png',
             style={
-                'height': '50%',
+                'height': '20%',
                 'width': '50%'
             })
 ], style={'textAlign': 'center'}),

@@ -3,7 +3,6 @@ import pandas as pd
 import dash_bootstrap_components as dbc
 import plotly.express as px
 from datetime import datetime
-import base64
 import plotly.graph_objects as go
 df_grp_dash=pd.read_csv('pie_states_dash.csv')
 df_table = pd.read_csv('css_states_dash.csv')
@@ -515,7 +514,7 @@ app.layout = html.Div(style = {
     
 #   ),
  html.Div([
-         html.Img(src=b64_image(image_path),
+         html.Img(src=image_path),
             style={
                 'height': '50%',
                 'width': '50%'

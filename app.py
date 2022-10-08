@@ -408,6 +408,7 @@ df_pcnt= df_pcnt.append({'IP' : 'Aggregate', 'Total_Tests' : grand_total , 'Test
         ignore_index = True)
 
 print(df_pcnt)
+image_path = 'assets/huge.png'
 
 
 ########
@@ -501,17 +502,20 @@ app.layout = html.Div(style = {
 #   'backgroundColor': '#FFFFFF',
   'fontSize' : '100'
 }, children = [
-    html.H1(
-    children = 'RapidSilicon',
-    style = {
-      'textAlign': 'center',
-      'color': 'Crimson',
-      'fontWeight': 'bold',
-      'font-size':'xx-large',
-      'text-decoration-line': 'underline',
-    }
+#     html.H1(
+#     children = 'RapidSilicon',
+#     style = {
+#       'textAlign': 'center',
+#       'color': 'Crimson',
+#       'fontWeight': 'bold',
+#       'font-size':'xx-large',
+#       'text-decoration-line': 'underline',
+#     }
     
-  ),
+#   ),
+ html.Div([
+    html.Img(src=image_path),                          # passing the direct file path
+]),
     html.Div(children = 'Gemini SoC Tests Statistics', style = {
     'textAlign': 'center',
     # 'color': '#7FDBFF',

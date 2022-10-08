@@ -514,10 +514,10 @@ app.layout = html.Div(style = {
     
 #   ),
  html.Div([
-         html.Img(src='assets/huge.png',
+         html.Img(src='assets/RS-Logo-For-White-Background.jpg',
             style={
                 'height': '20%',
-                'width': '50%'
+                'width': '20%'
             })
 ], style={'textAlign': 'center'}),
     html.Div(children = 'Gemini SoC Tests Statistics', style = {

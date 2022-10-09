@@ -339,23 +339,23 @@ df_pcnt= df_pcnt.append({'IP' : 'REAL_BCPU', 'Total_Tests' : sub_total , 'Tests_
 
 
 
-# passed_ddr3=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('DDR3') ])
-# failed_ddr3=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('DDR3') ])
-# timeout_ddr3=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('DDR3')])
+passed_ddr3=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('DDR3') ])
+failed_ddr3=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('DDR3') ])
+timeout_ddr3=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('DDR3')])
 
-# grand_total_passed=passed_ddr3+grand_total_passed
-# #print("SRAM Total Passed",passed_sram)
-# grand_total_failed=failed_ddr3+grand_total_failed
-# #print("SRAM Total Failed",failed_sram)
-# grand_total_timeout=timeout_ddr3+grand_total_timeout
-# #print("SRAM Total Timeout",timeout_sram)
-# sub_total=passed_ddr3+failed_ddr3+timeout_ddr3
-# percentage_ddr3=(passed_ddr3/sub_total)*100
+grand_total_passed=passed_ddr3+grand_total_passed
+#print("SRAM Total Passed",passed_sram)
+grand_total_failed=failed_ddr3+grand_total_failed
+#print("SRAM Total Failed",failed_sram)
+grand_total_timeout=timeout_ddr3+grand_total_timeout
+#print("SRAM Total Timeout",timeout_sram)
+sub_total=passed_ddr3+failed_ddr3+timeout_ddr3
+percentage_ddr3=(passed_ddr3/sub_total)*100
 
-# #print("SRAM Pass Percentage",int(percentage_sram))
-# df_pcnt= df_pcnt.append({'IP' : 'DDR3', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_ddr3) , 'Tests_Failed': int(failed_ddr3), 'Timeout' : int(timeout_ddr3), 'Percentage' : int(percentage_ddr3)},
-#         ignore_index = True)
-# # print(df_pcnt)
+#print("SRAM Pass Percentage",int(percentage_sram))
+df_pcnt= df_pcnt.append({'IP' : 'DDR3', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_ddr3) , 'Tests_Failed': int(failed_ddr3), 'Timeout' : int(timeout_ddr3), 'Percentage' : int(percentage_ddr3)},
+        ignore_index = True)
+# print(df_pcnt)
 
 
 # passed_ddr4=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('DDR4') ])
@@ -371,17 +371,17 @@ df_pcnt= df_pcnt.append({'IP' : 'REAL_BCPU', 'Total_Tests' : sub_total , 'Tests_
 # # print(df_pcnt)
 
 
-# passed_lpddr3=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('LPDDR3') ])
-# failed_lpddr3=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('LPDDR3') ])
-# timeout_lpddr3=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('LPDDR3')])
-# grand_total_passed=passed_lpddr3+grand_total_passed
-# grand_total_failed=failed_lpddr3+grand_total_failed
-# grand_total_timeout=timeout_lpddr3+grand_total_timeout
-# sub_total=passed_lpddr3+failed_lpddr3+timeout_lpddr3
-# percentage_lpddr3=(passed_lpddr3/sub_total)*100
-# df_pcnt= df_pcnt.append({'IP' : 'LPDDR3', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_lpddr3) , 'Tests_Failed': int(failed_lpddr3), 'Timeout' : int(timeout_lpddr3), 'Percentage' : int(percentage_lpddr3)},
-#         ignore_index = True)
-# # print(df_pcnt)
+passed_lpddr3=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('LPDDR3') ])
+failed_lpddr3=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('LPDDR3') ])
+timeout_lpddr3=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('LPDDR3')])
+grand_total_passed=passed_lpddr3+grand_total_passed
+grand_total_failed=failed_lpddr3+grand_total_failed
+grand_total_timeout=timeout_lpddr3+grand_total_timeout
+sub_total=passed_lpddr3+failed_lpddr3+timeout_lpddr3
+percentage_lpddr3=(passed_lpddr3/sub_total)*100
+df_pcnt= df_pcnt.append({'IP' : 'LPDDR3', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_lpddr3) , 'Tests_Failed': int(failed_lpddr3), 'Timeout' : int(timeout_lpddr3), 'Percentage' : int(percentage_lpddr3)},
+        ignore_index = True)
+# print(df_pcnt)
 
 # passed_lpddr4=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('LPDDR4') ])
 # failed_lpddr4=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('LPDDR4') ])
@@ -469,9 +469,9 @@ legend=dict(
     x=0.00,
 ))
 
-arr =[158,158,158,158,158,158,250,250,250,250,420,439,478]
-aarr= [21,35,39,56,65,96,139,167,171,195,360,379,443]
-arr_f= [0,3,3,0,4,15,39,37,30,50,50,37,26]
+arr =[158,158,158,158,158,158,250,250,250,250,420,439,525]
+aarr= [21,35,39,56,65,96,139,167,171,195,360,379,487]
+arr_f= [0,3,3,0,4,15,39,37,30,50,50,37,29]
 arr_x=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
 f1 = go.Figure(
     data = [

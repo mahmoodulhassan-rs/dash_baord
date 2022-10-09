@@ -1,5 +1,6 @@
 from dash import Dash, dash_table, dcc, html, Input, Output, callback
 import pandas as pd
+import math
 import dash_bootstrap_components as dbc
 import plotly.express as px
 from datetime import datetime
@@ -49,7 +50,7 @@ grand_total_timeout=timeout_uart0
 sub_total=int(passed_uart0+failed_uart0+timeout_uart0)
 print(sub_total)
 percentage_uart0=(passed_uart0/sub_total)*100
-
+percentage_uart0=math.ceil(percentage_uart0)
 #print("UART0 Pass Percentage",int(percentage_uart0))
 df_pcnt= df_pcnt.append({'IP' : 'UART0', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_uart0) , 'Tests_Failed': int(failed_uart0), 'Timeout' : int(timeout_uart0), 'Percentage' : int(percentage_uart0)},
         ignore_index = True)
@@ -68,7 +69,7 @@ grand_total_timeout=timeout_uart1+grand_total_timeout
 #print("UART1 Total Timeout",timeout_uart1)
 sub_total=passed_uart1+failed_uart1+timeout_uart1
 percentage_uart1=(passed_uart1/sub_total)*100
-
+percentage_uart1=math.ceil(percentage_uart1)
 
 df_pcnt= df_pcnt.append({'IP' : 'UART1', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_uart1) , 'Tests_Failed': int(failed_uart1), 'Timeout' : int(timeout_uart1), 'Percentage' : int(percentage_uart1)},
         ignore_index = True)
@@ -88,7 +89,7 @@ grand_total_timeout=timeout_i2c+grand_total_timeout
 #print("I2C Total Timeout",timeout_i2c)
 sub_total=passed_i2c+failed_i2c+timeout_i2c
 percentage_i2c=(passed_i2c/sub_total)*100
-
+percentage_i2c=math.ceil(percentage_i2c)
 df_pcnt= df_pcnt.append({'IP' : 'I2C', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_i2c) , 'Tests_Failed': int(failed_i2c), 'Timeout' : int(timeout_i2c), 'Percentage' : int(percentage_i2c)},
         ignore_index = True)
 
@@ -107,7 +108,7 @@ grand_total_timeout=timeout_spi+grand_total_timeout
 #print("SPI Total Timeout",timeout_spi)
 sub_total=passed_spi+failed_spi+timeout_spi
 percentage_spi=(passed_spi/sub_total)*100
-
+percentage_spi=math.ceil(percentage_spi)
 df_pcnt= df_pcnt.append({'IP' : 'SPI', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_spi) , 'Tests_Failed': int(failed_spi), 'Timeout' : int(timeout_spi), 'Percentage' : int(percentage_spi)},
         ignore_index = True)
 
@@ -126,7 +127,7 @@ grand_total_timeout=timeout_dma+grand_total_timeout
 #print("DMA Total Timeout",timeout_dma)
 sub_total=passed_dma+failed_dma+timeout_dma
 percentage_dma=(passed_dma/sub_total)*100
-
+percentage_dma=math.ceil(percentage_dma)
 #print("DMA Pass Percentage",int(percentage_dma))
 df_pcnt= df_pcnt.append({'IP' : 'DMA', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_dma) , 'Tests_Failed': int(failed_dma), 'Timeout' : int(timeout_dma), 'Percentage' : int(percentage_dma)},
         ignore_index = True)
@@ -142,7 +143,7 @@ grand_total_timeout=timeout_gbe+grand_total_timeout
 #print("GBE Total Timeout",timeout_gbe)
 sub_total=passed_gbe+failed_gbe+timeout_gbe
 percentage_gbe=(passed_gbe/sub_total)*100
-
+percentage_gbe=math.ceil(percentage_gbe)
 #print("GBE Pass Percentage",int(percentage_gbe))
 df_pcnt= df_pcnt.append({'IP' : 'GBE', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_gbe) , 'Tests_Failed': int(failed_gbe), 'Timeout' : int(timeout_gbe), 'Percentage' : int(percentage_gbe)},
         ignore_index = True)
@@ -158,7 +159,7 @@ grand_total_timeout=timeout_fcb+grand_total_timeout
 #print("FCB Total Timeout",timeout_fcb)
 sub_total=passed_fcb+failed_fcb+timeout_fcb
 percentage_fcb=(passed_fcb/sub_total)*100
-
+percentage_fcb=math.ceil(percentage_fcb)
 #print("FCB Pass Percentage",int(percentage_fcb))
 df_pcnt= df_pcnt.append({'IP' : 'FCB', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_fcb) , 'Tests_Failed': int(failed_fcb), 'Timeout' : int(timeout_fcb), 'Percentage' : int(percentage_fcb)},
         ignore_index = True)
@@ -174,7 +175,7 @@ grand_total_timeout=timeout_pcb+grand_total_timeout
 #print("PCB Total Timeout",timeout_pcb)
 sub_total=passed_pcb+failed_pcb+timeout_pcb
 percentage_pcb=(passed_pcb/sub_total)*100
-
+percentage_pcb=math.ceil(percentage_pcb)
 #print("PCB Pass Percentage",int(percentage_pcb))
 df_pcnt= df_pcnt.append({'IP' : 'PCB', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_pcb) , 'Tests_Failed': int(failed_pcb), 'Timeout' : int(timeout_pcb), 'Percentage' : int(percentage_pcb)},
         ignore_index = True)
@@ -190,7 +191,7 @@ grand_total_timeout=timeout_gpt+grand_total_timeout
 #print("GPT Total Timeout",timeout_gpt)
 sub_total=passed_gpt+failed_gpt+timeout_gpt
 percentage_gpt=(passed_gpt/sub_total)*100
-
+percentage_gpt=math.ceil(percentage_gpt)
 #print("GPT Pass Percentage",int(percentage_gpt))
 df_pcnt= df_pcnt.append({'IP' : 'GPT', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_gpt) , 'Tests_Failed': int(failed_gpt), 'Timeout' : int(timeout_gpt), 'Percentage' : int(percentage_gpt)},
         ignore_index = True)
@@ -206,7 +207,7 @@ grand_total_timeout=timeout_gpio+grand_total_timeout
 #print("GPIO Total Timeout",timeout_gpio)
 sub_total=passed_gpio+failed_gpio+timeout_gpio
 percentage_gpio=(passed_gpio/sub_total)*100
-
+percentage_gpio=math.ceil(percentage_gpio)
 #print("GPIO Pass Percentage",int(percentage_gpio))
 df_pcnt= df_pcnt.append({'IP' : 'GPIO', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_gpio) , 'Tests_Failed': int(failed_gpio), 'Timeout' : int(timeout_gpio), 'Percentage' : int(percentage_gpio)},
         ignore_index = True)
@@ -222,7 +223,7 @@ grand_total_timeout=timeout_wdt+grand_total_timeout
 #print("WDT Total Timeout",timeout_wdt)
 sub_total=passed_wdt+failed_wdt+timeout_wdt
 percentage_wdt=(passed_wdt/sub_total)*100
-
+percentage_wdt=math.ceil(percentage_wdt)
 #print("WDT Pass Percentage",int(percentage_wdt))
 df_pcnt= df_pcnt.append({'IP' : 'WDT', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_wdt) , 'Tests_Failed': int(failed_wdt), 'Timeout' : int(timeout_wdt), 'Percentage' : int(percentage_wdt)},
         ignore_index = True)
@@ -238,7 +239,7 @@ grand_total_timeout=timeout_scu+grand_total_timeout
 #print("SCU Total Timeout",timeout_scu)
 sub_total=passed_scu+failed_scu+timeout_scu
 percentage_scu=(passed_scu/sub_total)*100
-
+percentage_scu=math.ceil(percentage_scu)
 #print("SCU Pass Percentage",int(percentage_scu))
 df_pcnt= df_pcnt.append({'IP' : 'SCU', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_scu) , 'Tests_Failed': int(failed_scu), 'Timeout' : int(timeout_scu), 'Percentage' : int(percentage_scu)},
         ignore_index = True)
@@ -254,6 +255,7 @@ grand_total_timeout=timeout_sram+grand_total_timeout
 #print("SRAM Total Timeout",timeout_sram)
 sub_total=passed_sram+failed_sram+timeout_sram
 percentage_sram=(passed_sram/sub_total)*100
+percentage_sram=math.ceil(percentage_sram)
 
 #print("SRAM Pass Percentage",int(percentage_sram))
 df_pcnt= df_pcnt.append({'IP' : 'SRAM', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_sram) , 'Tests_Failed': int(failed_sram), 'Timeout' : int(timeout_sram), 'Percentage' : int(percentage_sram)},
@@ -273,7 +275,7 @@ grand_total_timeout=timeout_pufcc+grand_total_timeout
 #print("SRAM Total Timeout",timeout_sram)
 sub_total=passed_pufcc+failed_pufcc+timeout_pufcc
 percentage_pufcc=(passed_pufcc/sub_total)*100
-
+percentage_pufcc=math.ceil(percentage_pufcc)
 #print("SRAM Pass Percentage",int(percentage_sram))
 df_pcnt= df_pcnt.append({'IP' : 'PUFCC', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_pufcc) , 'Tests_Failed': int(failed_pufcc), 'Timeout' : int(timeout_pufcc), 'Percentage' : int(percentage_pufcc)},
         ignore_index = True)
@@ -292,7 +294,7 @@ grand_total_timeout=timeout_acpu+grand_total_timeout
 
 sub_total=passed_acpu+failed_acpu+timeout_acpu
 percentage_acpu=(passed_acpu/sub_total)*100
-
+percentage_acpu=math.ceil(percentage_acpu)
 
 df_pcnt= df_pcnt.append({'IP' : 'REAL_ACPU', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_acpu) , 'Tests_Failed': int(failed_acpu), 'Timeout' : int(timeout_acpu), 'Percentage' : int(percentage_acpu)},
         ignore_index = True)
@@ -309,7 +311,7 @@ grand_total_timeout=timeout_bcpu+grand_total_timeout
 
 sub_total=passed_bcpu+failed_bcpu+timeout_bcpu
 percentage_bcpu=(passed_bcpu/sub_total)*100
-
+percentage_bcpu=math.ceil(percentage_bcpu)
 
 df_pcnt= df_pcnt.append({'IP' : 'REAL_BCPU', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_bcpu) , 'Tests_Failed': int(failed_bcpu), 'Timeout' : int(timeout_bcpu), 'Percentage' : int(percentage_bcpu)},
         ignore_index = True)
@@ -327,7 +329,7 @@ df_pcnt= df_pcnt.append({'IP' : 'REAL_BCPU', 'Total_Tests' : sub_total , 'Tests_
 
 # sub_total=passed_abcpu+failed_abcpu+timeout_abcpu
 # percentage_abcpu=(passed_abcpu/sub_total)*100
-
+# percentage_abcpu=math.ceil(percentage_abcpu)
 
 # df_pcnt= df_pcnt.append({'IP' : 'REAL_ABCPU', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_abcpu) , 'Tests_Failed': int(failed_abcpu), 'Timeout' : int(timeout_abcpu), 'Percentage' : int(percentage_abcpu)},
 #         ignore_index = True)
@@ -351,6 +353,7 @@ grand_total_timeout=timeout_ddr3+grand_total_timeout
 #print("SRAM Total Timeout",timeout_sram)
 sub_total=passed_ddr3+failed_ddr3+timeout_ddr3
 percentage_ddr3=(passed_ddr3/sub_total)*100
+percentage_ddr3=math.ceil(percentage_ddr3)
 
 #print("SRAM Pass Percentage",int(percentage_sram))
 df_pcnt= df_pcnt.append({'IP' : 'DDR3', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_ddr3) , 'Tests_Failed': int(failed_ddr3), 'Timeout' : int(timeout_ddr3), 'Percentage' : int(percentage_ddr3)},
@@ -366,6 +369,7 @@ df_pcnt= df_pcnt.append({'IP' : 'DDR3', 'Total_Tests' : sub_total , 'Tests_Passe
 # grand_total_timeout=timeout_ddr4+grand_total_timeout
 # sub_total=passed_ddr4+failed_ddr4+timeout_ddr4
 # percentage_ddr4=(passed_ddr4/sub_total)*100
+# percentage_ddr4=math.ceil(percentage_ddr4)
 # df_pcnt= df_pcnt.append({'IP' : 'DDR4', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_ddr4) , 'Tests_Failed': int(failed_ddr4), 'Timeout' : int(timeout_ddr4), 'Percentage' : int(percentage_ddr4)},
 #         ignore_index = True)
 # # print(df_pcnt)
@@ -379,6 +383,7 @@ grand_total_failed=failed_lpddr3+grand_total_failed
 grand_total_timeout=timeout_lpddr3+grand_total_timeout
 sub_total=passed_lpddr3+failed_lpddr3+timeout_lpddr3
 percentage_lpddr3=(passed_lpddr3/sub_total)*100
+percentage_lpddr3=math.ceil(percentage_lpddr3)
 df_pcnt= df_pcnt.append({'IP' : 'LPDDR3', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_lpddr3) , 'Tests_Failed': int(failed_lpddr3), 'Timeout' : int(timeout_lpddr3), 'Percentage' : int(percentage_lpddr3)},
         ignore_index = True)
 # print(df_pcnt)
@@ -391,6 +396,7 @@ df_pcnt= df_pcnt.append({'IP' : 'LPDDR3', 'Total_Tests' : sub_total , 'Tests_Pas
 # grand_total_timeout=timeout_lpddr4+grand_total_timeout
 # sub_total=passed_lpddr4+failed_lpddr4+timeout_lpddr4
 # percentage_lpddr4=(passed_lpddr4/sub_total)*100
+# percentage_lpddr4=math.ceil(percentage_lpddr4)
 # df_pcnt= df_pcnt.append({'IP' : 'LPDDR4', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_lpddr4) , 'Tests_Failed': int(failed_lpddr4), 'Timeout' : int(timeout_lpddr4), 'Percentage' : int(percentage_lpddr4)},
 #         ignore_index = True)
 # # print(df_pcnt)
@@ -402,6 +408,7 @@ df_pcnt= df_pcnt.append({'IP' : 'LPDDR3', 'Total_Tests' : sub_total , 'Tests_Pas
 
 grand_total=grand_total_passed+grand_total_failed+grand_total_timeout
 total_percentage=int((grand_total_passed/grand_total)*100)
+total_percentage=math.ceil(total_percentage)
 #print("Overall Percentage",total_percentage)
 #print("Total Tests Executed",grand_total)
 df_pcnt= df_pcnt.append({'IP' : 'Aggregate', 'Total_Tests' : grand_total , 'Tests_Passed' : int(grand_total_passed) , 'Tests_Failed': int(grand_total_failed), 'Timeout' : int(grand_total_timeout), 'Percentage' : int(total_percentage)},

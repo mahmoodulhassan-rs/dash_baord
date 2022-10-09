@@ -339,9 +339,9 @@ df_pcnt= df_pcnt.append({'IP' : 'REAL_BCPU', 'Total_Tests' : sub_total , 'Tests_
 
 
 
-passed_ddr3=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('DDR3') ])
-failed_ddr3=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('DDR3') ])
-timeout_ddr3=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('DDR3')])
+passed_ddr3=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('^DDR3') ])
+failed_ddr3=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('^DDR3') ])
+timeout_ddr3=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('^DDR3')])
 
 grand_total_passed=passed_ddr3+grand_total_passed
 #print("SRAM Total Passed",passed_sram)

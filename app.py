@@ -143,7 +143,7 @@ grand_total_timeout=timeout_gbe+grand_total_timeout
 #print("GBE Total Timeout",timeout_gbe)
 sub_total=passed_gbe+failed_gbe+timeout_gbe
 percentage_gbe=(passed_gbe/sub_total)*100
-percentage_gbe=math.ceil(percentage_gbe)
+# percentage_gbe=math.ceil(percentage_gbe)
 #print("GBE Pass Percentage",int(percentage_gbe))
 df_pcnt= df_pcnt.append({'IP' : 'GBE', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_gbe) , 'Tests_Failed': int(failed_gbe), 'Timeout' : int(timeout_gbe), 'Percentage' : int(percentage_gbe)},
         ignore_index = True)
@@ -901,7 +901,7 @@ html.Div(children = 'IP-wise Statistics', style = {
     [](/)
 '''),
     row_drop := dcc.Dropdown(value=10, clearable=False, style={'width':'35%'},
-                             options=[10, 25, 50, 100]),
+                             options=[10, 25, 50, 100, 150, 200]),
         dbc.Row([
         dbc.Col([
             IP_drop := dcc.Dropdown([x for x in sorted(df_f.IP.unique())])

@@ -361,9 +361,9 @@ df_pcnt= df_pcnt.append({'IP' : 'DDR3', 'Total_Tests' : sub_total , 'Tests_Passe
 # print(df_pcnt)
 
 
-# passed_ddr4=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('DDR4') ])
-# failed_ddr4=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('DDR4') ])
-# timeout_ddr4=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('DDR4')])
+# passed_ddr4=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('^DDR4') ])
+# failed_ddr4=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('^DDR4') ])
+# timeout_ddr4=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('^DDR4')])
 # grand_total_passed=passed_ddr4+grand_total_passed
 # grand_total_failed=failed_ddr4+grand_total_failed
 # grand_total_timeout=timeout_ddr4+grand_total_timeout
@@ -401,7 +401,18 @@ df_pcnt= df_pcnt.append({'IP' : 'LPDDR3', 'Total_Tests' : sub_total , 'Tests_Pas
 #         ignore_index = True)
 # # print(df_pcnt)
 
-
+passed_usb=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('USB') ])
+failed_usb=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('USB') ])
+timeout_usb=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('USB')])
+grand_total_passed=passed_usb+grand_total_passed
+grand_total_failed=failed_usb+grand_total_failed
+grand_total_timeout=timeout_usb+grand_total_timeout
+sub_total=passed_usb+failed_usb+timeout_usb
+percentage_usb=(passed_usb/sub_total)*100
+percentage_usb=math.ceil(percentage_usb)
+df_pcnt= df_pcnt.append({'IP' : 'USB', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_usb) , 'Tests_Failed': int(failed_usb), 'Timeout' : int(timeout_usb), 'Percentage' : int(percentage_usb)},
+        ignore_index = True)
+# print(df_pcnt)
 
 
 

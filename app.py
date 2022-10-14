@@ -644,6 +644,11 @@ dash_table.DataTable(    style_data={
     data=df_table.to_dict('records'),
     export_format="csv",
     columns=[{"name": i, "id": i} for i in df_table.columns],
+            style_header={
+        'backgroundColor': 'black',
+        'fontWeight': 'bold',
+        'color': 'WHITE'
+    },
         css=[{"selector": "input", "rule": "color:gray"}],
             # data=df.to_dict("records"),
             style_cell={"color": "gray"},
@@ -684,7 +689,8 @@ dash_table.DataTable(    style_data={
          'textAlign': 'center',
          'fontWeight': 'bold',
          'color': 'BLACK'},
-    ]),
+    ],
+ style_as_list_view=True),
  dcc.Markdown('''
     [](/)
 '''),
@@ -759,9 +765,10 @@ dash_table.DataTable(    style_data={
     export_format="csv",
     columns=[{"name": i, "id": i} for i in df_pcnt.columns],
     style_as_list_view=True,
-    style_header={
-        'backgroundColor': 'white',
-        'fontWeight': 'bold'
+            style_header={
+        'backgroundColor': 'black',
+        'fontWeight': 'bold',
+        'color': 'WHITE'
     },
         css=[{"selector": "input", "rule": "color:gray"}],
             # data=df.to_dict("records"),
@@ -944,6 +951,11 @@ html.Div(children = 'IP-wise Statistics', style = {
         ],
         style_table={'overflowX': 'auto'},
         data=df_f.to_dict('records'),
+        style_header={
+        'backgroundColor': 'black',
+        'fontWeight': 'bold',
+        'color': 'WHITE'
+    },
         export_format="csv",
         filter_action='native',
         page_size=10,

@@ -880,6 +880,13 @@ dash_table.DataTable(    style_data={
          'color': 'BLACK',
        'backgroundColor': '#00FF00 ',
       },
+            {'if': {'column_id': 'Toggle_Coverage'},
+         'width': '10%',
+         'textAlign': 'center',
+         'fontWeight': 'bold',
+         'color': 'BLACK',
+       'backgroundColor': '#00FF00 ',
+      },
       
     ]),
  dcc.Markdown('''

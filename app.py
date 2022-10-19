@@ -439,6 +439,15 @@ total_percentage=math.ceil(total_percentage)
 df_pcnt= df_pcnt.append({'IP' : 'Aggregate', 'Total_Tests' : grand_total , 'Tests_Passed' : int(grand_total_passed) , 'Tests_Failed': int(grand_total_failed), 'Timeout' : int(grand_total_timeout), 'Percentage' : int(total_percentage)},
         ignore_index = True)
 
+
+
+
+
+tog_cover = ['99.86', '100.00', '96.34', '99.00','99.81','96.27','88.80','88.92','99.92','75.89','acpu=73.33,bcpu=73.33','NA','84.47,','84.71','NA','74.22'] 
+
+df_pcnt["Toggle_Coverage"]= tog_cover
+
+
 print(df_pcnt)
 image_path = 'assets/huge.png'
 

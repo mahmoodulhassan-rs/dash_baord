@@ -774,6 +774,7 @@ dash_table.DataTable(    style_data={
     export_format="csv",
     columns=[{"name": i, "id": i} for i in df_pcnt.columns],
     style_as_list_view=True,
+    style_cell={"whiteSpace": "pre-line"},
             style_header={
         'backgroundColor': 'black',
         'fontWeight': 'bold',

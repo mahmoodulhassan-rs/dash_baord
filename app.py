@@ -774,7 +774,7 @@ dash_table.DataTable(    style_data={
     export_format="csv",
     columns=[{"name": i, "id": i} for i in df_pcnt.columns],
     style_as_list_view=True,
-    style_cell={"whiteSpace": "pre-line"},
+    # style_cell={"whiteSpace": "pre-line"},
             style_header={
         'backgroundColor': 'black',
         'fontWeight': 'bold',
@@ -782,7 +782,9 @@ dash_table.DataTable(    style_data={
     },
         css=[{"selector": "input", "rule": "color:gray"}],
             # data=df.to_dict("records"),
-            style_cell={"color": "black"},
+            style_cell=[{"color": "black"},
+            {"whiteSpace": "pre-line"},
+            ],
             # editable=True,
             style_data_conditional=[
 #             {"if": {"row_index": 0}, "backgroundColor": "#F08080"},

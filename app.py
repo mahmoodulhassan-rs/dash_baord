@@ -282,39 +282,39 @@ df_pcnt= df_pcnt.append({'IP' : 'PUFCC', 'Total_Tests' : sub_total , 'Tests_Pass
 # print(df_pcnt)
 
 # ### Temporary Insertions ###
-# passed_acpu=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('REAL_ACPU') ])
-# failed_acpu=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('REAL_ACPU') ])
-# timeout_acpu=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('REAL_ACPU')])
+passed_acpu=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('REAL_ACPU') ])
+failed_acpu=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('REAL_ACPU') ])
+timeout_acpu=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('REAL_ACPU')])
 
-# grand_total_passed=passed_acpu+grand_total_passed
+grand_total_passed=passed_acpu+grand_total_passed
 
-# grand_total_failed=failed_acpu+grand_total_failed
+grand_total_failed=failed_acpu+grand_total_failed
 
-# grand_total_timeout=timeout_acpu+grand_total_timeout
+grand_total_timeout=timeout_acpu+grand_total_timeout
 
-# sub_total=passed_acpu+failed_acpu+timeout_acpu
-# percentage_acpu=(passed_acpu/sub_total)*100
-# percentage_acpu=math.ceil(percentage_acpu)
+sub_total=passed_acpu+failed_acpu+timeout_acpu
+percentage_acpu=(passed_acpu/sub_total)*100
+percentage_acpu=math.ceil(percentage_acpu)
 
-# df_pcnt= df_pcnt.append({'IP' : 'REAL_ACPU', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_acpu) , 'Tests_Failed': int(failed_acpu), 'Timeout' : int(timeout_acpu), 'Percentage' : int(percentage_acpu)},
-#         ignore_index = True)
-# # print(df_pcnt)
-# passed_bcpu=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('REAL_BCPU') ])
-# failed_bcpu=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('REAL_BCPU') ])
-# timeout_bcpu=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('REAL_BCPU')])
+df_pcnt= df_pcnt.append({'IP' : 'REAL_ACPU', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_acpu) , 'Tests_Failed': int(failed_acpu), 'Timeout' : int(timeout_acpu), 'Percentage' : int(percentage_acpu)},
+        ignore_index = True)
+# print(df_pcnt)
+passed_bcpu=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('REAL_BCPU') ])
+failed_bcpu=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('REAL_BCPU') ])
+timeout_bcpu=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('REAL_BCPU')])
 
-# grand_total_passed=passed_bcpu+grand_total_passed
+grand_total_passed=passed_bcpu+grand_total_passed
 
-# grand_total_failed=failed_bcpu+grand_total_failed
+grand_total_failed=failed_bcpu+grand_total_failed
 
-# grand_total_timeout=timeout_bcpu+grand_total_timeout
+grand_total_timeout=timeout_bcpu+grand_total_timeout
 
-# sub_total=passed_bcpu+failed_bcpu+timeout_bcpu
-# percentage_bcpu=(passed_bcpu/sub_total)*100
-# percentage_bcpu=math.ceil(percentage_bcpu)
+sub_total=passed_bcpu+failed_bcpu+timeout_bcpu
+percentage_bcpu=(passed_bcpu/sub_total)*100
+percentage_bcpu=math.ceil(percentage_bcpu)
 
-# df_pcnt= df_pcnt.append({'IP' : 'REAL_BCPU', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_bcpu) , 'Tests_Failed': int(failed_bcpu), 'Timeout' : int(timeout_bcpu), 'Percentage' : int(percentage_bcpu)},
-#         ignore_index = True)
+df_pcnt= df_pcnt.append({'IP' : 'REAL_BCPU', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_bcpu) , 'Tests_Failed': int(failed_bcpu), 'Timeout' : int(timeout_bcpu), 'Percentage' : int(percentage_bcpu)},
+        ignore_index = True)
 
 
 # passed_abcpu=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('REAL_ABCPU') ])
@@ -443,9 +443,9 @@ df_pcnt= df_pcnt.append({'IP' : 'Aggregate', 'Total_Tests' : grand_total , 'Test
 
 
 
-tog_cover = ['99.86', '100.00', '96.34', '99.00','99.81','96.27','88.80','88.92','99.92','75.89','100','NA','84.47','84.71','NA','74.22','NA'] 
+# tog_cover = ['99.86', '100.00', '96.34', '99.00','99.81','96.27','88.80','88.92','99.92','75.89','100','NA','84.47','84.71','NA','74.22','NA'] 
 
-df_pcnt["Toggle_Coverage"]= tog_cover
+# df_pcnt["Toggle_Coverage"]= tog_cover
 
 
 print(df_pcnt)
@@ -510,10 +510,10 @@ legend=dict(
     x=0.00,
 ))
 
-arr =[158,158,158,158,158,158,250,250,250,250,420,439,647,633]
-aarr= [21,35,39,56,65,96,139,167,171,195,360,379,600,588]
+arr =[158,158,158,158,158,158,250,250,250,250,420,439,647,633,647]
+aarr= [21,35,39,56,65,96,139,167,171,195,360,379,600,588,612]
 arr_f= [0,3,3,0,4,15,39,37,30,50,50,37,27,25]
-arr_x=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17.18]
+arr_x=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
 f1 = go.Figure(
     data = [
         go.Scatter(x=arr_x,y=arr, name="Tests Planned",line=dict(color="#00BFFF")),

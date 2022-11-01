@@ -466,7 +466,7 @@ fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category",
                                  'Tests Under Regression':'#FFA500',                                                                           
                                  'Tests Failed':'#CD5C5C'})
 fig.update_layout(title={'text': '<b>Pie Chart SoC</b>','y':0.95,
-        'x':0.45,
+        'x':0.5,
         'xanchor': 'center',
         'yanchor': 'top'},
 font={'size': 15},

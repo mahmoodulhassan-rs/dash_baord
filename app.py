@@ -241,6 +241,8 @@ sub_total=passed_scu+failed_scu+timeout_scu
 percentage_scu=(passed_scu/sub_total)*100
 percentage_scu=math.ceil(percentage_scu)
 
+df_pcnt= df_pcnt.append({'IP' : 'SCU', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_scu) , 'Tests_Failed': int(failed_scu), 'Timeout' : int(timeout_scu), 'Percentage' : int(percentage_scu)},
+        ignore_index = True)
 passed_atb=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('ATB') ])
 failed_atb=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('ATB') ])
 timeout_atb=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('ATB')])

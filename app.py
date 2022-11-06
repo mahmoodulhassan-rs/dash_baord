@@ -240,8 +240,24 @@ grand_total_timeout=timeout_scu+grand_total_timeout
 sub_total=passed_scu+failed_scu+timeout_scu
 percentage_scu=(passed_scu/sub_total)*100
 percentage_scu=math.ceil(percentage_scu)
-#print("SCU Pass Percentage",int(percentage_scu))
-df_pcnt= df_pcnt.append({'IP' : 'SCU', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_scu) , 'Tests_Failed': int(failed_scu), 'Timeout' : int(timeout_scu), 'Percentage' : int(percentage_scu)},
+
+passed_atb=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('ATB') ])
+failed_atb=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('ATB') ])
+timeout_atb=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('ATB')])
+
+grand_total_passed=passed_atb+grand_total_passed
+#print("SCU Total Passed",passed_atb)
+grand_total_failed=failed_atb+grand_total_failed
+#print("SCU Total Failed",failed_atb)
+grand_total_timeout=timeout_atb+grand_total_timeout
+#print("SCU Total Timeout",timeout_atb)
+sub_total=passed_atb+failed_atb+timeout_atb
+percentage_atb=(passed_atb/sub_total)*100
+percentage_atb=math.ceil(percentage_atb)
+
+
+#print("SCU Pass Percentage",int(percentage_atb))
+df_pcnt= df_pcnt.append({'IP' : 'SCU', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_atb) , 'Tests_Failed': int(failed_atb), 'Timeout' : int(timeout_atb), 'Percentage' : int(percentage_atb)},
         ignore_index = True)
 passed_sram=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('SRAM') ])
 failed_sram=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('SRAM') ])
@@ -510,9 +526,9 @@ legend=dict(
     x=0.00,
 ))
 
-arr =[158,158,158,158,158,158,250,250,250,250,420,439,647,633,653]
-aarr= [21,35,39,56,65,96,139,167,171,195,360,379,600,588,630]
-arr_f= [0,3,3,0,4,15,39,37,30,50,50,37,27,25,13]
+arr =[158,158,158,158,158,158,250,250,250,250,420,439,647,633,663]
+aarr= [21,35,39,56,65,96,139,167,171,195,360,379,600,588,632]
+arr_f= [0,3,3,0,4,15,39,37,30,50,50,37,27,25,15]
 arr_x=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
 f1 = go.Figure(
     data = [

@@ -257,7 +257,7 @@ percentage_atb=math.ceil(percentage_atb)
 
 
 #print("SCU Pass Percentage",int(percentage_atb))
-df_pcnt= df_pcnt.append({'IP' : 'SCU', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_atb) , 'Tests_Failed': int(failed_atb), 'Timeout' : int(timeout_atb), 'Percentage' : int(percentage_atb)},
+df_pcnt= df_pcnt.append({'IP' : 'ATB', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_atb) , 'Tests_Failed': int(failed_atb), 'Timeout' : int(timeout_atb), 'Percentage' : int(percentage_atb)},
         ignore_index = True)
 passed_sram=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('SRAM') ])
 failed_sram=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('SRAM') ])

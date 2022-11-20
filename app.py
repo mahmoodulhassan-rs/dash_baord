@@ -632,6 +632,28 @@ dbc.Container([
  dcc.Markdown('''
     [](/)
 '''),
+  html.Div(children = "Branch: gemini_b0_br   ", style = {
+     'textAlign': 'left',
+     'color': 'Black',
+     'fontWeight': 'bold'
+   }),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ html.Div(children = "SHA: :c5e79fe7d8c75ab8acf5785339a1cdfd2dc95fff", style = {
+     'textAlign': 'left',
+     'color': 'Black',
+     'fontWeight': 'bold'
+   }),
+    dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
  dcc.Markdown('''
     [](/)
 '''),

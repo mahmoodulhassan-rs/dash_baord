@@ -48,7 +48,7 @@ $(document).ready(function () {
 <body onLoad="initPage();"><div class="ui-layout-north">
 <div class="logo"></div>
 <center class="pagetitle">Module Definition</center>
-<div align="center"><a href="dashboard.html" ><b>dashboard</b></a> | <a href="hierarchy.html" ><b>hierarchy</b></a> | <a href="modlist.html" ><b>modlist</b></a> | groups | <a href="tests.html" ><b>tests</b></a> | <a href="asserts.html" ><b>asserts</b></a></div>
+<div align="center"><a href="dashboard.html" ><b>dashboard</b></a> | <a href="hierarchy.html" ><b>hierarchy</b></a> | <a href="modlist.html" ><b>modlist</b></a> | <a href="groups.html" ><b>groups</b></a> | <a href="tests.html" ><b>tests</b></a> | <a href="asserts.html" ><b>asserts</b></a></div>
 
 </div>
 <div class="ui-layout-west">
@@ -115,12 +115,12 @@ $(document).ready(function () {
 <table align=left>
 <tr class="sortablehead">
 <td>SCORE</td><td>LINE</td><td>COND</td><td>TOGGLE</td><td>FSM</td><td>BRANCH</td><td>ASSERT</td></tr><tr>
-<td class="s4 cl rt"> 40.34</td>
-<td class="s5 cl rt"> 56.68</td>
-<td class="s4 cl rt"> 41.75</td>
-<td class="s2 cl rt"> 22.65</td>
+<td class="s4 cl rt"> 40.52</td>
+<td class="s5 cl rt"> 56.77</td>
+<td class="s4 cl rt"> 41.83</td>
+<td class="s2 cl rt"> 23.41</td>
 <td class="s1 cl rt"> 10.87</td>
-<td class="s4 cl rt"> 48.99</td>
+<td class="s4 cl rt"> 49.13</td>
 <td class="s6 cl rt"> 61.11</td>
 </tr></table><br clear=all>
 <br clear=all>
@@ -135,12 +135,12 @@ $(document).ready(function () {
 <tr class="sortablehead">
 <td class="alfsrt">NAME</td><td>SCORE</td><td>LINE</td><td>COND</td><td>TOGGLE</td><td>FSM</td><td>BRANCH</td><td>ASSERT</td></tr><tr>
 <td class="wht cl wordwrap"><a href="mod1017.html#inst_tag_71521" id="tag_urg_inst_71521">DUT</a></td>
-<td class="s3 cl rt"> 36.74</td>
-<td class="s5 cl rt"> 58.55</td>
-<td class="s4 cl rt"> 41.94</td>
-<td class="s2 cl rt"> 22.62</td>
+<td class="s3 cl rt"> 36.96</td>
+<td class="s5 cl rt"> 58.64</td>
+<td class="s4 cl rt"> 42.04</td>
+<td class="s2 cl rt"> 23.38</td>
 <td class="s1 cl rt"> 10.89</td>
-<td class="s4 cl rt"> 49.69</td>
+<td class="s4 cl rt"> 49.84</td>
 <td class="wht cl rt"></td>
 </tr><tr>
 <td class="wht cl wordwrap"><a href="mod0.html#inst_tag_0" id="tag_urg_inst_0">FCB_ASSERT</a></td>
@@ -2269,10 +2269,11 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-1224         assign rgmii_rxc_125mhz = clk_skew_en ? clk_125mhz_d : clk_125mhz;
-                                                   <font color = "red">-1-</font>  
-                                                   <font color = "red">==></font>  
-                                                   <font color = "green">==></font>  
+1224                                                                                           rgmii_tx_ctl      ;
+                                                                                                                  
+           <font color = "red">Warning: the following expressions can not be annotated
+</font>           <font color = "red">-1- (clk_skew_en) ? ...;  
+           </font>
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2287,13 +2288,12 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-1226         assign rgmii_rxc     =  (DUT.config_ss.gbe_u.gem_top_u.speed_mode == 2 )        ? rgmii_rxc_125mhz  :
-                                                                                             <font color = "red">-1-</font>  
-                                                                                             <font color = "red">==></font>  
-1227                                 (DUT.config_ss.gbe_u.gem_top_u.speed_mode == 1 )        ? clk_25mhz         :
-                                                                                             <font color = "red">-2-</font>  
-                                                                                             <font color = "red">==></font>  
-                                                                                             <font color = "green">==></font>  
+1226         assign rgmii_txd    = DUT.config_ss.rgmii_txd;
+                                                           
+           <font color = "red">Warning: the following expressions can not be annotated
+</font>           <font color = "red">-1- ((config_ss_tb.DUT.config_ss.gbe_u.gem_top_u.speed_mode == 4'h2)) ? ...;  
+           -2- ((config_ss_tb.DUT.config_ss.gbe_u.gem_top_u.speed_mode == 4'b1)) ? ...;  
+           </font>
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2314,13 +2314,29 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-1229         assign rgmii_rxd     =  !DUT.config_ss.gbe_u.gem_top_u.loopback                 ? rgmii_rxd_vip     :
-                                                                                             <font color = "red">-1-</font>  
-                                                                                             <font color = "green">==></font>  
-1230                                  DUT.config_ss.gbe_u.gem_top_u.half_duplex && buffer_en ? rgmii_rxd_buff    :
-                                                                                             <font color = "red">-2-</font>  
-                                                                                             <font color = "red">==></font>  
-                                                                                             <font color = "red">==></font>  
+1229         initial begin
+                          
+1230           force DUT.config_ss.rgmii_rxc    = rgmii_rxc   ;
+                                                               
+1231           force DUT.config_ss.rgmii_rxd    = rgmii_rxd   ;
+                                                               
+1232           force DUT.config_ss.rgmii_rx_ctl = rgmii_rx_ctl;
+                                                               
+1233         end
+                
+1234       `endif
+                 
+1235       
+           
+1236       `ifdef GBE_VIP_INCLUDE
+                                 
+1237         assign phy_ethernet_if.rx_lane[3:0]    = !DUT.config_ss.gbe_u.gem_top_u.loopback ? rgmii_txd    : '0;
+                                                                                              <font color = "red">-1-</font>  
+                                                                                              <font color = "green">==></font>  
+1238         assign phy_ethernet_if.rx_lane[4]      = !DUT.config_ss.gbe_u.gem_top_u.loopback ? rgmii_tx_ctl : '0;
+                                                                                              <font color = "red">-2-</font>  
+                                                                                              <font color = "red">==></font>  
+                                                                                              <font color = "red">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2341,13 +2357,12 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Not Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-1232         assign rgmii_rx_ctl  =  !DUT.config_ss.gbe_u.gem_top_u.loopback                 ? rgmii_rx_ctl_vip  :
-                                                                                             <font color = "red">-1-</font>  
-                                                                                             <font color = "green">==></font>  
-1233                                  DUT.config_ss.gbe_u.gem_top_u.half_duplex && buffer_en ? rgmii_rx_ctl_buff :
-                                                                                             <font color = "red">-2-</font>  
-                                                                                             <font color = "red">==></font>  
-                                                                                             <font color = "red">==></font>  
+1232           force DUT.config_ss.rgmii_rx_ctl = rgmii_rx_ctl;
+                                                               
+           <font color = "red">Warning: the following expressions can not be annotated
+</font>           <font color = "red">-1- ((!config_ss_tb.DUT.config_ss.gbe_u.gem_top_u.loopback)) ? ...;  
+           -2- ((config_ss_tb.DUT.config_ss.gbe_u.gem_top_u.half_duplex && buffer_en)) ? ...;  
+           </font>
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2368,10 +2383,11 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Not Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-1247         assign phy_ethernet_if.rx_lane[3:0]    = !DUT.config_ss.gbe_u.gem_top_u.loopback ? rgmii_txd    : '0;
-                                                                                              <font color = "red">-1-</font>  
-                                                                                              <font color = "green">==></font>  
-                                                                                              <font color = "red">==></font>  
+1247       bit [3:0] ethpkt_Queue[$];
+                                     
+           <font color = "red">Warning: the following expressions can not be annotated
+</font>           <font color = "red">-1- ((!config_ss_tb.DUT.config_ss.gbe_u.gem_top_u.loopback)) ? ...;  
+           </font>
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2386,10 +2402,11 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Not Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-1248         assign phy_ethernet_if.rx_lane[4]      = !DUT.config_ss.gbe_u.gem_top_u.loopback ? rgmii_tx_ctl : '0;
-                                                                                              <font color = "red">-1-</font>  
-                                                                                              <font color = "green">==></font>  
-                                                                                              <font color = "red">==></font>  
+1248       bit [31:0] cnt;
+                          
+           <font color = "red">Warning: the following expressions can not be annotated
+</font>           <font color = "red">-1- ((!config_ss_tb.DUT.config_ss.gbe_u.gem_top_u.loopback)) ? ...;  
+           </font>
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2404,7 +2421,15 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Not Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2100         assign PAD[32] = ~DUT.config_ss.pads_inst.pad_oen[8]  ? 'z : pads[8];
+2100         endgenerate
+                        
+2101       
+           
+2102         // for gpio pads GPIO_B_0 - GPIO_B_15
+                                                  
+2103         // IO-MUX functionality
+                                    
+2104         assign PAD[32] = ~DUT.config_ss.pads_inst.pad_oen[8]  ? 'z : pads[8];
                                                                    <font color = "red">-1-</font>  
                                                                    <font color = "red">==></font>  
                                                                    <font color = "green">==></font>  
@@ -2422,7 +2447,13 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2101         assign PAD[33] = ~DUT.config_ss.pads_inst.pad_oen[9]  ? 'z : pads[9];
+2101       
+           
+2102         // for gpio pads GPIO_B_0 - GPIO_B_15
+                                                  
+2103         // IO-MUX functionality
+                                    
+2104         assign PAD[32] = ~DUT.config_ss.pads_inst.pad_oen[8]  ? 'z : pads[8];
                                                                    <font color = "red">-1-</font>  
                                                                    <font color = "red">==></font>  
                                                                    <font color = "green">==></font>  
@@ -2440,7 +2471,11 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2102         assign PAD[34] = ~DUT.config_ss.pads_inst.pad_oen[12] ? 'z : pads[12];
+2102         // for gpio pads GPIO_B_0 - GPIO_B_15
+                                                  
+2103         // IO-MUX functionality
+                                    
+2104         assign PAD[32] = ~DUT.config_ss.pads_inst.pad_oen[8]  ? 'z : pads[8];
                                                                    <font color = "green">-1-</font>  
                                                                    <font color = "green">==></font>  
                                                                    <font color = "green">==></font>  
@@ -2458,7 +2493,9 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2103         assign PAD[35] = ~DUT.config_ss.pads_inst.pad_oen[14] ? 'z : pads[14];
+2103         // IO-MUX functionality
+                                    
+2104         assign PAD[32] = ~DUT.config_ss.pads_inst.pad_oen[8]  ? 'z : pads[8];
                                                                    <font color = "green">-1-</font>  
                                                                    <font color = "green">==></font>  
                                                                    <font color = "green">==></font>  
@@ -2476,7 +2513,26 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2104         assign PAD[36] = ~DUT.config_ss.pads_inst.pad_oen[15] ? 'z : pads[15];
+2104         assign PAD[32] = ~DUT.config_ss.pads_inst.pad_oen[8]  ? 'z : pads[8];
+                                                                   
+           <font color = "red">Warning: the following expressions can not be annotated
+</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[15])) ? ...;  
+           </font>
+</pre>
+<br clear=all>
+<span class=repname>Branches:</span>
+<br clear=all>
+<table align=left class="noborder">
+<tr>
+<th nowrap width=80>-1-</th><th nowrap width=80>Status</th></tr><tr class="uGreen">
+<td align=center>1</td>
+<td>Covered</td>
+</tr><tr class="uGreen">
+<td align=center>0</td>
+<td>Covered</td>
+</tr></table><br clear=all>
+<pre class="code"><br clear=all>
+2105         assign PAD[33] = ~DUT.config_ss.pads_inst.pad_oen[9]  ? 'z : pads[9];
                                                                    <font color = "green">-1-</font>  
                                                                    <font color = "green">==></font>  
                                                                    <font color = "green">==></font>  
@@ -2494,7 +2550,7 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2105         assign PAD[37] = ~DUT.config_ss.pads_inst.pad_oen[16] ? 'z : pads[16];
+2106         assign PAD[34] = ~DUT.config_ss.pads_inst.pad_oen[12] ? 'z : pads[12];
                                                                    <font color = "green">-1-</font>  
                                                                    <font color = "green">==></font>  
                                                                    <font color = "green">==></font>  
@@ -2512,7 +2568,7 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2106         assign PAD[38] = ~DUT.config_ss.pads_inst.pad_oen[17] ? 'z : pads[17];
+2107         assign PAD[35] = ~DUT.config_ss.pads_inst.pad_oen[14] ? 'z : pads[14];
                                                                    <font color = "green">-1-</font>  
                                                                    <font color = "green">==></font>  
                                                                    <font color = "green">==></font>  
@@ -2530,7 +2586,7 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2107         assign PAD[39] = ~DUT.config_ss.pads_inst.pad_oen[19] ? 'z : pads[19];
+2110         assign PAD[38] = ~DUT.config_ss.pads_inst.pad_oen[17] ? 'z : pads[17];
                                                                    <font color = "green">-1-</font>  
                                                                    <font color = "green">==></font>  
                                                                    <font color = "green">==></font>  
@@ -2548,25 +2604,7 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2110         assign PAD[8]  = ~DUT.config_ss.pads_inst.pad_oen[10] ? 'z : pads[10];
-                                                                   <font color = "green">-1-</font>  
-                                                                   <font color = "green">==></font>  
-                                                                   <font color = "green">==></font>  
-</pre>
-<br clear=all>
-<span class=repname>Branches:</span>
-<br clear=all>
-<table align=left class="noborder">
-<tr>
-<th nowrap width=80>-1-</th><th nowrap width=80>Status</th></tr><tr class="uGreen">
-<td align=center>1</td>
-<td>Covered</td>
-</tr><tr class="uGreen">
-<td align=center>0</td>
-<td>Covered</td>
-</tr></table><br clear=all>
-<pre class="code"><br clear=all>
-2111         assign PAD[9]  = ~DUT.config_ss.pads_inst.pad_oen[11] ? 'z : pads[11];
+2111         assign PAD[39] = ~DUT.config_ss.pads_inst.pad_oen[19] ? 'z : pads[19];
                                                                    <font color = "red">-1-</font>  
                                                                    <font color = "red">==></font>  
                                                                    <font color = "green">==></font>  
@@ -2584,7 +2622,11 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2112         assign PAD[10] = ~DUT.config_ss.pads_inst.pad_oen[13] ? 'z : pads[13];
+2112       
+           
+2113         // default GPIO functionality
+                                          
+2114         assign PAD[8]  = ~DUT.config_ss.pads_inst.pad_oen[10] ? 'z : pads[10];
                                                                    <font color = "green">-1-</font>  
                                                                    <font color = "green">==></font>  
                                                                    <font color = "green">==></font>  
@@ -2602,7 +2644,9 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2113         assign PAD[11] = ~DUT.config_ss.pads_inst.pad_oen[18] ? 'z : pads[18];
+2113         // default GPIO functionality
+                                          
+2114         assign PAD[8]  = ~DUT.config_ss.pads_inst.pad_oen[10] ? 'z : pads[10];
                                                                    <font color = "green">-1-</font>  
                                                                    <font color = "green">==></font>  
                                                                    <font color = "green">==></font>  
@@ -2620,7 +2664,26 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2114         assign PAD[12] = ~DUT.config_ss.pads_inst.pad_oen[20] ? 'z : pads[20];
+2114         assign PAD[8]  = ~DUT.config_ss.pads_inst.pad_oen[10] ? 'z : pads[10];
+                                                                   
+           <font color = "red">Warning: the following expressions can not be annotated
+</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[20])) ? ...;  
+           </font>
+</pre>
+<br clear=all>
+<span class=repname>Branches:</span>
+<br clear=all>
+<table align=left class="noborder">
+<tr>
+<th nowrap width=80>-1-</th><th nowrap width=80>Status</th></tr><tr class="uGreen">
+<td align=center>1</td>
+<td>Covered</td>
+</tr><tr class="uGreen">
+<td align=center>0</td>
+<td>Covered</td>
+</tr></table><br clear=all>
+<pre class="code"><br clear=all>
+2115         assign PAD[9]  = ~DUT.config_ss.pads_inst.pad_oen[11] ? 'z : pads[11];
                                                                    <font color = "green">-1-</font>  
                                                                    <font color = "green">==></font>  
                                                                    <font color = "green">==></font>  
@@ -2638,7 +2701,7 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2115         assign PAD[13] = ~DUT.config_ss.pads_inst.pad_oen[21] ? 'z : pads[21];
+2116         assign PAD[10] = ~DUT.config_ss.pads_inst.pad_oen[13] ? 'z : pads[13];
                                                                    <font color = "green">-1-</font>  
                                                                    <font color = "green">==></font>  
                                                                    <font color = "green">==></font>  
@@ -2656,7 +2719,7 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2116         assign PAD[14] = ~DUT.config_ss.pads_inst.pad_oen[22] ? 'z : pads[22];
+2117         assign PAD[11] = ~DUT.config_ss.pads_inst.pad_oen[18] ? 'z : pads[18];
                                                                    <font color = "green">-1-</font>  
                                                                    <font color = "green">==></font>  
                                                                    <font color = "green">==></font>  
@@ -2674,25 +2737,15 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2117         assign PAD[15] = ~DUT.config_ss.pads_inst.pad_oen[23] ? 'z : pads[23];
-                                                                   <font color = "green">-1-</font>  
-                                                                   <font color = "green">==></font>  
-                                                                   <font color = "green">==></font>  
-</pre>
-<br clear=all>
-<span class=repname>Branches:</span>
-<br clear=all>
-<table align=left class="noborder">
-<tr>
-<th nowrap width=80>-1-</th><th nowrap width=80>Status</th></tr><tr class="uGreen">
-<td align=center>1</td>
-<td>Covered</td>
-</tr><tr class="uGreen">
-<td align=center>0</td>
-<td>Covered</td>
-</tr></table><br clear=all>
-<pre class="code"><br clear=all>
-2146         assign pcb_if.pl_data_i = fail_bist? $urandom():PL_DATA_o;
+2146       // Failing bist
+                          
+2147       //-----------------------------------------------------------------------------
+                                                                                          
+2148         bit fail_bist=0;
+                             
+2149         logic [35:0] PL_DATA_o;
+                                    
+2150         assign pcb_if.pl_data_i = fail_bist? $urandom():PL_DATA_o;
                                                 <font color = "green">-1-</font>  
                                                 <font color = "green">==></font>  
                                                 <font color = "green">==></font>  
@@ -2710,7 +2763,15 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2094             assign PAD[a] = ~DUT.config_ss.pads_inst.pad_oen[a] ? 'z : pads[a];
+2094       
+           
+2095         // for gpio pads GPIO_A_0 - GPIO_A_7
+                                                 
+2096         generate
+                     
+2097           for (genvar a=0; a<8; a=a+1) begin
+                                                 
+2098             assign PAD[a] = ~DUT.config_ss.pads_inst.pad_oen[a] ? 'z : pads[a];
                                                                      <font color = "red">-1-</font>  
                                                                      <font color = "red">==></font>  
                                                                      <font color = "green">==></font>  
@@ -2728,11 +2789,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2094             assign PAD[a] = ~DUT.config_ss.pads_inst.pad_oen[a] ? 'z : pads[a];
-                                                                     
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[1])) ? ...;  
-           </font>
+2094       
+           
+2095         // for gpio pads GPIO_A_0 - GPIO_A_7
+                                                 
+2096         generate
+                     
+2097           for (genvar a=0; a<8; a=a+1) begin
+                                                 
+2098             assign PAD[a] = ~DUT.config_ss.pads_inst.pad_oen[a] ? 'z : pads[a];
+                                                                     <font color = "red">-1-</font>  
+                                                                     <font color = "red">==></font>  
+                                                                     <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2747,11 +2815,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2094             assign PAD[a] = ~DUT.config_ss.pads_inst.pad_oen[a] ? 'z : pads[a];
-                                                                     
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[2])) ? ...;  
-           </font>
+2094       
+           
+2095         // for gpio pads GPIO_A_0 - GPIO_A_7
+                                                 
+2096         generate
+                     
+2097           for (genvar a=0; a<8; a=a+1) begin
+                                                 
+2098             assign PAD[a] = ~DUT.config_ss.pads_inst.pad_oen[a] ? 'z : pads[a];
+                                                                     <font color = "red">-1-</font>  
+                                                                     <font color = "red">==></font>  
+                                                                     <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2766,11 +2841,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2094             assign PAD[a] = ~DUT.config_ss.pads_inst.pad_oen[a] ? 'z : pads[a];
-                                                                     
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[3])) ? ...;  
-           </font>
+2094       
+           
+2095         // for gpio pads GPIO_A_0 - GPIO_A_7
+                                                 
+2096         generate
+                     
+2097           for (genvar a=0; a<8; a=a+1) begin
+                                                 
+2098             assign PAD[a] = ~DUT.config_ss.pads_inst.pad_oen[a] ? 'z : pads[a];
+                                                                     <font color = "red">-1-</font>  
+                                                                     <font color = "red">==></font>  
+                                                                     <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2785,11 +2867,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2094             assign PAD[a] = ~DUT.config_ss.pads_inst.pad_oen[a] ? 'z : pads[a];
-                                                                     
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[4])) ? ...;  
-           </font>
+2094       
+           
+2095         // for gpio pads GPIO_A_0 - GPIO_A_7
+                                                 
+2096         generate
+                     
+2097           for (genvar a=0; a<8; a=a+1) begin
+                                                 
+2098             assign PAD[a] = ~DUT.config_ss.pads_inst.pad_oen[a] ? 'z : pads[a];
+                                                                     <font color = "red">-1-</font>  
+                                                                     <font color = "red">==></font>  
+                                                                     <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2804,11 +2893,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2094             assign PAD[a] = ~DUT.config_ss.pads_inst.pad_oen[a] ? 'z : pads[a];
-                                                                     
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[5])) ? ...;  
-           </font>
+2094       
+           
+2095         // for gpio pads GPIO_A_0 - GPIO_A_7
+                                                 
+2096         generate
+                     
+2097           for (genvar a=0; a<8; a=a+1) begin
+                                                 
+2098             assign PAD[a] = ~DUT.config_ss.pads_inst.pad_oen[a] ? 'z : pads[a];
+                                                                     <font color = "red">-1-</font>  
+                                                                     <font color = "red">==></font>  
+                                                                     <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2823,11 +2919,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2094             assign PAD[a] = ~DUT.config_ss.pads_inst.pad_oen[a] ? 'z : pads[a];
-                                                                     
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[6])) ? ...;  
-           </font>
+2094       
+           
+2095         // for gpio pads GPIO_A_0 - GPIO_A_7
+                                                 
+2096         generate
+                     
+2097           for (genvar a=0; a<8; a=a+1) begin
+                                                 
+2098             assign PAD[a] = ~DUT.config_ss.pads_inst.pad_oen[a] ? 'z : pads[a];
+                                                                     <font color = "red">-1-</font>  
+                                                                     <font color = "red">==></font>  
+                                                                     <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2842,11 +2945,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2094             assign PAD[a] = ~DUT.config_ss.pads_inst.pad_oen[a] ? 'z : pads[a];
-                                                                     
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[7])) ? ...;  
-           </font>
+2094       
+           
+2095         // for gpio pads GPIO_A_0 - GPIO_A_7
+                                                 
+2096         generate
+                     
+2097           for (genvar a=0; a<8; a=a+1) begin
+                                                 
+2098             assign PAD[a] = ~DUT.config_ss.pads_inst.pad_oen[a] ? 'z : pads[a];
+                                                                     <font color = "red">-1-</font>  
+                                                                     <font color = "red">==></font>  
+                                                                     <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2861,7 +2971,15 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2122             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
+2122       
+           
+2123         // for gpio pads GPIO_C_0 - GPIO_C_15
+                                                  
+2124         generate
+                     
+2125           for (genvar c=16; c<32; c=c+1) begin
+                                                   
+2126             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
                                                                        <font color = "green">-1-</font>  
                                                                        <font color = "green">==></font>  
                                                                        <font color = "green">==></font>  
@@ -2879,11 +2997,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2122             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
-                                                                       
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[(17 + 8)])) ? ...;  
-           </font>
+2122       
+           
+2123         // for gpio pads GPIO_C_0 - GPIO_C_15
+                                                  
+2124         generate
+                     
+2125           for (genvar c=16; c<32; c=c+1) begin
+                                                   
+2126             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
+                                                                       <font color = "green">-1-</font>  
+                                                                       <font color = "green">==></font>  
+                                                                       <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2898,11 +3023,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2122             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
-                                                                       
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[(18 + 8)])) ? ...;  
-           </font>
+2122       
+           
+2123         // for gpio pads GPIO_C_0 - GPIO_C_15
+                                                  
+2124         generate
+                     
+2125           for (genvar c=16; c<32; c=c+1) begin
+                                                   
+2126             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
+                                                                       <font color = "green">-1-</font>  
+                                                                       <font color = "green">==></font>  
+                                                                       <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2917,11 +3049,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2122             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
-                                                                       
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[(19 + 8)])) ? ...;  
-           </font>
+2122       
+           
+2123         // for gpio pads GPIO_C_0 - GPIO_C_15
+                                                  
+2124         generate
+                     
+2125           for (genvar c=16; c<32; c=c+1) begin
+                                                   
+2126             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
+                                                                       <font color = "green">-1-</font>  
+                                                                       <font color = "green">==></font>  
+                                                                       <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2936,11 +3075,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2122             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
-                                                                       
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[(20 + 8)])) ? ...;  
-           </font>
+2122       
+           
+2123         // for gpio pads GPIO_C_0 - GPIO_C_15
+                                                  
+2124         generate
+                     
+2125           for (genvar c=16; c<32; c=c+1) begin
+                                                   
+2126             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
+                                                                       <font color = "green">-1-</font>  
+                                                                       <font color = "green">==></font>  
+                                                                       <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2955,11 +3101,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2122             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
-                                                                       
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[(21 + 8)])) ? ...;  
-           </font>
+2122       
+           
+2123         // for gpio pads GPIO_C_0 - GPIO_C_15
+                                                  
+2124         generate
+                     
+2125           for (genvar c=16; c<32; c=c+1) begin
+                                                   
+2126             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
+                                                                       <font color = "green">-1-</font>  
+                                                                       <font color = "green">==></font>  
+                                                                       <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2974,11 +3127,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2122             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
-                                                                       
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[(22 + 8)])) ? ...;  
-           </font>
+2122       
+           
+2123         // for gpio pads GPIO_C_0 - GPIO_C_15
+                                                  
+2124         generate
+                     
+2125           for (genvar c=16; c<32; c=c+1) begin
+                                                   
+2126             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
+                                                                       <font color = "green">-1-</font>  
+                                                                       <font color = "green">==></font>  
+                                                                       <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -2993,11 +3153,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2122             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
-                                                                       
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[(23 + 8)])) ? ...;  
-           </font>
+2122       
+           
+2123         // for gpio pads GPIO_C_0 - GPIO_C_15
+                                                  
+2124         generate
+                     
+2125           for (genvar c=16; c<32; c=c+1) begin
+                                                   
+2126             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
+                                                                       <font color = "green">-1-</font>  
+                                                                       <font color = "green">==></font>  
+                                                                       <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -3012,11 +3179,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2122             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
-                                                                       
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[(24 + 8)])) ? ...;  
-           </font>
+2122       
+           
+2123         // for gpio pads GPIO_C_0 - GPIO_C_15
+                                                  
+2124         generate
+                     
+2125           for (genvar c=16; c<32; c=c+1) begin
+                                                   
+2126             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
+                                                                       <font color = "green">-1-</font>  
+                                                                       <font color = "green">==></font>  
+                                                                       <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -3031,11 +3205,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2122             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
-                                                                       
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[(25 + 8)])) ? ...;  
-           </font>
+2122       
+           
+2123         // for gpio pads GPIO_C_0 - GPIO_C_15
+                                                  
+2124         generate
+                     
+2125           for (genvar c=16; c<32; c=c+1) begin
+                                                   
+2126             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
+                                                                       <font color = "green">-1-</font>  
+                                                                       <font color = "green">==></font>  
+                                                                       <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -3050,11 +3231,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2122             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
-                                                                       
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[(26 + 8)])) ? ...;  
-           </font>
+2122       
+           
+2123         // for gpio pads GPIO_C_0 - GPIO_C_15
+                                                  
+2124         generate
+                     
+2125           for (genvar c=16; c<32; c=c+1) begin
+                                                   
+2126             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
+                                                                       <font color = "green">-1-</font>  
+                                                                       <font color = "green">==></font>  
+                                                                       <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -3069,11 +3257,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2122             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
-                                                                       
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[(27 + 8)])) ? ...;  
-           </font>
+2122       
+           
+2123         // for gpio pads GPIO_C_0 - GPIO_C_15
+                                                  
+2124         generate
+                     
+2125           for (genvar c=16; c<32; c=c+1) begin
+                                                   
+2126             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
+                                                                       <font color = "green">-1-</font>  
+                                                                       <font color = "green">==></font>  
+                                                                       <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -3088,11 +3283,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2122             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
-                                                                       
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[(28 + 8)])) ? ...;  
-           </font>
+2122       
+           
+2123         // for gpio pads GPIO_C_0 - GPIO_C_15
+                                                  
+2124         generate
+                     
+2125           for (genvar c=16; c<32; c=c+1) begin
+                                                   
+2126             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
+                                                                       <font color = "red">-1-</font>  
+                                                                       <font color = "red">==></font>  
+                                                                       <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -3107,11 +3309,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2122             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
-                                                                       
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[(29 + 8)])) ? ...;  
-           </font>
+2122       
+           
+2123         // for gpio pads GPIO_C_0 - GPIO_C_15
+                                                  
+2124         generate
+                     
+2125           for (genvar c=16; c<32; c=c+1) begin
+                                                   
+2126             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
+                                                                       <font color = "green">-1-</font>  
+                                                                       <font color = "green">==></font>  
+                                                                       <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -3126,11 +3335,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2122             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
-                                                                       
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[(30 + 8)])) ? ...;  
-           </font>
+2122       
+           
+2123         // for gpio pads GPIO_C_0 - GPIO_C_15
+                                                  
+2124         generate
+                     
+2125           for (genvar c=16; c<32; c=c+1) begin
+                                                   
+2126             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
+                                                                       <font color = "red">-1-</font>  
+                                                                       <font color = "red">==></font>  
+                                                                       <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -3145,11 +3361,18 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2122             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
-                                                                       
-           <font color = "red">Warning: the following expressions can not be annotated
-</font>           <font color = "red">-1- ((~config_ss_tb.DUT.config_ss.pads_inst.pad_oen[(31 + 8)])) ? ...;  
-           </font>
+2122       
+           
+2123         // for gpio pads GPIO_C_0 - GPIO_C_15
+                                                  
+2124         generate
+                     
+2125           for (genvar c=16; c<32; c=c+1) begin
+                                                   
+2126             assign PAD[c] = ~DUT.config_ss.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
+                                                                       <font color = "red">-1-</font>  
+                                                                       <font color = "red">==></font>  
+                                                                       <font color = "green">==></font>  
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -3229,16 +3452,16 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Not Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-1268         if(tx_done)
-             <font color = "red">-1-</font>  
-1269           cnt <= 100;
-           <font color = "red">    ==></font>
-1270         else if (cnt > '0)
-                  <font color = "red">-2-</font>  
-1271           cnt <= cnt - 1'b1;
-           <font color = "red">    ==></font>
-               MISSING_ELSE
-           <font color = "green">    ==></font>
+1268           rx_send_en <= 1'b0;
+               <font color = "red">-1-</font>                   
+1269       
+           <font color = "red">==></font>
+1270       always@(posedge rgmii_rxc or negedge rgmii_rxc)
+           <font color = "red">-2-</font>                                               
+1271         if(rgmii_tx_ctl && DUT.config_ss.gbe_u.gem_top_u.half_duplex)
+           <font color = "red">  ==></font>
+             MISSING_ELSE
+           <font color = "green">  ==></font>
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -3259,13 +3482,13 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-1275         if ((cnt == 32'd1) && (ethpkt_Queue.size()>0) && DUT.config_ss.gbe_u.gem_top_u.half_duplex)
-             <font color = "red">-1-</font>  
-1276           rx_send_en <= 1'b1;
-           <font color = "red">    ==></font>
-1277         else if(ethpkt_Queue.size() == 0)
-                  <font color = "red">-2-</font>  
-1278           rx_send_en <= 1'b0;
+1275       always@(posedge rgmii_rxc or negedge rgmii_rxc)
+           <font color = "red">-1-</font>                                               
+1276         if(rx_send_en && ethpkt_Queue.size()>0 && !rgmii_tx_ctl && DUT.config_ss.gbe_u.gem_top_u.half_duplex)
+           <font color = "red">  ==></font>
+1277         begin
+             <font color = "red">-2-</font>     
+1278           rgmii_rxd_buff    <= ethpkt_Queue.pop_front();
            <font color = "green">    ==></font>
                MISSING_ELSE
            <font color = "red">    ==></font>
@@ -3289,12 +3512,12 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Not Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-1281         if(rgmii_tx_ctl && DUT.config_ss.gbe_u.gem_top_u.half_duplex)
-             <font color = "red">-1-</font>  
-1282           ethpkt_Queue.push_back(rgmii_txd);
-           <font color = "red">    ==></font>
-               MISSING_ELSE
-           <font color = "green">    ==></font>
+1281         else
+             <font color = "red">-1-</font>    
+1282         begin
+           <font color = "red">  ==></font>
+             MISSING_ELSE
+           <font color = "green">  ==></font>
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -3309,17 +3532,17 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-1286         if(rx_send_en && ethpkt_Queue.size()>0 && !rgmii_tx_ctl && DUT.config_ss.gbe_u.gem_top_u.half_duplex)
-             <font color = "red">-1-</font>  
-1287         begin
-1288           rgmii_rxd_buff    <= ethpkt_Queue.pop_front();
-           <font color = "red">    ==></font>
-1289           rgmii_rx_ctl_buff <= 1'b1;
-1290         end
-1291         else
-1292         begin
-1293           rgmii_rxd_buff    <= 4'h0;
-           <font color = "green">    ==></font>
+1286       
+           <font color = "red">-1-</font>
+1287       wire mdio_in,mdio_en,mdio_out,mdio_mdc;
+1288       assign mdio_out = DUT.config_ss.gbe_u.mdio_out;
+           <font color = "red">==></font>
+1289       assign mdio_en  = DUT.config_ss.gbe_u.mdio_en;
+1290       assign mdio_mdc = DUT.config_ss.gbe_u.mdc;
+1291       
+1292       `ifdef GBE_VIP_INCLUDE
+1293       `ifdef GBE_MDIO_VECTOR_TEST
+           <font color = "green">==></font>
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -3334,17 +3557,17 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2157           if(DUT.soc_fpga_intf_u.config_controller_u.apb_en)begin
-               <font color = "green">-1-</font>  
-2158             if(!DUT.soc_fpga_intf_u.config_controller_u.apb_ready)
-                 <font color = "green">-2-</font>  
-2159               wait_states++;
-           <font color = "green">        ==></font>
-                   MISSING_ELSE
-           <font color = "green">        ==></font>
-2160           end
-               MISSING_ELSE
-           <font color = "green">    ==></font>
+2157         assign pcb_if.paddr = svt_ahb_vif_inst.master_if[0].haddr;
+                        <font color = "green">-1-</font>                                   
+2158         assign pcb_if.pclk = DUT.soc_fpga_intf_u.config_controller_u.clk;
+                        <font color = "green">-2-</font>  
+2159         assign pcb_if.wait_states = wait_states;
+           <font color = "green">  ==></font>
+             MISSING_ELSE
+           <font color = "green">  ==></font>
+2160         always @(posedge pcb_if.pclk) begin
+             MISSING_ELSE
+           <font color = "green">  ==></font>
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>
@@ -3365,8 +3588,8 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2161           if(svt_ahb_vif_inst.master_if[0].hready) wait_states <= 0;
-               <font color = "green">-1-</font>                           
+2161           if(DUT.soc_fpga_intf_u.config_controller_u.apb_en)begin
+               <font color = "green">-1-</font>  
            <font color = "green">    ==></font>
                MISSING_ELSE
            <font color = "green">    ==></font>
@@ -3384,49 +3607,49 @@ Branch Coverage for Module : <a href="mod2898.html" >config_ss_tb</a><br clear=a
 <td>Covered</td>
 </tr></table><br clear=all>
 <pre class="code"><br clear=all>
-2258         #10;
-             <font color = "red">-1-</font>    
-2259         //BLANK CHIP WITHOUT FAULT
-           <font color = "red">  ==></font>
-2260         if($test$plusargs("PUF_BLANK_GOOD")) begin
-2261           $display("BLANK CHIP WITHOUT FAULT");
-2262           $readmemh({`PUF_OTP_DAT_PATH, ".dat"          },`PUF_OTP_CORE.MEM_MAIN);
-2263           $readmemh({`PUF_OTP_DAT_PATH, "_TR.dat"       },`PUF_OTP_CORE.MEM_TR);
-2264           $readmemh({`PUF_OTP_DAT_PATH, "_TC.dat"       },`PUF_OTP_CORE.MEM_TC);
-2265           $readmemh({`PUF_OTP_DAT_PATH, "_IF.dat"       },`PUF_OTP_CORE.MEM_IF);
-2266           $readmemh({`PUF_OTP_DAT_PATH, "_REP.dat"      },`PUF_OTP_CORE.MEM_REP);
-2267           $readmemh({`PUF_OTP_DAT_PATH, "_PUF.dat"      },`PUF_OTP_CORE.MEM_PUF);
-2268           $readmemh({`PUF_OTP_DAT_PATH, "_PUFORG.dat"   },`PUF_OTP_CORE.MEM_PUFORG);
-2269         end
-             <font color = "red">-2-</font>   
-2270          //BLANK CHIP WITH FAULT
-           <font color = "red">   ==></font>
-2271         else if($test$plusargs("PUF_BLANK_FAULT")) begin
-2272           $display("BLANK CHIP WITH FAULT");
-2273           $readmemh({`PUF_OTP_DAT_PATH, "_F2.dat"       },`PUF_OTP_CORE.MEM_MAIN);
-2274           $readmemh({`PUF_OTP_DAT_PATH, "_TR.dat"       },`PUF_OTP_CORE.MEM_TR);
-2275           $readmemh({`PUF_OTP_DAT_PATH, "_TC.dat"       },`PUF_OTP_CORE.MEM_TC);
-2276           $readmemh({`PUF_OTP_DAT_PATH, "_IF.dat"       },`PUF_OTP_CORE.MEM_IF);
-2277           $readmemh({`PUF_OTP_DAT_PATH, "_REP.dat"      },`PUF_OTP_CORE.MEM_REP);
-2278           $readmemh({`PUF_OTP_DAT_PATH, "_PUF_F2.dat"   },`PUF_OTP_CORE.MEM_PUF);
-2279           $readmemh({`PUF_OTP_DAT_PATH, "_PUFORG.dat"   },`PUF_OTP_CORE.MEM_PUFORG);
-2280         end
-2281          //GOOD CHIP WITH REPAIR
-                                     <font color = "red">-3-</font>
-2282          //GOOD CHIP WITHOUT LOCK
-           <font color = "red">   ==></font>
-2283          else if($test$plusargs("PUF_GOOD_WOLCK")) begin
-2284           $display("GOOD CHIP WITHOUT LOCK");
-2285           $readmemh({`PUF_OTP_DAT_PATH, ".dat"          },`PUF_OTP_CORE.MEM_MAIN);
-2286           $readmemh({`PUF_OTP_DAT_PATH, "_TR.dat"       },`PUF_OTP_CORE.MEM_TR);
-2287           $readmemh({`PUF_OTP_DAT_PATH, "_TC.dat"       },`PUF_OTP_CORE.MEM_TC);
-2288           $readmemh({`PUF_OTP_DAT_PATH, "_IF_ULK.dat"   },`PUF_OTP_CORE.MEM_IF);
-2289           $readmemh({`PUF_OTP_DAT_PATH, "_REP.dat"      },`PUF_OTP_CORE.MEM_REP);
-2290           $readmemh({`PUF_OTP_DAT_PATH, "_PUF_RN.dat"   },`PUF_OTP_CORE.MEM_PUF);
-2291           $readmemh({`PUF_OTP_DAT_PATH, "_PUF_RN.dat"   },`PUF_OTP_CORE.MEM_PUFORG);
-2292         end
-2293          //GOOD CHIP WITHOUT FAULT
-           <font color = "green">   ==></font>
+2258       pufcc_assertions PUFcc_ASSERT (`include `PUFCC_INTF_PATH);
+           <font color = "red">-1-</font>                                                          
+2259       // PUFcc internal memories load files
+           <font color = "red">==></font>
+2260       defparam `PUF_OTP_CORE.EMTC_write_file = 0;
+2261       initial begin
+2262         #10;
+2263         //BLANK CHIP WITHOUT FAULT
+2264         if($test$plusargs("PUF_BLANK_GOOD")) begin
+2265           $display("BLANK CHIP WITHOUT FAULT");
+2266           $readmemh({`PUF_OTP_DAT_PATH, ".dat"          },`PUF_OTP_CORE.MEM_MAIN);
+2267           $readmemh({`PUF_OTP_DAT_PATH, "_TR.dat"       },`PUF_OTP_CORE.MEM_TR);
+2268           $readmemh({`PUF_OTP_DAT_PATH, "_TC.dat"       },`PUF_OTP_CORE.MEM_TC);
+2269           $readmemh({`PUF_OTP_DAT_PATH, "_IF.dat"       },`PUF_OTP_CORE.MEM_IF);
+               <font color = "red">-2-</font>                                                                      
+2270           $readmemh({`PUF_OTP_DAT_PATH, "_REP.dat"      },`PUF_OTP_CORE.MEM_REP);
+           <font color = "red">    ==></font>
+2271           $readmemh({`PUF_OTP_DAT_PATH, "_PUF.dat"      },`PUF_OTP_CORE.MEM_PUF);
+2272           $readmemh({`PUF_OTP_DAT_PATH, "_PUFORG.dat"   },`PUF_OTP_CORE.MEM_PUFORG);
+2273         end
+2274          //BLANK CHIP WITH FAULT
+2275         else if($test$plusargs("PUF_BLANK_FAULT")) begin
+2276           $display("BLANK CHIP WITH FAULT");
+2277           $readmemh({`PUF_OTP_DAT_PATH, "_F2.dat"       },`PUF_OTP_CORE.MEM_MAIN);
+2278           $readmemh({`PUF_OTP_DAT_PATH, "_TR.dat"       },`PUF_OTP_CORE.MEM_TR);
+2279           $readmemh({`PUF_OTP_DAT_PATH, "_TC.dat"       },`PUF_OTP_CORE.MEM_TC);
+2280           $readmemh({`PUF_OTP_DAT_PATH, "_IF.dat"       },`PUF_OTP_CORE.MEM_IF);
+2281           $readmemh({`PUF_OTP_DAT_PATH, "_REP.dat"      },`PUF_OTP_CORE.MEM_REP);
+               <font color = "red">-3-</font>                                                                       
+2282           $readmemh({`PUF_OTP_DAT_PATH, "_PUF_F2.dat"   },`PUF_OTP_CORE.MEM_PUF);
+           <font color = "red">    ==></font>
+2283           $readmemh({`PUF_OTP_DAT_PATH, "_PUFORG.dat"   },`PUF_OTP_CORE.MEM_PUFORG);
+2284         end
+2285          //GOOD CHIP WITH REPAIR
+2286          //GOOD CHIP WITHOUT LOCK
+2287          else if($test$plusargs("PUF_GOOD_WOLCK")) begin
+2288           $display("GOOD CHIP WITHOUT LOCK");
+2289           $readmemh({`PUF_OTP_DAT_PATH, ".dat"          },`PUF_OTP_CORE.MEM_MAIN);
+2290           $readmemh({`PUF_OTP_DAT_PATH, "_TR.dat"       },`PUF_OTP_CORE.MEM_TR);
+2291           $readmemh({`PUF_OTP_DAT_PATH, "_TC.dat"       },`PUF_OTP_CORE.MEM_TC);
+2292           $readmemh({`PUF_OTP_DAT_PATH, "_IF_ULK.dat"   },`PUF_OTP_CORE.MEM_IF);
+2293           $readmemh({`PUF_OTP_DAT_PATH, "_REP.dat"      },`PUF_OTP_CORE.MEM_REP);
+           <font color = "green">    ==></font>
 </pre>
 <br clear=all>
 <span class=repname>Branches:</span>

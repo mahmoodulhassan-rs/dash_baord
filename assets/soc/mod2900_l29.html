@@ -1300,30 +1300,30 @@ Go <a href="mod2900.html#l29">back</a>
 <span style="margin-left:8px;"></span>1266                        rx_send_en &lt;= 1'b1;
 <span style="margin-left:8px;"></span>1267                      else if(ethpkt_Queue.size() == 0)
 <span style="margin-left:8px;"></span>1268       1/1              rx_send_en &lt;= 1'b0;
-<span style="margin-left:8px;"></span>1269       <font color = "red">0/1     ==>  </font>
+<span style="margin-left:8px;"></span>1269       1/1          
 <span style="margin-left:8px;"></span>1270       1/1          always@(posedge rgmii_rxc or negedge rgmii_rxc)
-<span style="margin-left:8px;"></span>1271       <font color = "red">0/1     ==>    if(rgmii_tx_ctl &amp;&amp; DUT.config_ss.gbe_u.gem_top_u.half_duplex)</font>
+<span style="margin-left:8px;"></span>1271       1/1            if(rgmii_tx_ctl &amp;&amp; DUT.config_ss.gbe_u.gem_top_u.half_duplex)
                         MISSING_ELSE
 <span style="margin-left:8px;"></span>1272                        ethpkt_Queue.push_back(rgmii_txd);
 <span style="margin-left:8px;"></span>1273                    
 <span style="margin-left:8px;"></span>1274                    
 <span style="margin-left:8px;"></span>1275       1/1          always@(posedge rgmii_rxc or negedge rgmii_rxc)
-<span style="margin-left:8px;"></span>1276       <font color = "red">0/1     ==>    if(rx_send_en &amp;&amp; ethpkt_Queue.size()&gt;0 &amp;&amp; !rgmii_tx_ctl &amp;&amp; DUT.config_ss.gbe_u.gem_top_u.half_duplex)</font>
+<span style="margin-left:8px;"></span>1276       1/1            if(rx_send_en &amp;&amp; ethpkt_Queue.size()&gt;0 &amp;&amp; !rgmii_tx_ctl &amp;&amp; DUT.config_ss.gbe_u.gem_top_u.half_duplex)
 <span style="margin-left:8px;"></span>1277       1/1            begin
 <span style="margin-left:8px;"></span>1278       1/1              rgmii_rxd_buff    &lt;= ethpkt_Queue.pop_front();
-                   <font color = "red">==>  MISSING_ELSE</font>
+                        MISSING_ELSE
 <span style="margin-left:8px;"></span>1279                        rgmii_rx_ctl_buff &lt;= 1'b1;
 <span style="margin-left:8px;"></span>1280                      end
 <span style="margin-left:8px;"></span>1281       1/1            else
-<span style="margin-left:8px;"></span>1282       <font color = "red">0/1     ==>    begin</font>
+<span style="margin-left:8px;"></span>1282       1/1            begin
                         MISSING_ELSE
 <span style="margin-left:8px;"></span>1283                        rgmii_rxd_buff    &lt;= 4'h0;
 <span style="margin-left:8px;"></span>1284                        rgmii_rx_ctl_buff &lt;= 1'b0;
 <span style="margin-left:8px;"></span>1285                      end
 <span style="margin-left:8px;"></span>1286       1/1          
 <span style="margin-left:8px;"></span>1287                    wire mdio_in,mdio_en,mdio_out,mdio_mdc;
-<span style="margin-left:8px;"></span>1288       <font color = "red">0/1     ==>  assign mdio_out = DUT.config_ss.gbe_u.mdio_out;</font>
-<span style="margin-left:8px;"></span>1289       <font color = "red">0/1     ==>  assign mdio_en  = DUT.config_ss.gbe_u.mdio_en;</font>
+<span style="margin-left:8px;"></span>1288       1/1          assign mdio_out = DUT.config_ss.gbe_u.mdio_out;
+<span style="margin-left:8px;"></span>1289       1/1          assign mdio_en  = DUT.config_ss.gbe_u.mdio_en;
 <span style="margin-left:8px;"></span>1290                    assign mdio_mdc = DUT.config_ss.gbe_u.mdc;
 <span style="margin-left:8px;"></span>1291                    
 <span style="margin-left:8px;"></span>1292                    `ifdef GBE_VIP_INCLUDE
@@ -2172,7 +2172,7 @@ Go <a href="mod2900.html#l29">back</a>
 <span style="margin-left:8px;"></span>2135       <font color = "red">1/2     ==>    bit switch_loopback;</font>
 <span style="margin-left:8px;"></span>2136       <font color = "red">0/1     ==>    bit [15:0] temp_gpio_pad_data;</font>
 <span style="margin-left:8px;"></span>2137       <font color = "red">0/2     ==>  </font>
-<span style="margin-left:8px;"></span>2138       <font color = "red">0/1     ==>    initial begin</font>
+<span style="margin-left:8px;"></span>2138       1/1            initial begin
 <span style="margin-left:8px;"></span>2139                        wait(switch_loopback);
 <span style="margin-left:8px;"></span>2140                        force DUT.config_ss.gpio.gpio_out = PAD[15:0] &lt;&lt; 16;
 <span style="margin-left:8px;"></span>2141                        wait(!switch_loopback);

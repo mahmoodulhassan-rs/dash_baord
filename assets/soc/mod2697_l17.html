@@ -290,13 +290,13 @@ Go <a href="mod2697.html#l17">back</a>
 1361                            end
 1362                            else
 1363                            begin
-1364       <font color = "red">0/1     ==>            pause_request_sched           &lt;= 1'b1;</font>
-1365       <font color = "red">0/1     ==>            pause_frame_transmitting      &lt;= pause_frame_transmitting;</font>
-1366       <font color = "red">0/1     ==>            pfc_frame_transmitting        &lt;= pfc_frame_transmitting;</font>
-1367       <font color = "red">0/1     ==>            pause_is_pfc_sched            &lt;= pause_is_pfc;</font>
-1368       <font color = "red">0/1     ==>            pause_802p3_type_sched        &lt;= pause_802p3_type;</font>
-1369       <font color = "red">0/1     ==>            pause_pfc_pri_vector_sched    &lt;= pause_pfc_pri_vector;</font>
-1370       <font color = "red">0/1     ==>            pause_pfc_zero_vector_sched   &lt;= pause_pfc_zero_vector;</font>
+1364       1/1                    pause_request_sched           &lt;= 1'b1;
+1365       1/1                    pause_frame_transmitting      &lt;= pause_frame_transmitting;
+1366       1/1                    pfc_frame_transmitting        &lt;= pfc_frame_transmitting;
+1367       1/1                    pause_is_pfc_sched            &lt;= pause_is_pfc;
+1368       1/1                    pause_802p3_type_sched        &lt;= pause_802p3_type;
+1369       1/1                    pause_pfc_pri_vector_sched    &lt;= pause_pfc_pri_vector;
+1370       1/1                    pause_pfc_zero_vector_sched   &lt;= pause_pfc_zero_vector;
 1371                            end
 1372                          end
 1373                    
@@ -2390,7 +2390,7 @@ Go <a href="mod2697.html#l17">back</a>
 3450                             begin
 3451       1/1                      if (burst_length == 14'h3fff)
 3452                                   // stop count rolling over.
-3453       1/1                         burst_length &lt;= burst_length;
+3453       <font color = "red">0/1     ==>                 burst_length &lt;= burst_length;</font>
 3454                                else
 3455       1/1                         burst_length &lt;= burst_length + 14'h0001;
 3456                             end
@@ -2828,7 +2828,7 @@ Go <a href="mod2697.html#l17">back</a>
 3886       1/1                      if (transmit_data_buf[7:0] == 8'hff)
 3887       1/1                         broadcast_match &lt;= broadcast_match;
 3888                                else
-3889       <font color = "red">0/1     ==>                 broadcast_match &lt;= 1'b0;</font>
+3889       1/1                         broadcast_match &lt;= 1'b0;
 3890                             end
 3891                          else
 3892                             // else hold value of statistic.
@@ -3645,7 +3645,7 @@ Go <a href="mod2697.html#l17">back</a>
 4702                                         // IPv6
 4703       1/1                               if (transmit_data_buf[7:0] == 8'h86)
 4704                                            begin
-4705       1/1                                     tx_dec_state_nxt = TX_DEC_VIPV6_1;
+4705       <font color = "red">0/1     ==>                             tx_dec_state_nxt = TX_DEC_VIPV6_1;</font>
 4706                                            end
 4707                                         // IPv4
 4708       1/1                               else if (transmit_data_buf[7:0] == 8'h08)
@@ -4411,7 +4411,7 @@ Go <a href="mod2697.html#l17">back</a>
 5467       1/1                                  tx_dec_state_nxt  = TX_DEC_IPV6_1;
 5468                                         // invalid - wait for next frame
 5469                                         else
-5470       <font color = "red">0/1     ==>                          tx_dec_state_nxt  = TX_DEC_IDLE;</font>
+5470       1/1                                  tx_dec_state_nxt  = TX_DEC_IDLE;
 5471                                       end
 5472                    
 5473                                   7'b0010100 : // UDP protocol 1
@@ -4990,11 +4990,11 @@ Go <a href="mod2697.html#l17">back</a>
 6045                    
 6046                             TX_DEC_VIPV6_1 : // decode IPv6
 6047                                begin
-6048       1/1                         case (tx_ptp_count)
+6048       <font color = "red">0/1     ==>                 case (tx_ptp_count)</font>
 6049                                   7'b0010001 : // Ethertype IPv6
 6050                                      begin
-6051       1/1                               if (transmit_data_buf[7:0] == 8'hdd)
-6052       1/1                                  tx_dec_state_nxt  = TX_DEC_VIPV6_1;
+6051       <font color = "red">0/1     ==>                       if (transmit_data_buf[7:0] == 8'hdd)</font>
+6052       <font color = "red">0/1     ==>                          tx_dec_state_nxt  = TX_DEC_VIPV6_1;</font>
 6053                                         // invalid - wait for next frame
 6054                                         else
 6055       <font color = "red">0/1     ==>                          tx_dec_state_nxt  = TX_DEC_IDLE;</font>
@@ -5002,11 +5002,11 @@ Go <a href="mod2697.html#l17">back</a>
 6057                    
 6058                                   7'b0011000 : // UDP protocol 1
 6059                                      begin
-6060       1/1                               if (transmit_data_buf[7:0] == 8'h11)
+6060       <font color = "red">0/1     ==>                       if (transmit_data_buf[7:0] == 8'h11)</font>
 6061       <font color = "red">0/1     ==>                          tx_dec_state_nxt  = TX_DEC_VIPV6_1;</font>
 6062                                         // invalid - wait for next frame
 6063                                         else
-6064       1/1                                  tx_dec_state_nxt  = TX_DEC_IDLE;
+6064       <font color = "red">0/1     ==>                          tx_dec_state_nxt  = TX_DEC_IDLE;</font>
 6065                                       end
 6066                    
 6067                                   7'b0101010 : // IP multicast address part 1
@@ -5021,7 +5021,7 @@ Go <a href="mod2697.html#l17">back</a>
 6076                    
 6077                                   default :
 6078                                      begin
-6079       1/1                               tx_dec_state_nxt  = TX_DEC_VIPV6_1;
+6079       <font color = "red">0/1     ==>                       tx_dec_state_nxt  = TX_DEC_VIPV6_1;</font>
 6080                                      end
 6081                    
 6082                                   endcase

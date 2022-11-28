@@ -244,13 +244,13 @@ Go <a href="mod2651.html#l23">back</a>
 1531       1/1                             lpi_indicate &lt;= 1'b1;
 1532       1/1                         else if ((rx_er_in != 2'b11) | (rxd_int[15:0] != 16'h0101))
 1533       1/1                                    lpi_indicate &lt;= 1'b0;
-                        MISSING_ELSE
+                   <font color = "red">==>  MISSING_ELSE</font>
 1534                                end
 1535                              else // MII
 1536                                begin
 1537       1/1                         if ((rx_dv_int == 2'b00) &amp;
 1538                                       ((rx_er_in == 2'b11) &amp; (rxd_int[15:0] == 16'h1111)))
-1539       1/1                             lpi_indicate &lt;= 1'b1;
+1539       <font color = "red">0/1     ==>                     lpi_indicate &lt;= 1'b1;</font>
 1540       1/1                         else if ((rx_er_in != 2'b11) | (rxd_int[15:0] != 16'h1111))
 1541       1/1                                    lpi_indicate &lt;= 1'b0;
                         MISSING_ELSE
@@ -487,8 +487,8 @@ Go <a href="mod2651.html#l23">back</a>
 1771                    
 1772                                // Gigabit TBI mode (16 bits)
 1773                                default : begin
-1774       1/1                                  curr_rx_dv[1:0] &lt;= rx_dv_int[1:0];
-1775       1/1                                  curr_rx_er[1:0] &lt;= rx_er_int[1:0];
+1774       <font color = "red">0/1     ==>                          curr_rx_dv[1:0] &lt;= rx_dv_int[1:0];</font>
+1775       <font color = "red">0/1     ==>                          curr_rx_er[1:0] &lt;= rx_er_int[1:0];</font>
 1776                                          end
 1777                             endcase
 1778                           end
@@ -826,7 +826,7 @@ Go <a href="mod2651.html#l23">back</a>
 2109                    
 2110                                    // Premature end of frame detected
 2111       1/1                          if (rx_dv_int_te)
-2112       1/1                             rx_state_nxt = RX_IDLE;
+2112       <font color = "red">0/1     ==>                     rx_state_nxt = RX_IDLE;</font>
 2113                    
 2114                                    // Bad preamble detected
 2115       1/1                          else if (~valid_pre &amp; curr_buf_full)
@@ -2612,7 +2612,7 @@ Go <a href="mod2651.html#l23">back</a>
 3880       1/1                  case(rx_mp_state)
 3881                               RX_MP_WAIT_SYNC2: // waiting for second and third FF sync bytes
 3882       1/1                        if (new_pipeline_data_comb &amp; (pipeline_output[15:0] == 16'hffff))
-3883       <font color = "red">0/1     ==>                   rx_mp_state &lt;= RX_MP_WAIT_SYNC4;</font>
+3883       1/1                           rx_mp_state &lt;= RX_MP_WAIT_SYNC4;
 3884       1/1                        else if (new_pipeline_data_comb &amp; (pipeline_output[15:8] == 8'hff))
 3885       <font color = "red">0/1     ==>                   rx_mp_state &lt;= RX_MP_WAIT_SYNC2;</font>
 3886       1/1                        else if (new_pipeline_data_comb)
@@ -2631,14 +2631,14 @@ Go <a href="mod2651.html#l23">back</a>
 3899       1/1                           rx_mp_state &lt;= RX_MP_WAIT_SYNC3;
 3900                    
 3901                               RX_MP_WAIT_SYNC4: // waiting for fourth and fifth FF sync bytes
-3902       <font color = "red">0/1     ==>                if (new_pipeline_data_comb &amp; (pipeline_output[15:0] == 16'hffff))</font>
-3903       <font color = "red">0/1     ==>                   rx_mp_state &lt;= RX_MP_WAIT_SYNC6;</font>
-3904       <font color = "red">0/1     ==>                else if (new_pipeline_data_comb &amp; (pipeline_output[15:8] == 8'hff))</font>
+3902       1/1                        if (new_pipeline_data_comb &amp; (pipeline_output[15:0] == 16'hffff))
+3903       1/1                           rx_mp_state &lt;= RX_MP_WAIT_SYNC6;
+3904       1/1                        else if (new_pipeline_data_comb &amp; (pipeline_output[15:8] == 8'hff))
 3905       <font color = "red">0/1     ==>                   rx_mp_state &lt;= RX_MP_WAIT_SYNC2;</font>
-3906       <font color = "red">0/1     ==>                else if (new_pipeline_data_comb)</font>
+3906       1/1                        else if (new_pipeline_data_comb)
 3907       <font color = "red">0/1     ==>                   rx_mp_state &lt;= RX_MP_WAIT_SYNC1;</font>
 3908                                  else
-3909       <font color = "red">0/1     ==>                   rx_mp_state &lt;= RX_MP_WAIT_SYNC4;</font>
+3909       1/1                           rx_mp_state &lt;= RX_MP_WAIT_SYNC4;
 3910                    
 3911                               RX_MP_WAIT_SYNC5: // waiting for fifth and sixth FF sync bytes
 3912       1/1                        if (new_pipeline_data_comb &amp; (pipeline_output[15:0] == 16'hffff))
@@ -2651,17 +2651,17 @@ Go <a href="mod2651.html#l23">back</a>
 3919       1/1                           rx_mp_state &lt;= RX_MP_WAIT_SYNC5;
 3920                    
 3921                               RX_MP_WAIT_SYNC6: // waiting for sixth FF sync and spec_add1[7:0]
-3922       <font color = "red">0/1     ==>                if (new_pipeline_data_comb &amp; (pipeline_output[7:0] == 8'hff) &amp;</font>
+3922       1/1                        if (new_pipeline_data_comb &amp; (pipeline_output[7:0] == 8'hff) &amp;
 3923                                           (pipeline_output[15:8] == spec_add_filter_regs[7:0]))
 3924       <font color = "red">0/1     ==>                   rx_mp_state &lt;= RX_MP_WAIT_ADD2;</font>
-3925       <font color = "red">0/1     ==>                else if (new_pipeline_data_comb &amp; (pipeline_output[15:0] == 16'hffff))</font>
-3926       <font color = "red">0/1     ==>                   rx_mp_state &lt;= RX_MP_WAIT_ADD1;</font>
-3927       <font color = "red">0/1     ==>                else if (new_pipeline_data_comb &amp; (pipeline_output[15:8] == 8'hff))</font>
+3925       1/1                        else if (new_pipeline_data_comb &amp; (pipeline_output[15:0] == 16'hffff))
+3926       1/1                           rx_mp_state &lt;= RX_MP_WAIT_ADD1;
+3927       1/1                        else if (new_pipeline_data_comb &amp; (pipeline_output[15:8] == 8'hff))
 3928       <font color = "red">0/1     ==>                   rx_mp_state &lt;= RX_MP_WAIT_SYNC2;</font>
-3929       <font color = "red">0/1     ==>                else if (new_pipeline_data_comb)</font>
+3929       1/1                        else if (new_pipeline_data_comb)
 3930       <font color = "red">0/1     ==>                   rx_mp_state &lt;= RX_MP_WAIT_SYNC1;</font>
 3931                                  else
-3932       <font color = "red">0/1     ==>                   rx_mp_state &lt;= RX_MP_WAIT_SYNC6;</font>
+3932       1/1                           rx_mp_state &lt;= RX_MP_WAIT_SYNC6;
 3933                    
 3934                               RX_MP_WAIT_ADD1: // waiting for first spec_add1 byte
 3935       1/1                        if (new_pipeline_data_comb &amp;
@@ -2673,7 +2673,7 @@ Go <a href="mod2651.html#l23">back</a>
 3941       <font color = "red">0/1     ==>                   rx_mp_state &lt;= RX_MP_WAIT_ADD2;</font>
 3942       1/1                        else if (new_pipeline_data_comb &amp; (mp_add_cnt == 4'hF) &amp;
 3943                                           (pipeline_output[15:0] == 16'hffff))
-3944       <font color = "red">0/1     ==>                   rx_mp_state &lt;= RX_MP_WAIT_ADD1;</font>
+3944       1/1                           rx_mp_state &lt;= RX_MP_WAIT_ADD1;
 3945       1/1                        else if (new_pipeline_data_comb &amp; (pipeline_output[15:0] == 16'hffff))
 3946       <font color = "red">0/1     ==>                   rx_mp_state &lt;= RX_MP_WAIT_SYNC3;</font>
 3947       1/1                        else if (new_pipeline_data_comb &amp; (pipeline_output[15:8] == 8'hff))

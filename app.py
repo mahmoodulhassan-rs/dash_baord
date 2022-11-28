@@ -643,7 +643,7 @@ dbc.Container([
  dcc.Markdown('''
     [](/)
 '''),
- html.Div(children = "SHA: 663b4f82699503a01f206cffe8286ab52d803554", style = {
+ html.Div(children = "SHA: f0085a8b36a0b92c74252c7f3f27de6a13d4bb49", style = {
      'textAlign': 'left',
      'color': 'Black',
      'fontWeight': 'bold'

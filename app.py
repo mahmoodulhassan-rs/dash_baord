@@ -28,10 +28,10 @@ print(time_var)
 df_f = pd.read_csv('css_stats.csv')
 df_f = df_f[['Sr#','IP', 'Test_Name', 'Status', 'SEED' , 'Remarks']]
 
-sram_df_f = pd.read_csv('sram_css_stats.csv')
+sram_df_f = pd.read_csv('sram_css_states.csv')
 sram_df_f = sram_df_f[['Test_Name', 'Status', 'Remarks']]
 
-fcb_df_f = pd.read_csv('fcb_css_stats.csv')
+fcb_df_f = pd.read_csv('fcb_css_states.csv')
 fcb_df_f = fcb_df_f[['Test_Name', 'Status', 'Remarks']]
 ####Percentage Section##
 df_pcnt = pd.DataFrame(columns = ["IP","Total_Tests","Tests_Passed","Tests_Failed","Timeout","Percentage"])

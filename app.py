@@ -10,7 +10,7 @@ df_table = pd.read_csv('css_stats_dash.csv')
 df_states = pd.read_csv('css_stats.csv')
 df_time_lg = pd.read_csv('time.csv')
 
-sram_df_grp_dash=pd.read_csv('sram_pie_stats_dash.csv')
+sram_df_grp_dash=pd.read_csv('sram_pie_states_dash.csv')
 sram_df_table = pd.read_csv('sram_css_states_dash.csv')
 sram_df_states = pd.read_csv('sram_css_states.csv')
 sram_df_time_lg = pd.read_csv('sram_time.csv')

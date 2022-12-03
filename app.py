@@ -5,19 +5,19 @@ import dash_bootstrap_components as dbc
 import plotly.express as px
 from datetime import datetime
 import plotly.graph_objects as go
-df_grp_dash=pd.read_csv('pie_states_dash.csv')
-df_table = pd.read_csv('css_states_dash.csv')
-df_states = pd.read_csv('css_states.csv')
+df_grp_dash=pd.read_csv('pie_stats_dash.csv')
+df_table = pd.read_csv('css_stats_dash.csv')
+df_states = pd.read_csv('css_stats.csv')
 df_time_lg = pd.read_csv('time.csv')
 
-sram_df_grp_dash=pd.read_csv('sram_pie_states_dash.csv')
-sram_df_table = pd.read_csv('sram_css_states_dash.csv')
-sram_df_states = pd.read_csv('sram_css_states.csv')
+sram_df_grp_dash=pd.read_csv('sram_pie_stats_dash.csv')
+sram_df_table = pd.read_csv('sram_css_stats_dash.csv')
+sram_df_states = pd.read_csv('sram_css_stats.csv')
 sram_df_time_lg = pd.read_csv('sram_time.csv')
 
-fcb_df_grp_dash=pd.read_csv('fcb_pie_states_dash.csv')
-fcb_df_table = pd.read_csv('fcb_css_states_dash.csv')
-fcb_df_states = pd.read_csv('fcb_css_states.csv')
+fcb_df_grp_dash=pd.read_csv('fcb_pie_stats_dash.csv')
+fcb_df_table = pd.read_csv('fcb_css_stats_dash.csv')
+fcb_df_states = pd.read_csv('fcb_css_stats.csv')
 fcb_df_time_lg = pd.read_csv('fcb_time.csv')
 
 
@@ -25,13 +25,13 @@ fcb_df_time_lg = pd.read_csv('fcb_time.csv')
 time_var= df_time_lg["Regression_Run_Time"]
 print(time_var)
 
-df_f = pd.read_csv('css_states.csv')
-df_f = df_f[['Sr#','IP', 'Test_Name', 'Status', 'Remarks']]
+df_f = pd.read_csv('css_stats.csv')
+df_f = df_f[['Sr#','IP', 'Test_Name', 'Status', 'SEED' , 'Remarks']]
 
-sram_df_f = pd.read_csv('sram_css_states.csv')
+sram_df_f = pd.read_csv('sram_css_stats.csv')
 sram_df_f = sram_df_f[['Test_Name', 'Status', 'Remarks']]
 
-fcb_df_f = pd.read_csv('fcb_css_states.csv')
+fcb_df_f = pd.read_csv('fcb_css_stats.csv')
 fcb_df_f = fcb_df_f[['Test_Name', 'Status', 'Remarks']]
 ####Percentage Section##
 df_pcnt = pd.DataFrame(columns = ["IP","Total_Tests","Tests_Passed","Tests_Failed","Timeout","Percentage"])
@@ -632,7 +632,7 @@ dbc.Container([
  dcc.Markdown('''
     [](/)
 '''),
-  html.Div(children = "Branch: gemini_b0_br   ", style = {
+  html.Div(children = "Branch: main   ", style = {
      'textAlign': 'left',
      'color': 'Black',
      'fontWeight': 'bold'
@@ -643,7 +643,7 @@ dbc.Container([
  dcc.Markdown('''
     [](/)
 '''),
- html.Div(children = "SHA: f0085a8b36a0b92c74252c7f3f27de6a13d4bb49", style = {
+ html.Div(children = "SHA: 4645a4116d1378bb8f773b45c6918257aa0b9bd2", style = {
      'textAlign': 'left',
      'color': 'Black',
      'fontWeight': 'bold'
@@ -1006,6 +1006,7 @@ html.Div(children = 'IP-wise Statistics', style = {
             {'name': 'IP', 'id': 'IP', 'type': 'text'},
             {'name': 'Test_Name', 'id': 'Test_Name', 'type': 'text'},
             {'name': 'Status', 'id': 'Status', 'type': 'text'},
+            {'name': 'SEED', 'id': 'SEED', 'type': 'text'},
             {'name': 'Remarks', 'id': 'Remarks', 'type': 'text'}
         ],
         style_table={'overflowX': 'auto'},
@@ -1077,6 +1078,11 @@ html.Div(children = 'IP-wise Statistics', style = {
          'color': 'BLACK',
          'fontWeight': 'bold'},
                 {'if': {'column_id': 'Status'},
+         'width': '10%',
+         'textAlign': 'center',
+         'color': 'BLACK',
+         'fontWeight': 'bold'},
+               {'if': {'column_id': 'SEED'},
          'width': '10%',
          'textAlign': 'center',
          'color': 'BLACK',

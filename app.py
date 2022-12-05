@@ -479,7 +479,7 @@ image_path = 'assets/huge.png'
 #     'primary': '#00EA64',
 #     'secondary': '#6E6E6E',
 # }
-app = dash.Dash(__name__, meta_tags=[{"name": "viewport", "content": "width=device-width"}])
+app = Dash(__name__, meta_tags=[{"name": "viewport", "content": "width=device-width"}])
 server = app.server
 fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category",hole=.2,color_discrete_map={'Tests Passed':'#66CDAA',
                                  'Tests Under Regression':'#FFA500',                                                                           

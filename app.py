@@ -487,7 +487,7 @@ app = dash.Dash(__name__, meta_tags=[{"name": "viewport", "content": "width=devi
 server = app.server
 # fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category",hole=.2,color_discrete_map={'Tests Passed':'#228B22',
 #                                  'Tests Under Regression':'#FFFF00',                                                                           
-#                                  'Tests Failed':'#FF4500'})
+#                                  'Tests Failed':'#FF0000'})
 # fig.update_layout(title={'text': '<b>Pie Chart SoC</b>','y':1.0,
 #         'x':0.5,
 #         'xanchor': 'center',
@@ -523,7 +523,7 @@ values = df_grp_dash['Numbers']  #.value_counts().values
 # py.iplot([fig_test], filename='basic_pie_chart')
 map_mv_status_colors = {
     "Tests Passed": "#228B22",
-    "Tests Failed": "#FF4500",
+    "Tests Failed": "#FF0000",
     "Tests Under Regression": "#FFFF00",
     # "WOUND UP LO": "pink",
     # "FFWD": "red",
@@ -583,7 +583,7 @@ fig_test.for_each_trace(
 
 fig_sram = px.pie(sram_df_grp_dash, values='Numbers', names='Category',color = "Category",hole=.2,color_discrete_map={'Tests Passed':'#228B22',
                                  'Tests Under Development':'#FF8C00',                                                                           
-                                 'Tests Failed':'#FF4500'})
+                                 'Tests Failed':'#FF0000'})
 fig_sram.update_layout(title={'text': '<b>Pie Chart SRAM  (Unit Level)</b>','y':0.95,
         'x':0.5,
         'xanchor': 'center',
@@ -599,7 +599,7 @@ legend=dict(
 
 fig_fcb = px.pie(fcb_df_grp_dash, values='Numbers', names='Category',color = "Category",hole=.2,color_discrete_map={'Tests Passed':'#228B22',
                                  'Tests Under Development':'#FF8C00',                                                                           
-                                 'Tests Failed':'#FF4500'})
+                                 'Tests Failed':'#FF0000'})
 fig_fcb.update_layout(title={'text': '<b>Pie Chart FCB  (Unit Level)</b>','y':1,
         'x':0.5,
         'xanchor': 'center',
@@ -623,7 +623,7 @@ f1 = go.Figure(
                               line = dict(color = 'black', width = 2))),
         go.Scatter(x=arr_x,y=aarr, name="Tests Passed",line=dict(color="#228B22"),marker = dict(size = 3, symbol = 'circle', color = 'white',
                               line = dict(color = 'black', width = 2))),
-        go.Scatter(x=arr_x,y=arr_f, name="Tests Failed",line=dict(color="#FF4500"),marker = dict(size = 3, symbol = 'circle', color = 'white',
+        go.Scatter(x=arr_x,y=arr_f, name="Tests Failed",line=dict(color="#FF0000"),marker = dict(size = 3, symbol = 'circle', color = 'white',
                               line = dict(color = 'black', width = 2))),
     ],
     layout =go.Layout(
@@ -851,7 +851,7 @@ app.layout = html.Div((
             style_data_conditional=[
                 {"if": {"row_index": 0}, "backgroundColor": "#FF8C00"}, #	orangeFF8C00
                 {"if": {"row_index": 1}, "backgroundColor": "#228B22"}, ##228B22 Green
-                {"if": {"row_index": 2}, "backgroundColor": "#FF4500"},##FF4500 Red
+                {"if": {"row_index": 2}, "backgroundColor": "#FF0000"},##FF0000 Red
                 {"if": {"row_index": 3}, "backgroundColor": "#FFFF00"}, #FFFF00 #FFFF00
                 {
                     "if": {"state": "active"},
@@ -869,7 +869,7 @@ app.layout = html.Div((
                 'filter_query': '{Numbers} > 0',
                 'row_index': 2,
             },
-            'backgroundColor': '#FF4500',
+            'backgroundColor': '#FF0000',
             'color': 'black'
          },
             ],
@@ -1028,7 +1028,7 @@ dash_table.DataTable(    style_data={
                 'filter_query': '{Percentage} < 80',
                 'column_id': 'Percentage'
             },
-            'backgroundColor': '#FF4500',
+            'backgroundColor': '#FF0000',
             'color': 'black'
          }, 
 
@@ -1045,7 +1045,7 @@ dash_table.DataTable(    style_data={
                 'filter_query': '{Tests_Failed} > 0',
                 'column_id': 'Tests_Failed'
             },
-            'backgroundColor': '#FF4500',
+            'backgroundColor': '#FF0000',
             'color': 'black'
          },
          {
@@ -1347,7 +1347,7 @@ html.Label("IP-Wise Statistics" ,style = {
                 'filter_query': '{Status} contains "Failed"',
                 'column_id': 'Status'
             },
-            'backgroundColor': '#FF4500',
+            'backgroundColor': '#FF0000',
             'color': 'black'
          },
          

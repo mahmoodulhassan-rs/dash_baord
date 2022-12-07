@@ -699,8 +699,8 @@ app.layout = html.Div((
      html.Div([
          html.Img(src='assets/index_2.png',
             style={
-                'height': '40%',
-                'width': '30%'
+                'height': '60%',
+                'width': '40%'
             })
 ], style={'textAlign': 'center'}),
     html.Div(children = 'Gemini SoC Tests Statistics', style = {

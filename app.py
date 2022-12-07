@@ -1003,7 +1003,7 @@ dash_table.DataTable(    style_data={
                 'filter_query': '{Percentage} > 89 && {Percentage} < 100' ,
                 'column_id': 'Percentage'
             },
-            'backgroundColor': '#6B8E23',
+            'backgroundColor': '#90ee90',
             'color': 'black'
          },
         {

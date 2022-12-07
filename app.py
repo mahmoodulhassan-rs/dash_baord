@@ -782,7 +782,7 @@ app.layout = html.Div((
 
 
     
-  ],className = 'create_container2 six columns', style = {'height': '690px','width': '800px'}),
+  ],className = 'create_container2 six columns', style = {'height': '690px','width': '700px'}),
 
   html.Div([
     html.Label("General Statistics" ,style = {
@@ -893,7 +893,7 @@ app.layout = html.Div((
     id = 'gemini-graph-2',
     figure = f1
   ),
-  ],className = 'create_container2 five columns', style = {'height': '690px','width': '800px'}),
+  ],className = 'create_container2 five columns', style = {'height': '690px','width': '700px'}),
 
  ]),
  

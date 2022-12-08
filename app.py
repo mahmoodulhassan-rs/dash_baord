@@ -699,7 +699,7 @@ app.layout = html.Div((
      html.Div([
          html.Img(src='assets/index_2.png',
             style={
-                'height': '60%',
+                'height': '80%',
                 'width': '40%'
             })
 ], style={'textAlign': 'center'}),

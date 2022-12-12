@@ -544,8 +544,8 @@ fig_test = go.Figure(data=[go.Pie(labels = labels,
                             ),
                             ],
                      layout= go.Layout(
-                plot_bgcolor = '#A9A9A9',
-                paper_bgcolor = '#A9A9A9',
+                plot_bgcolor = '#DCDCDC',
+                paper_bgcolor = '#DCDCDC',
                 hovermode = 'x',
                 title = {
                     'text': '<b>Pie Chart SoC<b>',
@@ -559,7 +559,7 @@ fig_test = go.Figure(data=[go.Pie(labels = labels,
                     },
                 legend = {
                     'orientation': 'h',
-                    'bgcolor': '#A9A9A9',
+                    'bgcolor': '#DCDCDC',
                     'xanchor': 'center', 'x': 0.5, 'y': -0.15},
 
                 font = dict(
@@ -616,7 +616,7 @@ legend=dict(
 arr =[400,400,400,400,400,400,400,400,400,400,400,439,647,633,663,660,662,666]
 aarr= [21,35,39,56,65,96,139,167,171,195,360,379,600,588,639,616,646,643]
 arr_f= [0,3,3,0,4,15,39,37,30,50,50,37,27,25,10,36,8,13]
-arr_x=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22] ##A9A9A9
+arr_x=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22] ##DCDCDC
 f1 = go.Figure(
     data = [
         go.Scatter(x=arr_x,y=arr, name="Tests Planned",line=dict(color="#FF8C00"),marker = dict(size = 3, symbol = 'circle', color = 'white',
@@ -627,8 +627,8 @@ f1 = go.Figure(
                               line = dict(color = 'black', width = 2))),
     ],
     layout =go.Layout(
-             plot_bgcolor='#A9A9A9',
-             paper_bgcolor='#A9A9A9',
+             plot_bgcolor='#DCDCDC',
+             paper_bgcolor='#DCDCDC',
              title={
                 'text': '<b>Weekly Statistics SoC<b>',
 
@@ -680,7 +680,7 @@ f1 = go.Figure(
 
             legend = {
                 'orientation': 'h',
-                'bgcolor': '#A9A9A9',
+                'bgcolor': '#DCDCDC',
                 'x': 0.5,
                 'y': -0.1,
                 'xanchor': 'center',
@@ -840,13 +840,13 @@ app.layout = html.Div((
     # export_format="csv",
     columns=[{"name": i, "id": i} for i in df_table.columns],
             style_header={
-        'backgroundColor': '#A9A9A9',
+        'backgroundColor': '#DCDCDC',
         'fontWeight': 'bold',
-        'color': '#A9A9A9'
+        'color': '#DCDCDC'
     },
         css=[{"selector": "input", "rule": "color:'black'"}],
             # data=df.to_dict("records"),
-            style_cell={"color": "#A9A9A9"},
+            style_cell={"color": "#DCDCDC"},
             # editable=True,
             style_data_conditional=[
                 {"if": {"row_index": 0}, "backgroundColor": "#FF8C00"}, #	orangeFF8C00
@@ -977,7 +977,7 @@ dash_table.DataTable(    style_data={
             'if': {
                 'filter_query': '{IP} contains "Aggregate"'
             },
-            'backgroundColor': '#A9A9A9',
+            'backgroundColor': '#DCDCDC',
             'color': 'black'
         },
 #                        {
@@ -1064,14 +1064,14 @@ dash_table.DataTable(    style_data={
          'textAlign': 'center',
         #  'fontWeight': 'bold',
          'color': 'BLACK',
-        'backgroundColor': '#A9A9A9', ### A9A9A9 grey
+        'backgroundColor': '#DCDCDC', ### DCDCDC grey old new is DCDCDC
         },
         {'if': {'column_id': 'Total_Tests'},
          'width': '10%',
          'textAlign': 'center',
         #  'fontWeight': 'bold',
          'color': 'BLACK',
-         'backgroundColor': '#A9A9A9',        
+         'backgroundColor': '#DCDCDC',        
         },
         {'if': {'column_id': 'Tests_Passed'},
          'width': '10%',
@@ -1085,21 +1085,21 @@ dash_table.DataTable(    style_data={
          'textAlign': 'center',
         #  'fontWeight': 'bold',
          'color': 'BLACK',
-        'backgroundColor': '#A9A9A9',
+        'backgroundColor': '#DCDCDC',
         },
        {'if': {'column_id': 'Timeout'},
          'width': '10%',
          'textAlign': 'center',
         #  'fontWeight': 'bold',
          'color': 'BLACK',
-         'backgroundColor': '#A9A9A9',
+         'backgroundColor': '#DCDCDC',
        },
       {'if': {'column_id': 'Percentage'},
          'width': '10%',
          'textAlign': 'center',
         #  'fontWeight': 'bold',
          'color': 'BLACK',
-       'backgroundColor': '#A9A9A9 ',
+       'backgroundColor': '#DCDCDC ',
       },
             {'if': {'column_id': 'Toggle_Coverage'},
          'width': '10%',
@@ -1326,8 +1326,8 @@ html.Label("IP-Wise Statistics" ,style = {
     },
             # editable=True,
             style_data_conditional=[
-                {"if": {"row_index": "odd"}, "backgroundColor": "#A9A9A9"},
-                {"if": {"row_index": "even"}, "backgroundColor": "#A9A9A9"},
+                {"if": {"row_index": "odd"}, "backgroundColor": "#DCDCDC"},
+                {"if": {"row_index": "even"}, "backgroundColor": "#DCDCDC"},
                 {
                     "if": {"state": "active"},
                     "backgroundColor": "inherit !important",

@@ -1405,6 +1405,30 @@ html.Label("IP-Wise Statistics" ,style = {
     ]),
     
   ],style = {'width': '1650px'}),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
+ dcc.Markdown('''
+    [](/)
+'''),
 
 html.Label("Combined Coverage Report" ,style = {
             'textAlign': 'center',

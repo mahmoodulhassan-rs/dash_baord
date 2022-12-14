@@ -1404,7 +1404,7 @@ html.Label("IP-Wise Statistics" ,style = {
          
     ]),
     
-  ],style = {'width': '1650px', 'height':'600px'}),
+  ],style = {'width': '1650px'}),
 
 html.Label("Combined Coverage Report" ,style = {
             'textAlign': 'center',

@@ -482,8 +482,8 @@ df_pcnt= df_pcnt.append({'IP' : 'Aggregate', 'Total_Tests' : grand_total , 'Test
 print(df_pcnt)
 image_path = 'assets/huge.png'
 
-app = dash.Dash(__name__, meta_tags=[{"name": "viewport", "content": "width=device-width"}])
-
+# app = dash.Dash(__name__, meta_tags=[{"name": "viewport", "content": "width=device-width"}])
+app = dash.Dash(__name__)
 server = app.server
 # fig = px.pie(df_grp_dash, values='Numbers', names='Category',color = "Category",hole=.2,color_discrete_map={'Tests Passed':'#228B22',
 #                                  'Tests Under Regression':'#FFFF00',                                                                           

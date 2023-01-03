@@ -771,7 +771,7 @@ app.layout = html.Div((
                        style = {'textAlign': 'center',
                                 'color': 'black'}
                        ),
-                html.P('a323347859adc8fccc8602e3e2b3c8ac121dea6f,
+                html.P('a323347859adc8fccc8602e3e2b3c8ac121dea6f'),
                        style={'textAlign': 'center',
                               'color': '#00008B',
                               'fontSize': 15,

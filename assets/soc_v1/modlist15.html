@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="Author" content="<username>"> <meta name="GENERATOR" content="urg/version [en] (platform name) [urg]">
+<title>Unified Coverage Report :: Module List</title>
+<link type="text/css" rel="stylesheet" href="css/.urg.css">
+<link type="text/css" rel="stylesheet" href="css/.treetable.css">
+<link type="text/css" rel="stylesheet" href="css/.layout.css">
+<script type="text/javascript" src="js/.jquery.js"></script>
+<script type="text/javascript" src="js/.jquery-ui.js"></script>
+<script type="text/javascript" src="js/.sortable.js"></script>
+<script type="text/javascript" src="js/.treetable.js"></script>
+<script type="text/javascript" src="js/.colResizable.js"></script>
+<script type="text/javascript" src="js/.layout.js"></script>
+<script type="text/javascript">
+var layout, westLayout, centerLayout;
+$(document).ready(function () {
+  layout = $("body").layout({ 
+    resizable: true,
+    spacing_open: 4,
+    spacing_closed: 4,
+    north: {
+      size: 76
+    },
+    south: {
+      size: 45,
+      initClosed: true
+    }  });
+  $("#hierarchyTable tbody tr").mousedown(function() {
+    $("tr.selected").removeClass("selected");
+    $("td.selected").removeClass("selected");
+    $(this).addClass("selected");
+    $(this).children().addClass("selected");
+  });
+  $("tr[data-tt-id='hierarchyTable_root']").each(function () {
+    $(this).attr("style", "display:none");
+  });
+  $("tr[data-tt-parent-id='hierarchyTable_root']").each(function () {
+    $(this).attr("style", "display:table-row");
+    $("#hierarchyTable").treetable("expandNode", $(this).attr("data-tt-id"));
+  });
+  $("table").colResizable({    liveDrag:true,
+    fixed:false,
+    draggingClass:"dragging"
+  });
+});
+function expandAll() {
+  $("#hierarchyTable").treetable("expandAll");
+}
+function collapseAll() {
+  if ($("tr[data-tt-parent-id='hierarchyTable_root']").length > 0) {
+    $("tr[data-tt-parent-id='hierarchyTable_root']").each(function () {
+      var nodeId = $(this).attr("data-tt-id");
+      var node = $("#hierarchyTable").treetable("node", nodeId);
+      $("#hierarchyTable").treetable("collapseNodeRecursive", node);
+    });
+  } else {
+    $("#hierarchyTable").treetable("collapseAll");
+  }
+}
+</script>
+</head>
+<body><div class="ui-layout-north">
+<div class="logo"></div>
+<center class="pagetitle">Design Module List</center>
+<div align="center"><a href="dashboard.html" ><b>dashboard</b></a> | <a href="hierarchy.html" ><b>hierarchy</b></a> | <a href="modlist.html" ><b>modlist</b></a> | <a href="groups.html" ><b>groups</b></a> | <a href="tests.html" ><b>tests</b></a> | <a href="asserts.html" ><b>asserts</b></a></div>
+
+</div>
+<div class="ui-layout-center">
+<b>Total Module Definition Coverage Summary</b>&nbsp;<br clear=all>
+<table align=left>
+<tr class="sortablehead">
+<td nowrap width=65>SCORE</td><td nowrap width=65>LINE</td><td nowrap width=65>COND</td><td nowrap width=65>TOGGLE</td><td nowrap width=65>FSM</td><td nowrap width=65>BRANCH</td><td nowrap width=65>ASSERT</td></tr><tr>
+<td class="s4 cl rt"> 48.33</td>
+<td class="s6 cl rt"> 64.38</td>
+<td class="s5 cl rt"> 59.68</td>
+<td class="s3 cl rt"> 37.93</td>
+<td class="s2 cl rt"> 26.90</td>
+<td class="s5 cl rt"> 56.63</td>
+<td class="s4 cl rt"> 44.44</td>
+</tr></table><br clear=all>
+<br clear=all>
+Total modules in report: 2349<hr>
+<a href="modlist.html" >modlist.html</a> | <a href="modlist1.html" >modlist1.html</a> | <a href="modlist2.html" >modlist2.html</a> | <a href="modlist3.html" >modlist3.html</a> | <a href="modlist4.html" >modlist4.html</a> | <a href="modlist5.html" >modlist5.html</a> | <a href="modlist6.html" >modlist6.html</a> | <a href="modlist7.html" >modlist7.html</a> | <a href="modlist8.html" >modlist8.html</a> | <a href="modlist9.html" >modlist9.html</a> | <a href="modlist10.html" >modlist10.html</a> | <a href="modlist11.html" >modlist11.html</a> | <a href="modlist12.html" >modlist12.html</a> | <a href="modlist13.html" >modlist13.html</a> | <a href="modlist14.html" >modlist14.html</a> | <b>modlist15.html</b> | <a href="modlist16.html" >modlist16.html</a> | <a href="modlist17.html" >modlist17.html</a> | <a href="modlist18.html" >modlist18.html</a> | <a href="modlist19.html" >modlist19.html</a> | <a href="modlist20.html" >modlist20.html</a> | <a href="modlist21.html" >modlist21.html</a> | <a href="modlist22.html" >modlist22.html</a> | <a href="modlist23.html" >modlist23.html</a><hr>
+<table class="noborder">
+  <tr>
+    <td class="noborder"><input type="button" value="Expand All" onClick="expandAll()"></td>
+    <td class="noborder"><input type="button" value="Collapse All" onClick="collapseAll()"></td>
+  </tr>
+</table>
+<table id="hierarchyTable" border="0" cellpadding="0" cellspacing="0" class="sortable">
+  <thead class="table-header">
+    <tr>
+<th class="alfsrt">NAME</th><th>SCORE</th><th>LINE</th><th>COND</th><th>TOGGLE</th><th>FSM</th><th>BRANCH</th><th>ASSERT</th>    </tr>
+  </thead>
+  <tbody>
+    <tr data-tt-id="hierarchyTable_root">
+<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>    </tr>
+    <tr data-tt-id="mod_54" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_U_P_N_6580ede3_A011451011111"></a>
+<a href="mod59.html" >rsnoc_z_H_R_U_P_N_6580ede3_A011451011111</a></td>
+<td class="s8 cl rt"> 85.11</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod59.html#Toggle" > 85.11</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_780" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_T2_U_U_00ca3e28"></a>
+<a href="mod785.html" >rsnoc_z_H_R_G_T2_U_U_00ca3e28</a></td>
+<td class="s8 cl rt"> 85.12</td>
+<td class="s9 cl rt"><a href="mod785.html#Line" > 92.62</a></td>
+<td class="s8 cl rt"><a href="mod785.html#Cond" > 83.33</a></td>
+<td class="s7 cl rt"><a href="mod785.html#Toggle" > 75.27</a></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod785.html#Branch" > 89.28</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_850" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_G2_P_U_38f557e6_A110011003141"></a>
+<a href="mod855.html" >rsnoc_z_H_R_G_G2_P_U_38f557e6_A110011003141</a></td>
+<td class="s8 cl rt"> 85.12</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod855.html#Toggle" > 85.12</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_65" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_SPI_ahb_s0_main"></a>
+<a href="mod70.html" >rsnoc_SPI_ahb_s0_main</a></td>
+<td class="s8 cl rt"> 85.16</td>
+<td class="s10 cl rt"><a href="mod70.html#Line" >100.00</a></td>
+<td class="wht cl rt"></td>
+<td class="s7 cl rt"><a href="mod70.html#Toggle" > 70.31</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_104" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_U_Q_U_28ffddff0f"></a>
+<a href="mod109.html" >rsnoc_z_H_R_G_U_Q_U_28ffddff0f</a></td>
+<td class="s8 cl rt"> 85.16</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod109.html#Toggle" > 85.16</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_263" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_U_Q_U_666597227d"></a>
+<a href="mod268.html" >rsnoc_z_H_R_G_U_Q_U_666597227d</a></td>
+<td class="s8 cl rt"> 85.16</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod268.html#Toggle" > 85.16</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1687" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_U_Q_U_7a140b090d"></a>
+<a href="mod1692.html" >rsnoc_z_H_R_G_U_Q_U_7a140b090d</a></td>
+<td class="s8 cl rt"> 85.16</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod1692.html#Toggle" > 85.16</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2066" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_edma_gen_fifo"></a>
+<a href="mod2071.html" >edma_gen_fifo</a></td>
+<td class="s8 cl rt"> 85.18</td>
+<td class="s10 cl rt"><a href="mod2071.html#Line" >100.00</a></td>
+<td class="s8 cl rt"><a href="mod2071.html#Cond" > 88.89</a></td>
+<td class="s5 cl rt"><a href="mod2071.html#Toggle" > 51.85</a></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod2071.html#Branch" >100.00</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_1" data-tt-parent-id="mod_2066">
+<td class="wordwrap"><a name="tag_edma_gen_fifo"></a>
+<a href="mod2071.html#516919719" >edma_gen_fifo</a></td>
+<td class="s9 cl rt"> 96.30</td>
+<td class="s10 cl rt"><a href="mod2071.html#Line" >100.00</a></td>
+<td class="s8 cl rt"><a href="mod2071.html#Cond" > 88.89</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod2071.html#Branch" >100.00</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_2" data-tt-parent-id="mod_2066">
+<td class="wordwrap"><a name="tag_edma_gen_fifo ( parameter FIFO_WIDTH=10,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) "></a>
+<a href="mod2071.html#127590252" >edma_gen_fifo ( parameter FIFO_WIDTH=10,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) </a></td>
+<td class="s2 cl rt"> 29.31</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s2 cl rt"><a href="mod2071.html#Toggle" > 29.31</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_3" data-tt-parent-id="mod_2066">
+<td class="wordwrap"><a name="tag_edma_gen_fifo ( parameter FIFO_WIDTH=125,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) "></a>
+<a href="mod2071.html#1795511995" >edma_gen_fifo ( parameter FIFO_WIDTH=125,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) </a></td>
+<td class="s2 cl rt"> 23.55</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s2 cl rt"><a href="mod2071.html#Toggle" > 23.55</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_4" data-tt-parent-id="mod_2066">
+<td class="wordwrap"><a name="tag_edma_gen_fifo ( parameter FIFO_WIDTH=132,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) "></a>
+<a href="mod2071.html#783055711" >edma_gen_fifo ( parameter FIFO_WIDTH=132,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) </a></td>
+<td class="s6 cl rt"> 66.67</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s6 cl rt"><a href="mod2071.html#Toggle" > 66.67</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_5" data-tt-parent-id="mod_2066">
+<td class="wordwrap"><a name="tag_edma_gen_fifo ( parameter FIFO_WIDTH=19,FIFO_DEPTH=16,FIFO_ADDR_WIDTH=4 ) "></a>
+<a href="mod2071.html#367242001" >edma_gen_fifo ( parameter FIFO_WIDTH=19,FIFO_DEPTH=16,FIFO_ADDR_WIDTH=4 ) </a></td>
+<td class="s5 cl rt"> 56.00</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s5 cl rt"><a href="mod2071.html#Toggle" > 56.00</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_6" data-tt-parent-id="mod_2066">
+<td class="wordwrap"><a name="tag_edma_gen_fifo ( parameter FIFO_WIDTH=20,FIFO_DEPTH=16,FIFO_ADDR_WIDTH=4 ) "></a>
+<a href="mod2071.html#979779653" >edma_gen_fifo ( parameter FIFO_WIDTH=20,FIFO_DEPTH=16,FIFO_ADDR_WIDTH=4 ) </a></td>
+<td class="s6 cl rt"> 63.46</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s6 cl rt"><a href="mod2071.html#Toggle" > 63.46</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_7" data-tt-parent-id="mod_2066">
+<td class="wordwrap"><a name="tag_edma_gen_fifo ( parameter FIFO_WIDTH=32,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) "></a>
+<a href="mod2071.html#1292650580" >edma_gen_fifo ( parameter FIFO_WIDTH=32,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) </a></td>
+<td class="s9 cl rt"> 93.84</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s9 cl rt"><a href="mod2071.html#Toggle" > 93.84</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_8" data-tt-parent-id="mod_2066">
+<td class="wordwrap"><a name="tag_edma_gen_fifo ( parameter FIFO_WIDTH=36,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) "></a>
+<a href="mod2071.html#1896883544" >edma_gen_fifo ( parameter FIFO_WIDTH=36,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) </a></td>
+<td class="s5 cl rt"> 54.32</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s5 cl rt"><a href="mod2071.html#Toggle" > 54.32</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_9" data-tt-parent-id="mod_2066">
+<td class="wordwrap"><a name="tag_edma_gen_fifo ( parameter FIFO_WIDTH=4,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) "></a>
+<a href="mod2071.html#1626727685" >edma_gen_fifo ( parameter FIFO_WIDTH=4,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) </a></td>
+<td class="s5 cl rt"> 52.94</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s5 cl rt"><a href="mod2071.html#Toggle" > 52.94</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_10" data-tt-parent-id="mod_2066">
+<td class="wordwrap"><a name="tag_edma_gen_fifo ( parameter FIFO_WIDTH=41,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) "></a>
+<a href="mod2071.html#446829134" >edma_gen_fifo ( parameter FIFO_WIDTH=41,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) </a></td>
+<td class="s6 cl rt"> 65.93</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s6 cl rt"><a href="mod2071.html#Toggle" > 65.93</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_11" data-tt-parent-id="mod_2066">
+<td class="wordwrap"><a name="tag_edma_gen_fifo ( parameter FIFO_WIDTH=7,FIFO_DEPTH=16,FIFO_ADDR_WIDTH=4 ) "></a>
+<a href="mod2071.html#70401146" >edma_gen_fifo ( parameter FIFO_WIDTH=7,FIFO_DEPTH=16,FIFO_ADDR_WIDTH=4 ) </a></td>
+<td class="s5 cl rt"> 53.85</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s5 cl rt"><a href="mod2071.html#Toggle" > 53.85</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_12" data-tt-parent-id="mod_2066">
+<td class="wordwrap"><a name="tag_edma_gen_fifo ( parameter FIFO_WIDTH=74,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) "></a>
+<a href="mod2071.html#1683532114" >edma_gen_fifo ( parameter FIFO_WIDTH=74,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) </a></td>
+<td class="s2 cl rt"> 23.89</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s2 cl rt"><a href="mod2071.html#Toggle" > 23.89</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_13" data-tt-parent-id="mod_2066">
+<td class="wordwrap"><a name="tag_edma_gen_fifo ( parameter FIFO_WIDTH=76,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) "></a>
+<a href="mod2071.html#161835052" >edma_gen_fifo ( parameter FIFO_WIDTH=76,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) </a></td>
+<td class="s4 cl rt"> 40.06</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s4 cl rt"><a href="mod2071.html#Toggle" > 40.06</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_14" data-tt-parent-id="mod_2066">
+<td class="wordwrap"><a name="tag_edma_gen_fifo ( parameter FIFO_WIDTH=97,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) "></a>
+<a href="mod2071.html#2113877933" >edma_gen_fifo ( parameter FIFO_WIDTH=97,FIFO_DEPTH=2,FIFO_ADDR_WIDTH=1 ) </a></td>
+<td class="s5 cl rt"> 50.25</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s5 cl rt"><a href="mod2071.html#Toggle" > 50.25</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1114" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_G2_S_U_d88a3995"></a>
+<a href="mod1119.html" >rsnoc_z_H_R_G_G2_S_U_d88a3995</a></td>
+<td class="s8 cl rt"> 85.29</td>
+<td class="s8 cl rt"><a href="mod1119.html#Line" > 86.00</a></td>
+<td class="s10 cl rt"><a href="mod1119.html#Cond" >100.00</a></td>
+<td class="s7 cl rt"><a href="mod1119.html#Toggle" > 71.43</a></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod1119.html#Branch" > 83.72</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1381" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_U_P_N_6580ede3_A011441000111"></a>
+<a href="mod1386.html" >rsnoc_z_H_R_U_P_N_6580ede3_A011441000111</a></td>
+<td class="s8 cl rt"> 85.37</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod1386.html#Toggle" > 85.37</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_328" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_U_P_U_99110120"></a>
+<a href="mod333.html" >rsnoc_z_H_R_G_U_P_U_99110120</a></td>
+<td class="s8 cl rt"> 85.40</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod333.html#Toggle" > 85.40</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_421" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_U_P_U_c2e482eb"></a>
+<a href="mod426.html" >rsnoc_z_H_R_G_U_P_U_c2e482eb</a></td>
+<td class="s8 cl rt"> 85.40</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod426.html#Toggle" > 85.40</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1209" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_U_P_U_80c0a051"></a>
+<a href="mod1214.html" >rsnoc_z_H_R_G_U_P_U_80c0a051</a></td>
+<td class="s8 cl rt"> 85.40</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod1214.html#Toggle" > 85.40</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_275" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_T_Sa_U_Dp_d3db42fb"></a>
+<a href="mod280.html" >rsnoc_z_H_R_T_Sa_U_Dp_d3db42fb</a></td>
+<td class="s8 cl rt"> 85.42</td>
+<td class="s10 cl rt"><a href="mod280.html#Line" >100.00</a></td>
+<td class="s7 cl rt"><a href="mod280.html#Cond" > 77.27</a></td>
+<td class="s7 cl rt"><a href="mod280.html#Toggle" > 78.70</a></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod280.html#Branch" > 85.71</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2229" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_T2_B_U_ed1ea656"></a>
+<a href="mod2234.html" >rsnoc_z_H_R_G_T2_B_U_ed1ea656</a></td>
+<td class="s8 cl rt"> 85.43</td>
+<td class="s8 cl rt"><a href="mod2234.html#Line" > 88.89</a></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod2234.html#Toggle" > 81.67</a></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod2234.html#Branch" > 85.71</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_107" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_G2_S_U_5e125f8f_0"></a>
+<a href="mod112.html" >rsnoc_z_H_R_G_G2_S_U_5e125f8f_0</a></td>
+<td class="s8 cl rt"> 85.53</td>
+<td class="s9 cl rt"><a href="mod112.html#Line" > 98.37</a></td>
+<td class="s5 cl rt"><a href="mod112.html#Cond" > 56.67</a></td>
+<td class="s9 cl rt"><a href="mod112.html#Toggle" > 95.30</a></td>
+<td class="wht cl rt"></td>
+<td class="s9 cl rt"><a href="mod112.html#Branch" > 91.79</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1787" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_P_U_U_2b447319"></a>
+<a href="mod1792.html" >rsnoc_z_H_R_G_P_U_U_2b447319</a></td>
+<td class="s8 cl rt"> 85.61</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod1792.html#Toggle" > 85.61</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_545" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_ClockManager_interconnect_synch_regime_Cm533"></a>
+<a href="mod550.html" >ClockManager_interconnect_synch_regime_Cm533</a></td>
+<td class="s8 cl rt"> 85.71</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod550.html#Toggle" > 85.71</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_623" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_T_C_S_C_L_R_S_Lf_10"></a>
+<a href="mod628.html" >rsnoc_z_T_C_S_C_L_R_S_Lf_10</a></td>
+<td class="s8 cl rt"> 85.71</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod628.html#Toggle" > 85.71</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_741" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_ClockManager_fpga_regime_s0_Cm"></a>
+<a href="mod746.html" >ClockManager_fpga_regime_s0_Cm</a></td>
+<td class="s8 cl rt"> 85.71</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod746.html#Toggle" > 85.71</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2516" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_ClockManager_fpga_regime_m0_Cm"></a>
+<a href="mod2521.html" >ClockManager_fpga_regime_m0_Cm</a></td>
+<td class="s8 cl rt"> 85.71</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod2521.html#Toggle" > 85.71</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2584" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_ClockManager_fpga_regime_m1_Cm"></a>
+<a href="mod2589.html" >ClockManager_fpga_regime_m1_Cm</a></td>
+<td class="s8 cl rt"> 85.71</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod2589.html#Toggle" > 85.71</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_443" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_G2_P_U_6d65fe04_A00100051120"></a>
+<a href="mod448.html" >rsnoc_z_H_R_G_G2_P_U_6d65fe04_A00100051120</a></td>
+<td class="s8 cl rt"> 85.83</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod448.html#Toggle" > 85.83</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1273" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_SPI_mem_ahb_main"></a>
+<a href="mod1278.html" >rsnoc_SPI_mem_ahb_main</a></td>
+<td class="s8 cl rt"> 85.84</td>
+<td class="s10 cl rt"><a href="mod1278.html#Line" >100.00</a></td>
+<td class="wht cl rt"></td>
+<td class="s7 cl rt"><a href="mod1278.html#Toggle" > 71.68</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2115" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_dma_axi_m1_I_main"></a>
+<a href="mod2120.html" >rsnoc_dma_axi_m1_I_main</a></td>
+<td class="s8 cl rt"> 85.86</td>
+<td class="s10 cl rt"><a href="mod2120.html#Line" >100.00</a></td>
+<td class="wht cl rt"></td>
+<td class="s7 cl rt"><a href="mod2120.html#Toggle" > 71.71</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_984" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_G2_S_U_fdb2a811_0"></a>
+<a href="mod989.html" >rsnoc_z_H_R_G_G2_S_U_fdb2a811_0</a></td>
+<td class="s8 cl rt"> 85.91</td>
+<td class="s9 cl rt"><a href="mod989.html#Line" > 98.53</a></td>
+<td class="s5 cl rt"><a href="mod989.html#Cond" > 56.67</a></td>
+<td class="s9 cl rt"><a href="mod989.html#Toggle" > 95.89</a></td>
+<td class="wht cl rt"></td>
+<td class="s9 cl rt"><a href="mod989.html#Branch" > 92.56</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_617" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_atcwdt200"></a>
+<a href="mod622.html" >atcwdt200</a></td>
+<td class="s8 cl rt"> 85.97</td>
+<td class="s8 cl rt"><a href="mod622.html#Line" > 87.84</a></td>
+<td class="s10 cl rt"><a href="mod622.html#Cond" >100.00</a></td>
+<td class="s7 cl rt"><a href="mod622.html#Toggle" > 75.00</a></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod622.html#Branch" > 81.03</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_312" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_gem_bus_sync"></a>
+<a href="mod317.html" >gem_bus_sync</a></td>
+<td class="s8 cl rt"> 85.98</td>
+<td class="s10 cl rt"><a href="mod317.html#Line" >100.00</a></td>
+<td class="wht cl rt"></td>
+<td class="s5 cl rt"><a href="mod317.html#Toggle" > 57.93</a></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod317.html#Branch" >100.00</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_1" data-tt-parent-id="mod_312">
+<td class="wordwrap"><a name="tag_gem_bus_sync"></a>
+<a href="mod317.html#580989398" >gem_bus_sync</a></td>
+<td class="s10 cl rt">100.00</td>
+<td class="s10 cl rt"><a href="mod317.html#Line" >100.00</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod317.html#Branch" >100.00</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_2" data-tt-parent-id="mod_312">
+<td class="wordwrap"><a name="tag_gem_bus_sync ( parameter p_dwidth=16,p_reg_out=1 ) "></a>
+<a href="mod317.html#1714934319" >gem_bus_sync ( parameter p_dwidth=16,p_reg_out=1 ) </a></td>
+<td class="s7 cl rt"> 70.91</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s7 cl rt"><a href="mod317.html#Toggle" > 70.91</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_3" data-tt-parent-id="mod_312">
+<td class="wordwrap"><a name="tag_gem_bus_sync ( parameter p_dwidth=32,p_reg_out=1 ) "></a>
+<a href="mod317.html#1659662389" >gem_bus_sync ( parameter p_dwidth=32,p_reg_out=1 ) </a></td>
+<td class="s0 cl rt">  5.83</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s0 cl rt"><a href="mod317.html#Toggle" >  5.83</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_4" data-tt-parent-id="mod_312">
+<td class="wordwrap"><a name="tag_gem_bus_sync ( parameter p_dwidth=9,p_reg_out=1 ) "></a>
+<a href="mod317.html#1457501271" >gem_bus_sync ( parameter p_dwidth=9,p_reg_out=1 ) </a></td>
+<td class="s9 cl rt"> 97.06</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s9 cl rt"><a href="mod317.html#Toggle" > 97.06</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2070" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_T2_T_U_d8137340"></a>
+<a href="mod2075.html" >rsnoc_z_H_R_G_T2_T_U_d8137340</a></td>
+<td class="s8 cl rt"> 86.04</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod2075.html#Toggle" > 86.04</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2439" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_T_C_S_C_L_R_A_42_1"></a>
+<a href="mod2444.html" >rsnoc_z_T_C_S_C_L_R_A_42_1</a></td>
+<td class="s8 cl rt"> 86.05</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod2444.html#Toggle" > 86.05</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_479" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_G2_Tt_U_820a3eeb"></a>
+<a href="mod484.html" >rsnoc_z_H_R_G_G2_Tt_U_820a3eeb</a></td>
+<td class="s8 cl rt"> 86.08</td>
+<td class="s8 cl rt"><a href="mod484.html#Line" > 88.89</a></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod484.html#Toggle" > 80.48</a></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod484.html#Branch" > 88.89</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_784" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_T2_T_U_fec50afb"></a>
+<a href="mod789.html" >rsnoc_z_H_R_G_T2_T_U_fec50afb</a></td>
+<td class="s8 cl rt"> 86.13</td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod789.html#Cond" >100.00</a></td>
+<td class="s5 cl rt"><a href="mod789.html#Toggle" > 58.39</a></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod789.html#Branch" >100.00</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2182" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_mem_cntl"></a>
+<a href="mod2187.html" >mem_cntl</a></td>
+<td class="s8 cl rt"> 86.18</td>
+<td class="s8 cl rt"><a href="mod2187.html#Line" > 88.43</a></td>
+<td class="s8 cl rt"><a href="mod2187.html#Cond" > 85.56</a></td>
+<td class="s9 cl rt"><a href="mod2187.html#Toggle" > 93.60</a></td>
+<td class="s8 cl rt"><a href="mod2187.html#FSM" > 80.00</a></td>
+<td class="s8 cl rt"><a href="mod2187.html#Branch" > 83.33</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1869" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_atciic100_ctrl"></a>
+<a href="mod1874.html" >atciic100_ctrl</a></td>
+<td class="s8 cl rt"> 86.20</td>
+<td class="s9 cl rt"><a href="mod1874.html#Line" > 96.24</a></td>
+<td class="s8 cl rt"><a href="mod1874.html#Cond" > 89.14</a></td>
+<td class="s9 cl rt"><a href="mod1874.html#Toggle" > 97.67</a></td>
+<td class="s5 cl rt"><a href="mod1874.html#FSM" > 58.62</a></td>
+<td class="s8 cl rt"><a href="mod1874.html#Branch" > 89.32</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1955" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_U_A_M_b842c06c_D148e0p0"></a>
+<a href="mod1960.html" >rsnoc_z_H_R_U_A_M_b842c06c_D148e0p0</a></td>
+<td class="s8 cl rt"> 86.27</td>
+<td class="s10 cl rt"><a href="mod1960.html#Line" >100.00</a></td>
+<td class="s10 cl rt"><a href="mod1960.html#Cond" >100.00</a></td>
+<td class="s4 cl rt"><a href="mod1960.html#Toggle" > 45.09</a></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod1960.html#Branch" >100.00</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1456" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_atcspi200_regif_ctrl"></a>
+<a href="mod1461.html" >atcspi200_regif_ctrl</a></td>
+<td class="s8 cl rt"> 86.30</td>
+<td class="s9 cl rt"><a href="mod1461.html#Line" > 93.33</a></td>
+<td class="s7 cl rt"><a href="mod1461.html#Cond" > 72.73</a></td>
+<td class="s9 cl rt"><a href="mod1461.html#Toggle" > 93.42</a></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod1461.html#Branch" > 85.71</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2009" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_DMA_apb_s0_main"></a>
+<a href="mod2014.html" >rsnoc_DMA_apb_s0_main</a></td>
+<td class="s8 cl rt"> 86.33</td>
+<td class="s10 cl rt"><a href="mod2014.html#Line" >100.00</a></td>
+<td class="wht cl rt"></td>
+<td class="s7 cl rt"><a href="mod2014.html#Toggle" > 72.65</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_337" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_gbe_top"></a>
+<a href="mod342.html" >gbe_top</a></td>
+<td class="s8 cl rt"> 86.36</td>
+<td class="s10 cl rt"><a href="mod342.html#Line" >100.00</a></td>
+<td class="s6 cl rt"><a href="mod342.html#Cond" > 66.67</a></td>
+<td class="s7 cl rt"><a href="mod342.html#Toggle" > 78.76</a></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod342.html#Branch" >100.00</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2290" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_G2_S_U_93fe0990"></a>
+<a href="mod2295.html" >rsnoc_z_H_R_G_G2_S_U_93fe0990</a></td>
+<td class="s8 cl rt"> 86.41</td>
+<td class="s8 cl rt"><a href="mod2295.html#Line" > 81.82</a></td>
+<td class="s10 cl rt"><a href="mod2295.html#Cond" >100.00</a></td>
+<td class="s8 cl rt"><a href="mod2295.html#Toggle" > 83.81</a></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod2295.html#Branch" > 80.00</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_997" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_S_R_U_Elf_U_78b88ccc"></a>
+<a href="mod1002.html" >rsnoc_z_S_R_U_Elf_U_78b88ccc</a></td>
+<td class="s8 cl rt"> 86.42</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod1002.html#Toggle" > 86.42</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2189" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_fcb_top"></a>
+<a href="mod2194.html" >fcb_top</a></td>
+<td class="s8 cl rt"> 86.48</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod2194.html#Toggle" > 86.48</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1541" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_S_R_U_Sf_U_e92fe18b"></a>
+<a href="mod1546.html" >rsnoc_z_S_R_U_Sf_U_e92fe18b</a></td>
+<td class="s8 cl rt"> 86.54</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod1546.html#Toggle" > 86.54</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1028" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_atcdmac300"></a>
+<a href="mod1033.html" >atcdmac300</a></td>
+<td class="s8 cl rt"> 86.56</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod1033.html#Toggle" > 86.56</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_681" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_U_A_Mc_R3c0"></a>
+<a href="mod686.html" >rsnoc_z_H_R_U_A_Mc_R3c0</a></td>
+<td class="s8 cl rt"> 86.67</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod686.html#Toggle" > 86.67</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_521" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_dti_fifo_async_ctrl_apb"></a>
+<a href="mod526.html" >dti_fifo_async_ctrl_apb</a></td>
+<td class="s8 cl rt"> 86.74</td>
+<td class="s10 cl rt"><a href="mod526.html#Line" >100.00</a></td>
+<td class="s7 cl rt"><a href="mod526.html#Cond" > 75.00</a></td>
+<td class="s8 cl rt"><a href="mod526.html#Toggle" > 83.33</a></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod526.html#Branch" > 88.64</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_1" data-tt-parent-id="mod_521">
+<td class="wordwrap"><a name="tag_dti_fifo_async_ctrl_apb"></a>
+<a href="mod526.html#830144079" >dti_fifo_async_ctrl_apb</a></td>
+<td class="s9 cl rt"> 91.67</td>
+<td class="s10 cl rt"><a href="mod526.html#Line" >100.00</a></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod526.html#Toggle" > 83.33</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_2" data-tt-parent-id="mod_521">
+<td class="wordwrap"><a name="tag_dti_fifo_async_ctrl_apb ( parameter ADDR_WIDTH=3,FULL_OR_EMPTY=0 ) "></a>
+<a href="mod526.html#1395406497" >dti_fifo_async_ctrl_apb ( parameter ADDR_WIDTH=3,FULL_OR_EMPTY=0 ) </a></td>
+<td class="s8 cl rt"> 80.68</td>
+<td class="wht cl rt"></td>
+<td class="s7 cl rt"><a href="mod526.html#Cond" > 75.00</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod526.html#Branch" > 86.36</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="var_3" data-tt-parent-id="mod_521">
+<td class="wordwrap"><a name="tag_dti_fifo_async_ctrl_apb ( parameter ADDR_WIDTH=3,FULL_OR_EMPTY=1 ) "></a>
+<a href="mod526.html#779273600" >dti_fifo_async_ctrl_apb ( parameter ADDR_WIDTH=3,FULL_OR_EMPTY=1 ) </a></td>
+<td class="s8 cl rt"> 82.95</td>
+<td class="wht cl rt"></td>
+<td class="s7 cl rt"><a href="mod526.html#Cond" > 75.00</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s9 cl rt"><a href="mod526.html#Branch" > 90.91</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1013" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_tm16_vmon_adc"></a>
+<a href="mod1018.html" >tm16_vmon_adc</a></td>
+<td class="s8 cl rt"> 86.96</td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod1018.html#Cond" >100.00</a></td>
+<td class="s6 cl rt"><a href="mod1018.html#Toggle" > 60.87</a></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod1018.html#Branch" >100.00</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_976" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_U_Q_U_d68a6ffd66"></a>
+<a href="mod981.html" >rsnoc_z_H_R_G_U_Q_U_d68a6ffd66</a></td>
+<td class="s8 cl rt"> 86.99</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod981.html#Toggle" > 86.99</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2201" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_U_Q_U_ed8215fdfd"></a>
+<a href="mod2206.html" >rsnoc_z_H_R_G_U_Q_U_ed8215fdfd</a></td>
+<td class="s8 cl rt"> 86.99</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod2206.html#Toggle" > 86.99</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1995" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_U_P_N_653d8c77_A100032001342010134111"></a>
+<a href="mod2000.html" >rsnoc_z_H_R_U_P_N_653d8c77_A100032001342010134111</a></td>
+<td class="s8 cl rt"> 86.99</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod2000.html#Toggle" > 86.99</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1700" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_N_A_G2_U_U_a1691b78"></a>
+<a href="mod1705.html" >rsnoc_z_H_R_N_A_G2_U_U_a1691b78</a></td>
+<td class="s8 cl rt"> 87.08</td>
+<td class="s9 cl rt"><a href="mod1705.html#Line" > 96.61</a></td>
+<td class="s9 cl rt"><a href="mod1705.html#Cond" > 90.00</a></td>
+<td class="s6 cl rt"><a href="mod1705.html#Toggle" > 67.46</a></td>
+<td class="wht cl rt"></td>
+<td class="s9 cl rt"><a href="mod1705.html#Branch" > 94.23</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1121" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_bcpu_ahb_m0_I_main"></a>
+<a href="mod1126.html" >rsnoc_bcpu_ahb_m0_I_main</a></td>
+<td class="s8 cl rt"> 87.14</td>
+<td class="s10 cl rt"><a href="mod1126.html#Line" >100.00</a></td>
+<td class="wht cl rt"></td>
+<td class="s7 cl rt"><a href="mod1126.html#Toggle" > 74.28</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1111" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_udc_bist_top_cdn_sd1000_t16ffc_01_vc176_2xa1xd3xe2y2r"></a>
+<a href="mod1116.html" >udc_bist_top_cdn_sd1000_t16ffc_01_vc176_2xa1xd3xe2y2r</a></td>
+<td class="s8 cl rt"> 87.26</td>
+<td class="s9 cl rt"><a href="mod1116.html#Line" > 94.49</a></td>
+<td class="s10 cl rt"><a href="mod1116.html#Cond" >100.00</a></td>
+<td class="s8 cl rt"><a href="mod1116.html#Toggle" > 88.37</a></td>
+<td class="s6 cl rt"><a href="mod1116.html#FSM" > 61.11</a></td>
+<td class="s9 cl rt"><a href="mod1116.html#Branch" > 92.31</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1075" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_G2_P_U_a8accfd0_A1100403110"></a>
+<a href="mod1080.html" >rsnoc_z_H_R_G_G2_P_U_a8accfd0_A1100403110</a></td>
+<td class="s8 cl rt"> 87.29</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod1080.html#Toggle" > 87.29</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_692" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_U_P_U_a3f77e29"></a>
+<a href="mod697.html" >rsnoc_z_H_R_G_U_P_U_a3f77e29</a></td>
+<td class="s8 cl rt"> 87.31</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod697.html#Toggle" > 87.31</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2630" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_U_P_U_412e09d6"></a>
+<a href="mod2635.html" >rsnoc_z_H_R_G_U_P_U_412e09d6</a></td>
+<td class="s8 cl rt"> 87.31</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod2635.html#Toggle" > 87.31</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_994" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_T2_U_U_c47d1754"></a>
+<a href="mod999.html" >rsnoc_z_H_R_G_T2_U_U_c47d1754</a></td>
+<td class="s8 cl rt"> 87.32</td>
+<td class="s8 cl rt"><a href="mod999.html#Line" > 89.23</a></td>
+<td class="s9 cl rt"><a href="mod999.html#Cond" > 95.00</a></td>
+<td class="s7 cl rt"><a href="mod999.html#Toggle" > 78.53</a></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod999.html#Branch" > 86.51</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2404" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_U_P_N_17116f53_A030000461432170208"></a>
+<a href="mod2409.html" >rsnoc_z_H_R_U_P_N_17116f53_A030000461432170208</a></td>
+<td class="s8 cl rt"> 87.43</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod2409.html#Toggle" > 87.43</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1748" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_P_U_U_f6d05f35"></a>
+<a href="mod1753.html" >rsnoc_z_H_R_G_P_U_U_f6d05f35</a></td>
+<td class="s8 cl rt"> 87.45</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod1753.html#Toggle" > 87.45</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_-1" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_usb_assertions"></a>
+<a href="mod4.html" >usb_assertions</a></td>
+<td class="s8 cl rt"> 87.50</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod4.html#Assert" > 87.50</a></td>
+    </tr>
+    <tr data-tt-id="mod_702" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_T_C_S_C_L_R_E_z_5"></a>
+<a href="mod707.html" >rsnoc_z_T_C_S_C_L_R_E_z_5</a></td>
+<td class="s8 cl rt"> 87.50</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod707.html#Toggle" > 87.50</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_828" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_U_A_R_I4"></a>
+<a href="mod833.html" >rsnoc_z_H_R_U_A_R_I4</a></td>
+<td class="s8 cl rt"> 87.50</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod833.html#Toggle" > 87.50</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1469" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_T_C_S_C_L_R_Co_I49o7"></a>
+<a href="mod1474.html" >rsnoc_z_T_C_S_C_L_R_Co_I49o7</a></td>
+<td class="s8 cl rt"> 87.50</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod1474.html#Toggle" > 87.50</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2157" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_T_C_S_C_L_R_C_3465c9ee_4"></a>
+<a href="mod2162.html" >rsnoc_z_T_C_S_C_L_R_C_3465c9ee_4</a></td>
+<td class="s8 cl rt"> 87.50</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod2162.html#Toggle" > 87.50</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2332" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_PUFCC_apb_s0_main"></a>
+<a href="mod2337.html" >rsnoc_PUFCC_apb_s0_main</a></td>
+<td class="s8 cl rt"> 87.60</td>
+<td class="s10 cl rt"><a href="mod2337.html#Line" >100.00</a></td>
+<td class="wht cl rt"></td>
+<td class="s7 cl rt"><a href="mod2337.html#Toggle" > 75.20</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2011" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_G2_D_U_d88a3995"></a>
+<a href="mod2016.html" >rsnoc_z_H_R_G_G2_D_U_d88a3995</a></td>
+<td class="s8 cl rt"> 87.84</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod2016.html#Toggle" > 87.84</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_203" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_T_Sa_U_Dp_17707749"></a>
+<a href="mod208.html" >rsnoc_z_H_R_T_Sa_U_Dp_17707749</a></td>
+<td class="s8 cl rt"> 87.90</td>
+<td class="s10 cl rt"><a href="mod208.html#Line" >100.00</a></td>
+<td class="s8 cl rt"><a href="mod208.html#Cond" > 85.00</a></td>
+<td class="s7 cl rt"><a href="mod208.html#Toggle" > 74.50</a></td>
+<td class="wht cl rt"></td>
+<td class="s9 cl rt"><a href="mod208.html#Branch" > 92.11</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1516" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_udc_bist_mux_cdn_sd1000_t16ffc_01_vc176_2xa1xd3xe2y2r"></a>
+<a href="mod1521.html" >udc_bist_mux_cdn_sd1000_t16ffc_01_vc176_2xa1xd3xe2y2r</a></td>
+<td class="s8 cl rt"> 87.90</td>
+<td class="s10 cl rt"><a href="mod1521.html#Line" >100.00</a></td>
+<td class="s10 cl rt"><a href="mod1521.html#Cond" >100.00</a></td>
+<td class="s5 cl rt"><a href="mod1521.html#Toggle" > 51.61</a></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod1521.html#Branch" >100.00</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_64" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_G2_P_U_5ee2de84_A00110041123"></a>
+<a href="mod69.html" >rsnoc_z_H_R_G_G2_P_U_5ee2de84_A00110041123</a></td>
+<td class="s8 cl rt"> 87.92</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod69.html#Toggle" > 87.92</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_544" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_Periph_Multi_APB_main"></a>
+<a href="mod549.html" >rsnoc_Periph_Multi_APB_main</a></td>
+<td class="s8 cl rt"> 88.02</td>
+<td class="s10 cl rt"><a href="mod549.html#Line" >100.00</a></td>
+<td class="wht cl rt"></td>
+<td class="s7 cl rt"><a href="mod549.html#Toggle" > 76.03</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_927" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_T_D_U_U_808a9a53"></a>
+<a href="mod932.html" >rsnoc_z_H_R_T_D_U_U_808a9a53</a></td>
+<td class="s8 cl rt"> 88.06</td>
+<td class="s10 cl rt"><a href="mod932.html#Line" >100.00</a></td>
+<td class="s10 cl rt"><a href="mod932.html#Cond" >100.00</a></td>
+<td class="s5 cl rt"><a href="mod932.html#Toggle" > 52.23</a></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod932.html#Branch" >100.00</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2598" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_gbe_axi_m0_main"></a>
+<a href="mod2603.html" >rsnoc_gbe_axi_m0_main</a></td>
+<td class="s8 cl rt"> 88.07</td>
+<td class="s10 cl rt"><a href="mod2603.html#Line" >100.00</a></td>
+<td class="wht cl rt"></td>
+<td class="s7 cl rt"><a href="mod2603.html#Toggle" > 76.15</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_281" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_pufcc_axi_m0_I_main"></a>
+<a href="mod286.html" >rsnoc_pufcc_axi_m0_I_main</a></td>
+<td class="s8 cl rt"> 88.09</td>
+<td class="s10 cl rt"><a href="mod286.html#Line" >100.00</a></td>
+<td class="wht cl rt"></td>
+<td class="s7 cl rt"><a href="mod286.html#Toggle" > 76.18</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_315" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_RC_OSC_50MHZ"></a>
+<a href="mod320.html" >RC_OSC_50MHZ</a></td>
+<td class="s8 cl rt"> 88.10</td>
+<td class="s10 cl rt"><a href="mod320.html#Line" >100.00</a></td>
+<td class="s8 cl rt"><a href="mod320.html#Cond" > 83.33</a></td>
+<td class="s8 cl rt"><a href="mod320.html#Toggle" > 80.95</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_71" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_clk_gating_cell_cdn_sd1000_t16ffc_01_vc176_2xa1xd3xe2y2r"></a>
+<a href="mod76.html" >clk_gating_cell_cdn_sd1000_t16ffc_01_vc176_2xa1xd3xe2y2r</a></td>
+<td class="s8 cl rt"> 88.10</td>
+<td class="s10 cl rt"><a href="mod76.html#Line" >100.00</a></td>
+<td class="s6 cl rt"><a href="mod76.html#Cond" > 66.67</a></td>
+<td class="s8 cl rt"><a href="mod76.html#Toggle" > 85.71</a></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod76.html#Branch" >100.00</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_240" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_T2_B_U_f69f5b77"></a>
+<a href="mod245.html" >rsnoc_z_H_R_G_T2_B_U_f69f5b77</a></td>
+<td class="s8 cl rt"> 88.11</td>
+<td class="s8 cl rt"><a href="mod245.html#Line" > 88.89</a></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod245.html#Toggle" > 89.72</a></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod245.html#Branch" > 85.71</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1728" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_T_D_U_U_c8af8148"></a>
+<a href="mod1733.html" >rsnoc_z_H_R_T_D_U_U_c8af8148</a></td>
+<td class="s8 cl rt"> 88.12</td>
+<td class="s10 cl rt"><a href="mod1733.html#Line" >100.00</a></td>
+<td class="s10 cl rt"><a href="mod1733.html#Cond" >100.00</a></td>
+<td class="s5 cl rt"><a href="mod1733.html#Toggle" > 52.47</a></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod1733.html#Branch" >100.00</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2020" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_gbe_apb_s0_main"></a>
+<a href="mod2025.html" >rsnoc_gbe_apb_s0_main</a></td>
+<td class="s8 cl rt"> 88.16</td>
+<td class="s10 cl rt"><a href="mod2025.html#Line" >100.00</a></td>
+<td class="wht cl rt"></td>
+<td class="s7 cl rt"><a href="mod2025.html#Toggle" > 76.33</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2463" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_G2_D_U_474c2efb"></a>
+<a href="mod2468.html" >rsnoc_z_H_R_G_G2_D_U_474c2efb</a></td>
+<td class="s8 cl rt"> 88.19</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod2468.html#Toggle" > 88.19</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1026" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_U_A_Mc_R4c0"></a>
+<a href="mod1031.html" >rsnoc_z_H_R_U_A_Mc_R4c0</a></td>
+<td class="s8 cl rt"> 88.24</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod1031.html#Toggle" > 88.24</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_849" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_cdnsusbhs_epoutup"></a>
+<a href="mod854.html" >cdnsusbhs_epoutup</a></td>
+<td class="s8 cl rt"> 88.24</td>
+<td class="s9 cl rt"><a href="mod854.html#Line" > 97.93</a></td>
+<td class="s9 cl rt"><a href="mod854.html#Cond" > 90.43</a></td>
+<td class="s7 cl rt"><a href="mod854.html#Toggle" > 73.68</a></td>
+<td class="wht cl rt"></td>
+<td class="s9 cl rt"><a href="mod854.html#Branch" > 90.91</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_754" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_U_P_F_f98cc18f_A12313001011"></a>
+<a href="mod759.html" >rsnoc_z_H_R_U_P_F_f98cc18f_A12313001011</a></td>
+<td class="s8 cl rt"> 88.30</td>
+<td class="s10 cl rt"><a href="mod759.html#Line" >100.00</a></td>
+<td class="wht cl rt"></td>
+<td class="s6 cl rt"><a href="mod759.html#Toggle" > 64.91</a></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod759.html#Branch" >100.00</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_26" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_U_P_N_f98cc18f_A1451001111"></a>
+<a href="mod31.html" >rsnoc_z_H_R_U_P_N_f98cc18f_A1451001111</a></td>
+<td class="s8 cl rt"> 88.37</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod31.html#Toggle" > 88.37</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1444" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_U_P_N_6580ede3_A011451000111"></a>
+<a href="mod1449.html" >rsnoc_z_H_R_U_P_N_6580ede3_A011451000111</a></td>
+<td class="s8 cl rt"> 88.37</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod1449.html#Toggle" > 88.37</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_278" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_tm16_ts_adc"></a>
+<a href="mod283.html" >tm16_ts_adc</a></td>
+<td class="s8 cl rt"> 88.41</td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod283.html#Cond" >100.00</a></td>
+<td class="s6 cl rt"><a href="mod283.html#Toggle" > 65.22</a></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod283.html#Branch" >100.00</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_126" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_S_R_U_Sf_U_eb096468"></a>
+<a href="mod131.html" >rsnoc_z_S_R_U_Sf_U_eb096468</a></td>
+<td class="s8 cl rt"> 88.46</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod131.html#Toggle" > 88.46</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_737" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_T_C_S_C_L_R_C_Ibdffbb39c1_L17"></a>
+<a href="mod742.html" >rsnoc_z_T_C_S_C_L_R_C_Ibdffbb39c1_L17</a></td>
+<td class="s8 cl rt"> 88.46</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod742.html#Toggle" > 88.46</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1917" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_S_R_U_Sf_U_88505757"></a>
+<a href="mod1922.html" >rsnoc_z_S_R_U_Sf_U_88505757</a></td>
+<td class="s8 cl rt"> 88.46</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod1922.html#Toggle" > 88.46</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2546" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_arbiter"></a>
+<a href="mod2551.html" >arbiter</a></td>
+<td class="s8 cl rt"> 88.47</td>
+<td class="s9 cl rt"><a href="mod2551.html#Line" > 93.75</a></td>
+<td class="s6 cl rt"><a href="mod2551.html#Cond" > 69.23</a></td>
+<td class="s10 cl rt"><a href="mod2551.html#Toggle" >100.00</a></td>
+<td class="wht cl rt"></td>
+<td class="s9 cl rt"><a href="mod2551.html#Branch" > 90.91</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2528" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_cdnsusbhs_ocp2axi_ms"></a>
+<a href="mod2533.html" >cdnsusbhs_ocp2axi_ms</a></td>
+<td class="s8 cl rt"> 88.48</td>
+<td class="s9 cl rt"><a href="mod2533.html#Line" > 95.62</a></td>
+<td class="s8 cl rt"><a href="mod2533.html#Cond" > 81.04</a></td>
+<td class="s8 cl rt"><a href="mod2533.html#Toggle" > 88.59</a></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod2533.html#Branch" > 88.67</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2080" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_G2_Tt_U_a19dd9f6"></a>
+<a href="mod2085.html" >rsnoc_z_H_R_G_G2_Tt_U_a19dd9f6</a></td>
+<td class="s8 cl rt"> 88.48</td>
+<td class="s9 cl rt"><a href="mod2085.html#Line" > 91.67</a></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod2085.html#Toggle" > 82.87</a></td>
+<td class="wht cl rt"></td>
+<td class="s9 cl rt"><a href="mod2085.html#Branch" > 90.91</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1052" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_sram_axi_s1_main"></a>
+<a href="mod1057.html" >rsnoc_sram_axi_s1_main</a></td>
+<td class="s8 cl rt"> 88.51</td>
+<td class="s10 cl rt"><a href="mod1057.html#Line" >100.00</a></td>
+<td class="wht cl rt"></td>
+<td class="s7 cl rt"><a href="mod1057.html#Toggle" > 77.01</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_149" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_dti_tm16ffc_18ud15_lpd4_testpad_jme"></a>
+<a href="mod154.html" >dti_tm16ffc_18ud15_lpd4_testpad_jme</a></td>
+<td class="s8 cl rt"> 88.52</td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod154.html#Cond" >100.00</a></td>
+<td class="s6 cl rt"><a href="mod154.html#Toggle" > 65.57</a></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod154.html#Branch" >100.00</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2333" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_gem_reg_nwc"></a>
+<a href="mod2338.html" >gem_reg_nwc</a></td>
+<td class="s8 cl rt"> 88.53</td>
+<td class="s9 cl rt"><a href="mod2338.html#Line" > 97.40</a></td>
+<td class="s8 cl rt"><a href="mod2338.html#Cond" > 80.00</a></td>
+<td class="s8 cl rt"><a href="mod2338.html#Toggle" > 85.06</a></td>
+<td class="wht cl rt"></td>
+<td class="s9 cl rt"><a href="mod2338.html#Branch" > 91.67</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1442" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_atcspi200_reg"></a>
+<a href="mod1447.html" >atcspi200_reg</a></td>
+<td class="s8 cl rt"> 88.53</td>
+<td class="s9 cl rt"><a href="mod1447.html#Line" > 96.82</a></td>
+<td class="s8 cl rt"><a href="mod1447.html#Cond" > 87.50</a></td>
+<td class="s7 cl rt"><a href="mod1447.html#Toggle" > 74.25</a></td>
+<td class="wht cl rt"></td>
+<td class="s9 cl rt"><a href="mod1447.html#Branch" > 95.57</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_483" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_U_P_N_f98cc18f_A1431000011"></a>
+<a href="mod488.html" >rsnoc_z_H_R_U_P_N_f98cc18f_A1431000011</a></td>
+<td class="s8 cl rt"> 88.57</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod488.html#Toggle" > 88.57</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_536" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_U_P_N_f98cc18f_A1441000001"></a>
+<a href="mod541.html" >rsnoc_z_H_R_U_P_N_f98cc18f_A1441000001</a></td>
+<td class="s8 cl rt"> 88.57</td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod541.html#Toggle" > 88.57</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1038" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_T_D_U_U_cf4d5154"></a>
+<a href="mod1043.html" >rsnoc_z_H_R_T_D_U_U_cf4d5154</a></td>
+<td class="s8 cl rt"> 88.58</td>
+<td class="s10 cl rt"><a href="mod1043.html#Line" >100.00</a></td>
+<td class="s10 cl rt"><a href="mod1043.html#Cond" >100.00</a></td>
+<td class="s5 cl rt"><a href="mod1043.html#Toggle" > 54.32</a></td>
+<td class="wht cl rt"></td>
+<td class="s10 cl rt"><a href="mod1043.html#Branch" >100.00</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2343" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_usb_axi_m0_I_main"></a>
+<a href="mod2348.html" >rsnoc_usb_axi_m0_I_main</a></td>
+<td class="s8 cl rt"> 88.62</td>
+<td class="s10 cl rt"><a href="mod2348.html#Line" >100.00</a></td>
+<td class="wht cl rt"></td>
+<td class="s7 cl rt"><a href="mod2348.html#Toggle" > 77.24</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_2045" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_z_H_R_G_T2_B_U_0a8bb8b7"></a>
+<a href="mod2050.html" >rsnoc_z_H_R_G_T2_B_U_0a8bb8b7</a></td>
+<td class="s8 cl rt"> 88.69</td>
+<td class="s8 cl rt"><a href="mod2050.html#Line" > 88.89</a></td>
+<td class="wht cl rt"></td>
+<td class="s9 cl rt"><a href="mod2050.html#Toggle" > 91.47</a></td>
+<td class="wht cl rt"></td>
+<td class="s8 cl rt"><a href="mod2050.html#Branch" > 85.71</a></td>
+<td class="wht cl rt"></td>
+    </tr>
+    <tr data-tt-id="mod_1746" data-tt-parent-id="hierarchyTable_root">
+<td class="wordwrap"><a name="tag_rsnoc_sram_axi_s2_main"></a>
+<a href="mod1751.html" >rsnoc_sram_axi_s2_main</a></td>
+<td class="s8 cl rt"> 88.72</td>
+<td class="s10 cl rt"><a href="mod1751.html#Line" >100.00</a></td>
+<td class="wht cl rt"></td>
+<td class="s7 cl rt"><a href="mod1751.html#Toggle" > 77.44</a></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+<td class="wht cl rt"></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="ui-layout-south">
+<table align=center><tr><td class="s0 cl">0%</td>
+<td class="s1 cl">10%</td>
+<td class="s2 cl">20%</td>
+<td class="s3 cl">30%</td>
+<td class="s4 cl">40%</td>
+<td class="s5 cl">50%</td>
+<td class="s6 cl">60%</td>
+<td class="s7 cl">70%</td>
+<td class="s8 cl">80%</td>
+<td class="s9 cl">90%</td>
+<td class="s10 cl">100%</td></tr></table></div>
+
+<script>
+$("#hierarchyTable").treetable({ expandable: true });
+</script>
+</body>
+</html>

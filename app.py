@@ -256,6 +256,19 @@ percentage_scu=math.ceil(percentage_scu)
 
 df_pcnt= df_pcnt.append({'IP' : 'SCU', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_scu) , 'Tests_Failed': int(failed_scu), 'Timeout' : int(timeout_scu), 'Percentage' : int(percentage_scu)},
         ignore_index = True)
+if df_f['IP'].str.contains('FPGA').any():
+        passed_fpga=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('FPGA') ])
+        failed_fpga=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('FPGA') ])
+        timeout_fpga=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('FPGA')])
+        grand_total_passed=passed_fpga+grand_total_passed
+        grand_total_failed=failed_fpga+grand_total_failed
+        grand_total_timeout=timeout_fpga+grand_total_timeout
+        sub_total=passed_fpga+failed_fpga+timeout_fpga
+        percentage_fpga=(passed_fpga/sub_total)*100
+        percentage_fpga=math.ceil(percentage_fpga)
+        df_pcnt= df_pcnt.append({'IP' : 'FPGA', 'Total_Tests' : sub_total , 'Tests_Passed' : int(passed_fpga) , 'Tests_Failed': int(failed_fpga), 'Timeout' : int(timeout_fpga), 'Percentage' : int(percentage_fpga)},
+                ignore_index = True)
+        print(df_pcnt)
 passed_atb=len(df_f[df_f['Status'].str.contains('Passed') & df_f['IP'].str.contains('ATB') ])
 failed_atb=len(df_f[df_f['Status'].str.contains('Failed') & df_f['IP'].str.contains('ATB') ])
 timeout_atb=len(df_f[df_f['Status'].str.contains('timeout') & df_f['IP'].str.contains('ATB')])

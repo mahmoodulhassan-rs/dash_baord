@@ -802,8 +802,8 @@ Go <a href="mod972.html#l15">back</a>
 868                               {1'bx, DIFF_BANK , REFRESH  , ZQ       } ,
 869        <font color = "red">1/2     ==>            {1'bx, DIFF_BANK , REFRESH  , SELF_REF } : begin if ($time - tm_refresh &lt; TRFC_MIN)                                                                                $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tRFC violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);                         end</font>
                         MISSING_ELSE
-870        <font color = "red">0/2     ==>            {1'bx, DIFF_BANK , REFRESH  , PWR_DOWN } : begin if (ck_cntr - ck_refresh &lt; TREFPDEN)                                                                              $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tREFPDEN violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);                     end</font>
-                   <font color = "red">==>  MISSING_ELSE</font>
+870        <font color = "red">1/2     ==>            {1'bx, DIFF_BANK , REFRESH  , PWR_DOWN } : begin if (ck_cntr - ck_refresh &lt; TREFPDEN)                                                                              $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tREFPDEN violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);                     end</font>
+                        MISSING_ELSE
 871                     
 872                               // precharge
 873        <font color = "red">1/2     ==>            {1'bx, SAME_BANK , PRECHARGE, ACTIVATE } : begin if ($time - tm_bank_precharge[bank] &lt; TRP)                                                                        $fdisplay(HANDLE, &quot;%s: at time %t ERROR:   tRP violation during %s to bank %d&quot;,_ModuleName,  $time, cmd_string[cmd], bank);        end</font>
@@ -813,7 +813,7 @@ Go <a href="mod972.html#l15">back</a>
 876                               {1'bx, DIFF_BANK , PRECHARGE, ZQ       } ,
 877        <font color = "red">1/2     ==>            {1'bx, DIFF_BANK , PRECHARGE, SELF_REF } : begin if ($time - tm_precharge &lt; TRP)                                                                                   $fdisplay(HANDLE, &quot;%s: at time %t ERROR:   tRP violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);                         end</font>
                         MISSING_ELSE
-878        <font color = "red">0/1     ==>            {1'bx, DIFF_BANK , PRECHARGE, PWR_DOWN } : ; //tPREPDEN = 1 tCK, can be concurrent with auto precharge</font>
+878        1/1                    {1'bx, DIFF_BANK , PRECHARGE, PWR_DOWN } : ; //tPREPDEN = 1 tCK, can be concurrent with auto precharge
 879                     
 880                               // activate
 881        <font color = "red">1/2     ==>            {1'bx, SAME_BANK , ACTIVATE , PRECHARGE} : begin if ($time - tm_bank_activate[bank] &gt; TRAS_MAX)                                                                    $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tRAS maximum violation during %s to bank %d&quot;, _ModuleName, $time, cmd_string[cmd], bank);</font>
@@ -832,8 +832,8 @@ Go <a href="mod972.html#l15">back</a>
                    <font color = "red">==>  MISSING_ELSE</font>
 889        <font color = "red">1/2     ==>            {1'bx, DIFF_BANK , ACTIVATE , REFRESH  } : begin if ($time - tm_activate &lt; TRC)                                                                                    $fdisplay(HANDLE, &quot;%s: at time %t ERROR:   tRC violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);                         end</font>
                         MISSING_ELSE
-890        <font color = "red">0/2     ==>            {1'bx, DIFF_BANK , ACTIVATE , PWR_DOWN } : begin if (ck_cntr - ck_activate &lt; TACTPDEN)                                                                             $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tACTPDEN violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);                     end</font>
-                   <font color = "red">==>  MISSING_ELSE</font>
+890        <font color = "red">1/2     ==>            {1'bx, DIFF_BANK , ACTIVATE , PWR_DOWN } : begin if (ck_cntr - ck_activate &lt; TACTPDEN)                                                                             $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tACTPDEN violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);                     end</font>
+                        MISSING_ELSE
 891                     
 892                               // write
 893        <font color = "red">1/2     ==>            {1'bx, SAME_BANK , WRITE    , PRECHARGE} : begin if (($time - tm_bank_write_end[bank] &lt; TWR) || (ck_cntr - ck_bank_write[bank] &lt;= write_latency + burst_length/2)) $fdisplay(HANDLE, &quot;%s: at time %t ERROR:   tWR violation during %s to bank %d&quot;, _ModuleName, $time, cmd_string[cmd], bank);        end</font>
@@ -850,8 +850,8 @@ Go <a href="mod972.html#l15">back</a>
                    <font color = "red">==>  MISSING_ELSE</font>
 899        <font color = "red">0/2     ==>            {1'b1, DIFF_GROUP, WRITE    , READ     } : begin if (ck_cntr - ck_write &lt; write_latency + burst_length/2 + TWTR_DG_TCK - additive_latency)                         $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tWTR_DG violation during %s to bank %d&quot;, _ModuleName, $time, cmd_string[cmd], bank);     end</font>
                    <font color = "red">==>  MISSING_ELSE</font>
-900        <font color = "red">0/2     ==>            {1'bx, DIFF_BANK , WRITE    , PWR_DOWN } : begin if (($time - tm_write_end &lt; TWR) || (ck_cntr - ck_write &lt; write_latency + burst_length/2))                        $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tWRPDEN violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);                      end</font>
-                   <font color = "red">==>  MISSING_ELSE</font>
+900        <font color = "red">1/2     ==>            {1'bx, DIFF_BANK , WRITE    , PWR_DOWN } : begin if (($time - tm_write_end &lt; TWR) || (ck_cntr - ck_write &lt; write_latency + burst_length/2))                        $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tWRPDEN violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);                      end</font>
+                        MISSING_ELSE
 901                     
 902                               // read
 903        <font color = "red">1/2     ==>            {1'bx, SAME_BANK , READ     , PRECHARGE} : begin if (($time - tm_bank_read_end[bank] &lt; TRTP) || (ck_cntr - ck_bank_read[bank] &lt; additive_latency + TRTP_TCK))      $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tRTP violation during %s to bank %d&quot;, _ModuleName, $time, cmd_string[cmd], bank);        end</font>
@@ -865,8 +865,8 @@ Go <a href="mod972.html#l15">back</a>
 908        <font color = "red">0/1     ==>            {1'b1, DIFF_GROUP, READ     , WRITE    } : ; // tRTW is checked outside this task</font>
 909        <font color = "red">0/2     ==>            {1'b1, DIFF_GROUP, READ     , READ     } : begin if (ck_cntr - ck_read &lt; TCCD_DG)                                                                                  $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tCCD_DG violation during %s to bank %d&quot;, _ModuleName, $time, cmd_string[cmd], bank);     end</font>
                    <font color = "red">==>  MISSING_ELSE</font>
-910        <font color = "red">0/2     ==>            {1'bx, DIFF_BANK , READ     , PWR_DOWN } : begin if (ck_cntr - ck_read &lt; read_latency + 5)                                                                         $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tRDPDEN violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);                      end</font>
-                   <font color = "red">==>  MISSING_ELSE</font>
+910        <font color = "red">1/2     ==>            {1'bx, DIFF_BANK , READ     , PWR_DOWN } : begin if (ck_cntr - ck_read &lt; read_latency + 5)                                                                         $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tRDPDEN violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);                      end</font>
+                        MISSING_ELSE
 911                     
 912                               // zq
 913        1/1                    {1'bx, DIFF_BANK , ZQ       , LOAD_MODE} : ; // 1 tCK
@@ -894,14 +894,14 @@ Go <a href="mod972.html#l15">back</a>
 931        <font color = "red">1/2     ==>                                                        else if (($time - tm_slow_exit_pd &lt; TXPDLL) || (ck_cntr - ck_slow_exit_pd &lt; TXPDLL_TCK))                               $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tXPDLL violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);                       end</font>
                         MISSING_ELSE
 932                               {1'bx, DIFF_BANK , PWR_DOWN , PWR_DOWN } ,
-933        <font color = "red">0/2     ==>            {1'bx, DIFF_BANK , PWR_DOWN , SELF_REF } : begin if (($time - tm_power_down &lt; TXP) || (ck_cntr - ck_power_down &lt; TXP_TCK))                                         $fdisplay(HANDLE, &quot;%s: at time %t ERROR:   tXP violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);</font>
-                   <font color = "red">==>  MISSING_ELSE</font>
-934        <font color = "red">0/2     ==>                                                             if ((tm_power_down &gt; tm_refresh) &amp;&amp; ($time - tm_refresh &lt; TRFC_MIN))                                              $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tRFC violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);</font>
-                   <font color = "red">==>  MISSING_ELSE</font>
-935        <font color = "red">0/2     ==>                                                             if ((tm_refresh &gt; tm_power_down) &amp;&amp; (($time - tm_power_down &lt; TXPDLL) || (ck_cntr - ck_power_down &lt; TXPDLL_TCK))) $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tXPDLL violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);</font>
-                   <font color = "red">==>  MISSING_ELSE</font>
-936        <font color = "red">0/2     ==>                                                             if (($time - tm_cke_cmd &lt; TCKE) || (ck_cntr - ck_cke_cmd &lt; TCKE_TCK))                                             $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tCKE violation on CKE&quot;, _ModuleName, $time);                                             end</font>
-                   <font color = "red">==>  MISSING_ELSE</font>
+933        <font color = "red">1/2     ==>            {1'bx, DIFF_BANK , PWR_DOWN , SELF_REF } : begin if (($time - tm_power_down &lt; TXP) || (ck_cntr - ck_power_down &lt; TXP_TCK))                                         $fdisplay(HANDLE, &quot;%s: at time %t ERROR:   tXP violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);</font>
+                        MISSING_ELSE
+934        <font color = "red">1/2     ==>                                                             if ((tm_power_down &gt; tm_refresh) &amp;&amp; ($time - tm_refresh &lt; TRFC_MIN))                                              $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tRFC violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);</font>
+                        MISSING_ELSE
+935        <font color = "red">1/2     ==>                                                             if ((tm_refresh &gt; tm_power_down) &amp;&amp; (($time - tm_power_down &lt; TXPDLL) || (ck_cntr - ck_power_down &lt; TXPDLL_TCK))) $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tXPDLL violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);</font>
+                        MISSING_ELSE
+936        <font color = "red">1/2     ==>                                                             if (($time - tm_cke_cmd &lt; TCKE) || (ck_cntr - ck_cke_cmd &lt; TCKE_TCK))                                             $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tCKE violation on CKE&quot;, _ModuleName, $time);                                             end</font>
+                        MISSING_ELSE
 937                     
 938                               // self refresh
 939                               {1'bx, DIFF_BANK , SELF_REF , LOAD_MODE} ,
@@ -914,10 +914,10 @@ Go <a href="mod972.html#l15">back</a>
 945        <font color = "red">1/2     ==>            {1'bx, DIFF_BANK , SELF_REF , READ     } : begin if (ck_cntr - ck_self_refresh &lt; TXSDLL)                                                                           $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tXSDLL violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);                       end</font>
                         MISSING_ELSE
 946                               {1'bx, DIFF_BANK , SELF_REF , PWR_DOWN } ,
-947        <font color = "red">0/2     ==>            {1'bx, DIFF_BANK , SELF_REF , SELF_REF } : begin if (($time - tm_self_refresh &lt; TXS) || (ck_cntr - ck_self_refresh &lt; TXS_TCK))                                     $fdisplay(HANDLE, &quot;%s: at time %t ERROR:   tXS violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);</font>
-                   <font color = "red">==>  MISSING_ELSE</font>
-948        <font color = "red">0/2     ==>                                                             if (($time - tm_cke_cmd &lt; TCKE) || (ck_cntr - ck_cke_cmd &lt; TCKE_TCK))                                             $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tCKE violation on CKE&quot;, _ModuleName, $time);                                             end</font>
-                   <font color = "red">==>  MISSING_ELSE</font>
+947        <font color = "red">1/2     ==>            {1'bx, DIFF_BANK , SELF_REF , SELF_REF } : begin if (($time - tm_self_refresh &lt; TXS) || (ck_cntr - ck_self_refresh &lt; TXS_TCK))                                     $fdisplay(HANDLE, &quot;%s: at time %t ERROR:   tXS violation during %s&quot;, _ModuleName, $time, cmd_string[cmd]);</font>
+                        MISSING_ELSE
+948        <font color = "red">1/2     ==>                                                             if (($time - tm_cke_cmd &lt; TCKE) || (ck_cntr - ck_cke_cmd &lt; TCKE_TCK))                                             $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tCKE violation on CKE&quot;, _ModuleName, $time);                                             end</font>
+                        MISSING_ELSE
                         MISSING_DEFAULT
 949                           endcase
 950                         end
@@ -1592,25 +1592,25 @@ Go <a href="mod972.html#l15">back</a>
 1500                                      end
 1501                                      NOP: begin
 1502       1/1                                if (in_power_down) begin
-1503       <font color = "red">0/1     ==>                            if (($time - tm_freq_change &lt; TCKSRX) || (ck_cntr - ck_freq_change &lt; TCKSRX_TCK))</font>
+1503       1/1                                    if (($time - tm_freq_change &lt; TCKSRX) || (ck_cntr - ck_freq_change &lt; TCKSRX_TCK))
 1504       <font color = "red">0/1     ==>                                $fdisplay(HANDLE, &quot;%s: at time %t ERROR: tCKSRX violation during Power Down Exit&quot;, _ModuleName, $time);</font>
-                   <font color = "red">==>  MISSING_ELSE</font>
-1505       <font color = "red">0/1     ==>                            if ($time - tm_cke_cmd &gt; TPD_MAX)</font>
+                        MISSING_ELSE
+1505       1/1                                    if ($time - tm_cke_cmd &gt; TPD_MAX)
 1506       <font color = "red">0/1     ==>                                $fdisplay(HANDLE, &quot;%s: at time %t ERROR: tPD maximum violation during Power Down Exit&quot;, _ModuleName, $time);</font>
+                        MISSING_ELSE
+1507       2/2                                    if (DEBUG) $fdisplay(HANDLE, &quot;%s: at time %t INFO: Power Down Exit&quot;, _ModuleName, $time);
                    <font color = "red">==>  MISSING_ELSE</font>
-1507       <font color = "red">0/2     ==>                            if (DEBUG) $fdisplay(HANDLE, &quot;%s: at time %t INFO: Power Down Exit&quot;, _ModuleName, $time);</font>
-                   <font color = "red">==>  MISSING_ELSE</font>
-1508       <font color = "red">0/1     ==>                            in_power_down = 0;</font>
-1509       <font color = "red">0/1     ==>                            if ((active_bank == 0) &amp;&amp; low_power) begin // precharge power down with dll off</font>
-1510       <font color = "red">0/1     ==>                                if (ck_cntr - ck_odt &lt; write_latency - 1)</font>
+1508       1/1                                    in_power_down = 0;
+1509       1/1                                    if ((active_bank == 0) &amp;&amp; low_power) begin // precharge power down with dll off
+1510       1/1                                        if (ck_cntr - ck_odt &lt; write_latency - 1)
 1511       <font color = "red">0/1     ==>                                    $fdisplay(HANDLE, &quot;%s: at time %t WARNING: tANPD violation during Power Down Exit.  Synchronous or asynchronous change in termination resistance is possible.&quot;, _ModuleName, $time);</font>
-                   <font color = "red">==>  MISSING_ELSE</font>
-1512       <font color = "red">0/1     ==>                                tm_slow_exit_pd &lt;= $time;</font>
-1513       <font color = "red">0/1     ==>                                ck_slow_exit_pd &lt;= ck_cntr;</font>
+                        MISSING_ELSE
+1512       1/1                                        tm_slow_exit_pd &lt;= $time;
+1513       1/1                                        ck_slow_exit_pd &lt;= ck_cntr;
 1514                                              end
                    <font color = "red">==>  MISSING_ELSE</font>
-1515       <font color = "red">0/1     ==>                            tm_power_down &lt;= $time;</font>
-1516       <font color = "red">0/1     ==>                            ck_power_down &lt;= ck_cntr;</font>
+1515       1/1                                    tm_power_down &lt;= $time;
+1516       1/1                                    ck_power_down &lt;= ck_cntr;
 1517                                          end
                         MISSING_ELSE
 1518       1/1                                if (in_self_refresh) begin
@@ -1665,13 +1665,13 @@ Go <a href="mod972.html#l15">back</a>
 1555                                  end
                         MISSING_ELSE
 1556       1/1                    end else if (prev_cke) begin
-1557       <font color = "red">0/1     ==>                if ((!init_done) &amp;&amp; (init_step &gt; 1)) begin</font>
+1557       1/1                        if ((!init_done) &amp;&amp; (init_step &gt; 1)) begin
 1558       <font color = "red">0/1     ==>                    $fdisplay(HANDLE, &quot;%s: at time %t ERROR: CKE must remain active until the initialization sequence is complete.&quot;, _ModuleName, $time);</font>
 1559       <font color = "red">0/2     ==>                    if (STOP_ON_ERROR) $stop(0);</font>
                    <font color = "red">==>  MISSING_ELSE</font>
 1560                                  end
-                   <font color = "red">==>  MISSING_ELSE</font>
-1561       <font color = "red">0/1     ==>                case (cmd)</font>
+                        MISSING_ELSE
+1561       1/1                        case (cmd)
 1562                                      REFRESH : begin
 1563       <font color = "red">0/1     ==>                        if ($time - tm_txpr &lt; TXPR)</font>
 1564       <font color = "red">0/1     ==>                            $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tXPR violation during %s&quot;, _ModuleName, $time, cmd_string[SELF_REF]);</font>
@@ -1733,34 +1733,34 @@ Go <a href="mod972.html#l15">back</a>
 1598                                      end
 1599                                      NOP : begin
 1600                                          // entering precharge power down with dll off and tANPD has not been satisfied
-1601       <font color = "red">0/1     ==>                        if (low_power &amp;&amp; (active_bank == 0) &amp;&amp; |odt_pipeline)</font>
+1601       1/1                                if (low_power &amp;&amp; (active_bank == 0) &amp;&amp; |odt_pipeline)
 1602       <font color = "red">0/1     ==>                            $fdisplay(HANDLE, &quot;%s: at time %t WARNING: tANPD violation during %s.   Synchronous or asynchronous change in termination resistance is possible.&quot;, _ModuleName, $time, cmd_string[PWR_DOWN]);</font>
-                   <font color = "red">==>  MISSING_ELSE</font>
-1603       <font color = "red">0/1     ==>                        if ($time - tm_txpr &lt; TXPR)</font>
+                        MISSING_ELSE
+1603       1/1                                if ($time - tm_txpr &lt; TXPR)
 1604       <font color = "red">0/1     ==>                            $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tXPR violation during %s&quot;, _ModuleName, $time, cmd_string[PWR_DOWN]);</font>
-                   <font color = "red">==>  MISSING_ELSE</font>
-1605       <font color = "red">0/1     ==>                        for (j=0; j&lt;=SELF_REF; j=j+1) begin</font>
-1606       <font color = "red">0/1     ==>                            chk_err(DIFF_BANK, bank, j, PWR_DOWN);</font>
+                        MISSING_ELSE
+1605       1/1                                for (j=0; j&lt;=SELF_REF; j=j+1) begin
+1606       1/1                                    chk_err(DIFF_BANK, bank, j, PWR_DOWN);
 1607                                          end
 1608                    
-1609       <font color = "red">0/1     ==>                        if (mpr_en) begin</font>
+1609       1/1                                if (mpr_en) begin
 1610       <font color = "red">0/1     ==>                            $fdisplay(HANDLE, &quot;%s: at time %t ERROR: Power Down Failure.  Multipurpose Register must be disabled.&quot;, _ModuleName, $time);</font>
 1611       <font color = "red">0/2     ==>                            if (STOP_ON_ERROR) $stop(0);</font>
                    <font color = "red">==>  MISSING_ELSE</font>
-1612       <font color = "red">0/1     ==>                        end else if (!init_done) begin</font>
+1612       1/1                                end else if (!init_done) begin
 1613       <font color = "red">0/1     ==>                            $fdisplay(HANDLE, &quot;%s: at time %t ERROR: Power Down Failure.  Initialization sequence is not complete.&quot;, _ModuleName, $time);</font>
 1614       <font color = "red">0/2     ==>                            if (STOP_ON_ERROR) $stop(0);</font>
                    <font color = "red">==>  MISSING_ELSE</font>
 1615                                          end else begin
-1616       <font color = "red">0/1     ==>                            if (DEBUG) begin</font>
-1617       <font color = "red">0/1     ==>                                if (|active_bank) begin</font>
+1616       1/1                                    if (DEBUG) begin
+1617       1/1                                        if (|active_bank) begin
 1618       <font color = "red">0/1     ==>                                    $fdisplay(HANDLE, &quot;%s: at time %t INFO: Active Power Down Enter&quot;, _ModuleName, $time);</font>
 1619                                                  end else begin
-1620       <font color = "red">0/1     ==>                                    $fdisplay(HANDLE, &quot;%s: at time %t INFO: Precharge Power Down Enter&quot;, _ModuleName, $time);</font>
+1620       1/1                                            $fdisplay(HANDLE, &quot;%s: at time %t INFO: Precharge Power Down Enter&quot;, _ModuleName, $time);
 1621                                                  end
 1622                                              end
                    <font color = "red">==>  MISSING_ELSE</font>
-1623       <font color = "red">0/1     ==>                            in_power_down = 1;</font>
+1623       1/1                                    in_power_down = 1;
 1624                                          end
 1625                                      end
 1626                                      default : begin
@@ -1768,9 +1768,9 @@ Go <a href="mod972.html#l15">back</a>
 1628                                      end
 1629                                  endcase
 1630       1/1                    end else if (in_self_refresh || in_power_down) begin
-1631       <font color = "red">0/1     ==>                if ((ck_cntr - ck_cke_cmd &lt;= TCPDED) &amp;&amp; (cmd !== NOP))</font>
+1631       1/1                        if ((ck_cntr - ck_cke_cmd &lt;= TCPDED) &amp;&amp; (cmd !== NOP))
 1632       <font color = "red">0/1     ==>                    $fdisplay(HANDLE, &quot;%s: at time %t ERROR: tCPDED violation during Power Down or Self Refresh Entry.  NOP or Deselect is required.&quot;, _ModuleName, $time);</font>
-                   <font color = "red">==>  MISSING_ELSE</font>
+                        MISSING_ELSE
 1633                              end
                         MISSING_ELSE
 1634       1/1                    prev_cke  = cke;
@@ -1789,7 +1789,7 @@ Go <a href="mod972.html#l15">back</a>
 1647       1/1                      if (diff_ck) begin
 1648       1/1                          for (i=0; i&lt;32; i=i+1) begin
 1649       1/1                              if (dq_in_valid &amp;&amp; dll_locked &amp;&amp; ($time - tm_dqs_neg[i] &lt; $rtoi(TDSS*tck_avg)))
-1650       1/1                                  $fdisplay(HANDLE, &quot;%s: at time %t ERROR: tDSS violation on %s bit %d&quot;, _ModuleName, $time, dqs_string[i/16], i%16);
+1650       <font color = "red">0/1     ==>                          $fdisplay(HANDLE, &quot;%s: at time %t ERROR: tDSS violation on %s bit %d&quot;, _ModuleName, $time, dqs_string[i/16], i%16);</font>
                         MISSING_ELSE
 1651       1/1                              if (check_write_dqs_high[i])
 1652       <font color = "red">0/1     ==>                          $fdisplay(HANDLE, &quot;%s: at time %t ERROR: %s bit %d latching edge required during the preceding clock period.&quot;, _ModuleName, $time, dqs_string[i/16], i%16);</font>
@@ -2060,10 +2060,10 @@ Go <a href="mod972.html#l15">back</a>
 1886       <font color = "red">0/1     ==>                  $fdisplay(HANDLE, &quot;%s at time %t WARNING: 200 us is required before RST_N goes inactive.&quot;, _ModuleName, $time);</font>
                         MISSING_ELSE
 1887       1/1                      if (cke_in !== 1'b0)
-1888       <font color = "red">0/1     ==>                  $fdisplay(HANDLE, &quot;%s: at time %t ERROR: CKE must be inactive when RST_N goes inactive.&quot;, _ModuleName, $time);</font>
+1888       1/1                          $fdisplay(HANDLE, &quot;%s: at time %t ERROR: CKE must be inactive when RST_N goes inactive.&quot;, _ModuleName, $time);
                         MISSING_ELSE
 1889       1/1                      if ($time - tm_cke &lt; 10000)
-1890       <font color = "red">0/1     ==>                  $fdisplay(HANDLE, &quot;%s: at time %t ERROR: CKE must be maintained inactive for 10 ns before RST_N goes inactive.&quot;, _ModuleName, $time);</font>
+1890       1/1                          $fdisplay(HANDLE, &quot;%s: at time %t ERROR: CKE must be maintained inactive for 10 ns before RST_N goes inactive.&quot;, _ModuleName, $time);
                         MISSING_ELSE
 1891                    
 1892                                // clear memory
@@ -2078,7 +2078,7 @@ Go <a href="mod972.html#l15">back</a>
 1901                    `endif
 1902                    
 1903                            end
-                   <font color = "red">==>  MISSING_ELSE</font>
+                        MISSING_ELSE
 1904                        end
 1905                    
 1906                        always @(negedge rst_n_in or posedge diff_ck or negedge diff_ck) begin : main
@@ -2087,7 +2087,7 @@ Go <a href="mod972.html#l15">back</a>
 1909       1/1                      reset_task;
 1910                            end else begin
 1911       1/1                      if (!in_self_refresh &amp;&amp; (diff_ck !== 1'b0) &amp;&amp; (diff_ck !== 1'b1))
-1912       <font color = "red">0/1     ==>                  $fdisplay(HANDLE, &quot;%s: at time %t ERROR: CK and CK_N are not allowed to go to an unknown state.&quot;, _ModuleName, $time);</font>
+1912       1/1                          $fdisplay(HANDLE, &quot;%s: at time %t ERROR: CK and CK_N are not allowed to go to an unknown state.&quot;, _ModuleName, $time);
                         MISSING_ELSE
 1913       1/1                      data_task;
 1914                    
@@ -2095,12 +2095,12 @@ Go <a href="mod972.html#l15">back</a>
 1916                                // 1.) During Self Refresh
 1917                                // 2.) During Precharge Power Down (DLL on or off)
 1918       1/1                      if (in_self_refresh || (in_power_down &amp;&amp; (active_bank == 0))) begin
-1919       <font color = "red">0/1     ==>                  if (diff_ck) begin</font>
-1920       <font color = "red">0/1     ==>                      tjit_per_rtime = $time - tm_ck_pos - tck_avg;</font>
+1919       1/1                          if (diff_ck) begin
+1920       1/1                              tjit_per_rtime = $time - tm_ck_pos - tck_avg;
 1921                                    end else begin
-1922       <font color = "red">0/1     ==>                      tjit_per_rtime = $time - tm_ck_neg - tck_avg;</font>
+1922       1/1                              tjit_per_rtime = $time - tm_ck_neg - tck_avg;
 1923                                    end
-1924       <font color = "red">0/1     ==>                  if (dll_locked &amp;&amp; (abs_value(tjit_per_rtime) &gt; TJIT_PER)) begin</font>
+1924       1/1                          if (dll_locked &amp;&amp; (abs_value(tjit_per_rtime) &gt; TJIT_PER)) begin
 1925       <font color = "red">0/1     ==>                      if ((tm_ck_pos - tm_cke_cmd &lt; TCKSRE) || (ck_cntr - ck_cke_cmd &lt; TCKSRE_TCK))</font>
 1926       <font color = "red">0/1     ==>                          $fdisplay(HANDLE, &quot;%s: at time %t ERROR: tCKSRE violation during Self Refresh or Precharge Power Down Entry&quot;, _ModuleName, $time);</font>
                    <font color = "red">==>  MISSING_ELSE</font>
@@ -2116,7 +2116,7 @@ Go <a href="mod972.html#l15">back</a>
 1934       <font color = "red">0/1     ==>                          dll_locked = 0;</font>
 1935                                        end
 1936                                    end
-                   <font color = "red">==>  MISSING_ELSE</font>
+                        MISSING_ELSE
 1937                                end
                         MISSING_ELSE
 1938                    
@@ -2217,13 +2217,13 @@ Go <a href="mod972.html#l15">back</a>
 2012                                                    // In case the internal precharge is pushed out by tRTP, tRP starts at the point where
 2013                                                    // the internal precharge happens (not at the next rising clock edge after this event).
 2014       1/1                                          if ($time - tm_bank_read_end[i] &lt; TRTP) begin
-2015       <font color = "red">0/2     ==>                                      if (DEBUG) $fdisplay(HANDLE, &quot;%s: at time %t INFO: Auto Precharge bank %d&quot;, _ModuleName, tm_bank_read_end[i] + TRTP, i);</font>
+2015       2/2                                              if (DEBUG) $fdisplay(HANDLE, &quot;%s: at time %t INFO: Auto Precharge bank %d&quot;, _ModuleName, tm_bank_read_end[i] + TRTP, i);
                    <font color = "red">==>  MISSING_ELSE</font>
-2016       <font color = "red">0/1     ==>                                      active_bank[i] &lt;= #(tm_bank_read_end[i] + TRTP - $time) 0;</font>
-2017       <font color = "red">0/1     ==>                                      auto_precharge_bank[i] &lt;= #(tm_bank_read_end[i] + TRTP - $time) 0;</font>
-2018       <font color = "red">0/1     ==>                                      tm_bank_precharge[i] &lt;= #(tm_bank_read_end[i] + TRTP - $time) tm_bank_read_end[i] + TRTP;</font>
-2019       <font color = "red">0/1     ==>                                      tm_precharge &lt;= #(tm_bank_read_end[i] + TRTP - $time) tm_bank_read_end[i] + TRTP;</font>
-2020       <font color = "red">0/1     ==>                                      ck_precharge = ck_cntr;</font>
+2016       1/1                                              active_bank[i] &lt;= #(tm_bank_read_end[i] + TRTP - $time) 0;
+2017       1/1                                              auto_precharge_bank[i] &lt;= #(tm_bank_read_end[i] + TRTP - $time) 0;
+2018       1/1                                              tm_bank_precharge[i] &lt;= #(tm_bank_read_end[i] + TRTP - $time) tm_bank_read_end[i] + TRTP;
+2019       1/1                                              tm_precharge &lt;= #(tm_bank_read_end[i] + TRTP - $time) tm_bank_read_end[i] + TRTP;
+2020       1/1                                              ck_precharge = ck_cntr;
 2021                                                    end else begin
 2022       2/2                                              if (DEBUG) $fdisplay(HANDLE, &quot;%s: at time %t INFO: Auto Precharge bank %d&quot;, _ModuleName, $time, i);
                    <font color = "red">==>  MISSING_ELSE</font>
@@ -2628,7 +2628,7 @@ Go <a href="mod972.html#l15">back</a>
 2349                                end
                    <font color = "red">==>  MISSING_ELSE</font>
 2350       1/1                      if ($time - tm_cke &lt; TIPW)
-2351       <font color = "red">0/1     ==>                  $fdisplay(HANDLE, &quot;%s: at time %t ERROR: tIPW violation on CKE by %t&quot;, _ModuleName, $time, tm_cke + TIPW - $time);</font>
+2351       1/1                          $fdisplay(HANDLE, &quot;%s: at time %t ERROR: tIPW violation on CKE by %t&quot;, _ModuleName, $time, tm_cke + TIPW - $time);
                         MISSING_ELSE
 2352                            end
                         MISSING_ELSE

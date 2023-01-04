@@ -1493,7 +1493,7 @@ Go <a href="mod972.html#l20">back</a>
 1417                                              end else begin // BL=8
 1418       1/1                                        bl_pipeline[2*write_latency + 1] = 8;
 1419       1/1                                        if (odt_in) begin
-1420       1/1                                            ck_odth8 &lt;= ck_cntr;
+1420       <font color = "red">0/1     ==>                                    ck_odth8 &lt;= ck_cntr;</font>
 1421                                                  end
                         MISSING_ELSE
 1422                                              end
@@ -1789,7 +1789,7 @@ Go <a href="mod972.html#l20">back</a>
 1647       1/1                      if (diff_ck) begin
 1648       1/1                          for (i=0; i&lt;32; i=i+1) begin
 1649       1/1                              if (dq_in_valid &amp;&amp; dll_locked &amp;&amp; ($time - tm_dqs_neg[i] &lt; $rtoi(TDSS*tck_avg)))
-1650       1/1                                  $fdisplay(HANDLE, &quot;%s: at time %t ERROR: tDSS violation on %s bit %d&quot;, _ModuleName, $time, dqs_string[i/16], i%16);
+1650       <font color = "red">0/1     ==>                          $fdisplay(HANDLE, &quot;%s: at time %t ERROR: tDSS violation on %s bit %d&quot;, _ModuleName, $time, dqs_string[i/16], i%16);</font>
                         MISSING_ELSE
 1651       1/1                              if (check_write_dqs_high[i])
 1652       <font color = "red">0/1     ==>                          $fdisplay(HANDLE, &quot;%s: at time %t ERROR: %s bit %d latching edge required during the preceding clock period.&quot;, _ModuleName, $time, dqs_string[i/16], i%16);</font>
@@ -2635,7 +2635,7 @@ Go <a href="mod972.html#l20">back</a>
 2353       1/1                  tm_cke = $time;
 2354                        end
 2355                        always @(odt_in) begin
-2356       1/1                  if (rst_n_in &amp;&amp; odt_en &amp;&amp; !in_self_refresh) begin
+2356       <font color = "red">0/1     ==>          if (rst_n_in &amp;&amp; odt_en &amp;&amp; !in_self_refresh) begin</font>
 2357       <font color = "red">0/1     ==>              if ($time - tm_ck_pos &lt; TIH)</font>
 2358       <font color = "red">0/1     ==>                  $fdisplay(HANDLE, &quot;%s: at time %t ERROR:  tIH violation on ODT by %t&quot;, _ModuleName, $time, tm_ck_pos + TIH - $time);</font>
                    <font color = "red">==>  MISSING_ELSE</font>
@@ -2643,8 +2643,8 @@ Go <a href="mod972.html#l20">back</a>
 2360       <font color = "red">0/1     ==>                  $fdisplay(HANDLE, &quot;%s: at time %t ERROR: tIPW violation on ODT by %t&quot;, _ModuleName, $time, tm_odt + TIPW - $time);</font>
                    <font color = "red">==>  MISSING_ELSE</font>
 2361                            end
-                        MISSING_ELSE
-2362       1/1                  tm_odt = $time;
+                   <font color = "red">==>  MISSING_ELSE</font>
+2362       <font color = "red">0/1     ==>          tm_odt = $time;</font>
 2363                        end
 2364                    
 2365                        task cmd_addr_timing_check;

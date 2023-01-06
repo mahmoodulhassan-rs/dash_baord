@@ -1129,7 +1129,7 @@ dash_table.DataTable(    style_data={
       
     ]),
     
-  ],style = {'height': '750px', 'width': '1640px'}), #className = 'create_container2 five columns', style = {'height': '690px'}),
+  ],style = {'height': '700px', 'width': '1640px'}), #className = 'create_container2 five columns', style = {'height': '690px'}),
 
 html.Div([
          dcc.Markdown('''

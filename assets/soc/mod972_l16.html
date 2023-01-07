@@ -1789,7 +1789,7 @@ Go <a href="mod972.html#l16">back</a>
 1647       1/1                      if (diff_ck) begin
 1648       1/1                          for (i=0; i&lt;32; i=i+1) begin
 1649       1/1                              if (dq_in_valid &amp;&amp; dll_locked &amp;&amp; ($time - tm_dqs_neg[i] &lt; $rtoi(TDSS*tck_avg)))
-1650       <font color = "red">0/1     ==>                          $fdisplay(HANDLE, &quot;%s: at time %t ERROR: tDSS violation on %s bit %d&quot;, _ModuleName, $time, dqs_string[i/16], i%16);</font>
+1650       1/1                                  $fdisplay(HANDLE, &quot;%s: at time %t ERROR: tDSS violation on %s bit %d&quot;, _ModuleName, $time, dqs_string[i/16], i%16);
                         MISSING_ELSE
 1651       1/1                              if (check_write_dqs_high[i])
 1652       <font color = "red">0/1     ==>                          $fdisplay(HANDLE, &quot;%s: at time %t ERROR: %s bit %d latching edge required during the preceding clock period.&quot;, _ModuleName, $time, dqs_string[i/16], i%16);</font>
@@ -2217,13 +2217,13 @@ Go <a href="mod972.html#l16">back</a>
 2012                                                    // In case the internal precharge is pushed out by tRTP, tRP starts at the point where
 2013                                                    // the internal precharge happens (not at the next rising clock edge after this event).
 2014       1/1                                          if ($time - tm_bank_read_end[i] &lt; TRTP) begin
-2015       2/2                                              if (DEBUG) $fdisplay(HANDLE, &quot;%s: at time %t INFO: Auto Precharge bank %d&quot;, _ModuleName, tm_bank_read_end[i] + TRTP, i);
+2015       <font color = "red">0/2     ==>                                      if (DEBUG) $fdisplay(HANDLE, &quot;%s: at time %t INFO: Auto Precharge bank %d&quot;, _ModuleName, tm_bank_read_end[i] + TRTP, i);</font>
                    <font color = "red">==>  MISSING_ELSE</font>
-2016       1/1                                              active_bank[i] &lt;= #(tm_bank_read_end[i] + TRTP - $time) 0;
-2017       1/1                                              auto_precharge_bank[i] &lt;= #(tm_bank_read_end[i] + TRTP - $time) 0;
-2018       1/1                                              tm_bank_precharge[i] &lt;= #(tm_bank_read_end[i] + TRTP - $time) tm_bank_read_end[i] + TRTP;
-2019       1/1                                              tm_precharge &lt;= #(tm_bank_read_end[i] + TRTP - $time) tm_bank_read_end[i] + TRTP;
-2020       1/1                                              ck_precharge = ck_cntr;
+2016       <font color = "red">0/1     ==>                                      active_bank[i] &lt;= #(tm_bank_read_end[i] + TRTP - $time) 0;</font>
+2017       <font color = "red">0/1     ==>                                      auto_precharge_bank[i] &lt;= #(tm_bank_read_end[i] + TRTP - $time) 0;</font>
+2018       <font color = "red">0/1     ==>                                      tm_bank_precharge[i] &lt;= #(tm_bank_read_end[i] + TRTP - $time) tm_bank_read_end[i] + TRTP;</font>
+2019       <font color = "red">0/1     ==>                                      tm_precharge &lt;= #(tm_bank_read_end[i] + TRTP - $time) tm_bank_read_end[i] + TRTP;</font>
+2020       <font color = "red">0/1     ==>                                      ck_precharge = ck_cntr;</font>
 2021                                                    end else begin
 2022       2/2                                              if (DEBUG) $fdisplay(HANDLE, &quot;%s: at time %t INFO: Auto Precharge bank %d&quot;, _ModuleName, $time, i);
                    <font color = "red">==>  MISSING_ELSE</font>

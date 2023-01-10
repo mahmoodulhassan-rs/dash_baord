@@ -1620,474 +1620,474 @@ Go <a href="mod1934.html#l29">back</a>
 <span style="margin-left:8px;"></span>1622                           // .clk_fpga_fabric_fcb_pcb(fpga_clk0),
 <span style="margin-left:8px;"></span>1623       1/1              force `RTL_PATH_SOC_SS.clk_fpga_fabric_irq = fpga_clk0;
 <span style="margin-left:8px;"></span>1624       1/1              force `RTL_PATH_SOC_SS.clk_fpga_fabric_dma = fpga_clk0;
-<span style="margin-left:8px;"></span>1625                        //force `RTL_PATH_SOC_SS.rst_n_fpga_fabric_m0 = config_ss_env_intf.rs_pll_intf.rst_por;
-<span style="margin-left:8px;"></span>1626                        //force `RTL_PATH_SOC_SS.rst_n_fpga_fabric_m1 = config_ss_env_intf.rs_pll_intf.rst_por;
-<span style="margin-left:8px;"></span>1627                        //force `RTL_PATH_SOC_SS.rst_n_fpga_fabric_s0 = config_ss_env_intf.rs_pll_intf.rst_por;
-<span style="margin-left:8px;"></span>1628                            // .rst_n_fpga_fabric_fcb_pcb(config_ss_env_intf.rs_pll_intf.rst_por),
-<span style="margin-left:8px;"></span>1629       1/1              force `RTL_PATH_SOC_SS.rst_n_fpga_fabric_irq = config_ss_env_intf.rs_pll_intf.rst_por;
-<span style="margin-left:8px;"></span>1630       1/1              force `RTL_PATH_SOC_SS.rst_n_fpga_fabric_dma = config_ss_env_intf.rs_pll_intf.rst_por;
-<span style="margin-left:8px;"></span>1631                          // I2C interface signals
-<span style="margin-left:8px;"></span>1632                          
-<span style="margin-left:8px;"></span>1633                          //force `RTL_PATH_SOC_SS.pit_pause = gpt_if.gpt_pause;
-<span style="margin-left:8px;"></span>1634                         
-<span style="margin-left:8px;"></span>1635                          // USB interface signals
-<span style="margin-left:8px;"></span>1636                          `ifdef USB_VIP_INCLUDE
-<span style="margin-left:8px;"></span>1637                             //force `RTL_PATH_SOC_SS.soc_config_ss.usb_vbus = config_ss_env_intf.host_usb_if.usb_20_serial_if.vbus;
-<span style="margin-left:8px;"></span>1638                             //force `RTL_PATH_SOC_SS.usb_rtrim  = 1'b1; 
-<span style="margin-left:8px;"></span>1639                          `endif
-<span style="margin-left:8px;"></span>1640                          
-<span style="margin-left:8px;"></span>1641                            // configuration interface signals
-<span style="margin-left:8px;"></span>1642                           //FCB
-<span style="margin-left:8px;"></span>1643                       //    force `RTL_PATH_SOC_SS.fcb_clk_i = '{default : 'h0};
-<span style="margin-left:8px;"></span>1644       1/1                force `RTL_PATH_SOC_SS.fcb_data_i = fcb_config_if.data_i/*'{default : 'h0}*/;
-<span style="margin-left:8px;"></span>1645                       //    force `RTL_PATH_SOC_SS.icb_clk_i = '{default : 'h0};
-<span style="margin-left:8px;"></span>1646       1/1                 force `RTL_PATH_SOC_SS.icb_data_i = 1'b0;
-<span style="margin-left:8px;"></span>1647                           //PCB
-<span style="margin-left:8px;"></span>1648                       //    force `RTL_PATH_SOC_SS.pl_data_i =  pcb_if.pl_data_i;
-<span style="margin-left:8px;"></span>1649                          // ccb
-<span style="margin-left:8px;"></span>1650                       //    force `RTL_PATH_SOC_SS.ccb_pll0_lock  = 'h0;
-<span style="margin-left:8px;"></span>1651                       //    force `RTL_PATH_SOC_SS.ccb_pll0_dskewcallock = 'h0;
-<span style="margin-left:8px;"></span>1652                       //    force `RTL_PATH_SOC_SS.ccb_pll0_dskewcalout = 'h0;
-<span style="margin-left:8px;"></span>1653                       //    force `RTL_PATH_SOC_SS.ccb_pll1_lock = 'h0;
-<span style="margin-left:8px;"></span>1654                       //    force `RTL_PATH_SOC_SS.ccb_pll1_dskewcallock =    'h0;
-<span style="margin-left:8px;"></span>1655                       //    force `RTL_PATH_SOC_SS.ccb_pll1_dskewcalout =     'h0;
-<span style="margin-left:8px;"></span>1656                       //    force `RTL_PATH_SOC_SS.ccb_pll2_lock         =    'h0;
-<span style="margin-left:8px;"></span>1657                       //    force `RTL_PATH_SOC_SS.ccb_pll2_dskewcallock =    'h0;
-<span style="margin-left:8px;"></span>1658                       //    force `RTL_PATH_SOC_SS.ccb_pll2_dskewcalout  =    'h0;
-<span style="margin-left:8px;"></span>1659                       //    force `RTL_PATH_SOC_SS.ccb_pll3_lock         =    'h0;
-<span style="margin-left:8px;"></span>1660                       //    force `RTL_PATH_SOC_SS.ccb_pll3_dskewcallock =    'h0;
-<span style="margin-left:8px;"></span>1661                       //    force `RTL_PATH_SOC_SS.ccb_pll3_dskewcalout  =    'h0;
-<span style="margin-left:8px;"></span>1662                        
-<span style="margin-left:8px;"></span>1663                    
-<span style="margin-left:8px;"></span>1664                        // FPGA signals
-<span style="margin-left:8px;"></span>1665                        //interrupts
-<span style="margin-left:8px;"></span>1666                        //force `RTL_PATH_SOC_SS.fpga_irq_src = '0;
-<span style="margin-left:8px;"></span>1667                        //force `RTL_PATH_SOC_SS.fpga_irq_set = '0;
-<span style="margin-left:8px;"></span>1668                        // DMA request/acknowledge pairs for FPGA hardware handshake
-<span style="margin-left:8px;"></span>1669       1/1              force `RTL_PATH_SOC_SS.dma_req_fpga = dma_req_fpga;
-<span style="margin-left:8px;"></span>1670       1/1              force dma_ack_fpga = `RTL_PATH_SOC_SS.dma_ack_fpga;
-<span style="margin-left:8px;"></span>1671                     end
-<span style="margin-left:8px;"></span>1672                    
-<span style="margin-left:8px;"></span>1673                        //assign pcb_if.pl_data_o = `RTL_PATH_SOC_SS.pl_data_o;
-<span style="margin-left:8px;"></span>1674                        //assign pcb_if.pl_addr_o = `RTL_PATH_SOC_SS.pl_addr_o;
-<span style="margin-left:8px;"></span>1675                        //assign pcb_if.pl_ena_o  = `RTL_PATH_SOC_SS.pl_ena_o;   
-<span style="margin-left:8px;"></span>1676                        //assign pcb_if.pl_clk_o  = `RTL_PATH_SOC_SS.pl_clk_o;    
-<span style="margin-left:8px;"></span>1677                        //assign pcb_if.pl_ren_o  = `RTL_PATH_SOC_SS.pl_ren_o;   
-<span style="margin-left:8px;"></span>1678                        //assign pcb_if.pl_wen_o  = `RTL_PATH_SOC_SS.pl_wen_o;
-<span style="margin-left:8px;"></span>1679                    
-<span style="margin-left:8px;"></span>1680                        `ifdef FPGA_BFMs_INCLUDE
-<span style="margin-left:8px;"></span>1681                         // FPGA AHB Slave   
-<span style="margin-left:8px;"></span>1682                        assign fpga_ahb_s0_haddr     = `RTL_PATH_SOC_SS.fpga_ahb_s0_haddr;
-<span style="margin-left:8px;"></span>1683                        assign fpga_ahb_s0_hburst    = `RTL_PATH_SOC_SS.fpga_ahb_s0_hburst;
-<span style="margin-left:8px;"></span>1684                        assign fpga_ahb_s0_hmastlock = `RTL_PATH_SOC_SS.fpga_ahb_s0_hmastlock;
-<span style="margin-left:8px;"></span>1685                        assign fpga_ahb_s0_hprot     = `RTL_PATH_SOC_SS.fpga_ahb_s0_hprot;
-<span style="margin-left:8px;"></span>1686       1/1              initial force  `RTL_PATH_SOC_SS.fpga_ahb_s0_hrdata     =    fpga_ahb_s0_hrdata;
-<span style="margin-left:8px;"></span>1687       1/1              initial force  `RTL_PATH_SOC_SS.fpga_ahb_s0_hready     =    fpga_ahb_s0_hready;
-<span style="margin-left:8px;"></span>1688       1/1              initial force  `RTL_PATH_SOC_SS.fpga_ahb_s0_hresp      =    fpga_ahb_s0_hresp;
-<span style="margin-left:8px;"></span>1689                        assign fpga_ahb_s0_hsel      = `RTL_PATH_SOC_SS.fpga_ahb_s0_hsel  ;
-<span style="margin-left:8px;"></span>1690                        assign fpga_ahb_s0_hsize     = `RTL_PATH_SOC_SS.fpga_ahb_s0_hsize ;
-<span style="margin-left:8px;"></span>1691                        assign fpga_ahb_s0_htrans    = `RTL_PATH_SOC_SS.fpga_ahb_s0_htrans;
-<span style="margin-left:8px;"></span>1692                        assign fpga_ahb_s0_hwbe      = `RTL_PATH_SOC_SS.fpga_ahb_s0_hwbe  ;
-<span style="margin-left:8px;"></span>1693                        assign fpga_ahb_s0_hwdata    = `RTL_PATH_SOC_SS.fpga_ahb_s0_hwdata;
-<span style="margin-left:8px;"></span>1694                        assign fpga_ahb_s0_hwrite    = `RTL_PATH_SOC_SS.fpga_ahb_s0_hwrite;
-<span style="margin-left:8px;"></span>1695                    
-<span style="margin-left:8px;"></span>1696                        // FPGA AXI Master 0  //TODO: AY need to check if 'assign' works here or we use force
-<span style="margin-left:8px;"></span>1697                        initial begin
-<span style="margin-left:8px;"></span>1698       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_ar_addr    =    fpga_axi0_if.araddr;
-<span style="margin-left:8px;"></span>1699       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_ar_burst   =    fpga_axi0_if.arburst;
-<span style="margin-left:8px;"></span>1700       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_ar_cache   =    fpga_axi0_if.arcache;
-<span style="margin-left:8px;"></span>1701       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_ar_id      =    fpga_axi0_if.arid;
-<span style="margin-left:8px;"></span>1702       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_ar_len     =    fpga_axi0_if.arlen;
-<span style="margin-left:8px;"></span>1703       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_ar_lock    =    fpga_axi0_if.arlock ;
-<span style="margin-left:8px;"></span>1704       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_ar_prot     =   fpga_axi0_if.arprot ;
-<span style="margin-left:8px;"></span>1705                        end
-<span style="margin-left:8px;"></span>1706                        assign  fpga_axi0_if.arready = `RTL_PATH_SOC_SS.fpga_axi_m0_ar_ready ;
-<span style="margin-left:8px;"></span>1707                        initial begin
-<span style="margin-left:8px;"></span>1708       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_ar_size     =   fpga_axi0_if.arsize ;
-<span style="margin-left:8px;"></span>1709       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_ar_valid    =   fpga_axi0_if.arvalid;
-<span style="margin-left:8px;"></span>1710       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_aw_addr     =   fpga_axi0_if.awaddr ;
-<span style="margin-left:8px;"></span>1711       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_aw_burst    =   fpga_axi0_if.awburst;
-<span style="margin-left:8px;"></span>1712       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_aw_cache    =   fpga_axi0_if.awcache;
-<span style="margin-left:8px;"></span>1713       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_aw_id       =   fpga_axi0_if.awid   ;
-<span style="margin-left:8px;"></span>1714       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_aw_len      =   fpga_axi0_if.awlen  ;
-<span style="margin-left:8px;"></span>1715       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_aw_lock     =   fpga_axi0_if.awlock ;
-<span style="margin-left:8px;"></span>1716       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_aw_prot     =   fpga_axi0_if.awprot ;
-<span style="margin-left:8px;"></span>1717                        end
-<span style="margin-left:8px;"></span>1718                        assign fpga_axi0_if.awready = `RTL_PATH_SOC_SS.fpga_axi_m0_aw_ready ;
-<span style="margin-left:8px;"></span>1719                        initial begin
-<span style="margin-left:8px;"></span>1720       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_aw_size     =   fpga_axi0_if.awsize ;
-<span style="margin-left:8px;"></span>1721       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_aw_valid    =   fpga_axi0_if.awvalid ;
+<span style="margin-left:8px;"></span>1625                        force `RTL_PATH_SOC_SS.clk_fpga_fabric_gpio= fpga_clk0;
+<span style="margin-left:8px;"></span>1626                        //force `RTL_PATH_SOC_SS.rst_n_fpga_fabric_m0 = config_ss_env_intf.rs_pll_intf.rst_por;
+<span style="margin-left:8px;"></span>1627                        //force `RTL_PATH_SOC_SS.rst_n_fpga_fabric_m1 = config_ss_env_intf.rs_pll_intf.rst_por;
+<span style="margin-left:8px;"></span>1628                        //force `RTL_PATH_SOC_SS.rst_n_fpga_fabric_s0 = config_ss_env_intf.rs_pll_intf.rst_por;
+<span style="margin-left:8px;"></span>1629       1/1                  // .rst_n_fpga_fabric_fcb_pcb(config_ss_env_intf.rs_pll_intf.rst_por),
+<span style="margin-left:8px;"></span>1630       1/1              force `RTL_PATH_SOC_SS.rst_n_fpga_fabric_irq = config_ss_env_intf.rs_pll_intf.rst_por;
+<span style="margin-left:8px;"></span>1631                        force `RTL_PATH_SOC_SS.rst_n_fpga_fabric_dma = config_ss_env_intf.rs_pll_intf.rst_por;
+<span style="margin-left:8px;"></span>1632                        force `RTL_PATH_SOC_SS.rst_n_fpga_fabric_gpio= config_ss_env_intf.rs_pll_intf.rst_por;
+<span style="margin-left:8px;"></span>1633                    
+<span style="margin-left:8px;"></span>1634                          // I2C interface signals
+<span style="margin-left:8px;"></span>1635                          
+<span style="margin-left:8px;"></span>1636                          //force `RTL_PATH_SOC_SS.pit_pause = gpt_if.gpt_pause;
+<span style="margin-left:8px;"></span>1637                         
+<span style="margin-left:8px;"></span>1638                          // USB interface signals
+<span style="margin-left:8px;"></span>1639                          `ifdef USB_VIP_INCLUDE
+<span style="margin-left:8px;"></span>1640                             //force `RTL_PATH_SOC_SS.soc_config_ss.usb_vbus = config_ss_env_intf.host_usb_if.usb_20_serial_if.vbus;
+<span style="margin-left:8px;"></span>1641                             //force `RTL_PATH_SOC_SS.usb_rtrim  = 1'b1; 
+<span style="margin-left:8px;"></span>1642                          `endif
+<span style="margin-left:8px;"></span>1643                          
+<span style="margin-left:8px;"></span>1644       1/1                  // configuration interface signals
+<span style="margin-left:8px;"></span>1645                           //FCB
+<span style="margin-left:8px;"></span>1646       1/1             //    force `RTL_PATH_SOC_SS.fcb_clk_i = '{default : 'h0};
+<span style="margin-left:8px;"></span>1647                        `ifdef FCB_VIP_INCLUDE
+<span style="margin-left:8px;"></span>1648                          force `RTL_PATH_SOC_SS.fcb_data_i = fcb_config_if.data_i/*'{default : 'h0}*/;
+<span style="margin-left:8px;"></span>1649                          `endif
+<span style="margin-left:8px;"></span>1650                       //    force `RTL_PATH_SOC_SS.icb_clk_i = '{default : 'h0};
+<span style="margin-left:8px;"></span>1651                           force `RTL_PATH_SOC_SS.icb_data_i = 1'b0;
+<span style="margin-left:8px;"></span>1652                           //PCB
+<span style="margin-left:8px;"></span>1653                       //    force `RTL_PATH_SOC_SS.pl_data_i =  pcb_if.pl_data_i;
+<span style="margin-left:8px;"></span>1654                          // ccb
+<span style="margin-left:8px;"></span>1655                       //    force `RTL_PATH_SOC_SS.ccb_pll0_lock  = 'h0;
+<span style="margin-left:8px;"></span>1656                       //    force `RTL_PATH_SOC_SS.ccb_pll0_dskewcallock = 'h0;
+<span style="margin-left:8px;"></span>1657                       //    force `RTL_PATH_SOC_SS.ccb_pll0_dskewcalout = 'h0;
+<span style="margin-left:8px;"></span>1658                       //    force `RTL_PATH_SOC_SS.ccb_pll1_lock = 'h0;
+<span style="margin-left:8px;"></span>1659                       //    force `RTL_PATH_SOC_SS.ccb_pll1_dskewcallock =    'h0;
+<span style="margin-left:8px;"></span>1660                       //    force `RTL_PATH_SOC_SS.ccb_pll1_dskewcalout =     'h0;
+<span style="margin-left:8px;"></span>1661                       //    force `RTL_PATH_SOC_SS.ccb_pll2_lock         =    'h0;
+<span style="margin-left:8px;"></span>1662                       //    force `RTL_PATH_SOC_SS.ccb_pll2_dskewcallock =    'h0;
+<span style="margin-left:8px;"></span>1663                       //    force `RTL_PATH_SOC_SS.ccb_pll2_dskewcalout  =    'h0;
+<span style="margin-left:8px;"></span>1664                       //    force `RTL_PATH_SOC_SS.ccb_pll3_lock         =    'h0;
+<span style="margin-left:8px;"></span>1665                       //    force `RTL_PATH_SOC_SS.ccb_pll3_dskewcallock =    'h0;
+<span style="margin-left:8px;"></span>1666                       //    force `RTL_PATH_SOC_SS.ccb_pll3_dskewcalout  =    'h0;
+<span style="margin-left:8px;"></span>1667                        
+<span style="margin-left:8px;"></span>1668                    
+<span style="margin-left:8px;"></span>1669       1/1              // FPGA signals
+<span style="margin-left:8px;"></span>1670       1/1              //interrupts
+<span style="margin-left:8px;"></span>1671                        //force `RTL_PATH_SOC_SS.fpga_irq_src = '0;
+<span style="margin-left:8px;"></span>1672                        //force `RTL_PATH_SOC_SS.fpga_irq_set = '0;
+<span style="margin-left:8px;"></span>1673                        // DMA request/acknowledge pairs for FPGA hardware handshake
+<span style="margin-left:8px;"></span>1674                        force `RTL_PATH_SOC_SS.dma_req_fpga = dma_req_fpga;
+<span style="margin-left:8px;"></span>1675                        force dma_ack_fpga = `RTL_PATH_SOC_SS.dma_ack_fpga;
+<span style="margin-left:8px;"></span>1676                     end
+<span style="margin-left:8px;"></span>1677                    
+<span style="margin-left:8px;"></span>1678                        //assign pcb_if.pl_data_o = `RTL_PATH_SOC_SS.pl_data_o;
+<span style="margin-left:8px;"></span>1679                        //assign pcb_if.pl_addr_o = `RTL_PATH_SOC_SS.pl_addr_o;
+<span style="margin-left:8px;"></span>1680                        //assign pcb_if.pl_ena_o  = `RTL_PATH_SOC_SS.pl_ena_o;   
+<span style="margin-left:8px;"></span>1681                        //assign pcb_if.pl_clk_o  = `RTL_PATH_SOC_SS.pl_clk_o;    
+<span style="margin-left:8px;"></span>1682                        //assign pcb_if.pl_ren_o  = `RTL_PATH_SOC_SS.pl_ren_o;   
+<span style="margin-left:8px;"></span>1683                        //assign pcb_if.pl_wen_o  = `RTL_PATH_SOC_SS.pl_wen_o;
+<span style="margin-left:8px;"></span>1684                    
+<span style="margin-left:8px;"></span>1685                        `ifdef FPGA_BFMs_INCLUDE
+<span style="margin-left:8px;"></span>1686       1/1               // FPGA AHB Slave   
+<span style="margin-left:8px;"></span>1687       1/1              assign fpga_ahb_s0_haddr     = `RTL_PATH_SOC_SS.fpga_ahb_s0_haddr;
+<span style="margin-left:8px;"></span>1688       1/1              assign fpga_ahb_s0_hburst    = `RTL_PATH_SOC_SS.fpga_ahb_s0_hburst;
+<span style="margin-left:8px;"></span>1689                        assign fpga_ahb_s0_hmastlock = `RTL_PATH_SOC_SS.fpga_ahb_s0_hmastlock;
+<span style="margin-left:8px;"></span>1690                        assign fpga_ahb_s0_hprot     = `RTL_PATH_SOC_SS.fpga_ahb_s0_hprot;
+<span style="margin-left:8px;"></span>1691                        initial force  `RTL_PATH_SOC_SS.fpga_ahb_s0_hrdata     =    fpga_ahb_s0_hrdata;
+<span style="margin-left:8px;"></span>1692                        initial force  `RTL_PATH_SOC_SS.fpga_ahb_s0_hready     =    fpga_ahb_s0_hready;
+<span style="margin-left:8px;"></span>1693                        initial force  `RTL_PATH_SOC_SS.fpga_ahb_s0_hresp      =    fpga_ahb_s0_hresp;
+<span style="margin-left:8px;"></span>1694                        assign fpga_ahb_s0_hsel      = `RTL_PATH_SOC_SS.fpga_ahb_s0_hsel  ;
+<span style="margin-left:8px;"></span>1695                        assign fpga_ahb_s0_hsize     = `RTL_PATH_SOC_SS.fpga_ahb_s0_hsize ;
+<span style="margin-left:8px;"></span>1696                        assign fpga_ahb_s0_htrans    = `RTL_PATH_SOC_SS.fpga_ahb_s0_htrans;
+<span style="margin-left:8px;"></span>1697                        assign fpga_ahb_s0_hwbe      = `RTL_PATH_SOC_SS.fpga_ahb_s0_hwbe  ;
+<span style="margin-left:8px;"></span>1698       1/1              assign fpga_ahb_s0_hwdata    = `RTL_PATH_SOC_SS.fpga_ahb_s0_hwdata;
+<span style="margin-left:8px;"></span>1699       1/1              assign fpga_ahb_s0_hwrite    = `RTL_PATH_SOC_SS.fpga_ahb_s0_hwrite;
+<span style="margin-left:8px;"></span>1700       1/1          
+<span style="margin-left:8px;"></span>1701       1/1              // FPGA AXI Master 0  //TODO: AY need to check if 'assign' works here or we use force
+<span style="margin-left:8px;"></span>1702       1/1              initial begin
+<span style="margin-left:8px;"></span>1703       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_ar_addr    =    fpga_axi0_if.araddr;
+<span style="margin-left:8px;"></span>1704       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_ar_burst   =    fpga_axi0_if.arburst;
+<span style="margin-left:8px;"></span>1705                          force `RTL_PATH_SOC_SS.fpga_axi_m0_ar_cache   =    fpga_axi0_if.arcache;
+<span style="margin-left:8px;"></span>1706                          force `RTL_PATH_SOC_SS.fpga_axi_m0_ar_id      =    fpga_axi0_if.arid;
+<span style="margin-left:8px;"></span>1707                          force `RTL_PATH_SOC_SS.fpga_axi_m0_ar_len     =    fpga_axi0_if.arlen;
+<span style="margin-left:8px;"></span>1708       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_ar_lock    =    fpga_axi0_if.arlock ;
+<span style="margin-left:8px;"></span>1709       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_ar_prot     =   fpga_axi0_if.arprot ;
+<span style="margin-left:8px;"></span>1710       1/1              end
+<span style="margin-left:8px;"></span>1711       1/1              assign  fpga_axi0_if.arready = `RTL_PATH_SOC_SS.fpga_axi_m0_ar_ready ;
+<span style="margin-left:8px;"></span>1712       1/1              initial begin
+<span style="margin-left:8px;"></span>1713       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_ar_size     =   fpga_axi0_if.arsize ;
+<span style="margin-left:8px;"></span>1714       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_ar_valid    =   fpga_axi0_if.arvalid;
+<span style="margin-left:8px;"></span>1715       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_aw_addr     =   fpga_axi0_if.awaddr ;
+<span style="margin-left:8px;"></span>1716       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_aw_burst    =   fpga_axi0_if.awburst;
+<span style="margin-left:8px;"></span>1717                          force `RTL_PATH_SOC_SS.fpga_axi_m0_aw_cache    =   fpga_axi0_if.awcache;
+<span style="margin-left:8px;"></span>1718                          force `RTL_PATH_SOC_SS.fpga_axi_m0_aw_id       =   fpga_axi0_if.awid   ;
+<span style="margin-left:8px;"></span>1719                          force `RTL_PATH_SOC_SS.fpga_axi_m0_aw_len      =   fpga_axi0_if.awlen  ;
+<span style="margin-left:8px;"></span>1720       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_aw_lock     =   fpga_axi0_if.awlock ;
+<span style="margin-left:8px;"></span>1721       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_aw_prot     =   fpga_axi0_if.awprot ;
 <span style="margin-left:8px;"></span>1722                        end
-<span style="margin-left:8px;"></span>1723                        assign fpga_axi0_if.bid = `RTL_PATH_SOC_SS.fpga_axi_m0_b_id;
-<span style="margin-left:8px;"></span>1724       1/1              initial force `RTL_PATH_SOC_SS.fpga_axi_m0_b_ready     =   fpga_axi0_if.bready  ;
-<span style="margin-left:8px;"></span>1725                        assign fpga_axi0_if.bresp   = `RTL_PATH_SOC_SS.fpga_axi_m0_b_resp       ;
-<span style="margin-left:8px;"></span>1726                        assign fpga_axi0_if.bvalid  = `RTL_PATH_SOC_SS.fpga_axi_m0_b_valid      ;
-<span style="margin-left:8px;"></span>1727                        assign fpga_axi0_if.rdata   = `RTL_PATH_SOC_SS.fpga_axi_m0_r_data       ;
-<span style="margin-left:8px;"></span>1728                        assign fpga_axi0_if.rid     = `RTL_PATH_SOC_SS.fpga_axi_m0_r_id         ;
-<span style="margin-left:8px;"></span>1729                        assign fpga_axi0_if.rlast   = `RTL_PATH_SOC_SS.fpga_axi_m0_r_last       ;
-<span style="margin-left:8px;"></span>1730       1/1              initial force `RTL_PATH_SOC_SS.fpga_axi_m0_r_ready     =    fpga_axi0_if.rready ;
-<span style="margin-left:8px;"></span>1731                        assign fpga_axi0_if.rresp   = `RTL_PATH_SOC_SS.fpga_axi_m0_r_resp       ;
-<span style="margin-left:8px;"></span>1732                        assign fpga_axi0_if.rvalid  = `RTL_PATH_SOC_SS.fpga_axi_m0_r_valid      ;
-<span style="margin-left:8px;"></span>1733                        initial begin
-<span style="margin-left:8px;"></span>1734       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_w_data      =    fpga_axi0_if.wdata   ;
-<span style="margin-left:8px;"></span>1735       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_w_last      =    fpga_axi0_if.wlast   ;
-<span style="margin-left:8px;"></span>1736                        end
-<span style="margin-left:8px;"></span>1737                        assign fpga_axi0_if.wready = `RTL_PATH_SOC_SS.fpga_axi_m0_w_ready        ;
+<span style="margin-left:8px;"></span>1723                        assign fpga_axi0_if.awready = `RTL_PATH_SOC_SS.fpga_axi_m0_aw_ready ;
+<span style="margin-left:8px;"></span>1724       1/1              initial begin
+<span style="margin-left:8px;"></span>1725                          force `RTL_PATH_SOC_SS.fpga_axi_m0_aw_size     =   fpga_axi0_if.awsize ;
+<span style="margin-left:8px;"></span>1726                          force `RTL_PATH_SOC_SS.fpga_axi_m0_aw_valid    =   fpga_axi0_if.awvalid ;
+<span style="margin-left:8px;"></span>1727                        end
+<span style="margin-left:8px;"></span>1728                        assign fpga_axi0_if.bid = `RTL_PATH_SOC_SS.fpga_axi_m0_b_id;
+<span style="margin-left:8px;"></span>1729                        initial force `RTL_PATH_SOC_SS.fpga_axi_m0_b_ready     =   fpga_axi0_if.bready  ;
+<span style="margin-left:8px;"></span>1730       1/1              assign fpga_axi0_if.bresp   = `RTL_PATH_SOC_SS.fpga_axi_m0_b_resp       ;
+<span style="margin-left:8px;"></span>1731                        assign fpga_axi0_if.bvalid  = `RTL_PATH_SOC_SS.fpga_axi_m0_b_valid      ;
+<span style="margin-left:8px;"></span>1732                        assign fpga_axi0_if.rdata   = `RTL_PATH_SOC_SS.fpga_axi_m0_r_data       ;
+<span style="margin-left:8px;"></span>1733                        assign fpga_axi0_if.rid     = `RTL_PATH_SOC_SS.fpga_axi_m0_r_id         ;
+<span style="margin-left:8px;"></span>1734       1/1              assign fpga_axi0_if.rlast   = `RTL_PATH_SOC_SS.fpga_axi_m0_r_last       ;
+<span style="margin-left:8px;"></span>1735       1/1              initial force `RTL_PATH_SOC_SS.fpga_axi_m0_r_ready     =    fpga_axi0_if.rready ;
+<span style="margin-left:8px;"></span>1736                        assign fpga_axi0_if.rresp   = `RTL_PATH_SOC_SS.fpga_axi_m0_r_resp       ;
+<span style="margin-left:8px;"></span>1737                        assign fpga_axi0_if.rvalid  = `RTL_PATH_SOC_SS.fpga_axi_m0_r_valid      ;
 <span style="margin-left:8px;"></span>1738                        initial begin
-<span style="margin-left:8px;"></span>1739       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_w_strb      =    fpga_axi0_if.wstrb   ;
-<span style="margin-left:8px;"></span>1740       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_w_valid     =    fpga_axi0_if.wvalid  ;
+<span style="margin-left:8px;"></span>1739       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_w_data      =    fpga_axi0_if.wdata   ;
+<span style="margin-left:8px;"></span>1740       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_w_last      =    fpga_axi0_if.wlast   ;
 <span style="margin-left:8px;"></span>1741                        end
-<span style="margin-left:8px;"></span>1742                        // FPGA AXI Master 1
+<span style="margin-left:8px;"></span>1742                        assign fpga_axi0_if.wready = `RTL_PATH_SOC_SS.fpga_axi_m0_w_ready        ;
 <span style="margin-left:8px;"></span>1743                        initial begin
-<span style="margin-left:8px;"></span>1744       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_ar_addr     =    fpga_axi1_if.araddr  ;
-<span style="margin-left:8px;"></span>1745       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_ar_burst    =    fpga_axi1_if.arburst ;
-<span style="margin-left:8px;"></span>1746       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_ar_cache    =    fpga_axi1_if.arcache ;
-<span style="margin-left:8px;"></span>1747       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_ar_id       =    fpga_axi1_if.arid    ;
-<span style="margin-left:8px;"></span>1748       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_ar_len      =    fpga_axi1_if.arlen   ;
-<span style="margin-left:8px;"></span>1749       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_ar_lock     =    fpga_axi1_if.arlock  ;
-<span style="margin-left:8px;"></span>1750       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_ar_prot     =    fpga_axi1_if.arprot  ;
-<span style="margin-left:8px;"></span>1751                        end
-<span style="margin-left:8px;"></span>1752                        assign fpga_axi1_if.arready = `RTL_PATH_SOC_SS.fpga_axi_m1_ar_ready   ;
-<span style="margin-left:8px;"></span>1753                        initial begin 
-<span style="margin-left:8px;"></span>1754       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_ar_size     =    fpga_axi1_if.arsize  ;
-<span style="margin-left:8px;"></span>1755       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_ar_valid    =    fpga_axi1_if.arvalid ;
-<span style="margin-left:8px;"></span>1756       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_aw_addr     =    fpga_axi1_if.awaddr  ;
-<span style="margin-left:8px;"></span>1757       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_aw_burst    =    fpga_axi1_if.awburst ;
-<span style="margin-left:8px;"></span>1758       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_aw_cache    =    fpga_axi1_if.awcache ;
-<span style="margin-left:8px;"></span>1759       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_aw_id       =    fpga_axi1_if.awid    ;
-<span style="margin-left:8px;"></span>1760       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_aw_len      =    fpga_axi1_if.awlen   ;
-<span style="margin-left:8px;"></span>1761       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_aw_lock     =    fpga_axi1_if.awlock  ;
-<span style="margin-left:8px;"></span>1762       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_aw_prot     =    fpga_axi1_if.awprot  ;
-<span style="margin-left:8px;"></span>1763                        end
-<span style="margin-left:8px;"></span>1764                        assign  fpga_axi1_if.awready = `RTL_PATH_SOC_SS.fpga_axi_m1_aw_ready  ;
-<span style="margin-left:8px;"></span>1765                        initial begin
-<span style="margin-left:8px;"></span>1766       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_aw_size     =    fpga_axi1_if.awsize  ;
-<span style="margin-left:8px;"></span>1767       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_aw_valid    =    fpga_axi1_if.awvalid ;
+<span style="margin-left:8px;"></span>1744       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_w_strb      =    fpga_axi0_if.wstrb   ;
+<span style="margin-left:8px;"></span>1745       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m0_w_valid     =    fpga_axi0_if.wvalid  ;
+<span style="margin-left:8px;"></span>1746       1/1              end
+<span style="margin-left:8px;"></span>1747       1/1              // FPGA AXI Master 1
+<span style="margin-left:8px;"></span>1748       1/1              initial begin
+<span style="margin-left:8px;"></span>1749       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_ar_addr     =    fpga_axi1_if.araddr  ;
+<span style="margin-left:8px;"></span>1750       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_ar_burst    =    fpga_axi1_if.arburst ;
+<span style="margin-left:8px;"></span>1751                          force `RTL_PATH_SOC_SS.fpga_axi_m1_ar_cache    =    fpga_axi1_if.arcache ;
+<span style="margin-left:8px;"></span>1752                          force `RTL_PATH_SOC_SS.fpga_axi_m1_ar_id       =    fpga_axi1_if.arid    ;
+<span style="margin-left:8px;"></span>1753                          force `RTL_PATH_SOC_SS.fpga_axi_m1_ar_len      =    fpga_axi1_if.arlen   ;
+<span style="margin-left:8px;"></span>1754       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_ar_lock     =    fpga_axi1_if.arlock  ;
+<span style="margin-left:8px;"></span>1755       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_ar_prot     =    fpga_axi1_if.arprot  ;
+<span style="margin-left:8px;"></span>1756       1/1              end
+<span style="margin-left:8px;"></span>1757       1/1              assign fpga_axi1_if.arready = `RTL_PATH_SOC_SS.fpga_axi_m1_ar_ready   ;
+<span style="margin-left:8px;"></span>1758       1/1              initial begin 
+<span style="margin-left:8px;"></span>1759       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_ar_size     =    fpga_axi1_if.arsize  ;
+<span style="margin-left:8px;"></span>1760       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_ar_valid    =    fpga_axi1_if.arvalid ;
+<span style="margin-left:8px;"></span>1761       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_aw_addr     =    fpga_axi1_if.awaddr  ;
+<span style="margin-left:8px;"></span>1762       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_aw_burst    =    fpga_axi1_if.awburst ;
+<span style="margin-left:8px;"></span>1763                          force `RTL_PATH_SOC_SS.fpga_axi_m1_aw_cache    =    fpga_axi1_if.awcache ;
+<span style="margin-left:8px;"></span>1764                          force `RTL_PATH_SOC_SS.fpga_axi_m1_aw_id       =    fpga_axi1_if.awid    ;
+<span style="margin-left:8px;"></span>1765                          force `RTL_PATH_SOC_SS.fpga_axi_m1_aw_len      =    fpga_axi1_if.awlen   ;
+<span style="margin-left:8px;"></span>1766       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_aw_lock     =    fpga_axi1_if.awlock  ;
+<span style="margin-left:8px;"></span>1767       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_aw_prot     =    fpga_axi1_if.awprot  ;
 <span style="margin-left:8px;"></span>1768                        end
-<span style="margin-left:8px;"></span>1769                        assign fpga_axi1_if.bid  = `RTL_PATH_SOC_SS.fpga_axi_m1_b_id             ;
-<span style="margin-left:8px;"></span>1770       1/1              initial force `RTL_PATH_SOC_SS.fpga_axi_m1_b_ready     =    fpga_axi1_if.bready  ;
-<span style="margin-left:8px;"></span>1771                        assign fpga_axi1_if.bresp   =  `RTL_PATH_SOC_SS.fpga_axi_m1_b_resp       ;
-<span style="margin-left:8px;"></span>1772                        assign fpga_axi1_if.bvalid  =  `RTL_PATH_SOC_SS.fpga_axi_m1_b_valid      ;
-<span style="margin-left:8px;"></span>1773                        assign fpga_axi1_if.rdata   =  `RTL_PATH_SOC_SS.fpga_axi_m1_r_data       ;
-<span style="margin-left:8px;"></span>1774                        assign fpga_axi1_if.rid     =  `RTL_PATH_SOC_SS.fpga_axi_m1_r_id         ;
-<span style="margin-left:8px;"></span>1775                        assign fpga_axi1_if.rlast   =  `RTL_PATH_SOC_SS.fpga_axi_m1_r_last       ;
-<span style="margin-left:8px;"></span>1776       1/1              initial force `RTL_PATH_SOC_SS.fpga_axi_m1_r_ready     =    fpga_axi1_if.rready  ;
-<span style="margin-left:8px;"></span>1777                        assign  fpga_axi1_if.rresp   =  `RTL_PATH_SOC_SS.fpga_axi_m1_r_resp      ;
-<span style="margin-left:8px;"></span>1778                        assign  fpga_axi1_if.rvalid  =  `RTL_PATH_SOC_SS.fpga_axi_m1_r_valid     ;
-<span style="margin-left:8px;"></span>1779                        initial begin
-<span style="margin-left:8px;"></span>1780       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_w_data      =    fpga_axi1_if.wdata   ;
-<span style="margin-left:8px;"></span>1781       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_w_last      =    fpga_axi1_if.wlast   ;
-<span style="margin-left:8px;"></span>1782                        end
-<span style="margin-left:8px;"></span>1783                        assign  fpga_axi1_if.wready = `RTL_PATH_SOC_SS.fpga_axi_m1_w_ready       ;
+<span style="margin-left:8px;"></span>1769                        assign  fpga_axi1_if.awready = `RTL_PATH_SOC_SS.fpga_axi_m1_aw_ready  ;
+<span style="margin-left:8px;"></span>1770       1/1              initial begin
+<span style="margin-left:8px;"></span>1771                          force `RTL_PATH_SOC_SS.fpga_axi_m1_aw_size     =    fpga_axi1_if.awsize  ;
+<span style="margin-left:8px;"></span>1772                          force `RTL_PATH_SOC_SS.fpga_axi_m1_aw_valid    =    fpga_axi1_if.awvalid ;
+<span style="margin-left:8px;"></span>1773                        end
+<span style="margin-left:8px;"></span>1774                        assign fpga_axi1_if.bid  = `RTL_PATH_SOC_SS.fpga_axi_m1_b_id             ;
+<span style="margin-left:8px;"></span>1775                        initial force `RTL_PATH_SOC_SS.fpga_axi_m1_b_ready     =    fpga_axi1_if.bready  ;
+<span style="margin-left:8px;"></span>1776       1/1              assign fpga_axi1_if.bresp   =  `RTL_PATH_SOC_SS.fpga_axi_m1_b_resp       ;
+<span style="margin-left:8px;"></span>1777                        assign fpga_axi1_if.bvalid  =  `RTL_PATH_SOC_SS.fpga_axi_m1_b_valid      ;
+<span style="margin-left:8px;"></span>1778                        assign fpga_axi1_if.rdata   =  `RTL_PATH_SOC_SS.fpga_axi_m1_r_data       ;
+<span style="margin-left:8px;"></span>1779                        assign fpga_axi1_if.rid     =  `RTL_PATH_SOC_SS.fpga_axi_m1_r_id         ;
+<span style="margin-left:8px;"></span>1780       1/1              assign fpga_axi1_if.rlast   =  `RTL_PATH_SOC_SS.fpga_axi_m1_r_last       ;
+<span style="margin-left:8px;"></span>1781       1/1              initial force `RTL_PATH_SOC_SS.fpga_axi_m1_r_ready     =    fpga_axi1_if.rready  ;
+<span style="margin-left:8px;"></span>1782                        assign  fpga_axi1_if.rresp   =  `RTL_PATH_SOC_SS.fpga_axi_m1_r_resp      ;
+<span style="margin-left:8px;"></span>1783                        assign  fpga_axi1_if.rvalid  =  `RTL_PATH_SOC_SS.fpga_axi_m1_r_valid     ;
 <span style="margin-left:8px;"></span>1784                        initial begin
-<span style="margin-left:8px;"></span>1785       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_w_strb      =    fpga_axi1_if.wstrb   ;
-<span style="margin-left:8px;"></span>1786       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_w_valid     =    fpga_axi1_if.wvalid  ;
+<span style="margin-left:8px;"></span>1785       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_w_data      =    fpga_axi1_if.wdata   ;
+<span style="margin-left:8px;"></span>1786       1/1                force `RTL_PATH_SOC_SS.fpga_axi_m1_w_last      =    fpga_axi1_if.wlast   ;
 <span style="margin-left:8px;"></span>1787                        end
-<span style="margin-left:8px;"></span>1788                    `endif
-<span style="margin-left:8px;"></span>1789                    
-<span style="margin-left:8px;"></span>1790                    
-<span style="margin-left:8px;"></span>1791                    //---------------------------------------------------------------------------
-<span style="margin-left:8px;"></span>1792                    // PL outputs
-<span style="margin-left:8px;"></span>1793                    //-----------------------------------------------------------------------------
-<span style="margin-left:8px;"></span>1794                      logic PL_INIT_o, PL_ENA_o, PL_REN_o, PL_CLK_o;
-<span style="margin-left:8px;"></span>1795                      logic [1:0]  PL_WEN_o;
-<span style="margin-left:8px;"></span>1796                      logic [31:0] PL_ADDR_o;
-<span style="margin-left:8px;"></span>1797                    
-<span style="margin-left:8px;"></span>1798                      bit pad_io_mux_ctrl = 1'b1;
-<span style="margin-left:8px;"></span>1799                      // PADs Configuration and Integration As per TMSC-GPIO Model
-<span style="margin-left:8px;"></span>1800                      assign HE 	= `he_PadStatus;
-<span style="margin-left:8px;"></span>1801                      assign ST1 	= `st0_PadStatus;
-<span style="margin-left:8px;"></span>1802                      assign ST0 	= `st0_PadStatus;
-<span style="margin-left:8px;"></span>1803                      assign SL 	= `sl_PadStatus;
-<span style="margin-left:8px;"></span>1804                      assign IE   = `ie_PadStatus;
-<span style="margin-left:8px;"></span>1805                    
-<span style="margin-left:8px;"></span>1806                      // GPIO Model Instantiation as per 32 - GPIO PADs Registers
-<span style="margin-left:8px;"></span>1807                      reg [39:0] pads;
-<span style="margin-left:8px;"></span>1808                      reg [31:0] ext_pads;
-<span style="margin-left:8px;"></span>1809                      reg uart0_sin, uart1_sin;
+<span style="margin-left:8px;"></span>1788                        assign  fpga_axi1_if.wready = `RTL_PATH_SOC_SS.fpga_axi_m1_w_ready       ;
+<span style="margin-left:8px;"></span>1789                        initial begin
+<span style="margin-left:8px;"></span>1790                          force `RTL_PATH_SOC_SS.fpga_axi_m1_w_strb      =    fpga_axi1_if.wstrb   ;
+<span style="margin-left:8px;"></span>1791                          force `RTL_PATH_SOC_SS.fpga_axi_m1_w_valid     =    fpga_axi1_if.wvalid  ;
+<span style="margin-left:8px;"></span>1792                        end
+<span style="margin-left:8px;"></span>1793                    `endif
+<span style="margin-left:8px;"></span>1794                    
+<span style="margin-left:8px;"></span>1795                    
+<span style="margin-left:8px;"></span>1796                    //---------------------------------------------------------------------------
+<span style="margin-left:8px;"></span>1797                    // PL outputs
+<span style="margin-left:8px;"></span>1798                    //-----------------------------------------------------------------------------
+<span style="margin-left:8px;"></span>1799                      logic PL_INIT_o, PL_ENA_o, PL_REN_o, PL_CLK_o;
+<span style="margin-left:8px;"></span>1800                      logic [1:0]  PL_WEN_o;
+<span style="margin-left:8px;"></span>1801                      logic [31:0] PL_ADDR_o;
+<span style="margin-left:8px;"></span>1802                    
+<span style="margin-left:8px;"></span>1803                      bit pad_io_mux_ctrl = 1'b1;
+<span style="margin-left:8px;"></span>1804                      // PADs Configuration and Integration As per TMSC-GPIO Model
+<span style="margin-left:8px;"></span>1805                      assign HE 	= `he_PadStatus;
+<span style="margin-left:8px;"></span>1806                      assign ST1 	= `st0_PadStatus;
+<span style="margin-left:8px;"></span>1807                      assign ST0 	= `st0_PadStatus;
+<span style="margin-left:8px;"></span>1808                      assign SL 	= `sl_PadStatus;
+<span style="margin-left:8px;"></span>1809                      assign IE   = `ie_PadStatus;
 <span style="margin-left:8px;"></span>1810                    
-<span style="margin-left:8px;"></span>1811                      `ifdef PAD_VIP_INCLUDE
-<span style="margin-left:8px;"></span>1812                        `ifdef SPI_VIP_INCLUDE
-<span style="margin-left:8px;"></span>1813                        assign spi_flash_model_inst.CS   = PAD[12];
-<span style="margin-left:8px;"></span>1814                        assign spi_flash_model_inst.SI   = PAD[6];
-<span style="margin-left:8px;"></span>1815                        assign spi_flash_model_inst.SO   = PAD[7];
-<span style="margin-left:8px;"></span>1816                        assign spi_flash_model_inst.WP   = PAD[8];
-<span style="margin-left:8px;"></span>1817                        assign spi_flash_model_inst.SIO3 = PAD[9];
-<span style="margin-left:8px;"></span>1818                    
-<span style="margin-left:8px;"></span>1819                        `endif
-<span style="margin-left:8px;"></span>1820                          
-<span style="margin-left:8px;"></span>1821                      always @ (*) begin
-<span style="margin-left:8px;"></span>1822                        if (pad_io_mux_ctrl == 1) begin
-<span style="margin-left:8px;"></span>1823                          `ifdef PAD_VIP_INCLUDE
-<span style="margin-left:8px;"></span>1824                            `ifdef UART_VIP_INCLUDE
-<span style="margin-left:8px;"></span>1825                    //          pads[0] = uart0_if.sout;
-<span style="margin-left:8px;"></span>1826                              uart0_sin = PAD[1];
-<span style="margin-left:8px;"></span>1827                    //          pads[2] = uart1_if.sout;
-<span style="margin-left:8px;"></span>1828                              uart1_sin = PAD[3];
-<span style="margin-left:8px;"></span>1829                            `endif
-<span style="margin-left:8px;"></span>1830                            `ifdef I2C_VIP_INCLUDE
-<span style="margin-left:8px;"></span>1831                              pads[11] = i2c_if.sda;
-<span style="margin-left:8px;"></span>1832                              i2c_if.sda = PAD[11];
-<span style="margin-left:8px;"></span>1833                            `endif
-<span style="margin-left:8px;"></span>1834                            `ifdef SPI_VIP_INCLUDE
-<span style="margin-left:8px;"></span>1835                              pads[4] = spi_flash_model_inst.CS;
-<span style="margin-left:8px;"></span>1836                              pads[6] = spi_flash_model_inst.SI;
-<span style="margin-left:8px;"></span>1837                              pads[7] = spi_flash_model_inst.SO;
-<span style="margin-left:8px;"></span>1838                              pads[8] = spi_flash_model_inst.WP;
-<span style="margin-left:8px;"></span>1839                              pads[9] = spi_flash_model_inst.SIO3;
-<span style="margin-left:8px;"></span>1840                            `endif
-<span style="margin-left:8px;"></span>1841                          `endif
-<span style="margin-left:8px;"></span>1842                        end
-<span style="margin-left:8px;"></span>1843                        else begin
-<span style="margin-left:8px;"></span>1844                          for (int j = 0; j &lt; 32; j++) begin
-<span style="margin-left:8px;"></span>1845                            pads[j] = gpio_vif.o_gpio_pads[j];
-<span style="margin-left:8px;"></span>1846                            gpio_vif.i_gpio_pads[j] = PAD[j];
-<span style="margin-left:8px;"></span>1847                          end
-<span style="margin-left:8px;"></span>1848                          for (int j = 0; j &lt; 8; j++) begin
-<span style="margin-left:8px;"></span>1849                            pads[32+j] = gpio_vif.o_gpio_pads[32+j];
-<span style="margin-left:8px;"></span>1850                            gpio_vif.i_gpio_pads[32+j] = IO_MUX_PAD[j];
-<span style="margin-left:8px;"></span>1851                          end
-<span style="margin-left:8px;"></span>1852                          for (int j = 0; j &lt;= 31; j++) begin
-<span style="margin-left:8px;"></span>1853                            ext_pads[j] = gpio_vif.o_ext_gpio_pads[j];
-<span style="margin-left:8px;"></span>1854                            gpio_vif.i_ext_gpio_pads[j] = EXT_PAD[j];
-<span style="margin-left:8px;"></span>1855                          end
-<span style="margin-left:8px;"></span>1856                        end
-<span style="margin-left:8px;"></span>1857                      end
-<span style="margin-left:8px;"></span>1858                    
-<span style="margin-left:8px;"></span>1859                        `ifdef UART_VIP_INCLUDE
-<span style="margin-left:8px;"></span>1860                    //      assign uart0_if.sin = uart0_sin;
-<span style="margin-left:8px;"></span>1861                    //      assign uart1_if.sin = uart1_sin;
-<span style="margin-left:8px;"></span>1862                        `endif
-<span style="margin-left:8px;"></span>1863                      `endif
-<span style="margin-left:8px;"></span>1864                    
-<span style="margin-left:8px;"></span>1865                      // for gpio pads GPIO_A_0 - GPIO_A_7
-<span style="margin-left:8px;"></span>1866                      generate
-<span style="margin-left:8px;"></span>1867                        for (genvar a=0; a&lt;8; a=a+1) begin
-<span style="margin-left:8px;"></span>1868                          assign PAD[a] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[a] ? 'z : pads[a];
-<span style="margin-left:8px;"></span>1869                        end
-<span style="margin-left:8px;"></span>1870                      endgenerate
-<span style="margin-left:8px;"></span>1871                    
-<span style="margin-left:8px;"></span>1872                      // for gpio pads GPIO_B_0 - GPIO_B_15
-<span style="margin-left:8px;"></span>1873                      // IO-MUX functionality
-<span style="margin-left:8px;"></span>1874                      assign PAD[32] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[8]  ? 'z : pads[8];
-<span style="margin-left:8px;"></span>1875                      assign PAD[33] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[9]  ? 'z : pads[9];
-<span style="margin-left:8px;"></span>1876                      assign PAD[34] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[12] ? 'z : pads[12];
-<span style="margin-left:8px;"></span>1877                      assign PAD[35] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[14] ? 'z : pads[14];
-<span style="margin-left:8px;"></span>1878                      assign PAD[36] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[15] ? 'z : pads[15];
-<span style="margin-left:8px;"></span>1879                      assign PAD[37] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[16] ? 'z : pads[16];
-<span style="margin-left:8px;"></span>1880                      assign PAD[38] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[17] ? 'z : pads[17];
-<span style="margin-left:8px;"></span>1881                      assign PAD[39] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[19] ? 'z : pads[19];
-<span style="margin-left:8px;"></span>1882                    
-<span style="margin-left:8px;"></span>1883                      // default GPIO functionality
-<span style="margin-left:8px;"></span>1884                      assign PAD[8]  = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[10] ? 'z : pads[10];
-<span style="margin-left:8px;"></span>1885                      assign PAD[9]  = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[11] ? 'z : pads[11];
-<span style="margin-left:8px;"></span>1886                      assign PAD[10] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[13] ? 'z : pads[13];
-<span style="margin-left:8px;"></span>1887                      assign PAD[11] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[18] ? 'z : pads[18];
-<span style="margin-left:8px;"></span>1888                      assign PAD[12] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[20] ? 'z : pads[20];
-<span style="margin-left:8px;"></span>1889                      assign PAD[13] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[21] ? 'z : pads[21];
-<span style="margin-left:8px;"></span>1890                      assign PAD[14] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[22] ? 'z : pads[22];
-<span style="margin-left:8px;"></span>1891                      assign PAD[15] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[23] ? 'z : pads[23];
-<span style="margin-left:8px;"></span>1892                    
-<span style="margin-left:8px;"></span>1893                      // for gpio pads GPIO_C_0 - GPIO_C_15
-<span style="margin-left:8px;"></span>1894                      generate
-<span style="margin-left:8px;"></span>1895                        for (genvar c=16; c&lt;32; c=c+1) begin
-<span style="margin-left:8px;"></span>1896                          assign PAD[c] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
-<span style="margin-left:8px;"></span>1897                        end
-<span style="margin-left:8px;"></span>1898                      endgenerate
-<span style="margin-left:8px;"></span>1899                    
-<span style="margin-left:8px;"></span>1900                      // GPIO PAD pull en, pull dir, drive strength assignment
-<span style="margin-left:8px;"></span>1901                      assign gpio_vif.gpio_pad_pull_en        = `RTL_PATH_CONFIG_SS.scu.pad_ctrl_u.pad_pull_en;
-<span style="margin-left:8px;"></span>1902                      assign gpio_vif.gpio_pad_pull_dir       = `RTL_PATH_CONFIG_SS.scu.pad_ctrl_u.pad_pull_dir;
-<span style="margin-left:8px;"></span>1903                      assign gpio_vif.gpio_pad_drive_str_ds0  = `RTL_PATH_CONFIG_SS.scu.pad_ctrl_u.pad_ds0;
-<span style="margin-left:8px;"></span>1904                      assign gpio_vif.gpio_pad_drive_str_ds1  = `RTL_PATH_CONFIG_SS.scu.pad_ctrl_u.pad_ds1;
-<span style="margin-left:8px;"></span>1905                    
-<span style="margin-left:8px;"></span>1906                      // GPIO PAD pin assignment force for test bcpu_bfm_gpio_config_loopback_test
-<span style="margin-left:8px;"></span>1907                      bit switch_loopback;
-<span style="margin-left:8px;"></span>1908                      bit [15:0] temp_gpio_pad_data;
-<span style="margin-left:8px;"></span>1909                    
-<span style="margin-left:8px;"></span>1910                      initial begin
-<span style="margin-left:8px;"></span>1911       <font color = "red">1/2     ==>      wait(switch_loopback);</font>
-<span style="margin-left:8px;"></span>1912       <font color = "red">0/1     ==>      force `RTL_PATH_CONFIG_SS.gpio.gpio_out = PAD[15:0] &lt;&lt; 16;</font>
-<span style="margin-left:8px;"></span>1913       <font color = "red">0/2     ==>      wait(!switch_loopback);</font>
-<span style="margin-left:8px;"></span>1914       <font color = "red">0/1     ==>      release `RTL_PATH_CONFIG_SS.gpio.gpio_out;</font>
-<span style="margin-left:8px;"></span>1915                      end
-<span style="margin-left:8px;"></span>1916                    
-<span style="margin-left:8px;"></span>1917                    //-----------------------------------------------------------------------------
-<span style="margin-left:8px;"></span>1918                    // Providing paddr and pclk to pcb assertions
-<span style="margin-left:8px;"></span>1919                    //-----------------------------------------------------------------------------
-<span style="margin-left:8px;"></span>1920                      `ifdef BCPU_BFM_INCLUDE
-<span style="margin-left:8px;"></span>1921                      logic [7:0] wait_states = 0;
-<span style="margin-left:8px;"></span>1922                      assign pcb_if.paddr = svt_ahb_vif_inst.master_if[0].haddr;
-<span style="margin-left:8px;"></span>1923                      assign pcb_if.pclk = `RTL_PATH_SOC_SS.soc_fpga_intf_u.config_controller_u.clk;
-<span style="margin-left:8px;"></span>1924                      assign pcb_if.wait_states = wait_states;
-<span style="margin-left:8px;"></span>1925                      always @(posedge pcb_if.pclk) begin
-<span style="margin-left:8px;"></span>1926       1/1              if(`RTL_PATH_SOC_SS.soc_fpga_intf_u.config_controller_u.apb_en)begin
-<span style="margin-left:8px;"></span>1927       1/1                if(!`RTL_PATH_SOC_SS.soc_fpga_intf_u.config_controller_u.apb_ready)
-<span style="margin-left:8px;"></span>1928       1/1                  wait_states++;
+<span style="margin-left:8px;"></span>1811                      // GPIO Model Instantiation as per 32 - GPIO PADs Registers
+<span style="margin-left:8px;"></span>1812                      reg [39:0] pads;
+<span style="margin-left:8px;"></span>1813                      reg [31:0] ext_pads;
+<span style="margin-left:8px;"></span>1814                      reg uart0_sin, uart1_sin;
+<span style="margin-left:8px;"></span>1815                    
+<span style="margin-left:8px;"></span>1816                      `ifdef PAD_VIP_INCLUDE
+<span style="margin-left:8px;"></span>1817                        `ifdef SPI_VIP_INCLUDE
+<span style="margin-left:8px;"></span>1818                        assign spi_flash_model_inst.CS   = PAD[12];
+<span style="margin-left:8px;"></span>1819                        assign spi_flash_model_inst.SI   = PAD[6];
+<span style="margin-left:8px;"></span>1820                        assign spi_flash_model_inst.SO   = PAD[7];
+<span style="margin-left:8px;"></span>1821                        assign spi_flash_model_inst.WP   = PAD[8];
+<span style="margin-left:8px;"></span>1822                        assign spi_flash_model_inst.SIO3 = PAD[9];
+<span style="margin-left:8px;"></span>1823                    
+<span style="margin-left:8px;"></span>1824                        `endif
+<span style="margin-left:8px;"></span>1825                          
+<span style="margin-left:8px;"></span>1826                      always @ (*) begin
+<span style="margin-left:8px;"></span>1827                        if (pad_io_mux_ctrl == 1) begin
+<span style="margin-left:8px;"></span>1828                          `ifdef PAD_VIP_INCLUDE
+<span style="margin-left:8px;"></span>1829                            `ifdef UART_VIP_INCLUDE
+<span style="margin-left:8px;"></span>1830                    //          pads[0] = uart0_if.sout;
+<span style="margin-left:8px;"></span>1831                              uart0_sin = PAD[1];
+<span style="margin-left:8px;"></span>1832                    //          pads[2] = uart1_if.sout;
+<span style="margin-left:8px;"></span>1833                              uart1_sin = PAD[3];
+<span style="margin-left:8px;"></span>1834                            `endif
+<span style="margin-left:8px;"></span>1835                            `ifdef I2C_VIP_INCLUDE
+<span style="margin-left:8px;"></span>1836                              pads[11] = i2c_if.sda;
+<span style="margin-left:8px;"></span>1837                              i2c_if.sda = PAD[11];
+<span style="margin-left:8px;"></span>1838                            `endif
+<span style="margin-left:8px;"></span>1839                            `ifdef SPI_VIP_INCLUDE
+<span style="margin-left:8px;"></span>1840                              pads[4] = spi_flash_model_inst.CS;
+<span style="margin-left:8px;"></span>1841                              pads[6] = spi_flash_model_inst.SI;
+<span style="margin-left:8px;"></span>1842                              pads[7] = spi_flash_model_inst.SO;
+<span style="margin-left:8px;"></span>1843                              pads[8] = spi_flash_model_inst.WP;
+<span style="margin-left:8px;"></span>1844                              pads[9] = spi_flash_model_inst.SIO3;
+<span style="margin-left:8px;"></span>1845                            `endif
+<span style="margin-left:8px;"></span>1846                          `endif
+<span style="margin-left:8px;"></span>1847                        end
+<span style="margin-left:8px;"></span>1848                        else begin
+<span style="margin-left:8px;"></span>1849                          for (int j = 0; j &lt; 32; j++) begin
+<span style="margin-left:8px;"></span>1850                            pads[j] = gpio_vif.o_gpio_pads[j];
+<span style="margin-left:8px;"></span>1851                            gpio_vif.i_gpio_pads[j] = PAD[j];
+<span style="margin-left:8px;"></span>1852                          end
+<span style="margin-left:8px;"></span>1853                          for (int j = 0; j &lt; 8; j++) begin
+<span style="margin-left:8px;"></span>1854                            pads[32+j] = gpio_vif.o_gpio_pads[32+j];
+<span style="margin-left:8px;"></span>1855                            gpio_vif.i_gpio_pads[32+j] = IO_MUX_PAD[j];
+<span style="margin-left:8px;"></span>1856                          end
+<span style="margin-left:8px;"></span>1857                          for (int j = 0; j &lt;= 31; j++) begin
+<span style="margin-left:8px;"></span>1858                            ext_pads[j] = gpio_vif.o_ext_gpio_pads[j];
+<span style="margin-left:8px;"></span>1859                            gpio_vif.i_ext_gpio_pads[j] = EXT_PAD[j];
+<span style="margin-left:8px;"></span>1860                          end
+<span style="margin-left:8px;"></span>1861                        end
+<span style="margin-left:8px;"></span>1862                      end
+<span style="margin-left:8px;"></span>1863                    
+<span style="margin-left:8px;"></span>1864                        `ifdef UART_VIP_INCLUDE
+<span style="margin-left:8px;"></span>1865                    //      assign uart0_if.sin = uart0_sin;
+<span style="margin-left:8px;"></span>1866                    //      assign uart1_if.sin = uart1_sin;
+<span style="margin-left:8px;"></span>1867                        `endif
+<span style="margin-left:8px;"></span>1868                      `endif
+<span style="margin-left:8px;"></span>1869                    
+<span style="margin-left:8px;"></span>1870                      // for gpio pads GPIO_A_0 - GPIO_A_7
+<span style="margin-left:8px;"></span>1871                      generate
+<span style="margin-left:8px;"></span>1872                        for (genvar a=0; a&lt;8; a=a+1) begin
+<span style="margin-left:8px;"></span>1873                          assign PAD[a] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[a] ? 'z : pads[a];
+<span style="margin-left:8px;"></span>1874                        end
+<span style="margin-left:8px;"></span>1875                      endgenerate
+<span style="margin-left:8px;"></span>1876                    
+<span style="margin-left:8px;"></span>1877                      // for gpio pads GPIO_B_0 - GPIO_B_15
+<span style="margin-left:8px;"></span>1878                      // IO-MUX functionality
+<span style="margin-left:8px;"></span>1879                      assign PAD[32] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[8]  ? 'z : pads[8];
+<span style="margin-left:8px;"></span>1880                      assign PAD[33] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[9]  ? 'z : pads[9];
+<span style="margin-left:8px;"></span>1881                      assign PAD[34] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[12] ? 'z : pads[12];
+<span style="margin-left:8px;"></span>1882                      assign PAD[35] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[14] ? 'z : pads[14];
+<span style="margin-left:8px;"></span>1883                      assign PAD[36] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[15] ? 'z : pads[15];
+<span style="margin-left:8px;"></span>1884                      assign PAD[37] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[16] ? 'z : pads[16];
+<span style="margin-left:8px;"></span>1885                      assign PAD[38] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[17] ? 'z : pads[17];
+<span style="margin-left:8px;"></span>1886                      assign PAD[39] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[19] ? 'z : pads[19];
+<span style="margin-left:8px;"></span>1887                    
+<span style="margin-left:8px;"></span>1888                      // default GPIO functionality
+<span style="margin-left:8px;"></span>1889                      assign PAD[8]  = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[10] ? 'z : pads[10];
+<span style="margin-left:8px;"></span>1890                      assign PAD[9]  = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[11] ? 'z : pads[11];
+<span style="margin-left:8px;"></span>1891                      assign PAD[10] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[13] ? 'z : pads[13];
+<span style="margin-left:8px;"></span>1892                      assign PAD[11] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[18] ? 'z : pads[18];
+<span style="margin-left:8px;"></span>1893                      assign PAD[12] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[20] ? 'z : pads[20];
+<span style="margin-left:8px;"></span>1894                      assign PAD[13] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[21] ? 'z : pads[21];
+<span style="margin-left:8px;"></span>1895                      assign PAD[14] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[22] ? 'z : pads[22];
+<span style="margin-left:8px;"></span>1896                      assign PAD[15] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[23] ? 'z : pads[23];
+<span style="margin-left:8px;"></span>1897                    
+<span style="margin-left:8px;"></span>1898                      // for gpio pads GPIO_C_0 - GPIO_C_15
+<span style="margin-left:8px;"></span>1899                      generate
+<span style="margin-left:8px;"></span>1900                        for (genvar c=16; c&lt;32; c=c+1) begin
+<span style="margin-left:8px;"></span>1901                          assign PAD[c] = ~`RTL_PATH_CONFIG_SS.pads_inst.pad_oen[c+8] ? 'z : pads[c+8];
+<span style="margin-left:8px;"></span>1902                        end
+<span style="margin-left:8px;"></span>1903                      endgenerate
+<span style="margin-left:8px;"></span>1904                    
+<span style="margin-left:8px;"></span>1905                      // GPIO PAD pull en, pull dir, drive strength assignment
+<span style="margin-left:8px;"></span>1906                      assign gpio_vif.gpio_pad_pull_en        = `RTL_PATH_CONFIG_SS.scu.pad_ctrl_u.pad_pull_en;
+<span style="margin-left:8px;"></span>1907                      assign gpio_vif.gpio_pad_pull_dir       = `RTL_PATH_CONFIG_SS.scu.pad_ctrl_u.pad_pull_dir;
+<span style="margin-left:8px;"></span>1908                      assign gpio_vif.gpio_pad_drive_str_ds0  = `RTL_PATH_CONFIG_SS.scu.pad_ctrl_u.pad_ds0;
+<span style="margin-left:8px;"></span>1909                      assign gpio_vif.gpio_pad_drive_str_ds1  = `RTL_PATH_CONFIG_SS.scu.pad_ctrl_u.pad_ds1;
+<span style="margin-left:8px;"></span>1910                    
+<span style="margin-left:8px;"></span>1911       <font color = "red">1/2     ==>    // GPIO PAD pin assignment force for test bcpu_bfm_gpio_config_loopback_test</font>
+<span style="margin-left:8px;"></span>1912       <font color = "red">0/1     ==>    bit switch_loopback;</font>
+<span style="margin-left:8px;"></span>1913       <font color = "red">0/2     ==>    bit [15:0] temp_gpio_pad_data;</font>
+<span style="margin-left:8px;"></span>1914       <font color = "red">0/1     ==>  </font>
+<span style="margin-left:8px;"></span>1915                      initial begin
+<span style="margin-left:8px;"></span>1916                        wait(switch_loopback);
+<span style="margin-left:8px;"></span>1917                        force `RTL_PATH_CONFIG_SS.gpio.gpio_out = PAD[15:0] &lt;&lt; 16;
+<span style="margin-left:8px;"></span>1918                        wait(!switch_loopback);
+<span style="margin-left:8px;"></span>1919                        release `RTL_PATH_CONFIG_SS.gpio.gpio_out;
+<span style="margin-left:8px;"></span>1920                      end
+<span style="margin-left:8px;"></span>1921                    
+<span style="margin-left:8px;"></span>1922                    //-----------------------------------------------------------------------------
+<span style="margin-left:8px;"></span>1923                    // Providing paddr and pclk to pcb assertions
+<span style="margin-left:8px;"></span>1924                    //-----------------------------------------------------------------------------
+<span style="margin-left:8px;"></span>1925                      `ifdef BCPU_BFM_INCLUDE
+<span style="margin-left:8px;"></span>1926       1/1            logic [7:0] wait_states = 0;
+<span style="margin-left:8px;"></span>1927       1/1            assign pcb_if.paddr = svt_ahb_vif_inst.master_if[0].haddr;
+<span style="margin-left:8px;"></span>1928       1/1            assign pcb_if.pclk = `RTL_PATH_SOC_SS.soc_fpga_intf_u.config_controller_u.clk;
                         MISSING_ELSE
-<span style="margin-left:8px;"></span>1929                        end
+<span style="margin-left:8px;"></span>1929                      assign pcb_if.wait_states = wait_states;
                         MISSING_ELSE
-<span style="margin-left:8px;"></span>1930       2/2              if(svt_ahb_vif_inst.master_if[0].hready) wait_states &lt;= 0;
+<span style="margin-left:8px;"></span>1930       2/2            always @(posedge pcb_if.pclk) begin
                         MISSING_ELSE
-<span style="margin-left:8px;"></span>1931                      end
-<span style="margin-left:8px;"></span>1932                      `endif
-<span style="margin-left:8px;"></span>1933                    
-<span style="margin-left:8px;"></span>1934                    `ifdef BRAM_MODEL_INCLUDE
-<span style="margin-left:8px;"></span>1935                    //-----------------------------------------------------------------------------
-<span style="margin-left:8px;"></span>1936                    // Failing bist
-<span style="margin-left:8px;"></span>1937                    //-----------------------------------------------------------------------------
-<span style="margin-left:8px;"></span>1938                      bit 					fail_bist	=	0;
-<span style="margin-left:8px;"></span>1939                      logic [35:0] 	pl_data_o;
-<span style="margin-left:8px;"></span>1940                    	logic [73:0]	pcb_fabric_pl_data_in,fabric_brams_pl_data_in;
-<span style="margin-left:8px;"></span>1941                    	logic [35:0] 	pcb_fabric_pl_data_out[7];
-<span style="margin-left:8px;"></span>1942                      
-<span style="margin-left:8px;"></span>1943                    	assign pcb_fabric_pl_data_in 		= `RTL_PATH_SOC_SS.PL_IN_19;
-<span style="margin-left:8px;"></span>1944                    	assign pl_data_o 							 	= fail_bist ? $urandom() : pcb_fabric_pl_data_in[35:0]; 
-<span style="margin-left:8px;"></span>1945                    	assign pcb_if.pl_data_i 			 	= `RTL_PATH_SOC_SS.soc_fpga_intf_u.config_controller_u.pl_data_i;
-<span style="margin-left:8px;"></span>1946                    	assign fabric_brams_pl_data_in 	= {pcb_fabric_pl_data_in[73:36],pl_data_o};	
-<span style="margin-left:8px;"></span>1947                    //-----------------------------------------------------------------------------
-<span style="margin-left:8px;"></span>1948                    // BRAM Model
+<span style="margin-left:8px;"></span>1931                        if(`RTL_PATH_SOC_SS.soc_fpga_intf_u.config_controller_u.apb_en)begin
+<span style="margin-left:8px;"></span>1932                          if(!`RTL_PATH_SOC_SS.soc_fpga_intf_u.config_controller_u.apb_ready)
+<span style="margin-left:8px;"></span>1933                            wait_states++;
+<span style="margin-left:8px;"></span>1934                        end
+<span style="margin-left:8px;"></span>1935                        if(svt_ahb_vif_inst.master_if[0].hready) wait_states &lt;= 0;
+<span style="margin-left:8px;"></span>1936                      end
+<span style="margin-left:8px;"></span>1937                      `endif
+<span style="margin-left:8px;"></span>1938                    
+<span style="margin-left:8px;"></span>1939                    // PCB Interface 
+<span style="margin-left:8px;"></span>1940                    assign 	pcb_if.pl_data_i 			 	= `RTL_PATH_SOC_SS.soc_fpga_intf_u.config_controller_u.pl_data_i;
+<span style="margin-left:8px;"></span>1941                    assign 	pcb_if.pl_data_o   			= `RTL_PATH_SOC_SS.PL_IN_19[35:0];
+<span style="margin-left:8px;"></span>1942                    assign 	pcb_if.pl_addr_o   			= `RTL_PATH_SOC_SS.PL_IN_19[67:36];
+<span style="margin-left:8px;"></span>1943                    assign 	pcb_if.pl_wen_o    			= `RTL_PATH_SOC_SS.PL_IN_19[69:68];
+<span style="margin-left:8px;"></span>1944                    assign 	pcb_if.pl_clk_o    			= `RTL_PATH_SOC_SS.PL_IN_19[70];
+<span style="margin-left:8px;"></span>1945                    assign 	pcb_if.pl_ren_o    			= `RTL_PATH_SOC_SS.PL_IN_19[71];
+<span style="margin-left:8px;"></span>1946                    assign 	pcb_if.pl_ena_o    			= `RTL_PATH_SOC_SS.PL_IN_19[72];
+<span style="margin-left:8px;"></span>1947                    assign 	pcb_if.pl_init_o   			= `RTL_PATH_SOC_SS.PL_IN_19[73];
+<span style="margin-left:8px;"></span>1948                    `ifdef BRAM_MODEL_INCLUDE
 <span style="margin-left:8px;"></span>1949                    //-----------------------------------------------------------------------------
-<span style="margin-left:8px;"></span>1950                    	initial begin
-<span style="margin-left:8px;"></span>1951                    		force	 `RTL_PATH_SOC_SS.PL_DATA_OUT_19 = pcb_fabric_pl_data_out[0];
-<span style="margin-left:8px;"></span>1952                    		force	 `RTL_PATH_SOC_SS.PL_DATA_OUT_27 = pcb_fabric_pl_data_out[1];
-<span style="margin-left:8px;"></span>1953                    		force	 `RTL_PATH_SOC_SS.PL_DATA_OUT_35 = pcb_fabric_pl_data_out[2];
-<span style="margin-left:8px;"></span>1954                    		force	 `RTL_PATH_SOC_SS.PL_DATA_OUT_43 = pcb_fabric_pl_data_out[3];
-<span style="margin-left:8px;"></span>1955                    		force	 `RTL_PATH_SOC_SS.PL_DATA_OUT_51 = pcb_fabric_pl_data_out[4];
-<span style="margin-left:8px;"></span>1956                    		force	 `RTL_PATH_SOC_SS.PL_DATA_OUT_59 = pcb_fabric_pl_data_out[5];
-<span style="margin-left:8px;"></span>1957                    		force	 `RTL_PATH_SOC_SS.PL_DATA_OUT_67 = pcb_fabric_pl_data_out[6];
-<span style="margin-left:8px;"></span>1958                    	end	
-<span style="margin-left:8px;"></span>1959                    
-<span style="margin-left:8px;"></span>1960                    	assign 	pcb_if.pl_data_o   		= pcb_fabric_pl_data_in[35:0];
-<span style="margin-left:8px;"></span>1961                    	assign 	pcb_if.pl_addr_o   		= pcb_fabric_pl_data_in[67:36];
-<span style="margin-left:8px;"></span>1962                    	assign 	pcb_if.pl_wen_o    		= pcb_fabric_pl_data_in[69:68];
-<span style="margin-left:8px;"></span>1963                    	assign 	pcb_if.pl_clk_o    		= pcb_fabric_pl_data_in[70];
-<span style="margin-left:8px;"></span>1964                    	assign 	pcb_if.pl_ren_o    		= pcb_fabric_pl_data_in[71];
-<span style="margin-left:8px;"></span>1965                    	assign 	pcb_if.pl_ena_o    		= pcb_fabric_pl_data_in[72];
-<span style="margin-left:8px;"></span>1966                    	assign 	pcb_if.pl_init_o   		= pcb_fabric_pl_data_in[73];
-<span style="margin-left:8px;"></span>1967                    
-<span style="margin-left:8px;"></span>1968                     	bram_dchain_model #(
-<span style="margin-left:8px;"></span>1969                    		.ROWS    (`RTL_PATH_SOC_SS.soc_fpga_intf_u.config_controller_u.ROWS),
-<span style="margin-left:8px;"></span>1970                        .COLUMNS (`RTL_PATH_SOC_SS.soc_fpga_intf_u.config_controller_u.COLUMNS),
-<span style="margin-left:8px;"></span>1971                        .R_OFFSET(10'd2),
-<span style="margin-left:8px;"></span>1972                        .C_OFFSET(10'd19),
-<span style="margin-left:8px;"></span>1973                        .R_STRIDE(10'd3),
-<span style="margin-left:8px;"></span>1974                        .C_STRIDE(10'd8)
-<span style="margin-left:8px;"></span>1975                    	)
-<span style="margin-left:8px;"></span>1976                    	brams(
-<span style="margin-left:8px;"></span>1977                        .GRESET_i(~`RTL_PATH_SOC_SS.global_reset_fpga),
-<span style="margin-left:8px;"></span>1978                    	  .PL_INT_DATA(fabric_brams_pl_data_in),
-<span style="margin-left:8px;"></span>1979                    	  .PL_DATA_o0(pcb_fabric_pl_data_out[0]),
-<span style="margin-left:8px;"></span>1980                    		.PL_DATA_o1(pcb_fabric_pl_data_out[1]),
-<span style="margin-left:8px;"></span>1981                    		.PL_DATA_o2(pcb_fabric_pl_data_out[2]),
-<span style="margin-left:8px;"></span>1982                    		.PL_DATA_o3(pcb_fabric_pl_data_out[3]),
-<span style="margin-left:8px;"></span>1983                    		.PL_DATA_o4(pcb_fabric_pl_data_out[4]),
-<span style="margin-left:8px;"></span>1984                    		.PL_DATA_o5(pcb_fabric_pl_data_out[5]),
-<span style="margin-left:8px;"></span>1985                    		.PL_DATA_o6(pcb_fabric_pl_data_out[6])
-<span style="margin-left:8px;"></span>1986                    	);
-<span style="margin-left:8px;"></span>1987                    `endif	
-<span style="margin-left:8px;"></span>1988                    //---------------------------------------------------------------------------
-<span style="margin-left:8px;"></span>1989                    // USB 2.0 Assertions
-<span style="margin-left:8px;"></span>1990                    //-----------------------------------------------------------------------------
-<span style="margin-left:8px;"></span>1991                    `ifdef USB_VIP_INCLUDE
-<span style="margin-left:8px;"></span>1992                      usb_interconnect USB_BRIDGE(
-<span style="margin-left:8px;"></span>1993                        `include &quot;usr_envs/USB/includes/usb_interconnect_interface.sv&quot;
-<span style="margin-left:8px;"></span>1994                      );
-<span style="margin-left:8px;"></span>1995                      usb_assertions USB_ASSERT(
-<span style="margin-left:8px;"></span>1996                        `include &quot;usr_envs/USB/includes/usb_assertion_interface.sv&quot;
-<span style="margin-left:8px;"></span>1997                      );
-<span style="margin-left:8px;"></span>1998                      `ifdef USB_VIP_DEVICE_AGENT
-<span style="margin-left:8px;"></span>1999                        assign config_ss_env_intf.host_usb_if.usb_20_serial_if.vbus = `RTL_PATH_CONFIG_SS.usb_ctl_phy.utmidrvvbus;
-<span style="margin-left:8px;"></span>2000                      `endif
-<span style="margin-left:8px;"></span>2001                    `endif
-<span style="margin-left:8px;"></span>2002                    
-<span style="margin-left:8px;"></span>2003                    `ifdef VCD
-<span style="margin-left:8px;"></span>2004                    initial
-<span style="margin-left:8px;"></span>2005                    begin
-<span style="margin-left:8px;"></span>2006                      $dumpfile(&quot;tb_waves.vcd&quot;);
-<span style="margin-left:8px;"></span>2007                      $dumpvars();
-<span style="margin-left:8px;"></span>2008                    end
-<span style="margin-left:8px;"></span>2009                    `endif
-<span style="margin-left:8px;"></span>2010                    
-<span style="margin-left:8px;"></span>2011                    `ifdef FSDB
-<span style="margin-left:8px;"></span>2012                    initial begin
-<span style="margin-left:8px;"></span>2013                      $fsdbDumpfile(&quot;tb_waves.fsdb&quot;);
-<span style="margin-left:8px;"></span>2014                      $fsdbDumpvars(0,&quot;+struct&quot;,&quot;+mda&quot;,&quot;+all&quot;);
-<span style="margin-left:8px;"></span>2015                    end
-<span style="margin-left:8px;"></span>2016                    `endif
-<span style="margin-left:8px;"></span>2017                    
-<span style="margin-left:8px;"></span>2018                    `ifdef VPD
-<span style="margin-left:8px;"></span>2019                    initial
-<span style="margin-left:8px;"></span>2020                    begin
-<span style="margin-left:8px;"></span>2021                      $vcdplusfile(&quot;tb_waves.vpd&quot;);
-<span style="margin-left:8px;"></span>2022                      $vcdpluson(0,gemini_tb);
-<span style="margin-left:8px;"></span>2023                    end
-<span style="margin-left:8px;"></span>2024                    `endif
-<span style="margin-left:8px;"></span>2025                    // integer i;
-<span style="margin-left:8px;"></span>2026                    
-<span style="margin-left:8px;"></span>2027                    initial begin
-<span style="margin-left:8px;"></span>2028                      //force `MEM_SS.sramb0_awlen[7:4] = 4'h0;
-<span style="margin-left:8px;"></span>2029       1/1            for (int i = 0; i &lt; 128 ; i=i+1)
-<span style="margin-left:8px;"></span>2030       1/1              `MEM_SS.sram4b.bank0_cntl.w_data_fifo.mem[i] = 'b0;
-<span style="margin-left:8px;"></span>2031                    end
-<span style="margin-left:8px;"></span>2032                    int dump_sram_bank2 = 0;
-<span style="margin-left:8px;"></span>2033                    initial begin
-<span style="margin-left:8px;"></span>2034       <font color = "red">1/2     ==>    wait(dump_sram_bank2);</font>
-<span style="margin-left:8px;"></span>2035       <font color = "red">0/1     ==>  	$writememh(&quot;acpu_img_loaded_into_sram_bank2.txt&quot;, `MEM_SS.sram4b.sram_bank2.memArray);</font>
+<span style="margin-left:8px;"></span>1950                    // Failing bist
+<span style="margin-left:8px;"></span>1951                    //-----------------------------------------------------------------------------
+<span style="margin-left:8px;"></span>1952                      bit 					fail_bist	=	0;
+<span style="margin-left:8px;"></span>1953                      logic [35:0] 	pl_data_o;
+<span style="margin-left:8px;"></span>1954                    	logic [73:0]	pcb_fabric_pl_data_in,fabric_brams_pl_data_in;
+<span style="margin-left:8px;"></span>1955                    	logic [35:0] 	pcb_fabric_pl_data_out[7];
+<span style="margin-left:8px;"></span>1956                      
+<span style="margin-left:8px;"></span>1957                    	assign pcb_fabric_pl_data_in 		= `RTL_PATH_SOC_SS.PL_IN_19;
+<span style="margin-left:8px;"></span>1958                    	assign pl_data_o 							 	= fail_bist ? $urandom() : pcb_fabric_pl_data_in[35:0]; 
+<span style="margin-left:8px;"></span>1959                    	assign fabric_brams_pl_data_in 	= {pcb_fabric_pl_data_in[73:36],pl_data_o};	
+<span style="margin-left:8px;"></span>1960                    //-----------------------------------------------------------------------------
+<span style="margin-left:8px;"></span>1961                    // BRAM Model
+<span style="margin-left:8px;"></span>1962                    //-----------------------------------------------------------------------------
+<span style="margin-left:8px;"></span>1963                    	initial begin
+<span style="margin-left:8px;"></span>1964                    		force	 `RTL_PATH_SOC_SS.PL_DATA_OUT_19 = pcb_fabric_pl_data_out[0];
+<span style="margin-left:8px;"></span>1965                    		force	 `RTL_PATH_SOC_SS.PL_DATA_OUT_27 = pcb_fabric_pl_data_out[1];
+<span style="margin-left:8px;"></span>1966                    		force	 `RTL_PATH_SOC_SS.PL_DATA_OUT_35 = pcb_fabric_pl_data_out[2];
+<span style="margin-left:8px;"></span>1967                    		force	 `RTL_PATH_SOC_SS.PL_DATA_OUT_43 = pcb_fabric_pl_data_out[3];
+<span style="margin-left:8px;"></span>1968                    		force	 `RTL_PATH_SOC_SS.PL_DATA_OUT_51 = pcb_fabric_pl_data_out[4];
+<span style="margin-left:8px;"></span>1969                    		force	 `RTL_PATH_SOC_SS.PL_DATA_OUT_59 = pcb_fabric_pl_data_out[5];
+<span style="margin-left:8px;"></span>1970                    		force	 `RTL_PATH_SOC_SS.PL_DATA_OUT_67 = pcb_fabric_pl_data_out[6];
+<span style="margin-left:8px;"></span>1971                    	end	
+<span style="margin-left:8px;"></span>1972                    
+<span style="margin-left:8px;"></span>1973                     	bram_dchain_model #(
+<span style="margin-left:8px;"></span>1974                    		.ROWS    (`RTL_PATH_SOC_SS.soc_fpga_intf_u.config_controller_u.ROWS),
+<span style="margin-left:8px;"></span>1975                        .COLUMNS (`RTL_PATH_SOC_SS.soc_fpga_intf_u.config_controller_u.COLUMNS),
+<span style="margin-left:8px;"></span>1976                        .R_OFFSET(10'd2),
+<span style="margin-left:8px;"></span>1977                        .C_OFFSET(10'd19),
+<span style="margin-left:8px;"></span>1978                        .R_STRIDE(10'd3),
+<span style="margin-left:8px;"></span>1979                        .C_STRIDE(10'd8)
+<span style="margin-left:8px;"></span>1980                    	)
+<span style="margin-left:8px;"></span>1981                    	brams(
+<span style="margin-left:8px;"></span>1982                        .GRESET_i(~`RTL_PATH_SOC_SS.global_reset_fpga),
+<span style="margin-left:8px;"></span>1983                    	  .PL_INT_DATA(fabric_brams_pl_data_in),
+<span style="margin-left:8px;"></span>1984                    	  .PL_DATA_o0(pcb_fabric_pl_data_out[0]),
+<span style="margin-left:8px;"></span>1985                    		.PL_DATA_o1(pcb_fabric_pl_data_out[1]),
+<span style="margin-left:8px;"></span>1986                    		.PL_DATA_o2(pcb_fabric_pl_data_out[2]),
+<span style="margin-left:8px;"></span>1987                    		.PL_DATA_o3(pcb_fabric_pl_data_out[3]),
+<span style="margin-left:8px;"></span>1988                    		.PL_DATA_o4(pcb_fabric_pl_data_out[4]),
+<span style="margin-left:8px;"></span>1989                    		.PL_DATA_o5(pcb_fabric_pl_data_out[5]),
+<span style="margin-left:8px;"></span>1990                    		.PL_DATA_o6(pcb_fabric_pl_data_out[6])
+<span style="margin-left:8px;"></span>1991                    	);
+<span style="margin-left:8px;"></span>1992                    `endif	
+<span style="margin-left:8px;"></span>1993                    //---------------------------------------------------------------------------
+<span style="margin-left:8px;"></span>1994                    // USB 2.0 Assertions
+<span style="margin-left:8px;"></span>1995                    //-----------------------------------------------------------------------------
+<span style="margin-left:8px;"></span>1996                    `ifdef USB_VIP_INCLUDE
+<span style="margin-left:8px;"></span>1997                      usb_interconnect USB_BRIDGE(
+<span style="margin-left:8px;"></span>1998                        `include &quot;usr_envs/USB/includes/usb_interconnect_interface.sv&quot;
+<span style="margin-left:8px;"></span>1999                      );
+<span style="margin-left:8px;"></span>2000                      usb_assertions USB_ASSERT(
+<span style="margin-left:8px;"></span>2001                        `include &quot;usr_envs/USB/includes/usb_assertion_interface.sv&quot;
+<span style="margin-left:8px;"></span>2002                      );
+<span style="margin-left:8px;"></span>2003                      `ifdef USB_VIP_DEVICE_AGENT
+<span style="margin-left:8px;"></span>2004                        assign config_ss_env_intf.host_usb_if.usb_20_serial_if.vbus = `RTL_PATH_CONFIG_SS.usb_ctl_phy.utmidrvvbus;
+<span style="margin-left:8px;"></span>2005                      `endif
+<span style="margin-left:8px;"></span>2006                    `endif
+<span style="margin-left:8px;"></span>2007                    
+<span style="margin-left:8px;"></span>2008                    `ifdef VCD
+<span style="margin-left:8px;"></span>2009                    initial
+<span style="margin-left:8px;"></span>2010                    begin
+<span style="margin-left:8px;"></span>2011                      $dumpfile(&quot;tb_waves.vcd&quot;);
+<span style="margin-left:8px;"></span>2012                      $dumpvars();
+<span style="margin-left:8px;"></span>2013                    end
+<span style="margin-left:8px;"></span>2014                    `endif
+<span style="margin-left:8px;"></span>2015                    
+<span style="margin-left:8px;"></span>2016                    `ifdef FSDB
+<span style="margin-left:8px;"></span>2017                    initial begin
+<span style="margin-left:8px;"></span>2018                      $fsdbDumpfile(&quot;tb_waves.fsdb&quot;);
+<span style="margin-left:8px;"></span>2019                      $fsdbDumpvars(0,&quot;+struct&quot;,&quot;+mda&quot;,&quot;+all&quot;);
+<span style="margin-left:8px;"></span>2020                    end
+<span style="margin-left:8px;"></span>2021                    `endif
+<span style="margin-left:8px;"></span>2022                    
+<span style="margin-left:8px;"></span>2023                    `ifdef VPD
+<span style="margin-left:8px;"></span>2024                    initial
+<span style="margin-left:8px;"></span>2025                    begin
+<span style="margin-left:8px;"></span>2026                      $vcdplusfile(&quot;tb_waves.vpd&quot;);
+<span style="margin-left:8px;"></span>2027                      $vcdpluson(0,gemini_tb);
+<span style="margin-left:8px;"></span>2028                    end
+<span style="margin-left:8px;"></span>2029       1/1          `endif
+<span style="margin-left:8px;"></span>2030       1/1          // integer i;
+<span style="margin-left:8px;"></span>2031                    
+<span style="margin-left:8px;"></span>2032                    initial begin
+<span style="margin-left:8px;"></span>2033                      //force `MEM_SS.sramb0_awlen[7:4] = 4'h0;
+<span style="margin-left:8px;"></span>2034       <font color = "red">1/2     ==>    for (int i = 0; i &lt; 128 ; i=i+1)</font>
+<span style="margin-left:8px;"></span>2035       <font color = "red">0/1     ==>      `MEM_SS.sram4b.bank0_cntl.w_data_fifo.mem[i] = 'b0;</font>
 <span style="margin-left:8px;"></span>2036                    end
-<span style="margin-left:8px;"></span>2037                    
-<span style="margin-left:8px;"></span>2038                    //bind AF_IO_H pad_model pad_model_u (.*);
-<span style="margin-left:8px;"></span>2039                    
-<span style="margin-left:8px;"></span>2040                    // PUfcc assertion module instatiate
-<span style="margin-left:8px;"></span>2041                    pufcc_assertions PUFcc_ASSERT (`include `PUFCC_INTF_PATH);
-<span style="margin-left:8px;"></span>2042                    // PUFcc internal memories load files
-<span style="margin-left:8px;"></span>2043                    defparam `PUF_OTP_CORE.EMTC_write_file = 0;
-<span style="margin-left:8px;"></span>2044                    initial begin
-<span style="margin-left:8px;"></span>2045       2/2            #10;
-<span style="margin-left:8px;"></span>2046                      //BLANK CHIP WITHOUT FAULT
-<span style="margin-left:8px;"></span>2047       1/1            if($test$plusargs(&quot;PUF_BLANK_GOOD&quot;)) begin
-<span style="margin-left:8px;"></span>2048       <font color = "red">0/1     ==>      $display(&quot;BLANK CHIP WITHOUT FAULT&quot;);</font>
-<span style="margin-left:8px;"></span>2049       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;.dat&quot;          },`PUF_OTP_CORE.MEM_MAIN);</font>
-<span style="margin-left:8px;"></span>2050       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_TR.dat&quot;       },`PUF_OTP_CORE.MEM_TR);</font>
-<span style="margin-left:8px;"></span>2051       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_TC.dat&quot;       },`PUF_OTP_CORE.MEM_TC);</font>
-<span style="margin-left:8px;"></span>2052       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_IF.dat&quot;       },`PUF_OTP_CORE.MEM_IF);</font>
-<span style="margin-left:8px;"></span>2053       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_REP.dat&quot;      },`PUF_OTP_CORE.MEM_REP);</font>
-<span style="margin-left:8px;"></span>2054       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_PUF.dat&quot;      },`PUF_OTP_CORE.MEM_PUF);</font>
-<span style="margin-left:8px;"></span>2055       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_PUFORG.dat&quot;   },`PUF_OTP_CORE.MEM_PUFORG);</font>
-<span style="margin-left:8px;"></span>2056                      end
-<span style="margin-left:8px;"></span>2057                       //BLANK CHIP WITH FAULT
-<span style="margin-left:8px;"></span>2058       1/1            else if($test$plusargs(&quot;PUF_BLANK_FAULT&quot;)) begin
-<span style="margin-left:8px;"></span>2059       <font color = "red">0/1     ==>      $display(&quot;BLANK CHIP WITH FAULT&quot;);</font>
-<span style="margin-left:8px;"></span>2060       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_F2.dat&quot;       },`PUF_OTP_CORE.MEM_MAIN);</font>
-<span style="margin-left:8px;"></span>2061       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_TR.dat&quot;       },`PUF_OTP_CORE.MEM_TR);</font>
-<span style="margin-left:8px;"></span>2062       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_TC.dat&quot;       },`PUF_OTP_CORE.MEM_TC);</font>
-<span style="margin-left:8px;"></span>2063       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_IF.dat&quot;       },`PUF_OTP_CORE.MEM_IF);</font>
-<span style="margin-left:8px;"></span>2064       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_REP.dat&quot;      },`PUF_OTP_CORE.MEM_REP);</font>
-<span style="margin-left:8px;"></span>2065       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_PUF_F2.dat&quot;   },`PUF_OTP_CORE.MEM_PUF);</font>
-<span style="margin-left:8px;"></span>2066       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_PUFORG.dat&quot;   },`PUF_OTP_CORE.MEM_PUFORG);</font>
-<span style="margin-left:8px;"></span>2067                      end
-<span style="margin-left:8px;"></span>2068                       //GOOD CHIP WITH REPAIR
-<span style="margin-left:8px;"></span>2069                       //GOOD CHIP WITHOUT LOCK
-<span style="margin-left:8px;"></span>2070       1/1             else if($test$plusargs(&quot;PUF_GOOD_WOLCK&quot;)) begin
-<span style="margin-left:8px;"></span>2071       <font color = "red">0/1     ==>      $display(&quot;GOOD CHIP WITHOUT LOCK&quot;);</font>
-<span style="margin-left:8px;"></span>2072       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;.dat&quot;          },`PUF_OTP_CORE.MEM_MAIN);</font>
-<span style="margin-left:8px;"></span>2073       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_TR.dat&quot;       },`PUF_OTP_CORE.MEM_TR);</font>
-<span style="margin-left:8px;"></span>2074       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_TC.dat&quot;       },`PUF_OTP_CORE.MEM_TC);</font>
-<span style="margin-left:8px;"></span>2075       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_IF_ULK.dat&quot;   },`PUF_OTP_CORE.MEM_IF);</font>
-<span style="margin-left:8px;"></span>2076       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_REP.dat&quot;      },`PUF_OTP_CORE.MEM_REP);</font>
-<span style="margin-left:8px;"></span>2077       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_PUF_RN.dat&quot;   },`PUF_OTP_CORE.MEM_PUF);</font>
-<span style="margin-left:8px;"></span>2078       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_PUF_RN.dat&quot;   },`PUF_OTP_CORE.MEM_PUFORG);</font>
-<span style="margin-left:8px;"></span>2079                      end
-<span style="margin-left:8px;"></span>2080                       //GOOD CHIP WITHOUT FAULT
-<span style="margin-left:8px;"></span>2081                       else begin
-<span style="margin-left:8px;"></span>2082       1/1              $display(&quot;Good Chip Without Fault&quot;);
-<span style="margin-left:8px;"></span>2083       1/1              $readmemh({`PUF_OTP_DAT_PATH, &quot;.dat&quot;          },`PUF_OTP_CORE.MEM_MAIN);
-<span style="margin-left:8px;"></span>2084       1/1              $readmemh({`PUF_OTP_DAT_PATH, &quot;_TR.dat&quot;       },`PUF_OTP_CORE.MEM_TR);
-<span style="margin-left:8px;"></span>2085       1/1              $readmemh({`PUF_OTP_DAT_PATH, &quot;_TC.dat&quot;       },`PUF_OTP_CORE.MEM_TC);
-<span style="margin-left:8px;"></span>2086       1/1              $readmemh({`PUF_OTP_DAT_PATH, &quot;_IF_LCK.dat&quot;   },`PUF_OTP_CORE.MEM_IF);
-<span style="margin-left:8px;"></span>2087       1/1              $readmemh({`PUF_OTP_DAT_PATH, &quot;_REP_OK.dat&quot;   },`PUF_OTP_CORE.MEM_REP);
-<span style="margin-left:8px;"></span>2088       1/1              $readmemh({`PUF_OTP_DAT_PATH, &quot;_PUF_RN.dat&quot;   },`PUF_OTP_CORE.MEM_PUF);
-<span style="margin-left:8px;"></span>2089       1/1              $readmemh({`PUF_OTP_DAT_PATH, &quot;_PUF_RN.dat&quot;   },`PUF_OTP_CORE.MEM_PUFORG);
+<span style="margin-left:8px;"></span>2037                    int dump_sram_bank2 = 0;
+<span style="margin-left:8px;"></span>2038                    initial begin
+<span style="margin-left:8px;"></span>2039                      wait(dump_sram_bank2);
+<span style="margin-left:8px;"></span>2040                    	$writememh(&quot;acpu_img_loaded_into_sram_bank2.txt&quot;, `MEM_SS.sram4b.sram_bank2.memArray);
+<span style="margin-left:8px;"></span>2041                    end
+<span style="margin-left:8px;"></span>2042                    
+<span style="margin-left:8px;"></span>2043                    //bind AF_IO_H pad_model pad_model_u (.*);
+<span style="margin-left:8px;"></span>2044                    
+<span style="margin-left:8px;"></span>2045       2/2          // PUfcc assertion module instatiate
+<span style="margin-left:8px;"></span>2046                    pufcc_assertions PUFcc_ASSERT (`include `PUFCC_INTF_PATH);
+<span style="margin-left:8px;"></span>2047       1/1          // PUFcc internal memories load files
+<span style="margin-left:8px;"></span>2048       <font color = "red">0/1     ==>  defparam `PUF_OTP_CORE.EMTC_write_file = 0;</font>
+<span style="margin-left:8px;"></span>2049       <font color = "red">0/1     ==>  initial begin</font>
+<span style="margin-left:8px;"></span>2050       <font color = "red">0/1     ==>    #10;</font>
+<span style="margin-left:8px;"></span>2051       <font color = "red">0/1     ==>    //BLANK CHIP WITHOUT FAULT</font>
+<span style="margin-left:8px;"></span>2052       <font color = "red">0/1     ==>    if($test$plusargs(&quot;PUF_BLANK_GOOD&quot;)) begin</font>
+<span style="margin-left:8px;"></span>2053       <font color = "red">0/1     ==>      $display(&quot;BLANK CHIP WITHOUT FAULT&quot;);</font>
+<span style="margin-left:8px;"></span>2054       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;.dat&quot;          },`PUF_OTP_CORE.MEM_MAIN);</font>
+<span style="margin-left:8px;"></span>2055       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_TR.dat&quot;       },`PUF_OTP_CORE.MEM_TR);</font>
+<span style="margin-left:8px;"></span>2056                        $readmemh({`PUF_OTP_DAT_PATH, &quot;_TC.dat&quot;       },`PUF_OTP_CORE.MEM_TC);
+<span style="margin-left:8px;"></span>2057                        $readmemh({`PUF_OTP_DAT_PATH, &quot;_IF.dat&quot;       },`PUF_OTP_CORE.MEM_IF);
+<span style="margin-left:8px;"></span>2058       1/1              $readmemh({`PUF_OTP_DAT_PATH, &quot;_REP.dat&quot;      },`PUF_OTP_CORE.MEM_REP);
+<span style="margin-left:8px;"></span>2059       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_PUF.dat&quot;      },`PUF_OTP_CORE.MEM_PUF);</font>
+<span style="margin-left:8px;"></span>2060       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_PUFORG.dat&quot;   },`PUF_OTP_CORE.MEM_PUFORG);</font>
+<span style="margin-left:8px;"></span>2061       <font color = "red">0/1     ==>    end</font>
+<span style="margin-left:8px;"></span>2062       <font color = "red">0/1     ==>     //BLANK CHIP WITH FAULT</font>
+<span style="margin-left:8px;"></span>2063       <font color = "red">0/1     ==>    else if($test$plusargs(&quot;PUF_BLANK_FAULT&quot;)) begin</font>
+<span style="margin-left:8px;"></span>2064       <font color = "red">0/1     ==>      $display(&quot;BLANK CHIP WITH FAULT&quot;);</font>
+<span style="margin-left:8px;"></span>2065       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_F2.dat&quot;       },`PUF_OTP_CORE.MEM_MAIN);</font>
+<span style="margin-left:8px;"></span>2066       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_TR.dat&quot;       },`PUF_OTP_CORE.MEM_TR);</font>
+<span style="margin-left:8px;"></span>2067                        $readmemh({`PUF_OTP_DAT_PATH, &quot;_TC.dat&quot;       },`PUF_OTP_CORE.MEM_TC);
+<span style="margin-left:8px;"></span>2068                        $readmemh({`PUF_OTP_DAT_PATH, &quot;_IF.dat&quot;       },`PUF_OTP_CORE.MEM_IF);
+<span style="margin-left:8px;"></span>2069                        $readmemh({`PUF_OTP_DAT_PATH, &quot;_REP.dat&quot;      },`PUF_OTP_CORE.MEM_REP);
+<span style="margin-left:8px;"></span>2070       1/1              $readmemh({`PUF_OTP_DAT_PATH, &quot;_PUF_F2.dat&quot;   },`PUF_OTP_CORE.MEM_PUF);
+<span style="margin-left:8px;"></span>2071       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_PUFORG.dat&quot;   },`PUF_OTP_CORE.MEM_PUFORG);</font>
+<span style="margin-left:8px;"></span>2072       <font color = "red">0/1     ==>    end</font>
+<span style="margin-left:8px;"></span>2073       <font color = "red">0/1     ==>     //GOOD CHIP WITH REPAIR</font>
+<span style="margin-left:8px;"></span>2074       <font color = "red">0/1     ==>     //GOOD CHIP WITHOUT LOCK</font>
+<span style="margin-left:8px;"></span>2075       <font color = "red">0/1     ==>     else if($test$plusargs(&quot;PUF_GOOD_WOLCK&quot;)) begin</font>
+<span style="margin-left:8px;"></span>2076       <font color = "red">0/1     ==>      $display(&quot;GOOD CHIP WITHOUT LOCK&quot;);</font>
+<span style="margin-left:8px;"></span>2077       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;.dat&quot;          },`PUF_OTP_CORE.MEM_MAIN);</font>
+<span style="margin-left:8px;"></span>2078       <font color = "red">0/1     ==>      $readmemh({`PUF_OTP_DAT_PATH, &quot;_TR.dat&quot;       },`PUF_OTP_CORE.MEM_TR);</font>
+<span style="margin-left:8px;"></span>2079                        $readmemh({`PUF_OTP_DAT_PATH, &quot;_TC.dat&quot;       },`PUF_OTP_CORE.MEM_TC);
+<span style="margin-left:8px;"></span>2080                        $readmemh({`PUF_OTP_DAT_PATH, &quot;_IF_ULK.dat&quot;   },`PUF_OTP_CORE.MEM_IF);
+<span style="margin-left:8px;"></span>2081                        $readmemh({`PUF_OTP_DAT_PATH, &quot;_REP.dat&quot;      },`PUF_OTP_CORE.MEM_REP);
+<span style="margin-left:8px;"></span>2082       1/1              $readmemh({`PUF_OTP_DAT_PATH, &quot;_PUF_RN.dat&quot;   },`PUF_OTP_CORE.MEM_PUF);
+<span style="margin-left:8px;"></span>2083       1/1              $readmemh({`PUF_OTP_DAT_PATH, &quot;_PUF_RN.dat&quot;   },`PUF_OTP_CORE.MEM_PUFORG);
+<span style="margin-left:8px;"></span>2084       1/1            end
+<span style="margin-left:8px;"></span>2085       1/1             //GOOD CHIP WITHOUT FAULT
+<span style="margin-left:8px;"></span>2086       1/1             else begin
+<span style="margin-left:8px;"></span>2087       1/1              $display(&quot;Good Chip Without Fault&quot;);
+<span style="margin-left:8px;"></span>2088       1/1              $readmemh({`PUF_OTP_DAT_PATH, &quot;.dat&quot;          },`PUF_OTP_CORE.MEM_MAIN);
+<span style="margin-left:8px;"></span>2089       1/1              $readmemh({`PUF_OTP_DAT_PATH, &quot;_TR.dat&quot;       },`PUF_OTP_CORE.MEM_TR);
 </pre>
 </div>
 <div class="ui-layout-south">

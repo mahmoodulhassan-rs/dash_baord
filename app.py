@@ -773,7 +773,7 @@ app.layout = html.Div((
                        style = {'textAlign': 'center',
                                 'color': 'black'}
                        ),
-                html.P('DFT_0.9.1_SoC_SS_Intg',
+                html.P('DFT_0.9.3_Mod',
                        style={'textAlign': 'center',
                               'color': '#00008B',
                               'fontSize': 15,

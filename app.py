@@ -626,10 +626,10 @@ legend=dict(
     x=0.00,
 ))
 
-arr =[400,400,400,400,400,400,400,400,400,400,400,439,647,633,663,660,662,666,669,673,673]
-aarr= [21,35,39,56,65,96,139,167,171,195,360,379,600,588,639,616,646,649,667,669,672]
-arr_f= [0,3,3,0,4,15,39,37,30,50,50,37,27,25,10,36,8,2,1,3,0]
-arr_x=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24] ##DCDCDC
+arr =[400,400,400,400,400,400,400,400,400,400,400,439,647,633,663,660,662,666,669,673,673,672]
+aarr= [21,35,39,56,65,96,139,167,171,195,360,379,600,588,639,616,646,649,667,669,672,579]
+arr_f= [0,3,3,0,4,15,39,37,30,50,50,37,27,25,10,36,8,2,1,3,0,78]
+arr_x=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25] ##DCDCDC
 f1 = go.Figure(
     data = [
         go.Scatter(x=arr_x,y=arr, name="Tests Planned",line=dict(color="#FF8C00"),marker = dict(size = 3, symbol = 'circle', color = 'white',
@@ -773,7 +773,7 @@ app.layout = html.Div((
                        style = {'textAlign': 'center',
                                 'color': 'black'}
                        ),
-                html.P('DFT_0.9.3_Mod',
+                html.P('rs_dv_19_01_2023',
                        style={'textAlign': 'center',
                               'color': '#00008B',
                               'fontSize': 15,
@@ -784,7 +784,7 @@ app.layout = html.Div((
                        style = {'textAlign': 'center',
                                 'color': 'black'}
                        ),
-                html.P('c96376c7ef30562beff66ffe6d3acc58b90dad65',
+                html.P('fe6047ba4ed8b81c009948cdcc50d9cfaa7117a3',
                        style={'textAlign': 'center',
                               'color': '#00008B',
                               'fontSize': 15,
